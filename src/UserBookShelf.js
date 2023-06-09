@@ -17,7 +17,6 @@ const sample = [
   { booktitle: "oooooo", image: "https://picsum.photos/200/200?random=13" },
   { booktitle: "pppppp", image: "https://picsum.photos/200/200?random=14" },
   { booktitle: "qqqqqq", image: "https://picsum.photos/200/200?random=15" },
-  { booktitle: "rrrrrr", image: "https://picsum.photos/200/200?random=16" },
 ];
 
 // eslint-disable-next-line import/no-anonymous-default-export

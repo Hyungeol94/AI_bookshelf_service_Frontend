@@ -1,5 +1,5 @@
 import React from "react";
-import UserBookShelf from "./UserBookShelf";
+import UserBookShelf from "./pages/UserBookShelf";
 
 const App = () => {
   return (

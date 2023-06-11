@@ -1,13 +1,17 @@
 import React from "react";
-import UserBookShelf from "./pages/UserBookShelf";
+import Home from "./routes/Home";
+import UserBookShelf from "./routes/UserBookShelf";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import "./styles/App.css";
 
-const App = () => {
+// eslint-disable-next-line import/no-anonymous-default-export
+export default () => {
   return (
-    <div>
-      <h1>Hello world!!!</h1>
-      <UserBookShelf />
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" Component={Home} />
+        <Route path="/bookshelf" Component={UserBookShelf} />
+      </Routes>
+    </Router>
   );
 };
-
-export default App;

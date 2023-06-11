@@ -1,0 +1,29 @@
+#navigator {
+  position: relative;
+  min-height: 2em;
+  background-color: red;
+  padding: 0.5em;
+  display: flex;
+}
+.logo {
+  left: 10px;
+  background-color: blue;
+  height: 2em;
+  position: absolute;
+}
+.menu {
+  left: 180px;
+  background-color: green;
+  height: 2em;
+  position: absolute;
+}
+.sign {
+  right: 10px;
+  background-color: yellow;
+  height: 2em;
+  position: absolute;
+}
+.navigator-items {
+  height: 2em;
+  display: flex;
+}

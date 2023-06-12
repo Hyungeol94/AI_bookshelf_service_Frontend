@@ -13,6 +13,9 @@ export default () => {
         <div className="menu">
           <h1>dfdf</h1>
         </div>
+        <div className="bookshelf">
+          <h1><a href = "http://localhost:3000/bookshelf" className="link">나의 서재</a></h1>
+        </div>
         <div className="sign">
           <h1><a href = "http://localhost:3000/login" className="link">로그인</a></h1>
         </div>

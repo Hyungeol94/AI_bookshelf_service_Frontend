@@ -11,6 +11,7 @@ export default () => {
       <Routes>
         <Route path="/" Component={Home} />
         <Route path="/bookshelf" Component={UserBookShelf} />
+        <Route path="/login" Component={Login} />
       </Routes>
     </Router>
   );

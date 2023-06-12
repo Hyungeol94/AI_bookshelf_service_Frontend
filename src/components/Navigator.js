@@ -7,8 +7,8 @@ export default () => {
   return (
     <div id="navigator">
       <div className="navigator-items">
-        <div className="logo">
-          <h1>장미여관</h1>
+        <div className="logo">        
+          <h1><a href = "http://localhost:3000/" className="home-link">장미여관</a></h1>          
         </div>
         <div className="menu">
           <h1>dfdf</h1>

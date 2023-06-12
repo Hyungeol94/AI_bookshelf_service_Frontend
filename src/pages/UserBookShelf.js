@@ -5,7 +5,7 @@ import sample from "../assets/sample_book.json";
 // eslint-disable-next-line import/no-anonymous-default-export
 function getlist(books_info){ 
   return (
-    <div>
+    <div style={{display : "flex"}}>
     {books_info.map((book) => (
     <BookList key={book.id} image={book.image} booktitle={book.booktitle}/>
   ))}
@@ -30,15 +30,16 @@ function get_trimmed_list(books_info){
 }
 
 
-export default () => {
-  const includeCount = 3
+const MyLibrary = () => {
   return (
     <div>
       <h1>나의 서재</h1>      
-      {getlist(sample)}
-
       <h2>최근 추가한 항목</h2>      
       {get_trimmed_list(sample)}
+      <h2>전체 보기</h2>      
+      {getlist(sample)}
     </div>
   );
 };
+
+export default MyLibrary;

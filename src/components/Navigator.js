@@ -8,13 +8,13 @@ export default () => {
     <div id="navigator">
       <div className="navigator-items">
         <div className="logo">        
-          <h1><a href = "http://localhost:3000/" className="home-link">장미여관</a></h1>          
+          <h1><a href = "http://localhost:3000/" className="link">장미여관</a></h1>          
         </div>
         <div className="menu">
           <h1>dfdf</h1>
         </div>
         <div className="sign">
-          <h1>로그인</h1>
+          <h1><a href = "http://localhost:3000/login" className="link">로그인</a></h1>
         </div>
       </div>
     </div>

@@ -49,6 +49,9 @@ function get_recentlyAdded_list(books_info){
   return getlist(res)
 }
 
+function get_likes_list(books_info){
+  return getlist(books_info) //이후 수정 필요
+}
 
 const MyLibrary = () => {
   return (
@@ -58,6 +61,8 @@ const MyLibrary = () => {
       {get_recentlyAdded_list(sample)}
       <h2>전체 보기</h2>      
       {getlist(sample)}
+      <h2>좋아요</h2>
+      {get_likes_list(sample)}
     </div>
   );
 };

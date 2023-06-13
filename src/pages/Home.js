@@ -1,5 +1,6 @@
 import React from "react";
 import "../styles/Home.css";
+import { Link } from "react-router-dom";
 // import BookList from "../components/BookList";
 // import sample from "../assets/sample_book.json";
 
@@ -8,9 +9,12 @@ export default () => {
   return (
     <div id="home">
       <h1>Home 이다.</h1>
-      <a href="http://localhost:3000/bookshelf">
+      <Link to="/bookshelf">
         <button>나의 서재</button>
-      </a>
+      </Link>
+      <Link to="/search">
+        <button>검색창</button>
+      </Link>
     </div>
   );
 };

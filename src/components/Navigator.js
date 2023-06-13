@@ -7,14 +7,17 @@ export default () => {
   return (
     <div id="navigator">
       <div className="navigator-items">
-        <div className="logo">
-          <h1>장미여관</h1>
+        <div className="logo">        
+          <h1><a href = "http://localhost:3000/" className="link">북이온앤온</a></h1>          
         </div>
         <div className="menu">
-          <h1>dfdf</h1>
+          <h1>검색</h1>
+        </div>
+        <div className="bookshelf">
+          <h1><a href = "http://localhost:3000/bookshelf" className="link">나의 서재</a></h1>
         </div>
         <div className="sign">
-          <h1>로그인</h1>
+          <h1><a href = "http://localhost:3000/login" className="link">로그인</a></h1>
         </div>
       </div>
     </div>

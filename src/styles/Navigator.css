@@ -5,6 +5,10 @@
   padding: 0.5em;
   display: flex;
 }
+.link {
+  text-decoration: none;
+  color: inherit;
+}
 .logo {
   left: 10px;
   background-color: blue;
@@ -17,6 +21,13 @@
   height: 2em;
   position: absolute;
 }
+.bookshelf{
+  right: 150px;
+  background-color: violet;
+  height: 2em;
+  position: absolute;
+}
+
 .sign {
   right: 10px;
   background-color: yellow;

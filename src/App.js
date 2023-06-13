@@ -5,6 +5,7 @@ import Login from "./routes/Login";
 import Search from "./pages/Search";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./styles/App.css";
+import Signup from "./routes/Signup"
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default () => {
@@ -14,6 +15,7 @@ export default () => {
         <Route path="/" Component={Home} />
         <Route path="/bookshelf" Component={UserBookShelf} />
         <Route path="/login" Component={Login} />
+        <Route path="/signup" Component={Signup} />
         <Route path="/search" Component={Search} />
       </Routes>
     </Router>

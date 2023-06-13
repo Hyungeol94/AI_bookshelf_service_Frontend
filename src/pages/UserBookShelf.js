@@ -1,6 +1,7 @@
 import React from "react";
 import BookList from "../components/BookList";
 import sample from "../assets/sample_book.json";
+import getlist from "../components/GetList";
 
 const Book = (props) => (
   <div>
@@ -16,23 +17,7 @@ const Book = (props) => (
   </div>
 );
 
-
 // eslint-disable-next-line import/no-anonymous-default-export
-function getlist(books_info){ 
-  return ([
-    books_info.length,
-    <div style={{display : "flex", overflowX: "auto"}}>
-    {books_info.map((book_info) => (
-    <Book
-      key={book_info.id}
-      image={book_info.image}
-      booktitle={book_info.booktitle}
-      style = {{marginRight : "10px"}}
-    />
-  ))}
-  </div>
-])}
-
 function trim(books_info, includeCount){
   let res = []
   for (let i =0;i<books_info.length;i++){
@@ -42,7 +27,6 @@ function trim(books_info, includeCount){
   }
   return res
 }
-
 
 function get_recentlyAdded_list(books_info){ 
   const includeCount = 3;
@@ -54,7 +38,7 @@ function get_likes_list(books_info){
   return getlist(books_info) //이후 수정 필요
 }
 
-const MyLibrary = () => {
+const UserBookShelf = () => {
   let [recentlyAdded_count, recentlyAdded_list] = get_recentlyAdded_list(sample);
   let [totalBook_count, totalBook_list] = getlist(sample);
   let [likes_count, Likes_list] = get_likes_list(sample);
@@ -72,4 +56,4 @@ const MyLibrary = () => {
   );
 };
 
-export default MyLibrary;
+export default UserBookShelf;

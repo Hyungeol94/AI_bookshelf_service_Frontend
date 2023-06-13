@@ -1,4 +1,6 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import "../styles/UserBookShelf.css";
 import BookList from "../components/BookList";
 import sample from "../assets/sample_book.json";
 import getlist from "../components/GetList";
@@ -29,7 +31,10 @@ const UserBookShelf = () => {
 
   return (
     <div>
-      <h1>나의 서재</h1>      
+      <div className="head"><h1>나의 서재</h1></div>      
+      <Link to="/Upload">
+        <button>업로드</button>
+      </Link>      
       <h2>최근 추가한 항목({recentlyAdded_count}개)</h2>      
       {recentlyAdded_list}
       <h2>전체 보기 (총 {totalBook_count}개)</h2>      

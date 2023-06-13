@@ -18,7 +18,7 @@ export default () => {
         <Link to="/bookshelf" className="link"><h1>나의서재</h1></Link>  
         </div>
         <div className="sign">
-        <Link to="/login" className="link"><h1>나의서재</h1></Link>  
+        <Link to="/login" className="link"><h1>로그인</h1></Link>  
         </div>
       </div>
     </div>

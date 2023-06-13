@@ -136,7 +136,7 @@ function Signuppage() {
         />
         <br />
         <button>회원가입</button>
-        <button>취소</button>
+        <Link to="../"><button> 취소(메인 페이지) </button></Link>
       </form>
     </div>
   );

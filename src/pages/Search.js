@@ -9,10 +9,11 @@ import bookinfo_api from "../services/bookinfo_api";
 import sampleBookImg from "../assets/img/sample_book.png";
 // import sample from "../assets/sample_book.json";
 
-export default () => {
+export default (props) => {
   const [data, setData] = useState(null);
-  const [searchValue, setSearchValue] = useState(null);
+  const [searchValue, setSearchValue] = useState(props.searchValue || null);
   const [pageSize, setPageSize] = useState(10);
+  const [isloading, setIsLoading] = useState(false);
 
   const onChange = (e) => {
     setSearchValue(e.target.value);
@@ -23,7 +24,9 @@ export default () => {
   };
 
   const onSearch = async () => {
+    setIsLoading(true);
     setData(await bookinfo_api(searchValue, pageSize));
+    setIsLoading(false);
     // console.log("data", data[0].elements[0].elements[0].cdata);
   };
 
@@ -66,7 +69,9 @@ export default () => {
           검색
         </button>
       </div>
-      {data ? (
+      {isloading ? (
+        <h3>로딩중..</h3>
+      ) : data ? (
         <div>
           {data.map((book) => {
             return (

@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react";
 import "../styles/Upload.css";
+import { Link, Route, Routes, useNavigate } from 'react-router-dom';
 
 const Upload = () => {
   const [imgFile, setImgFile] = useState([]); // 이미지 배열
@@ -13,14 +14,15 @@ const Upload = () => {
   const boximgUpload = () => {
     setImgFile((prev) => [...prev, URL.createObjectURL(upload.current.files[0])]);
   };
-
+  const navigate = useNavigate();
   const handleUpload = () => {
     if (imgFile.length === 0) {
       alert("No images appended."); // Display alert if no images are appended
     } else {
       // Perform the AI logic here
       //start the AI logic
-      // ...
+      // ...        
+        navigate('/result', {replace: true});
     }
   };
 

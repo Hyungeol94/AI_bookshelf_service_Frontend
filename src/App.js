@@ -4,6 +4,7 @@ import UserBookShelf from "./routes/UserBookShelf";
 import Login from "./routes/Login";
 import Search from "./pages/Search";
 import Upload from "./pages/Upload";
+import Result from "./pages/Result";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./styles/App.css";
 
@@ -17,6 +18,7 @@ export default () => {
         <Route path="/login" Component={Login} />
         <Route path="/search" Component={Search} />
         <Route path="/upload" Component={Upload} />
+        <Route path="/result" Component={Result} />      
       </Routes>
     </Router>
   );

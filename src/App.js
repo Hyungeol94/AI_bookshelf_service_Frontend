@@ -5,6 +5,9 @@ import UserBookShelf from "./routes/UserBookShelf";
 import Login from "./routes/Login";
 import Search from "./pages/Search";
 import Stats from "./pages/UserStatistics";
+import Upload from "./pages/Upload";
+import Result from "./pages/Result";
+
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./styles/App.css";
 import Signup from "./routes/Signup"
@@ -22,6 +25,8 @@ export default () => {
         <Route path="/stats" Component={Stats} />
         <Route path="/bookinfol" Component={BookInfo} />
         {/* <Route path="/UserStatistics" Component={UserStatistics}/> */}
+        <Route path="/upload" Component={Upload} />
+        <Route path="/result" Component={Result} />      
       </Routes>
     </Router>
   );

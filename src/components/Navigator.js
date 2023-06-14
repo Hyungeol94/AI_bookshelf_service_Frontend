@@ -1,5 +1,6 @@
 import React from "react";
 import "../styles/Navigator.css";
+import { Link } from "react-router-dom";
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default () => {
@@ -8,16 +9,16 @@ export default () => {
     <div id="navigator">
       <div className="navigator-items">
         <div className="logo">        
-          <h1><a href = "http://localhost:3000/" className="link">북이온앤온</a></h1>          
+          <Link to="/" className="link"><h1>북이온앤온</h1></Link>  
         </div>
         <div className="menu">
-          <h1>검색</h1>
+        <Link to="/search" className="link"><h1>검색</h1></Link>  
         </div>
         <div className="bookshelf">
-          <h1><a href = "http://localhost:3000/bookshelf" className="link">나의 서재</a></h1>
+        <Link to="/bookshelf" className="link"><h1>나의서재</h1></Link>  
         </div>
         <div className="sign">
-          <h1><a href = "http://localhost:3000/login" className="link">로그인</a></h1>
+        <Link to="/login" className="link"><h1>로그인</h1></Link>  
         </div>
       </div>
     </div>

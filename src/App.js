@@ -20,6 +20,7 @@ export default () => {
         <Route path="/signup" Component={Signup} />
         <Route path="/search" Component={Search} />
         <Route path="/stats" Component={Stats} />
+        <Route path="/bookinfol" Component={BookInfo} />
         {/* <Route path="/UserStatistics" Component={UserStatistics}/> */}
       </Routes>
     </Router>

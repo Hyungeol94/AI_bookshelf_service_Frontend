@@ -23,8 +23,7 @@ export default () => {
         <Route path="/signup" Component={Signup} />
         <Route path="/search" Component={Search} />
         <Route path="/stats" Component={Stats} />
-        <Route path="/bookinfol" Component={BookInfo} />
-        {/* <Route path="/UserStatistics" Component={UserStatistics}/> */}
+        <Route path="/detail" Component={Detail} />
         <Route path="/upload" Component={Upload} />
         <Route path="/result" Component={Result} />      
       </Routes>

@@ -31,6 +31,7 @@ import UserBookShelf from "./routes/UserBookShelf";
 import Login from "./routes/Login";
 import Upload from "./pages/Upload";
 import Signup from "./pages/Signup";
+import Detail from "./pages/Detail";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -45,6 +46,7 @@ root.render(
       <Route path="/blk-design-system-react" element={<Navigate to="/" replace />} />
       <Route path="/upload" Component={Upload} />
       <Route path="/signup" Component={Signup} />
+      <Route path="/detail" Component={Detail} />
       
     </Routes>
   </BrowserRouter>

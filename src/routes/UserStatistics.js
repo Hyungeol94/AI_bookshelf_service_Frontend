@@ -1,5 +1,5 @@
 import React from "react";
-import UserBookShelfpage from "../pages/UserStatistics";
+import UserBookShelf from "../pages/UserStatistics";
 import Navigator from "../components/Navigator";
 
 
@@ -19,7 +19,7 @@ class UserStatistics extends React.Component {
     return (
       <div>
         <Navigator />
-        {this.state.isLoading ? <h1>"Loading..."</h1> : <p/>}
+        {this.state.isLoading ? <h1>"Loading..."</h1> : <UserBookShelf/>}
       </div>
     );
   }

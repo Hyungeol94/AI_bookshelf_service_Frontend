@@ -1,10 +1,10 @@
 [
   {
     "id": 1,
-    "statstitle": "aaaaaa",
-    "statsinfo":"aaaaaa",
-    "FavoriteGenre":"Romance",
-    "BooksRead":"3029",
+    "statsTitle": "aaaaaa",
+    "statsInfo":"aaaaaa",
+    "favoriteGenre":"Romance",
+    "booksRead":"3029",
     "image": "https://blog.designs.ai/wp-content/uploads/2020/04/THE-MBTI-PERSONALITIES-IN-QUARANTINE-2.png"
   }
 ]

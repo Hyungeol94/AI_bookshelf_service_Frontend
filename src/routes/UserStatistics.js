@@ -1,8 +1,10 @@
 import React from "react";
-import Loginpage from "../pages/Login";
+import UserBookShelf from "../pages/UserStatistics";
+import Navigator from "../components/Navigator";
+
 
 // eslint-disable-next-line import/no-anonymous-default-export
-class Login extends React.Component {
+class UserStatistics extends React.Component {
   state = {
     isLoading: true,
   };
@@ -16,10 +18,11 @@ class Login extends React.Component {
   render() {
     return (
       <div>
-        {this.state.isLoading ? <h1>"Loading..."</h1> : <Loginpage/>}
+        <Navigator />
+        {this.state.isLoading ? <h1>"Loading..."</h1> : <UserBookShelf/>}
       </div>
     );
   }
 }
 
-export default Login;
+export default UserStatistics;

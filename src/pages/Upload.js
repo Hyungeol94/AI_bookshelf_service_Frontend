@@ -2,6 +2,14 @@ import React, { useRef, useState } from "react";
 import "../styles/Upload.css";
 import { Link, Route, Routes, useNavigate } from 'react-router-dom';
 
+function Card({ children }) {
+  return (
+    <div className="card">
+      {children}
+    </div>
+  );
+}
+
 const Upload = () => {
   const [imgFile, setImgFile] = useState([]); // 이미지 배열
   const upload = useRef();
@@ -46,16 +54,16 @@ const Upload = () => {
             />
             </>
         ) : (
-            <>
+            <div>
                 <div style={{ display: 'flex' }}>
                 {imgFile?.map((img, idx) => (
-                    <div key={idx} style={{ margin: '20px', border: '1px solid black' }}>
-                    <img
-                        style={{ width: '200px', height: '200px' }}
-                        src={img}
-                        alt="img"
-                    />
-                    </div>
+                    <Card key={idx}>
+                      <img
+                          style={{ margin: '5px', width: '200px', height: '200px' }}
+                          src={img}
+                          alt="img"
+                      />
+                    </Card>
                 ))}
                 </div>
                 <input
@@ -65,8 +73,7 @@ const Upload = () => {
                 onChange={boximgUpload}
                 accept="image/*"                
             />
-            </>
-            
+            </div>
         )}
       </div>
       <button onClick={handleUpload} className="continueButton">계속하기</button>

@@ -5,6 +5,7 @@ import { Container, Button } from "reactstrap";
 // core components
 import IndexNavbar from "components/Navbars/IndexNavbar.js";
 import Footer from "components/Footer/Footer.js";
+import { Link } from "react-router-dom";
 
 // our components
 import BookList from "../components/BookList";
@@ -46,6 +47,9 @@ const UserBookShelf = () => {
         <img alt="..." className="path" src={require("assets/img/path1.png")} />
         <Container>
           <h2 className="title">Mybrary</h2>
+          <Link to="/Upload">
+          <button>업로드</button>
+          </Link> 
           <h3>최근 추가한 항목({recentlyAdded_count}개)</h3>      
           {recentlyAdded_list}
           <h3>전체 보기 (총 {totalBook_count}개)</h3>      

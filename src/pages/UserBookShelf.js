@@ -36,20 +36,20 @@ import { useNavigate } from "react-router-dom"
 //   )
 // }
 
-const Book = (props) => (
-  <div>
-    <div>
-      <img src={props.image} 
-      alt={props.booktitle} 
-      width={80} 
-      height={80}
-      style = {{marginRight : "10px"}}
-      />
-    </div>
-    <h5>{props.booktitle}</h5>
-  </div>
-);
-
+// const Book = (props) => (
+//   <div>
+//     <div>
+//       <img src={props.image} 
+//       alt={props.booktitle} 
+//       width={80} 
+//       height={80}
+//       style = {{marginRight : "10px"}}
+//       />
+//     </div>
+//     <h5>{props.booktitle}</h5>
+//   </div>
+// );
+// <<< 이거 이용해서 클릭하면 넘어가게 해야하는데 어떻게 연결하는지를 모르겠다... 
 
 const UserBookShelf = () => {
   let [recentlyAdded_count, recentlyAdded_list] = get_recentlyAdded_list(sample);

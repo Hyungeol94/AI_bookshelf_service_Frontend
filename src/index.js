@@ -46,7 +46,7 @@ root.render(
       <Route path="/blk-design-system-react" element={<Navigate to="/" replace />} />
       <Route path="/upload" Component={Upload} />
       <Route path="/signup" Component={SignUp} />
-      {/* <Route path="/detail/:id" element={ <DetailPage item={item}/>} /> */}
+      <Route path="/detail/:id" element={ <Detail Detail={Detail}/>} />
       
     </Routes>
   </BrowserRouter>

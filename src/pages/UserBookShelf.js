@@ -61,7 +61,14 @@ const UserBookShelf = () => {
         <div className="section section-basic" id="basic-elements">
         <img alt="..." className="path" src={require("assets/img/path1.png")} />
         <Container>
-          <h2 className="title">Mybrary</h2>
+          <div>
+          <Col>          
+            <h2 className="title">Mybrary</h2>
+            <Button className="btn-round" color="primary" type="button">
+                Upload New Book
+            </Button>
+          </Col>
+          </div>
           <h3>최근 추가한 항목 ({recentlyAdded_count}개) </h3>
           {recentlyAdded_list}
           

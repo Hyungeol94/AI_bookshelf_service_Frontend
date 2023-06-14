@@ -14,7 +14,27 @@ import getlist from "../components/GetList";
 import get_likes_list from "../components/GetLikesList";
 import get_recentlyAdded_list from "../components/GetRecentlyAddedList";
 import get_saved_list from "../components/GetSavedList";
+import { useNavigate } from "react-router-dom"
 
+// export default function DetailPage(props){
+//   const navigate = useNavigate();
+
+//   const onClickDetailItem = () {
+//     navigate('/Detail.${props.title}',{
+//       state: props
+//     })
+//   }
+//   return (
+//     <div className="book-container" onclick={onClickDetailItem}>
+//       <img src={BOOK_IMG_URL + props.image} alt='book image'/>
+//       <div className='book-info'>
+//         <h4> {props.booktitle} </h4>
+//         <span> {props.movie_detail} </span> {/* 수정해야됨 */}
+
+//       </div>
+//     </div>
+//   )
+// }
 
 const Book = (props) => (
   <div>

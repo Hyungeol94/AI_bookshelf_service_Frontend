@@ -29,6 +29,8 @@ import Home from "./routes/Home";
 import First from "./routes/First";
 import UserBookShelf from "./routes/UserBookShelf";
 import Login from "./routes/Login";
+import Upload from "./pages/Upload";
+import Signup from "./pages/Signup";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -40,7 +42,9 @@ root.render(
       <Route path="/home" Component={Home} />
       <Route path="/bookshelf" Component={UserBookShelf} />
       <Route path="/login" Component={Login} />
-      <Route path="/blk-design-system-react" element={<Navigate to="/" replace />} />   
+      <Route path="/blk-design-system-react" element={<Navigate to="/" replace />} />
+      <Route path="/upload" Component={Upload} />
+      <Route path="/signup" Component={Signup} />
       
     </Routes>
   </BrowserRouter>

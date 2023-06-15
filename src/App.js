@@ -1,21 +1,21 @@
 import React from "react";
 import Home from "./routes/Home";
 import UserBookShelf from "./routes/UserBookShelf";
-import Login from "./routes/Login";
+import Login from "./pages/Login";
 import Search from "./pages/Search";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./styles/App.css";
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default () => {
   return (
-    <Router>
+    <BrowserRouter>
       <Routes>
-        <Route path="/" Component={Home} />
-        <Route path="/bookshelf" Component={UserBookShelf} />
-        <Route path="/login" Component={Login} />
-        <Route path="/search" Component={Search} />
+        <Route path="/" element={<Home />} />
+        <Route path="/bookshelf" element={<UserBookShelf />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/search" element={<Search />} />
       </Routes>
-    </Router>
+    </BrowserRouter>
   );
 };

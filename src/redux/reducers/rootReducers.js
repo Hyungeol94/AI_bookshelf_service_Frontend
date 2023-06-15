@@ -3,7 +3,6 @@ import { combineReducers } from "redux";
 // import pageReducer from "./pageReducer";
 // import prescriptionReducer from "./prescriptionReducer";
 // import socketReducer from "./socketReducer";
-// import stateReducer from "./stateReducer";
 import userReducer from "./userReducer";
 
 const rootReducer = combineReducers({
@@ -11,7 +10,6 @@ const rootReducer = combineReducers({
   // pageReducer: pageReducer,
   // // prescriptionReducer: prescriptionReducer,
   // // socketReducer: socketReducer,
-  // // stateReducer: stateReducer,
   userReducer: userReducer,
 });
 

@@ -19,6 +19,11 @@ export default () => {
 
   const { loginState } = useSelector((state) => state.userReducer);
 
+  /** redux를 초기화하기 위함 */
+  useEffect(() => {
+    localStorage.removeItem("persist:root");
+  }, []);
+
   const handleInput = (e) => {
     const { name, value } = e.target;
     if (name === "email") {
@@ -27,10 +32,27 @@ export default () => {
   };
 
   useEffect(() => {
+    console.log("useEffect");
     if (loginState) {
+      console.log("loginState");
       navigate("/");
     }
   }, [loginState, navigate]);
+
+  // /** 회원가입 페이지로 이동 */
+  // const moveSignupPage = () => {
+  //   navigate("/signup");
+  // };
+
+  // /** 아이디 찾기 페이지로 이동 */
+  // const moveFindId = () => {
+  //   navigate("/inquiry/id");
+  // };
+
+  // /** 비밀번호 찾기 페이지로 이동 */
+  // const moveFindPw = () => {
+  //   navigate("/inquiry/pw");
+  // };
 
   // login 버튼 이벤트
   const onClickLogin = async (e) => {

@@ -32,7 +32,7 @@ import Login from "./routes/Login";
 import Upload from "./pages/Upload";
 import Resultpage from "./routes/Result";
 import Searchpage from "./routes/Search";
-import SignUp from "./pages/SignUp";
+import Signuppage from "./routes/Signup";
 import User from "./routes/User";
 import Detail from "./pages/Detail";
 
@@ -48,7 +48,7 @@ root.render(
       <Route path="/login" Component={Login} />
       <Route path="/blk-design-system-react" element={<Navigate to="/" replace />} />
       <Route path="/upload" Component={Upload} />
-      <Route path="/signup" Component={Signup} />
+      <Route path="/signup" Component={Signuppage} />
       <Route path="/result" Component={Resultpage} />
       <Route path="/search" Component={Searchpage} />
       <Route path="/profile" Component={User} />

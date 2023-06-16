@@ -32,6 +32,7 @@ import Login from "./routes/Login";
 import Upload from "./pages/Upload";
 import Signup from "./routes/Signup";
 import Resultpage from "./routes/Result";
+import Searchpage from "./routes/Search";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -47,7 +48,7 @@ root.render(
       <Route path="/upload" Component={Upload} />
       <Route path="/signup" Component={Signup} />
       <Route path="/result" Component={Resultpage} />
-      
+      <Route path="/search" Component={Searchpage} />
     </Routes>
   </BrowserRouter>
 );

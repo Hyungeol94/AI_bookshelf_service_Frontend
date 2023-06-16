@@ -1,40 +1,10 @@
-#navigator {
-  position: relative;
-  min-height: 2em;
-  background-color: red;
-  padding: 0.5em;
-  display: flex;
-}
-.link {
-  text-decoration: none;
-  color: inherit;
-}
-.logo {
-  left: 10px;
-  background-color: blue;
-  height: 2em;
-  position: absolute;
-}
-.menu {
-  left: 180px;
-  background-color: green;
-  height: 2em;
-  position: absolute;
-}
-.bookshelf{
-  right: 150px;
-  background-color: violet;
-  height: 2em;
-  position: absolute;
-}
 
-.sign {
-  right: 10px;
-  background-color: yellow;
-  height: 2em;
-  position: absolute;
-}
-.navigator-items {
-  height: 2em;
-  display: flex;
-}
+.navbar-toggler-icon {
+  display: inline-block;
+  width: 1.5em;
+  height: 1.5em;
+  vertical-align: middle;
+  content: "";
+  background: no-repeat center center;
+  background-size: 100% 100%;
+} */

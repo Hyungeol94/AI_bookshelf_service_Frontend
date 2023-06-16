@@ -1,5 +1,8 @@
+// src/routes/Detail.js
+
+
 import React from "react";
-import Detailpage from "../pages/Detail";
+import DetailPage from "../pages/Detail";
 import Navigator from "../components/Navigator";
 
 class Detail extends React.Component {
@@ -17,10 +20,11 @@ class Detail extends React.Component {
         return (
             <div>
                 <Navigator />
-                {this.state.isLoading ? <h1> "Loading..." </h1> : <Detailpage/>}
+                {this.state.isLoading ? <h1> "Loading..." </h1> : <DetailPage/>}
+                <h1> 상세정보 </h1>
             </div>
         );
     }
 }
 
-export default Detailpage;
+export default DetailPage;

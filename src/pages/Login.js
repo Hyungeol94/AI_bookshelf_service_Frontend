@@ -23,18 +23,14 @@ function Login() {
         console.log('click login')
     }
     
-    // Sign up 버튼 이벤트
-    // const onClickSignup = () => {
-    //    navigate("/Signup")
-    // }
 
     //페이지 렌더링후 가장 처음 호출되는 함수
-    useEffect(() => {
-        // axios.get('http://49.50.162.189:4000/auth/signin')
-        // .then(res => console.log(res))
-        // .catch()
-    },
-    []) // 페이지 호출 후 처음 한번만 호출될 수 있도록 [] 추가
+    // useEffect(() => {
+    //     axios.get('http://49.50.162.189:4000/auth/signin')
+    //     .then(res => console.log(res))
+    //     .catch()
+    // },
+    // []) // 페이지 호출 후 처음 한번만 호출될 수 있도록 [] 추가
 
     return(
         <div>

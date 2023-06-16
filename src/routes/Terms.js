@@ -1,8 +1,8 @@
 import React from "react";
-import SignUpPage from "../pages/SignUp";
+import TermsofService from "../pages/Terms";
 
 // eslint-disable-next-line import/no-anonymous-default-export
-class SignUpPage extends React.Component {
+class  Term extends React.Component {
   state = {
     isLoading: true,
   };
@@ -16,10 +16,10 @@ class SignUpPage extends React.Component {
   render() {
     return (
       <div>
-        {this.state.isLoading ? <h1>"Loading..."</h1> : <Signuppage/>}
+        {this.state.isLoading ? <h1>"Loading..."</h1> : <TermsofService/>}
       </div>
     );
   }
 }
 
-export default SignUpPage;
+export default Term;

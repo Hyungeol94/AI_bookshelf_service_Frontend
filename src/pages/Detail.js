@@ -6,6 +6,8 @@ import { useParams } from "react-router-dom";
 
 // 참고 사이트 : https://jurgen-94.tistory.com/24
 
+
+
 const DetailPage = (props) => {
   let {id} = useParams();
 
@@ -13,7 +15,8 @@ const DetailPage = (props) => {
     <div className="container">
       <div className="row">
         <div className="col-md-6">
-          <img src={process.env.PUBLIC_URL + '/${id}.png'} width="100%"/>
+          <div> 상세정보 </div>
+          {/* <img src={process.env.PUBLIC_URL + '/${id}.png'} width="100%"/> */}
         </div>
         <div className="col-md-6">
           <h4 className="pt-5"> {props.book[id].booktitle} </h4>

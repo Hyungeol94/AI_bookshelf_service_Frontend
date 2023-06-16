@@ -48,12 +48,14 @@ const EditProfileForm = () => {
     e.preventDefault();
 
     // 비밀번호 업데이트 요청
-    axios.put("/api/user/password", { currentPassword, newPassword }).then((response) => {
-      // 비밀번호 업데이트 성공 시 처리
-      setCurrentPassword("");
-      setNewPassword("");
-      // 성공 메시지 등을 처리할 수 있습니다.
-    });
+    axios
+      .put("/api/user/password", { currentPassword, newPassword })
+      .then((response) => {
+        // 비밀번호 업데이트 성공 시 처리
+        setCurrentPassword("");
+        setNewPassword("");
+        // 성공 메시지 등을 처리할 수 있습니다.
+      });
   };
 
   return (
@@ -64,7 +66,12 @@ const EditProfileForm = () => {
         <input type="text" id="name" value={name} onChange={handleNameChange} />
 
         <label htmlFor="email">이메일:</label>
-        <input type="email" id="email" value={email} onChange={handleEmailChange} />
+        <input
+          type="email"
+          id="email"
+          value={email}
+          onChange={handleEmailChange}
+        />
 
         <button type="submit">회원 정보 수정</button>
       </form>
@@ -80,7 +87,12 @@ const EditProfileForm = () => {
         />
 
         <label htmlFor="newPassword">새로운 비밀번호:</label>
-        <input type="password" id="newPassword" value={newPassword} onChange={handleNewPasswordChange} />
+        <input
+          type="password"
+          id="newPassword"
+          value={newPassword}
+          onChange={handleNewPasswordChange}
+        />
 
         <button type="submit">비밀번호 변경</button>
       </form>

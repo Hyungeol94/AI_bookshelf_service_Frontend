@@ -2,6 +2,7 @@ import React from "react";
 import {useState} from "react";
 // import { Link } from "react-router-dom";
 import sample from "../assets/sample_book.json";
+import "../styles/Result.css";
 
 function Card({ children }) {
   return (
@@ -20,7 +21,7 @@ function BookRow(props) {
     setSelectedBookInfo(book_info)
   }
   return (
-    <tr onClick={handleClick}>
+    <tr className = "bookRow" onClick={handleClick}>
       <td >{book_info.booktitle}</td>
       <td>{book_info.price}</td>
     </tr>

@@ -30,9 +30,11 @@ import First from "./routes/First";
 import UserBookShelf from "./routes/UserBookShelf";
 import Login from "./routes/Login";
 import Upload from "./pages/Upload";
-import Signup from "./routes/Signup";
 import Resultpage from "./routes/Result";
 import Searchpage from "./routes/Search";
+import SignUp from "./pages/SignUp";
+import User from "./routes/User";
+import Detail from "./pages/Detail";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -49,6 +51,9 @@ root.render(
       <Route path="/signup" Component={Signup} />
       <Route path="/result" Component={Resultpage} />
       <Route path="/search" Component={Searchpage} />
+      <Route path="/profile" Component={User} />
+      <Route path="/detail" Component={Detail} />
+//       <Route path="/detail/:id" element={ <Detail Detail={Detail}/>} />
     </Routes>
   </BrowserRouter>
 );

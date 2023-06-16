@@ -97,5 +97,5 @@
         "book_id": [14],
         "user_like_book": [1, 2, 3],
         "user_cart": [1, 2, 3],
-        "user_interest": [1, 2, 3]  },
+        "user_interest": [1, 2, 3]  }
   ]

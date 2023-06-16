@@ -1,5 +1,5 @@
 import React from "react";
-import Signuppage from "../pages/SignUp";
+import Signuppage from "../pages/Signup";
 
 // eslint-disable-next-line import/no-anonymous-default-export
 class Signup extends React.Component {

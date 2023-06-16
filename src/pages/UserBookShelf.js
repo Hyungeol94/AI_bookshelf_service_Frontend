@@ -1,6 +1,6 @@
 import React from "react";
 // reactstrap components
-import { Container, Button } from "reactstrap";
+import { Container } from "reactstrap";
 
 // core components
 import IndexNavbar from "components/Navbars/IndexNavbar.js";
@@ -8,7 +8,7 @@ import Footer from "components/Footer/Footer.js";
 import { Link } from "react-router-dom";
 
 // our components
-import BookList from "../components/BookList";
+// import BookList from "../components/BookList";
 import sample from "../assets/sample_book.json";
 import getlist from "../components/GetList";
 import get_likes_list from "../components/GetLikesList";
@@ -40,9 +40,9 @@ import { useNavigate } from "react-router-dom"
 // const Book = (props) => (
 //   <div>
 //     <div>
-//       <img src={props.image} 
-//       alt={props.booktitle} 
-//       width={80} 
+//       <img src={props.image}
+//       alt={props.booktitle}
+//       width={80}
 //       height={80}
 //       style = {{marginRight : "10px"}}
 //       />
@@ -50,10 +50,11 @@ import { useNavigate } from "react-router-dom"
 //     <h5>{props.booktitle}</h5>
 //   </div>
 // );
-// <<< 이거 이용해서 클릭하면 넘어가게 해야하는데 어떻게 연결하는지를 모르겠다... 
+// <<< 이거 이용해서 클릭하면 넘어가게 해야하는데 어떻게 연결하는지를 모르겠다...
 
 const UserBookShelf = () => {
-  let [recentlyAdded_count, recentlyAdded_list] = get_recentlyAdded_list(sample);
+  let [recentlyAdded_count, recentlyAdded_list] =
+    get_recentlyAdded_list(sample);
   let [totalBook_count, totalBook_list] = getlist(sample);
   let [likes_count, Likes_list] = get_likes_list(sample);
   let [saved_count, saved_list] = get_saved_list(sample);
@@ -62,7 +63,6 @@ const UserBookShelf = () => {
     <>
       <IndexNavbar />
       <div className="wrapper">
-
         <div className="main">
         <div className="section section-basic" id="basic-elements">
         <img alt="..." className="path" src={require("assets/img/path1.png")} />
@@ -88,7 +88,6 @@ const UserBookShelf = () => {
 
         </Container>
         </div>
-        <Footer />
       </div>
       </div>
     </>

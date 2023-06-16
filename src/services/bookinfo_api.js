@@ -1,8 +1,8 @@
 import axios from "axios";
+
 const converter = require("xml-js");
 
-const BOOKINFO_APIKEY =
-  "f2671199c0a54a75884db863acdb6287397dba388499b9f6e4a5dcb64f29d503";
+const BOOKINFO_APIKEY = process.env.REACT_APP_BOOKINFO_APIKEY;
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default async (searchvalue, pageSize) => {

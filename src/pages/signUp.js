@@ -2,7 +2,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-function Signuppage() {
+
+function Signup() {
   const [Email, setEmail] = useState("");
   const [Id, setId] = useState("");
   const [Password, setPassword] = useState("");
@@ -61,12 +62,25 @@ function Signuppage() {
         height: "100vh",
       }}
     >
-      <form style={{ display: "flex", flexDirection: "column" }} onSubmit={onSubmitHandler}>
+      <form
+        style={{ display: "flex", flexDirection: "column" }}
+        onSubmit={onSubmitHandler}
+      >
         <label htmlFor="name">이름</label>
-        <input type="text" id="name" value={Name} onChange={(e) => setName(e.target.value)} />
+        <input
+          type="text"
+          id="name"
+          value={Name}
+          onChange={(e) => setName(e.target.value)}
+        />
 
         <label htmlFor="id">아이디</label>
-        <input type="text" id="id" value={Id} onChange={(e) => setId(e.target.value)} />
+        <input
+          type="text"
+          id="id"
+          value={Id}
+          onChange={(e) => setId(e.target.value)}
+        />
 
         <label htmlFor="password">비밀번호</label>
         <input
@@ -85,7 +99,12 @@ function Signuppage() {
         />
 
         <label htmlFor="email">이메일</label>
-        <input type="email" id="email" value={Email} onChange={(e) => setEmail(e.target.value)} />
+        <input
+          type="email"
+          id="email"
+          value={Email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
 
         <label htmlFor="phoneNumber">전화번호</label>
         <input
@@ -96,35 +115,43 @@ function Signuppage() {
         />
 
         <label htmlFor="occupation">직업</label>
-        <select id="occupation" value={Occupation} onChange={(e) => setOccupation(e.target.value)}>
+        <select
+          id="occupation"
+          value={Occupation}
+          onChange={(e) => setOccupation(e.target.value)}
+        >
           <option value="1">개발자</option>
           <option value="2">학생</option>
           <option value="3">기획자</option>
         </select>
 
         <label htmlFor="registrationPath">가입경로</label>
-        <select id="registrationPath" value={RegistrationPath} onChange={(e) => setRegistrationPath(e.target.value)}>
+        <select
+          id="registrationPath"
+          value={RegistrationPath}
+          onChange={(e) => setRegistrationPath(e.target.value)}
+        >
           <option value="1">지인의 권유</option>
           <option value="2">광고</option>
           <option value="3">다른 서비스를 통해서</option>
         </select>
 
-
-        
         <h3> 사용자 이용약관 </h3>
-        <div> 
+        <div>
           1. 개인정보의 처리목적 <p></p>
           2. 개인정보의 처리 및 보유기간<p></p>
           3. 개인정보의 제3자 제공에 관한 사항<p></p>
-          4.  개인정보의 파기절차 및 파기방법<p></p>
-          (법 제 21조 제 1항 단서에 따라 개인정보를 보존하여야 하는 경우에는 그 보전근거와 보존하는 개인정보 항목)<p></p>
+          4. 개인정보의 파기절차 및 파기방법<p></p>
+          (법 제 21조 제 1항 단서에 따라 개인정보를 보존하여야 하는 경우에는 그
+          보전근거와 보존하는 개인정보 항목)<p></p>
           5. 개인정보 처리의 위탁에 관한 사항<p></p>
           6. 정보주체와 법정대리인의 권리/의무 및 그 행사방법에 대한 사항<p></p>
-          7. 개인정보 보호책임자의 성명 또는 개인정보 보호업무 및 관련 고층사항을 처리하는 부서의 명칭과 전화번호 등 연락처<p></p>
-          8. 인터넷 접속정보파일 등 개인정보를 자동으로 수집하는 장치의 설치/운영 및 그 거부에 관한 사항<p></p>
-          9. 처리하는 개인정보의 항목<p></p>
-          . . .
-          </div>
+          7. 개인정보 보호책임자의 성명 또는 개인정보 보호업무 및 관련
+          고층사항을 처리하는 부서의 명칭과 전화번호 등 연락처<p></p>
+          8. 인터넷 접속정보파일 등 개인정보를 자동으로 수집하는 장치의
+          설치/운영 및 그 거부에 관한 사항<p></p>
+          9. 처리하는 개인정보의 항목<p></p>. . .
+        </div>
         <label htmlFor="agree_check_all">이용약관 전체동의</label>
         <br></br>
         <input
@@ -136,10 +163,12 @@ function Signuppage() {
         />
         <br />
         <button>회원가입</button>
-        <Link to="../"><button> 취소(메인 페이지) </button></Link>
+        <Link to="../">
+          <button> 취소(메인 페이지) </button>
+        </Link>
       </form>
     </div>
   );
 }
 
-export default Signuppage;
+export default Signup;

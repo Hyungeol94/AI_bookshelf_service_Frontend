@@ -15,9 +15,7 @@ class Signup extends React.Component {
 
   render() {
     return (
-      <div>
-        {this.state.isLoading ? <h1>"Loading..."</h1> : <Signuppage/>}
-      </div>
+      <div>{this.state.isLoading ? <h1>"Loading..."</h1> : <Signuppage />}</div>
     );
   }
 }

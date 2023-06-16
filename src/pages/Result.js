@@ -63,6 +63,18 @@ function BookDetail({book_info}) {
   );
 }
 
+function BookSearchView(props) {
+  const {book_info, setSelectedBookInfo} = props
+  return (
+    <div style={{backgroundColor: 'white', padding : '10px', width: '300px'}}>
+      <h3 style={{color:'black'}}>도서 검색 결과</h3>
+      {/* book_info에 대한 검색 결과가 나와야 함 */}
+      <div>{book_info.booktitle}</div>
+      selectedBookInfo에 대한 도서 api 검색결과 나오는 창
+    </div>
+  );
+}
+
 
 export default function Result() {
   const [selectedBookInfo, setSelectedBookInfo] = useState(sample[0]);
@@ -70,16 +82,20 @@ export default function Result() {
   return (
     <div style={{display:'flex'}}>
       <Card>
-          <BookTable books_info={sample} setSelectedBookInfo={setSelectedBookInfo}/>;
+        <BookTable books_info={sample} setSelectedBookInfo={setSelectedBookInfo}/>;
       </Card>
       <Card>
         <BookDetail
-        book_info = {selectedBookInfo}
+          book_info = {selectedBookInfo}
         // 클릭되어 있는 텍스트 정보를 제공하기
         />
       </Card>
       <Card>
         {/* 클릭되어 있는 텍스트의 검색 결과 가져 오기 */}
+        <BookSearchView
+          book_info = {selectedBookInfo}
+          setSelectedBookInfo={setSelectedBookInfo}
+        />
       </Card>
     </div>
   );

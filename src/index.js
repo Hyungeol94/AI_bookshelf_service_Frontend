@@ -30,7 +30,7 @@ import First from "./routes/First";
 import UserBookShelf from "./routes/UserBookShelf";
 import Login from "./routes/Login";
 import Upload from "./pages/Upload";
-import Signup from "./pages/signUp";
+import SignUp from "./pages/SignUp";
 import User from "./routes/User";
 import Detail from "./pages/Detail";
 
@@ -47,8 +47,9 @@ root.render(
       <Route path="/blk-design-system-react" element={<Navigate to="/" replace />} />
       <Route path="/upload" Component={Upload} />
       <Route path="/signup" Component={Signup} />
-      <Route path="/detail" Component={Detail} />
       <Route path="/profile" Component={User} />
+      <Route path="/detail" Component={Detail} />
+//       <Route path="/detail/:id" element={ <Detail Detail={Detail}/>} />
     </Routes>
   </BrowserRouter>
 );

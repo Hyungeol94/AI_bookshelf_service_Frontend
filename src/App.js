@@ -34,7 +34,7 @@ import Login from "./pages/Login";
 import Upload from "./pages/Upload";
 import Resultpage from "./routes/Result";
 import Searchpage from "./routes/Search";
-import SignUp from "./pages/SignUp";
+import Signuppage from "./routes/Signup";
 import User from "./routes/User";
 import Detail from "./pages/Detail";
 
@@ -57,7 +57,7 @@ export default () => {
           element={<Navigate to="/" replace />}
         />
         <Route path="/upload" element={<Upload />} />
-        <Route path="/signup" element={<SignUp />} />
+        <Route path="/signup" element={<Signuppage />} />
         <Route path="/result" element={<Resultpage />} />
         <Route path="/search" element={<Searchpage />} />
         <Route path="/profile" element={<User />} />

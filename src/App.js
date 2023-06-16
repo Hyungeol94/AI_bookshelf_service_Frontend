@@ -34,7 +34,7 @@ import Login from "./pages/Login";
 import Upload from "./pages/Upload";
 import Resultpage from "./routes/Result";
 import Searchpage from "./routes/Search";
-import SignUp from "./pages/SignUp";
+import SignUp from "./pages/Signup";
 import User from "./routes/User";
 import Detail from "./pages/Detail";
 

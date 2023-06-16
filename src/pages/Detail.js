@@ -17,10 +17,10 @@ const DetailPage = (props) => {
         </div>
         <div className="col-md-6">
           <h4 className="pt-5"> {props.book[id].booktitle} </h4>
-          <p> {props.sample[id].auther} </p>
-          <p> {props.sample[id].description} </p>
+          <p> {props.book[id].auther} </p>
+          <p> {props.book[id].description} </p>
           <button> 좋아용 </button>
-          <button> 읽음/안읽음 </button>
+          <button> 읽음 </button>
           <p/>
           <h4> 구매 링크 </h4>
           <button> yes24 </button>

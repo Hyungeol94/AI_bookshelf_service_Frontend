@@ -28,9 +28,9 @@ import {
   Container,
   Row,
   Col,
-  InputGroup,
-  InputGroupAddon,
-  InputGroupText,
+  // InputGroup,
+  // InputGroupAddon,
+  // InputGroupText,
   Input,
   UncontrolledTooltip,
 } from "reactstrap";
@@ -78,8 +78,7 @@ export default function IndexNavbar() {
       <Container>
         <div className="navbar-translate">
           <NavbarBrand to="/" tag={Link} id="navbar-brand">
-            <span>Book is On&On </span>
-            | Home
+            <span>Book is On&On </span>| Home
           </NavbarBrand>
           <UncontrolledTooltip placement="bottom" target="navbar-brand">
             Home
@@ -122,7 +121,7 @@ export default function IndexNavbar() {
           </div>
           <Nav navbar>
             <NavItem>
-            {/* <InputGroup>
+              {/* <InputGroup>
                 <Input placeholder="Book Search" type="text" />
                 <InputGroupAddon addonType="append">
                   <InputGroupText>
@@ -134,8 +133,18 @@ export default function IndexNavbar() {
                 </InputGroupAddon>
               </InputGroup> */}
               <div class="input-group mb-3">
-                <Input type="text" class="form-control" placeholder="Search your book!" aria-label="book serach" aria-describedby="button-addon2" />
-                <Button className="nav-link d-none d-lg-block" color="default" href="/search">
+                <Input
+                  type="text"
+                  class="form-control"
+                  placeholder="Search your book!"
+                  aria-label="book serach"
+                  aria-describedby="button-addon2"
+                />
+                <Button
+                  className="nav-link d-none d-lg-block"
+                  color="default"
+                  href="/search"
+                >
                   <i className="tim-icons icon-zoom-split" />
                   Search
                 </Button>
@@ -155,7 +164,7 @@ export default function IndexNavbar() {
               <Button
                 className="nav-link d-none d-lg-block"
                 color="Success"
-                onClick={scrollToDownload}
+                // onClick={scrollToDownload}
                 href="/login"
               >
                 <i className="tim-icons icon-single-02" /> Login

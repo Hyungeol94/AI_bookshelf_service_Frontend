@@ -1,15 +1,17 @@
 import React from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import sample from "../assets/sample_book.json";
 
-
 function Card({ children }) {
-    return (
-      <div className="card" style={{backgroundColor: 'gray', padding : '10px', width: '350px'}}>
-        {children}
-      </div>
-    );
-  }
+  return (
+    <div
+      className="card"
+      style={{ backgroundColor: "gray", padding: "10px", width: "350px" }}
+    >
+      {children}
+    </div>
+  );
+}
 
 function BookRow({ book_info }) {
   return (
@@ -22,8 +24,8 @@ function BookRow({ book_info }) {
 
 function BookTable({ books_info }) {
   return (
-    <div style={{backgroundColor: 'white', padding : '10px', width: '300px'}}>
-      <h3 style={{color:'black'}}>책 목록</h3>
+    <div style={{ backgroundColor: "white", padding: "10px", width: "300px" }}>
+      <h3 style={{ color: "black" }}>책 목록</h3>
       <table>
         <thead>
           <tr>
@@ -33,16 +35,14 @@ function BookTable({ books_info }) {
         </thead>
         <tbody>
           {books_info.map((book_info) => (
-            <BookRow
-              key={book_info.id}
-              book_info={book_info}
-            />
+            <BookRow key={book_info.id} book_info={book_info} />
           ))}
         </tbody>
       </table>
     </div>
   );
 }
+
 
 
 function BookDetail({book_info}) {
@@ -74,5 +74,5 @@ export default function Result() {
         {/* 클릭되어 있는 텍스트의 검색 결과 가져 오기 */}
       </Card>
     </div>
-    );
+  );
 }

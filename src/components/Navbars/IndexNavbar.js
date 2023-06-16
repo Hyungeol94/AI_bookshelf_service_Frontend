@@ -122,14 +122,24 @@ export default function IndexNavbar() {
           </div>
           <Nav navbar>
             <NavItem>
-            <InputGroup>
+            {/* <InputGroup>
                 <Input placeholder="Book Search" type="text" />
                 <InputGroupAddon addonType="append">
                   <InputGroupText>
+                  <Button
+                    href="/bookshelf">                    
                     <i className="tim-icons icon-zoom-split" />
+                  </Button>
                   </InputGroupText>
                 </InputGroupAddon>
-              </InputGroup>
+              </InputGroup> */}
+              <div class="input-group mb-3">
+                <Input type="text" class="form-control" placeholder="Search your book!" aria-label="book serach" aria-describedby="button-addon2" />
+                <Button className="nav-link d-none d-lg-block" color="default" href="/search">
+                  <i className="tim-icons icon-zoom-split" />
+                  Search
+                </Button>
+              </div>
             </NavItem>
             <NavItem>
               <Button

@@ -27,38 +27,18 @@ export default function Showbookinfo() {
   return (
     <>
     <div>
-      <title> 책 상세정보이다. </title>
+      <h3> 책 상세정보이다. </h3>
       <BookDetail/>
       <h5> 책 상세정보 끝났다. </h5>
+    </div>
+    <div>
+      <h4> 구매 링크 </h4>
+      <button> yes24 </button>
+      <button> 알라딘 </button>
+      <button> 교보문고 </button>
+      <button> 반디앤루니스 </button>
     </div>
     </>
     
   );
 } 
-
-// const DetailPage = (props) => {
-//   let { id } = useParams();
-
-//   return (
-//     <div className="container">
-//       <div className="row">
-//         <div className="col-md-6">
-//           <img src={process.env.PUBLIC_URL + "/${id}.png"} width="100%" />
-//         </div>
-//         <div className="col-md-6">
-//           <h4 className="pt-5"> {props.book[id].booktitle} </h4>
-//           <p> {props.book[id].auther} </p>
-//           <p> {props.book[id].description} </p>
-//           <button> 좋아용 </button>
-//           <button> 읽음 </button>
-//           <p />
-//           <h4> 구매 링크 </h4>
-//           <button> yes24 </button>
-//           <button> 알라딘 </button>
-//           <button> 교보문고 </button>
-//           <button> 반디앤루니스 </button>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };

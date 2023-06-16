@@ -1,82 +1,114 @@
 [
   {
     "id": 1,
-    "booktitle": "aaaaaa",
-    "image": "https://picsum.photos/200/200?random=1"
+    "booktitle": "장미의 이름(상)",
+    "description": "20세기 최고의 석학, 움베르토 에코가 쓴 놀라운 지적 추리 소설. 전 세계 2천만 독자가 읽은, 금세기 최고의 화제작. 아리스토텔레스의 논리학과 토마스 아퀴나스의 신학, 프랜시스 베이컨의 경험주의 철학에, 에코 자신의 해박한 인류학적 지식과 현대의 기호학 이론이 무르녹아 있는 지적 보고. 가히 만 권의 책이 집약된 결정체로서 고전 문학의 인문서로도 손색이 없다.",
+    "auther": "움베르토 에코", 
+    "image": "https://image.yes24.com/momo/TopCate408/MidCate010/25497940.jpg"
   },
   {
     "id": 2,
-    "booktitle": "bbbbbb",
-    "image": "https://picsum.photos/200/200?random=2"
+    "booktitle": "이름과 필연",
+    "description": "“지난 50년 간 출간된 최고의 철학 책“ 가운데 하나로 꼽히는 크립키의 걸작. 1970년 약관 29세의 크립키는 프린스턴 대학교에서 세 차례에 걸쳐 지칭이론에 관한 강연을 한다. 원고도 없이 이루어진 이 강연을 정리한 《이름과 필연》은 출간되자마자 영어권 철학계를 발칵 뒤집어 놓는다.",
+    "auther": "솔 크립키", 
+    "image": "https://image.yes24.com/momo/TopCate382/MidCate005/38141898.jpg"
   },
   {
     "id": 3,
-    "booktitle": "cccccc",
-    "image": "https://picsum.photos/200/200?random=3"
+    "booktitle": "안나 까레니나(상)",
+    "description": "러시아 문학의 위대한 거장 레프 똘스또이, \n그의 모든 사회적, 윤리적, 종교적 고민들이 집약된 대표작!",
+    "auther": "레프 톨스토이", 
+    "image": "https://image.yes24.com/goods/64098422/XL"
   },
   {
     "id": 4,
-    "booktitle": "eeeeee",
-    "image": "https://picsum.photos/200/200?random=4"
+    "booktitle": "공정하다는 착각",
+    "description": "마이클 샌델 10여 년 만의 신간, 『공정하다는 착각』 출간! \n샌델, 기울어진 사회구조 이면에 도사린 ‘능력주의의 덫’을 해체하다",
+    "auther": "마이클 샌델", 
+    "image": "https://image.yes24.com/goods/94489333/XL"
   },
   {
     "id": 5,
-    "booktitle": "ffffff",
-    "image": "https://picsum.photos/200/200?random=5"
+    "booktitle": "나미야 잡화점의 기적",
+    "description": "히가시노 게이고의 가장 경이로운 대표작 \n국내 출간 10주년 기념 무선 보급판 발간",
+    "auther": "히가시노 게이고", 
+    "image": "https://image.yes24.com/goods/116586056/XL"
   },
   {
     "id": 6,
-    "booktitle": "gggggg",
-    "image": "https://picsum.photos/200/200?random=6"
+    "booktitle": "1Q84 1",
+    "description": "당신의 하늘에는 몇 개의 달이 떠 있습니까? \n압도적인 이야기의 강렬함, 읽기를 멈출 수 없는 놀라운 흡인력 \n전세계 독자가 손꼽아 기다려온 무라카미 하루키 문학의 결정판!",
+    "auther": "무라카미 하루키", 
+    "image": "https://image.yes24.com/momo/TopCate75/MidCate07/7461885.jpg"
   },
   {
     "id": 7,
-    "booktitle": "hhhhhh",
-    "image": "https://picsum.photos/200/200?random=7"
+    "booktitle": "애린 왕자",
+    "description": "원작 『어린 왕자』는 전세계 독자들에게 기억 속 이야기를 너머 하나의 체화된 전설로 자리잡고 있다. 주인공 어린 왕자의 언어와 행동은 동심과 유년의 순수함으로 어른들의 세계를 투명하게 비춰준다. 1943년 출간 후 어른들을 위한 동화이자 세계적 고전으로 자리잡으면서 대체 불가, 설명 불가, 해석 불가한 이야기로 독자들의 사랑을 꾸준히 받고 있다. \n사투리로 재해석한 『애린 왕자』는 언어 실험의 일환으로 세월에 엷어지는 동심을 소환하는 새로운 형식을 보여준다. 역자는 원작의 감동을 전달하기 위해 언어 너머 프랑스어와 영어, 표준어를 거쳐 오롯이 경상도 사투리로 원문을 담았고 이 과정에서 지역 정서가 녹아든 개성 있는 동심을 정감 넘치는 사투리로 만날 수 있다. 또 발음에 충실한 사투리 표기로 맞춤법을 깨트리는 일탈과 재미도 만끽할 수 있다.",
+    "auther": "앙투안 드 생텍쥐페리", 
+    "image": "https://image.yes24.com/goods/96174953/XL"
   },
   {
     "id": 8,
-    "booktitle": "jjjjjj",
-    "image": "https://picsum.photos/200/200?random=8"
+    "booktitle": "누구를 위하여 종은 울리나",
+    "description": "노벨 문학상, 퓰리처상 수상 작가 \n20세기 미국 문학을 개척한 작가 어니스트 헤밍웨이",
+    "auther": "어네스트 밀러 헤밍웨이", 
+    "image": "https://image.yes24.com/momo/TopCate388/MidCate007/29297899.jpg"
   },
   {
     "id": 9,
-    "booktitle": "kkkkkk",
-    "image": "https://picsum.photos/200/200?random=9"
+    "booktitle": "천사들의 제국 (상)",
+    "description": "최초로 저승을 탐사했던 타나토노트 중 한 사람인 미카엘 팽송은 그가 사는 건물에 난데없이 비행기가 추락함으로써 죽음을 맞는다. ",
+    "auther": "베르나르 베르베르", 
+    "image": "https://image.yes24.com/momo/TopCate409/MidCate007/36954032.jpg"
   },
   {
     "id": 10,
-    "booktitle": "llllll",
-    "image": "https://picsum.photos/200/200?random=10"
+    "booktitle": "정의란 무엇인가",
+    "description": "한국에 ‘정의’ 열풍을 불러일으킨 마이클 샌델은 구제 금융, 대리 출산, 동성 결혼, 과거사 공개 사과 등 현대 사회에서 우리가 흔히 부딪히는 문제를 통해 ‘무엇이 정의로운가’에 대한 해답을 탐구했다.",
+    "auther": "마이클 샌델", 
+    "image": "https://image.yes24.com/goods/15156691/XL"
   },
   {
     "id": 11,
-    "booktitle": "mmmmmm",
-    "image": "https://picsum.photos/200/200?random=11"
+    "booktitle": "총 균 쇠",
+    "description": "문명의 생성과 번영의 수수께끼를 밝힌 세계적 명저 \n 마침내 만나는 출간 25년 기념 뉴에디션!",
+    "auther": "재레드 다이아몬드", 
+    "image": "https://image.yes24.com/goods/118755085/XL"
   },
   {
     "id": 12,
-    "booktitle": "nnnnnn",
-    "image": "https://picsum.photos/200/200?random=12"
+    "booktitle": "기본 수학의 정석 수학 (상) (2023년용)",
+    "description": "한국에서 학창시절을 거치며 표지라도 한 번쯤은 봤을 만한 책, 『수학의 정석』. 홍성대는 정석을 쓴 수학자이다. 1966년 첫선을 보인 정석은 현재까지 매년 100만부 판매량을 돌파하는 눈의 띄지않는 밀리언 셀러이다. ",
+    "auther": "홍성대", 
+    "image": "https://image.yes24.com/goods/37525992/XL"
   },
   {
     "id": 13,
-    "booktitle": "oooooo",
-    "image": "https://picsum.photos/200/200?random=13"
+    "booktitle": "이방인",
+    "description": "20세기의 지성이자 실존주의 문학의 대표 작가 알베르 카뮈. 현실에서 소외되어 이방인으로 살아가는 현대인의 초상을 그리다.",
+    "auther": "알베르 까뮈", 
+    "image": "https://image.yes24.com/goods/4827613/XL"
   },
   {
     "id": 14,
-    "booktitle": "pppppp",
-    "image": "https://picsum.photos/200/200?random=14"
+    "booktitle": "변신",
+    "description": "어느 날 아침 그레고르 잠자가 불안한 꿈에서 깨어났을 때 그는 침대 속에서 한 마리의 흉측한 갑충으로 변해 있는 자신의 모습을 발견했다.",
+    "auther": "프란츠 카프카", 
+    "image": "https://image.yes24.com/momo/TopCate46/MidCate06/4550211.jpg"
   },
   {
     "id": 15,
-    "booktitle": "qqqqqq",
-    "image": "https://picsum.photos/200/200?random=15"
+    "booktitle": "폭풍우",
+    "description": "셰익스피어 만년의 걸작 『폭풍우』 전문 연구자의 충실하고 유려한 번역으로 출간",
+    "auther": "윌리엄 셰익스피어", 
+    "image": "https://image.yes24.com/goods/90108586/XL"
   },
   {
     "id": 16,
-    "booktitle": "rrrrrr",
-    "image": "https://picsum.photos/200/200?random=16"
+    "booktitle": "인간 실격",
+    "description": "인간의 나약함을 탁월하게 묘사하는 다자이 오사무의 작품을 새롭게 읽는다. 순수하고 여린 심성의 젊은이가 인간 사회의 위선과 잔혹성을 견디지 못하고 파멸되어 가는 과정을 그린 소설로, 어느 세계에도 속하지 못한 채 인간 실격자로 전락한 주인공의 내면을 치밀한 심리묘사로 기록하였다. 다자이 작품 속의 타락과 자기파괴적 언행은 제2차 세계대전에서 패망한 후 공황상태에 빠진 일본 젊은이들의 의식을 반영하고 있다.",
+    "auther": "다자이 오사무", 
+    "image": "https://image.yes24.com/goods/1387488/XL"
   }
 ]

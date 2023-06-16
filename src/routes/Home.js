@@ -1,6 +1,6 @@
 import React from "react";
 import Homepage from "../pages/Home";
-import Navigator from "../components/Navigator";
+
 // import sample from "../assets/sample_book.json";
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -18,7 +18,6 @@ class Home extends React.Component {
   render() {
     return (
       <div>
-        <Navigator />
         {this.state.isLoading ? (
           <h1>"Loading..."</h1>
         ) : (

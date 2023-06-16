@@ -26,7 +26,7 @@
     "web-vitals": "^2.1.4",
     "xml-js": "^1.6.11"
   },
-  "proxy": "http://localhost:4000",
+  "proxy": "http://49.50.162.189:4000",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

@@ -24,4 +24,6 @@ function TermsofService() {
     )
 }
 
+// react modal 창 (검색해서 알아보기) <<< 
+
 export default TermsofService;

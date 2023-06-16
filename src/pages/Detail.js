@@ -5,7 +5,7 @@ import GetList from '../components/GetList';
 import { useParams } from "react-router-dom";
 
 // 참고 사이트 : https://jurgen-94.tistory.com/24
-
+// Booklist.js 참고해서 사용
 
 
 const DetailPage = (props) => {

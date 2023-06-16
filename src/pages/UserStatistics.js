@@ -6,12 +6,6 @@ import sample from "../assets/sample_statistics.json";
 function UserStatistics() {
   const [statistics, setStatistics] = useState([]);
 
-  useEffect(() => {
-    setTimeout(() => {
-      setStatistics(sample);
-    }, 600);
-  }, []);
-
   return (
     <div>
       <h1>사용자 통계</h1>

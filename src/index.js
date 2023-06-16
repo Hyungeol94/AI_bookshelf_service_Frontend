@@ -30,7 +30,7 @@ import First from "./routes/First";
 import UserBookShelf from "./routes/UserBookShelf";
 import Login from "./routes/Login";
 import Upload from "./pages/Upload";
-import SignUp from "./pages/SignUp";
+import SignUp from "./pages/Signup";
 import Detail from "./pages/Detail";
 import Terms from "./pages/Terms";
 const root = ReactDOM.createRoot(document.getElementById("root"));

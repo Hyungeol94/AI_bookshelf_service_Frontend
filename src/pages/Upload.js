@@ -4,7 +4,7 @@ import { Link, Route, Routes, useNavigate } from 'react-router-dom';
 
 function Card({ children }) {
   return (
-    <div className="card">
+    <div className="card" style={{width: '208px', height: '210px' }}>
       {children}
     </div>
   );

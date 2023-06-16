@@ -1,4 +1,5 @@
 import React from "react";
+import {useState} from "react";
 // import { Link } from "react-router-dom";
 import sample from "../assets/sample_book.json";
 
@@ -13,16 +14,21 @@ function Card({ children }) {
   );
 }
 
-function BookRow({ book_info }) {
+function BookRow(props) {
+  const {book_info, setSelectedBookInfo} = props
+  function handleClick(){
+    setSelectedBookInfo(book_info)
+  }
   return (
-    <tr>
-      <td>{book_info.booktitle}</td>
+    <tr onClick={handleClick}>
+      <td >{book_info.booktitle}</td>
       <td>{book_info.price}</td>
     </tr>
   );
 }
 
-function BookTable({ books_info }) {
+function BookTable(props) {
+  const {books_info, setSelectedBookInfo} = props
   return (
     <div style={{ backgroundColor: "white", padding: "10px", width: "300px" }}>
       <h3 style={{ color: "black" }}>책 목록</h3>
@@ -35,14 +41,13 @@ function BookTable({ books_info }) {
         </thead>
         <tbody>
           {books_info.map((book_info) => (
-            <BookRow key={book_info.id} book_info={book_info} />
+            <BookRow key={book_info.id} book_info={book_info} setSelectedBookInfo={setSelectedBookInfo}/>
           ))}
         </tbody>
       </table>
     </div>
   );
 }
-
 
 
 function BookDetail({book_info}) {
@@ -59,14 +64,16 @@ function BookDetail({book_info}) {
 
 
 export default function Result() {
+  const [selectedBookInfo, setSelectedBookInfo] = useState(sample[0]);
+  
   return (
     <div style={{display:'flex'}}>
       <Card>
-          <BookTable books_info={sample} />;
+          <BookTable books_info={sample} setSelectedBookInfo={setSelectedBookInfo}/>;
       </Card>
       <Card>
         <BookDetail
-        book_info = {sample[0]}
+        book_info = {selectedBookInfo}
         // 클릭되어 있는 텍스트 정보를 제공하기
         />
       </Card>

@@ -23,10 +23,14 @@ import "assets/scss/blk-design-system-react.scss";
 import "assets/demo/demo.css";
 
 // ourpage
-import Home from "./routes/Home";
+// import Home from "./routes/Home";
 import First from "./routes/First";
 import UserBookShelf from "./routes/UserBookShelf";
-import Login from "./routes/Login";
+// import Search from "./pages/Search";
+// import "./styles/App.css";
+// import { BrowserRouter, Route, Routes } from "react-router-dom";
+import auth from "./hooks/auth";
+import Login from "./pages/Login";
 import Upload from "./pages/Upload";
 import Resultpage from "./routes/Result";
 import Searchpage from "./routes/Search";
@@ -40,20 +44,24 @@ export default () => {
     <BrowserRouter>
       <Routes>
         {/* our page */}
-        <Route path="/" Component={First} />
-        <Route path="/home" Component={Home} />
-        <Route path="/bookshelf" Component={UserBookShelf} />
-        <Route path="/login" Component={Login} />
+        {/* <Route path="/" element={<Home />} /> */}
+        {/* <Route path="/search" element={<Search />} /> */}
+        {/* <Route path="/home" element={<Home/>} /> */}
+        {/* <Route path="/login" element={<Login/>} /> */}
+        <Route path="/bookshelf" element={<UserBookShelf />} />
+        <Route path="/login" element={auth(Login, false)} />
+        <Route path="/" element={<First />} />
+        <Route path="/bookshelf" element={<UserBookShelf />} />
         <Route
           path="/blk-design-system-react"
           element={<Navigate to="/" replace />}
         />
-        <Route path="/upload" Component={Upload} />
-        <Route path="/signup" Component={SignUp} />
-        <Route path="/result" Component={Resultpage} />
-        <Route path="/search" Component={Searchpage} />
-        <Route path="/profile" Component={User} />
-        <Route path="/detail" Component={Detail} />
+        <Route path="/upload" element={<Upload />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/result" element={<Resultpage />} />
+        <Route path="/search" element={<Searchpage />} />
+        <Route path="/profile" element={<User />} />
+        <Route path="/detail" element={<Detail />} />
         {/* <Route path="/detail/:id" element={<Detail Detail={Detail} />} /> */}
       </Routes>
     </BrowserRouter>

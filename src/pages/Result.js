@@ -1,15 +1,17 @@
 import React from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import sample from "../assets/sample_book.json";
 
-
 function Card({ children }) {
-    return (
-      <div className="card" style={{backgroundColor: 'gray', padding : '10px', width: '350px'}}>
-        {children}
-      </div>
-    );
-  }
+  return (
+    <div
+      className="card"
+      style={{ backgroundColor: "gray", padding: "10px", width: "350px" }}
+    >
+      {children}
+    </div>
+  );
+}
 
 function BookRow({ book_info }) {
   return (
@@ -22,8 +24,8 @@ function BookRow({ book_info }) {
 
 function BookTable({ books_info }) {
   return (
-    <div style={{backgroundColor: 'white', padding : '10px', width: '300px'}}>
-      <h3 style={{color:'black'}}>책 목록</h3>
+    <div style={{ backgroundColor: "white", padding: "10px", width: "300px" }}>
+      <h3 style={{ color: "black" }}>책 목록</h3>
       <table>
         <thead>
           <tr>
@@ -33,10 +35,7 @@ function BookTable({ books_info }) {
         </thead>
         <tbody>
           {books_info.map((book_info) => (
-            <BookRow
-              key={book_info.id}
-              book_info={book_info}
-            />
+            <BookRow key={book_info.id} book_info={book_info} />
           ))}
         </tbody>
       </table>
@@ -44,23 +43,20 @@ function BookTable({ books_info }) {
   );
 }
 
-
-function BookDetail({ books_info }) {
-  return (
-    <div style={{backgroundColor: 'white', padding : '10px', width: '300px'}}>
-      <h3 style={{color:'black'}}>상세 정보</h3>
-      
-    </div>
-  );
-}
-
+// function BookDetail({ books_info }) {
+//   return (
+//     <div style={{ backgroundColor: "white", padding: "10px", width: "300px" }}>
+//       <h3 style={{ color: "black" }}>상세 정보</h3>
+//     </div>
+//   );
+// }
 
 export default function Result() {
   return (
-    <div style={{display:'flex'}}>
-    <Card>
+    <div style={{ display: "flex" }}>
+      <Card>
         <BookTable books_info={sample} />;
-    </Card>
+      </Card>
     </div>
-    );
+  );
 }

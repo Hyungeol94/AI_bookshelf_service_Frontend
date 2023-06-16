@@ -9,9 +9,9 @@ import bookinfo_api from "../services/bookinfo_api";
 import sampleBookImg from "../assets/img/sample_book.png";
 // import sample from "../assets/sample_book.json";
 
-export default function Search(props){
-  const [data, setData] = useState(null);
-  const [searchValue, setSearchValue] = useState(props.searchValue || null);
+export default (props) => {
+  const [data, setData] = useState(props?.data || null);
+  const [searchValue, setSearchValue] = useState(props?.searchValue || null);
   const [pageSize, setPageSize] = useState(10);
   const [isloading, setIsLoading] = useState(false);
 

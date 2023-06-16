@@ -1,19 +1,19 @@
-import React, { useState, useEffect } from 'react';
-import Booklist from '../components/BookList';
-import sample from '../assets/sample_book.json';
-import GetList from '../components/GetList'; 
+import React, { useState, useEffect } from "react";
+import Booklist from "../components/BookList";
+import sample from "../assets/sample_book.json";
+import GetList from "../components/GetList";
 import { useParams } from "react-router-dom";
 
 // 참고 사이트 : https://jurgen-94.tistory.com/24
 
 const DetailPage = (props) => {
-  let {id} = useParams();
+  let { id } = useParams();
 
-  return(
+  return (
     <div className="container">
       <div className="row">
         <div className="col-md-6">
-          <img src={process.env.PUBLIC_URL + '/${id}.png'} width="100%"/>
+          <img src={process.env.PUBLIC_URL + "/${id}.png"} width="100%" />
         </div>
         <div className="col-md-6">
           <h4 className="pt-5"> {props.book[id].booktitle} </h4>
@@ -21,7 +21,7 @@ const DetailPage = (props) => {
           <p> {props.book[id].description} </p>
           <button> 좋아용 </button>
           <button> 읽음 </button>
-          <p/>
+          <p />
           <h4> 구매 링크 </h4>
           <button> yes24 </button>
           <button> 알라딘 </button>
@@ -30,8 +30,8 @@ const DetailPage = (props) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 export default DetailPage;
 //  OnClick 이용해서 책 페이지에서 상세 페이지로 이동하게 만들 것
 
@@ -60,15 +60,15 @@ export default DetailPage;
 // );
 
 // function BookInfo() {
-//   const [bookImage, setBookImage] = useState(''); 
-//   const [bookName, setBookName] = useState(''); 
-//   const [bookInfo, setBookInfo] = useState(''); 
+//   const [bookImage, setBookImage] = useState('');
+//   const [bookName, setBookName] = useState('');
+//   const [bookInfo, setBookInfo] = useState('');
 
 //   useEffect(() => {
 //     setTimeout(() => {
-//       setBookImage(sample.image); 
-//       setBookName(sample.booktitle); 
-//       setBookInfo(sample.id); 
+//       setBookImage(sample.image);
+//       setBookName(sample.booktitle);
+//       setBookInfo(sample.id);
 //     }, 600);
 //   }, []);
 
@@ -79,10 +79,10 @@ export default DetailPage;
 //       <div>
 //         <img src={bookImage} alt={bookName} width={300} height={300} />
 //       </div>
-      
+
 //       <div> {bookInfo} </div>
 //     </div>
 //   );
 // }
 
-// export default BookInfo; 
+// export default BookInfo;

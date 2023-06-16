@@ -2,7 +2,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-function SignUp() {
+
+function Signup() {
   const [Email, setEmail] = useState("");
   const [Id, setId] = useState("");
   const [Password, setPassword] = useState("");
@@ -170,4 +171,4 @@ function SignUp() {
   );
 }
 
-export default SignUp;
+export default Signup;

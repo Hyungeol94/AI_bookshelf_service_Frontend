@@ -43,19 +43,35 @@ function BookTable({ books_info }) {
   );
 }
 
-// function BookDetail({ books_info }) {
-//   return (
-//     <div style={{ backgroundColor: "white", padding: "10px", width: "300px" }}>
-//       <h3 style={{ color: "black" }}>상세 정보</h3>
-//     </div>
-//   );
-// }
+
+
+function BookDetail({book_info}) {
+  return (
+    <div style={{backgroundColor: 'white', padding : '10px', width: '300px'}}>
+      <h3 style={{color:'black'}}>상세 정보</h3>
+      <img src = {book_info.image} alt="Book Cover" style = {{height: '250px'}}/>
+      <div>{book_info.booktitle}</div>
+      <div>{book_info.author}</div>
+
+    </div>
+  );
+}
+
 
 export default function Result() {
   return (
-    <div style={{ display: "flex" }}>
+    <div style={{display:'flex'}}>
       <Card>
-        <BookTable books_info={sample} />;
+          <BookTable books_info={sample} />;
+      </Card>
+      <Card>
+        <BookDetail
+        book_info = {sample[0]}
+        // 클릭되어 있는 텍스트 정보를 제공하기
+        />
+      </Card>
+      <Card>
+        {/* 클릭되어 있는 텍스트의 검색 결과 가져 오기 */}
       </Card>
     </div>
   );

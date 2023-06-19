@@ -2,7 +2,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-
 function Signup() {
   const [Email, setEmail] = useState("");
   const [Id, setId] = useState("");
@@ -12,7 +11,6 @@ function Signup() {
   const [PhoneNumber, setPhoneNumber] = useState("");
   const [Occupation, setOccupation] = useState("");
   const [RegistrationPath, setRegistrationPath] = useState("");
-
   const [allAgreed, setAllAgreed] = useState(false);
   const [agreements, setAgreements] = useState({
     termsAgreed: false,

@@ -1,5 +1,6 @@
 import React from "react";
 import {useState} from "react";
+import { useEffect } from "react";
 // import { Link } from "react-router-dom";
 import sample from "../assets/sample_book.json";
 import bookinfo_api from "../services/bookinfo_api";
@@ -16,11 +17,19 @@ function Card({ children }) {
 }
 
 function BookRow(props) {
-  const {book_info, setSelectedBookInfo, searchValue, setSearchValue, onSearch} = props
-  function handleClick(){
-    setSelectedBookInfo(book_info)
-    setSearchValue(book_info.booktitle)
-    onSearch(searchValue)
+  const {book_info, selectedBookInfo, setSelectedBookInfo, setSearchValue, onSearch} = props
+  useEffect(() => {
+    if (selectedBookInfo) {
+      // Call setSearchValue inside useEffect when book_info.booktitle changes
+      setSearchValue(selectedBookInfo)
+      onSearch()
+      // Call onSearch after setSearchValue is completed
+      // onSearch();
+    }
+  }, [selectedBookInfo]);
+
+  async function handleClick(){    
+    setSelectedBookInfo(book_info)    
   }
   return (
     <tr className = "bookRow" onClick={handleClick}>
@@ -31,7 +40,7 @@ function BookRow(props) {
 }
 
 function BookTable(props) {
-  const {books_info, setSelectedBookInfo, searchValue, setSearchValue, onSearch, setIsLoading, setData} = props
+  const {books_info, selectedBookInfo, setSelectedBookInfo, setSearchValue, onSearch} = props
   return (
     <div className="bookTable">
       <h3 style={{ color: "black" }}>책 목록</h3>
@@ -46,8 +55,8 @@ function BookTable(props) {
           {books_info.map((book_info) => (
             <BookRow key={book_info.id} 
             book_info={book_info} 
-            setSelectedBookInfo={setSelectedBookInfo}
-            searchValue = {searchValue}
+            selectedBookInfo = {selectedBookInfo}
+            setSelectedBookInfo={setSelectedBookInfo}            
             setSearchValue={setSearchValue}
             onSearch={onSearch}/>
           ))}
@@ -65,7 +74,6 @@ function BookDetail({book_info}) {
       <img src = {book_info.image} alt="Book Cover" style = {{height: '250px'}}/>
       <div>{book_info.booktitle}</div>
       <div>{book_info.author}</div>
-
     </div>
   );
 }
@@ -80,29 +88,27 @@ function BookSearchView(props) {
       <div>{book_info.booktitle}</div>
         {/* book_info에 대한 검색 결과*/}  
         <div>
-        {isLoading ? (
-        <h3 style={{color: 'black'}}>로딩중..</h3>
-      ) : data ? (
-        <div>
-          검색결과
-          {console.log(data)}
-          {data.map((book) => {
-            return (
-              <BookList
-                key={num++}
-                booktitle={book?.elements[0]?.elements[0]?.cdata}
-                image={sampleBookImg}                
-              />
-            );
-          })}
+          {isLoading ? (
+          <h3 style={{color: 'black'}}>로딩중..</h3>
+        ) : (typeof data !== 'undefined' && data) ? (
+          <div>
+            검색결과
+            {console.log(data)}            
+            {data.map((book) => {
+              return (
+                <BookList
+                  key={num++}
+                  booktitle={book?.elements[0]?.elements[0]?.cdata}
+                  image={sampleBookImg}                
+                />
+              );
+            })}
         </div>
       ) : (
         <div>
           <h3 style={{color:'black'}} >검색결과가 없습니다</h3>
         </div>
       )}
-      {/* <p>bookinfo</p> */}
-          
         </div>
       
       selectedBookInfo에 대한 도서 api 검색결과 나오는 창
@@ -117,25 +123,33 @@ export default function Result() {
   const [searchValue, setSearchValue] = useState(sample[0]);
   const [isLoading, setIsLoading] = useState(false);
   const [pageSize, setPageSize] = useState(10);
+  
+  useEffect(() => {
+    if (data && typeof data !== 'undefined')
+        console.log('Updated data:', data);
+  }, [data]);
 
   const onSearch = async () => {
     setIsLoading(true);
-    setData(await bookinfo_api(searchValue, pageSize));
+    const fetchedData = await bookinfo_api(selectedBookInfo.booktitle, pageSize);
+    if (typeof fetchedData !== 'undefined' && fetchedData){
+      console.log('search and setting data complete and here is the fetched data')
+      setData(fetchedData);      
+    } else {
+      setData(null)
+    }
     setIsLoading(false);
-    // console.log("data", data[0].elements[0].elements[0].cdata);
   };
   
   return (
     <div style={{display:'flex'}}>
-      <Card>
+      <Card>      
         <BookTable 
           books_info={sample} 
-          setSelectedBookInfo={setSelectedBookInfo}
-          searchValue = {searchValue}
+          selectedBookInfo = {selectedBookInfo}
+          setSelectedBookInfo={setSelectedBookInfo}          
           setSearchValue={setSearchValue}
-          onSearch={onSearch}
-          setIsLoading= {setIsLoading}
-          setData = {setData}
+          onSearch={onSearch}        
           />;
       </Card>
       <Card>

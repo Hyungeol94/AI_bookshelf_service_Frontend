@@ -1,81 +1,38 @@
 import { useState, useEffect } from 'react';
-
-// import styled from 'styled-components';
-// import { BOOKROOM_USER_API } from '../../config';
+import { Link } from "react-router-dom";
 
 // our component
 import sample_user from "../assets/sample_user.json";
-import get_userlist from "../components/GetUserList";
 
-// const UserProfile = () => {
-//   const [userInfo, SetUserInfo] = useState([]);
-
-//   useEffect(() => {
-//     // fetch(`${BESTSELLER_API}&keyword=${keyword}`)
-//     fetch(BOOKROOM_USER_API, {
-//       headers: { Authorization: localStorage.getItem('token') },
-//     })
-//       .then((res) => res.json())
-//       .then((res) => {
-//         SetUserInfo(res.libraryInfo[0]);
-//         // console.log(res.libraryInfo[0]);
-//       })
-
-//       .catch((err) => console.log('Catched errors!!', err));
-//   }, []);
-//   console.log(userInfo);
-//   return (
-//     <UserProfileContainer userInfoImage={userInfo && userInfo.libraryImage}>
-//       <Profile>
-//         <img src={userInfo.userImage} alt='userImage' />
-//         <Title>{userInfo.libraryName}</Title>
-//         <p>{userInfo.userName}</p>
-//       </Profile>
-//     </UserProfileContainer>
-//   );
-//  };
-
-const UserProfile = () => {
-    let [nick_name, user_img] = get_userlist(sample_user);
-  
-    return (
-      <>
+const Userprofile = () => {
+  console.log(sample_user);
+  console.log('함수 실행 여부 확인');
+  return(
+    <div className='MyProfile'>
+      <h2>My profile</h2>
+      
       <div>
-            <img src="../src/assets/img/apple-icon copy.png" alt='userImage' />
-            <p>최서연님의 온라인 서재</p>
+      <img
+        src={sample_user.profile.image}
+        style={{ width: "80px", height: "80px"}}
+      />
+      <h3>{sample_user.profile.user_nickname}</h3>
+      <Link to="/Upload">
+          <button>내 정보 수정하기</button>
+      </Link> 
       </div>
-      </>
-    );
-  };
 
-// const UserProfileContainer = styled.div`
-//   width: 1280px;
-//   height: 340px;
-//   display: flex;
-//   padding: 40px;
-//   justify-content: left;
-//   /* background-image: url('./images/bookRoomBanner.png'); */
-//   background-image: ${(props) => props.userInfoImage};
-//   background-size: 1280px 340px;
-// `;
+      <Link to="/Upload">
+          <button>서재에 책 추가하기</button>
+      </Link> 
+      <div className='user_book'>
+      <h4>내 서재에 저장된 책: {sample_user.user_bookshelf.book_id.length}권</h4>
+      <h4>좋아하는 책: {sample_user.user_like_book.length}권</h4>
+      <h4>찜해둔 책: {sample_user.user_interest.length}권</h4>
+      <h4>저장한 책: {sample_user.user_cart.length}권</h4>
+      </div>
+    </div>
+  )
+}
 
-// const Profile = styled.div`
-//   height: 100px;
-//   img {
-//     width: 75px;
-//     height: 75px;
-//     border-radius: 50%;
-//   }
-//   p {
-//     font-size: 15px;
-//   }
-// `;
-
-// const Title = styled.div`
-//   height: 40px;
-//   font-size: 30px;
-//   font-weight: 600;
-//   margin: 10px 0px;
-// `;
-
-export default UserProfile;
+export default Userprofile;

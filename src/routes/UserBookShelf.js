@@ -1,6 +1,6 @@
 import React from "react";
 import UserBookShelfpage from "../pages/UserBookShelf";
-import Detail from "../components/Detail";
+import Detail from "../components/GetBookDetail";
 
 // eslint-disable-next-line import/no-anonymous-default-export
 class UserBookShelf extends React.Component {

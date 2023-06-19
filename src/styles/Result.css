@@ -3,3 +3,16 @@
     color: black;
     cursor: pointer;
 }
+
+.resultCard{
+    background-color: gray !important;
+    padding: 10px !important;
+    width: 350px !important;
+    height: 500px;
+}
+
+.bookTable{
+    background-Color: white;
+    padding: 10px;
+    width: 300px;
+}

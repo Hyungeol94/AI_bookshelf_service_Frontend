@@ -17,19 +17,16 @@ function Card({ children }) {
 }
 
 function BookRow(props) {
-  const {book_info, selectedBookInfo, setSelectedBookInfo, setSearchValue, onSearch} = props
+  const {book_info, setSelectedBookInfo, searchValue, setSearchValue, onSearch} = props
   useEffect(() => {
-    if (selectedBookInfo) {
-      // Call setSearchValue inside useEffect when book_info.booktitle changes
-      setSearchValue(selectedBookInfo)
+    if (searchValue) {
       onSearch()
-      // Call onSearch after setSearchValue is completed
-      // onSearch();
     }
-  }, [selectedBookInfo]);
+  }, [searchValue]);
 
   async function handleClick(){    
-    setSelectedBookInfo(book_info)    
+    setSelectedBookInfo(book_info)
+    setSearchValue(book_info.booktitle)    
   }
   return (
     <tr className = "bookRow" onClick={handleClick}>
@@ -40,7 +37,7 @@ function BookRow(props) {
 }
 
 function BookTable(props) {
-  const {books_info, selectedBookInfo, setSelectedBookInfo, setSearchValue, onSearch} = props
+  const {books_info, setSelectedBookInfo, searchValue, setSearchValue, onSearch} = props
   return (
     <div className="bookTable">
       <h3 style={{ color: "black" }}>책 목록</h3>
@@ -55,8 +52,8 @@ function BookTable(props) {
           {books_info.map((book_info) => (
             <BookRow key={book_info.id} 
             book_info={book_info} 
-            selectedBookInfo = {selectedBookInfo}
-            setSelectedBookInfo={setSelectedBookInfo}            
+            setSelectedBookInfo={setSelectedBookInfo}      
+            searchValue = {searchValue}      
             setSearchValue={setSearchValue}
             onSearch={onSearch}/>
           ))}
@@ -131,7 +128,7 @@ export default function Result() {
 
   const onSearch = async () => {
     setIsLoading(true);
-    const fetchedData = await bookinfo_api(selectedBookInfo.booktitle, pageSize);
+    const fetchedData = await bookinfo_api(searchValue, pageSize);
     if (typeof fetchedData !== 'undefined' && fetchedData){
       console.log('search and setting data complete and here is the fetched data')
       setData(fetchedData);      
@@ -146,8 +143,8 @@ export default function Result() {
       <Card>      
         <BookTable 
           books_info={sample} 
-          selectedBookInfo = {selectedBookInfo}
-          setSelectedBookInfo={setSelectedBookInfo}          
+          setSelectedBookInfo={setSelectedBookInfo}
+          searchValue = {searchValue}          
           setSearchValue={setSearchValue}
           onSearch={onSearch}        
           />;

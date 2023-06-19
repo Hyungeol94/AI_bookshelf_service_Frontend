@@ -18,7 +18,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import * as api from "../../services/api";
 // reactstrap components
 import {
@@ -47,6 +47,8 @@ export default () => {
   const { isAuth } = useSelector((state) => state.userReducer);
 
   const navigate = useNavigate();
+  const location = useLocation();
+
   /** 로그아웃 함수 */
   const logout = async () => {
     try {
@@ -189,7 +191,7 @@ export default () => {
               </Button>
             </NavItem>
             <NavItem>
-              {!isAuth && (
+              {location.pathname === "/" && (
                 <Button
                   className="nav-link d-none d-lg-block"
                   color="Success"
@@ -199,7 +201,7 @@ export default () => {
                   <i className="tim-icons icon-single-02" /> Login
                 </Button>
               )}
-              {isAuth && (
+              {isAuth && location.pathname !== "/" && (
                 <Button
                   className="nav-link d-none d-lg-block"
                   color="Success"

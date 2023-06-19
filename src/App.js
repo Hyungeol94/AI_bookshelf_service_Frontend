@@ -42,7 +42,7 @@ import Resultpage from "./routes/Result";
 import Searchpage from "./routes/Search";
 import SignUp from "./pages/Signup";
 import User from "./routes/User";
-import Detail from "./pages/Detail";
+// import Detail from "./pages/Detail";
 import IndexNavbar from "./components/Navbars/IndexNavbar";
 
 /** Header를 강제적으로 가지는 페이지를 위해 감싸주는 함수형 컴포넌트 */
@@ -62,7 +62,7 @@ export default () => {
           <Route path="main" element={auth(Home, true)} />
           <Route path="bookshelf" element={<UserBookShelf />} />
           <Route path="login" element={auth(Login, false)} />
-          <Route path="" element={<First />} />
+          <Route path="" element={auth(First, false)} />
           <Route path="signup" element={<SignUp />} />
           <Route path="search" element={<Searchpage />} />
           <Route path="profile" element={<User />} />
@@ -77,7 +77,7 @@ export default () => {
         /> */}
         <Route path="/upload" element={<Upload />} />
         <Route path="/result" element={<Resultpage />} />
-        <Route path="/detail" element={<Detail />} />
+        {/* <Route path="/detail" element={<Detail />} /> */}
         <Route path="/search" element={<Searchpage />} />
         <Route path="/profile" element={<User />} />
 

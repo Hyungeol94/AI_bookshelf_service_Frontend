@@ -1,5 +1,5 @@
 // 참고 페이지: https://velog.io/@ppmyor/%EB%85%B8%EB%93%9C-%EB%A6%AC%EC%95%A1%ED%8A%B8-%EA%B8%B0%EC%B4%88-React-24.-%ED%9A%8C%EC%9B%90%EA%B0%80%EC%9E%85-%ED%8E%98%EC%9D%B4%EC%A7%80-%EA%B5%AC%ED%98%84
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import TermTxt from "../components/Termtxt";
 import Modal from 'react-modal';
@@ -64,10 +64,6 @@ function Signup() {
       setModalIsOpen(false);
 
     };
-
-    const DisplayMessage = () => {
-      return <div>{TermTxt.message}</div>;
-    };
   
     return (
       <div>
@@ -88,64 +84,78 @@ function Signup() {
         alignItems: "center",
         width: "30%"
       }} onClick={closeModal}>닫기</button>
-          </div>
-          <DisplayMessage />
-          </div>
+          </div></div>
         </Modal>
       </div>
     )
   };
 
-  // 체크박스 함수
-  const CheckboxList = () => {
-    const [isChecked, setIsChecked] = useState(false);
-    const [checkboxes, setCheckboxes] = useState([
-      { id: 1, label: '[필수] 만 14세 이상입니다.', checked: false },
-      { id: 2, label: '[필수] Book is On&On 서비스 이용약관 동의', checked: false },
-      { id: 3, label: '[필수] 개인정보 수집 및 이용 동의', checked: false },
-      { id: 4, label: '[선택] 마케팅 정보 수신에 대한 동의', checked: false },
-      { id: 5, label: '전체 동의', checked: false },
-    ]);
-  
-    const handleCheckboxChange = (event, index) => {
-      const updatedCheckboxes = [...checkboxes];
-  
-      if (index === checkboxes.length - 1) {
-        // 마지막 체크박스가 선택되면 모든 체크박스를 선택하도록 함
-        const selectAllChecked = event.target.checked;
-        updatedCheckboxes.forEach((checkbox) => {
-          checkbox.checked = selectAllChecked;
-        });
-      } else {
-        // 마지막 체크박스가 아닌 경우 해당 체크박스의 상태 변경
-        updatedCheckboxes[index].checked = event.target.checked;
-        // 마지막 체크박스의 상태도 업데이트
-        const allChecked = updatedCheckboxes.every(
-          (checkbox) => checkbox.checked
-        );
-        updatedCheckboxes[checkboxes.length - 1].checked = allChecked;
-      }
-  
-      setCheckboxes(updatedCheckboxes);
-    };
-  
-    return (
-      <div>
-        {checkboxes.map((checkbox, index) => (
-          <div key={checkbox.id}>
-            <label>
-              <input
-                type="checkbox"
-                checked={checkbox.checked}
-                onChange={(event) => handleCheckboxChange(event, index)}
-              />
-              {checkbox.label}
-            </label>
-          </div>
-        ))}
-      </div>
-    );
+ 
+  //  체크박스 함수 
+  const [allCheck, setAllCheck] = useState(false);
+  const [ageCheck, setAgeCheck] = useState(false);
+  const [useCheck, setUseCheck] = useState(false);
+  const [infoCheck ,setInfoCheck] = useState(false);
+  const [marketingCheck, setMarketingCheck] = useState(false);
+
+  const allBtnEvent =()=>{
+    if(allCheck === false) {
+      setAllCheck(true);
+      setAgeCheck(true);
+      setUseCheck(true);
+      setInfoCheck(true);
+      setMarketingCheck(true);
+    }else {
+      setAllCheck(false);
+      setAgeCheck(false);
+      setUseCheck(false);
+      setInfoCheck(false);
+      setMarketingCheck(false);
+    } 
   };
+  
+  const ageBtnEvent =()=>{
+    if(ageCheck === false) {
+      setAgeCheck(true)
+    }else {
+      setAgeCheck(false)
+    }
+  };
+  
+  const useBtnEvent =()=>{
+    if(useCheck === false) {
+      setUseCheck(true)
+    }else {
+      setUseCheck(false)
+    }
+  };
+
+  const infoBtnEvent =()=>{
+    if(infoCheck === false) {
+      setInfoCheck(true)
+    }else {
+      setInfoCheck(false)
+    }
+  };
+  
+  const marketingBtnEvent =()=>{
+    if(marketingCheck === false) {
+      setMarketingCheck(true)
+    }else {
+      setMarketingCheck(false)
+    }
+  };
+
+  
+
+  useEffect(()=>{
+    if(ageCheck===true && useCheck===true && infoCheck===true && marketingCheck===true){
+      setAllCheck(true)
+    } else {
+      setAllCheck(false)
+    }
+  }, [ageCheck,useCheck, marketingCheck])
+
 
   // 여기서부터 실제 출력
 
@@ -242,13 +252,22 @@ function Signup() {
           < OpenTerms />  
           <br/>
           
-          </div>
-          < fileContent />
-          
+          </div>    
+
           <br></br>
           
           <div>
-            < CheckboxList />
+            <input type="checkbox" id="all-check" checked={allCheck} onChange={allBtnEvent}/>
+            <label for='all-check'> 이용약관 전체동의 </label> <br/>
+            <input type="checkbox" id="check1" checked={ageCheck} onChange={ageBtnEvent}/>
+        		<label for="check1"> 만 14세 이상입니다 <span>[필수]</span></label> <br/>
+            <input type="checkbox" id="check1" checked={useCheck} onChange={useBtnEvent}/>
+        		<label for="check1"> Book is On&On 서비스 이용약관 동의 <span>[필수]</span></label> <br/>
+            <input type="checkbox" id="check1" checked={infoCheck} onChange={infoBtnEvent}/>
+        		<label for="check1"> 개인정보 수집 및 이용 동의 <span>[필수]</span></label> <br/>
+            <input type="checkbox" id="check1" checked={marketingCheck} onChange={marketingBtnEvent}/>
+        		<label for="check1"> 마케팅 정보 수신에 대한 동의 <span>[선택]</span></label> <br/>
+
           </div>
               
         </div>

@@ -15,8 +15,11 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import * as api from "../../services/api";
 // reactstrap components
 import {
   Button,
@@ -35,16 +38,34 @@ import {
   UncontrolledTooltip,
 } from "reactstrap";
 
-export default function IndexNavbar() {
-  const [collapseOpen, setCollapseOpen] = React.useState(false);
-  const [collapseOut, setCollapseOut] = React.useState("");
-  const [color, setColor] = React.useState("navbar-transparent");
-  React.useEffect(() => {
+// eslint-disable-next-line import/no-anonymous-default-export
+export default () => {
+  const [collapseOpen, setCollapseOpen] = useState(false);
+  const [collapseOut, setCollapseOut] = useState("");
+  const [color, setColor] = useState("navbar-transparent");
+
+  const { isAuth } = useSelector((state) => state.userReducer);
+
+  const navigate = useNavigate();
+  /** 로그아웃 함수 */
+  const logout = async () => {
+    try {
+      const res = await api.signout();
+      if (res.data?.success) {
+        return navigate("/");
+      }
+    } catch (error) {
+      return alert("알 수 없는 오류로 로그아웃을 실패하였습니다.");
+    }
+  };
+
+  useEffect(() => {
     window.addEventListener("scroll", changeColor);
     return function cleanup() {
       window.removeEventListener("scroll", changeColor);
     };
   }, []);
+
   const changeColor = () => {
     if (
       document.documentElement.scrollTop > 99 ||
@@ -77,9 +98,16 @@ export default function IndexNavbar() {
     <Navbar className={"fixed-top " + color} color-on-scroll="100" expand="lg">
       <Container>
         <div className="navbar-translate">
-          <NavbarBrand to="/" tag={Link} id="navbar-brand">
-            <span>Book is On&On </span>| Home
-          </NavbarBrand>
+          {isAuth && (
+            <NavbarBrand to="/main" tag={Link} id="navbar-brand">
+              <span>Book is On&On </span>| Home
+            </NavbarBrand>
+          )}
+          {!isAuth && (
+            <NavbarBrand to="/" tag={Link} id="navbar-brand">
+              <span>Book is On&On </span>| Home
+            </NavbarBrand>
+          )}
           <UncontrolledTooltip placement="bottom" target="navbar-brand">
             Home
           </UncontrolledTooltip>
@@ -161,18 +189,30 @@ export default function IndexNavbar() {
               </Button>
             </NavItem>
             <NavItem>
-              <Button
-                className="nav-link d-none d-lg-block"
-                color="Success"
-                // onClick={scrollToDownload}
-                href="/login"
-              >
-                <i className="tim-icons icon-single-02" /> Login
-              </Button>
+              {!isAuth && (
+                <Button
+                  className="nav-link d-none d-lg-block"
+                  color="Success"
+                  // onClick={scrollToDownload}
+                  href="/login"
+                >
+                  <i className="tim-icons icon-single-02" /> Login
+                </Button>
+              )}
+              {isAuth && (
+                <Button
+                  className="nav-link d-none d-lg-block"
+                  color="Success"
+                  // onClick={scrollToDownload}
+                  onClick={() => logout()}
+                >
+                  <i className="tim-icons icon-single-02" /> Logout
+                </Button>
+              )}
             </NavItem>
           </Nav>
         </Collapse>
       </Container>
     </Navbar>
   );
-}
+};

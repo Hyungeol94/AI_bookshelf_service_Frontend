@@ -35,7 +35,7 @@ export default () => {
     console.log("useEffect");
     if (loginState) {
       console.log("loginState");
-      navigate("/");
+      navigate("/main");
     }
   }, [loginState, navigate]);
 

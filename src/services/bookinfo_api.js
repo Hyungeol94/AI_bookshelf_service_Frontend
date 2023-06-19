@@ -3,22 +3,23 @@ import axios from "axios";
 // const converter = require("xml-js");
 
 // const BOOKINFO_APIKEY = process.env.REACT_APP_BOOKINFO_APIKEY;
-
+// const BOOKINFO_APIKE = 'f2671199c0a54a75884db863acdb6287397dba388499b9f6e4a5dcb64f29d503';
 // eslint-disable-next-line import/no-anonymous-default-export
-export default async (searchvalue, pageSize) => {
+export default async (searchvalue) => {
   // console.log(searchvalue, pageSize);
-  const bookdata = await axios.get(
-    `https://openapi.naver.com/v1/search/book.json`,
-    {
-      params: {
-        query: searchvalue,
-      },
+  const bookdata = await axios
+    .get("/v1/search/book.json", {
+      params: { query: searchvalue },
       headers: {
-        "X-Naver-Client-Id": "qzS6rcHjJMirkfabDMnA",
-        "X-Naver-Client-Secret": "CvtuPx9rng",
+        "X-Naver-Client-Id": "aUTQs989GIJxwutcnHAk",
+        "X-Naver-Client-Secret": "5iYHJDUjOd",
       },
-    }
-  );
+    })
+    .then((data) => {
+      // console.log(data.data.items);
+      return data.data.items;
+    })
+    .catch((e) => console.log(e));
   return bookdata;
   // console.log(bookdata);
 };

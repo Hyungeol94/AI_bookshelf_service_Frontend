@@ -60,6 +60,7 @@ export default () => {
         <Route path="/result" element={<Resultpage />} />
         <Route path="/search" element={<Searchpage />} />
         <Route path="/profile" element={<User />} />
+
         {/* <Route path="/detail/:id" element={<Detail Detail={Detail} />} /> */}
       </Routes>
     </BrowserRouter>

@@ -117,7 +117,7 @@ function BookSearchView(props) {
 export default function Result() {
   const [selectedBookInfo, setSelectedBookInfo] = useState(sample[0]);
   const [data, setData] = useState(null);
-  const [searchValue, setSearchValue] = useState(sample[0]);
+  const [searchValue, setSearchValue] = useState(sample[0].booktitle);
   const [isLoading, setIsLoading] = useState(false);
   const [pageSize, setPageSize] = useState(10);
   

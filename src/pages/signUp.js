@@ -1,8 +1,10 @@
 // 참고 페이지: https://velog.io/@ppmyor/%EB%85%B8%EB%93%9C-%EB%A6%AC%EC%95%A1%ED%8A%B8-%EA%B8%B0%EC%B4%88-React-24.-%ED%9A%8C%EC%9B%90%EA%B0%80%EC%9E%85-%ED%8E%98%EC%9D%B4%EC%A7%80-%EA%B5%AC%ED%98%84
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import TermTxt from "../components/Termtxt";
+import Modal from 'react-modal';
 
-function SignUp() {
+function Signup() {
   const [Email, setEmail] = useState("");
   const [Id, setId] = useState("");
   const [Password, setPassword] = useState("");
@@ -11,7 +13,6 @@ function SignUp() {
   const [PhoneNumber, setPhoneNumber] = useState("");
   const [Occupation, setOccupation] = useState("");
   const [RegistrationPath, setRegistrationPath] = useState("");
-
   const [allAgreed, setAllAgreed] = useState(false);
   const [agreements, setAgreements] = useState({
     termsAgreed: false,
@@ -32,6 +33,8 @@ function SignUp() {
     setAllAgreed(allChecked);
   };
 
+  // 이용약관 파일 읽어오는 함수
+
   const handleAllAgreementChange = (event) => {
     const { checked } = event.target;
     setAgreements((prevAgreements) =>
@@ -48,8 +51,113 @@ function SignUp() {
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
-    // 폼 제출 로직을 처리합니다.
   };
+
+  const OpenTerms = () => {
+    const [modalIsOpen, setModalIsOpen] = useState(false);
+    const openModal = () => {
+      setModalIsOpen(true);
+     
+    };
+  
+    const closeModal = () => {
+      setModalIsOpen(false);
+
+    };
+  
+    return (
+      <div>
+        <button onClick={openModal}>
+          이용약관 상세보기
+        </button>
+        <Modal
+          isOpen={modalIsOpen}
+          onRequestClose={closeModal}
+          contentLabel="File Modal"
+        >
+            <TermTxt/>
+          <div>
+          <div>
+            <button style={{
+        display: "center",
+        justifyContent: "center",
+        alignItems: "center",
+        width: "30%"
+      }} onClick={closeModal}>닫기</button>
+          </div></div>
+        </Modal>
+      </div>
+    )
+  };
+
+ 
+  //  체크박스 함수 
+  const [allCheck, setAllCheck] = useState(false);
+  const [ageCheck, setAgeCheck] = useState(false);
+  const [useCheck, setUseCheck] = useState(false);
+  const [infoCheck ,setInfoCheck] = useState(false);
+  const [marketingCheck, setMarketingCheck] = useState(false);
+
+  const allBtnEvent =()=>{
+    if(allCheck === false) {
+      setAllCheck(true);
+      setAgeCheck(true);
+      setUseCheck(true);
+      setInfoCheck(true);
+      setMarketingCheck(true);
+    }else {
+      setAllCheck(false);
+      setAgeCheck(false);
+      setUseCheck(false);
+      setInfoCheck(false);
+      setMarketingCheck(false);
+    } 
+  };
+  
+  const ageBtnEvent =()=>{
+    if(ageCheck === false) {
+      setAgeCheck(true)
+    }else {
+      setAgeCheck(false)
+    }
+  };
+  
+  const useBtnEvent =()=>{
+    if(useCheck === false) {
+      setUseCheck(true)
+    }else {
+      setUseCheck(false)
+    }
+  };
+
+  const infoBtnEvent =()=>{
+    if(infoCheck === false) {
+      setInfoCheck(true)
+    }else {
+      setInfoCheck(false)
+    }
+  };
+  
+  const marketingBtnEvent =()=>{
+    if(marketingCheck === false) {
+      setMarketingCheck(true)
+    }else {
+      setMarketingCheck(false)
+    }
+  };
+
+  
+
+  useEffect(()=>{
+    if(ageCheck===true && useCheck===true && infoCheck===true && marketingCheck===true){
+      setAllCheck(true)
+    } else {
+      setAllCheck(false)
+    }
+  }, [ageCheck,useCheck, marketingCheck])
+
+
+  // 여기서부터 실제 출력
 
   return (
     <div
@@ -134,32 +242,35 @@ function SignUp() {
           <option value="2">광고</option>
           <option value="3">다른 서비스를 통해서</option>
         </select>
-
+        <br/>
+        <br/>
+        <div>
         <h3> 사용자 이용약관 </h3>
         <div>
-          1. 개인정보의 처리목적 <p></p>
-          2. 개인정보의 처리 및 보유기간<p></p>
-          3. 개인정보의 제3자 제공에 관한 사항<p></p>
-          4. 개인정보의 파기절차 및 파기방법<p></p>
-          (법 제 21조 제 1항 단서에 따라 개인정보를 보존하여야 하는 경우에는 그
-          보전근거와 보존하는 개인정보 항목)<p></p>
-          5. 개인정보 처리의 위탁에 관한 사항<p></p>
-          6. 정보주체와 법정대리인의 권리/의무 및 그 행사방법에 대한 사항<p></p>
-          7. 개인정보 보호책임자의 성명 또는 개인정보 보호업무 및 관련
-          고층사항을 처리하는 부서의 명칭과 전화번호 등 연락처<p></p>
-          8. 인터넷 접속정보파일 등 개인정보를 자동으로 수집하는 장치의
-          설치/운영 및 그 거부에 관한 사항<p></p>
-          9. 처리하는 개인정보의 항목<p></p>. . .
+          </div>
+          <div>
+          < OpenTerms />  
+          <br/>
+          
+          </div>    
+
+          <br></br>
+          
+          <div>
+            <input type="checkbox" id="all-check" checked={allCheck} onChange={allBtnEvent}/>
+            <label for='all-check'> 이용약관 전체동의 </label> <br/>
+            <input type="checkbox" id="check1" checked={ageCheck} onChange={ageBtnEvent}/>
+        		<label for="check1"> 만 14세 이상입니다 <span>[필수]</span></label> <br/>
+            <input type="checkbox" id="check1" checked={useCheck} onChange={useBtnEvent}/>
+        		<label for="check1"> Book is On&On 서비스 이용약관 동의 <span>[필수]</span></label> <br/>
+            <input type="checkbox" id="check1" checked={infoCheck} onChange={infoBtnEvent}/>
+        		<label for="check1"> 개인정보 수집 및 이용 동의 <span>[필수]</span></label> <br/>
+            <input type="checkbox" id="check1" checked={marketingCheck} onChange={marketingBtnEvent}/>
+        		<label for="check1"> 마케팅 정보 수신에 대한 동의 <span>[선택]</span></label> <br/>
+
+          </div>
+              
         </div>
-        <label htmlFor="agree_check_all">이용약관 전체동의</label>
-        <br></br>
-        <input
-          type="checkbox"
-          id="agree_check_all"
-          name="agree_check_all"
-          checked={allAgreed}
-          onChange={handleAllAgreementChange}
-        />
         <br />
         <button>회원가입</button>
         <Link to="../">
@@ -170,4 +281,4 @@ function SignUp() {
   );
 }
 
-export default SignUp;
+export default Signup;

@@ -5,64 +5,30 @@ import TermTxt from "../components/Termtxt";
 import Modal from 'react-modal';
 
 function Signup() {
-  const [Email, setEmail] = useState("");
-  const [Id, setId] = useState("");
-  const [Password, setPassword] = useState("");
-  const [Name, setName] = useState("");
-  const [ConfirmPassword, setConfirmPassword] = useState("");
-  const [PhoneNumber, setPhoneNumber] = useState("");
-  const [Occupation, setOccupation] = useState("");
-  const [RegistrationPath, setRegistrationPath] = useState("");
-  const [allAgreed, setAllAgreed] = useState(false);
-  const [agreements, setAgreements] = useState({
-    termsAgreed: false,
-    personalInfoAgreed: false,
-    provisionAgreed: false,
-    locationAgreed: false,
-    enventAlarmAgreed: false,
-    serviceAlarmAgreed: false,
-  });
+  const [Email, setEmail] = useState(""); // 이메일 (아이디)
+  const [Password, setPassword] = useState(""); // 비밀번호
+  const [Name, setName] = useState(""); // 이름
+  const [ConfirmPassword, setConfirmPassword] = useState(""); // 비밀번호 확인
+  const [PhoneNumber, setPhoneNumber] = useState(""); // 전화번호
+  const [Occupation, setOccupation] = useState(""); // 직업
+  const [RegistrationPath, setRegistrationPath] = useState(""); // 가입경로
+  // 각각 const들은 아래 return 부분에서 입력값을 받음
 
-  const handleAgreementChange = (event) => {
-    const { name, checked } = event.target;
 
-    setAgreements((prevAgreements) => ({ ...prevAgreements, [name]: checked }));
-    const allChecked = Object.values({ ...agreements, [name]: checked }).every(
-      (value) => value === true
-    );
-    setAllAgreed(allChecked);
-  };
-
-  // 이용약관 파일 읽어오는 함수
-
-  const handleAllAgreementChange = (event) => {
-    const { checked } = event.target;
-    setAgreements((prevAgreements) =>
-      Object.keys(prevAgreements).reduce(
-        (newAgreements, agreementKey) => ({
-          ...newAgreements,
-          [agreementKey]: checked,
-        }),
-        {}
-      )
-    );
-    setAllAgreed(checked);
-  };
-
+  // 입력창 입력 관련
   const onSubmitHandler = (e) => {
     e.preventDefault();
   };
 
+  // 이용약관 모달 함수
   const OpenTerms = () => {
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const openModal = () => {
       setModalIsOpen(true);
-     
     };
   
     const closeModal = () => {
       setModalIsOpen(false);
-
     };
   
     return (
@@ -98,6 +64,7 @@ function Signup() {
   const [infoCheck ,setInfoCheck] = useState(false);
   const [marketingCheck, setMarketingCheck] = useState(false);
 
+  // 전체체크
   const allBtnEvent =()=>{
     if(allCheck === false) {
       setAllCheck(true);
@@ -113,7 +80,8 @@ function Signup() {
       setMarketingCheck(false);
     } 
   };
-  
+
+  // 연령확인 체크
   const ageBtnEvent =()=>{
     if(ageCheck === false) {
       setAgeCheck(true)
@@ -122,6 +90,7 @@ function Signup() {
     }
   };
   
+  // 이용약관
   const useBtnEvent =()=>{
     if(useCheck === false) {
       setUseCheck(true)
@@ -130,6 +99,7 @@ function Signup() {
     }
   };
 
+  // 개인정보
   const infoBtnEvent =()=>{
     if(infoCheck === false) {
       setInfoCheck(true)
@@ -138,6 +108,7 @@ function Signup() {
     }
   };
   
+  // 광고성 정보수신 동의
   const marketingBtnEvent =()=>{
     if(marketingCheck === false) {
       setMarketingCheck(true)
@@ -147,7 +118,7 @@ function Signup() {
   };
 
   
-
+ // 전부 체크 판단
   useEffect(()=>{
     if(ageCheck===true && useCheck===true && infoCheck===true && marketingCheck===true){
       setAllCheck(true)
@@ -157,8 +128,8 @@ function Signup() {
   }, [ageCheck,useCheck, marketingCheck])
 
 
-  // 여기서부터 실제 출력
 
+  // 여기서부터 실제 출력
   return (
     <div
       style={{
@@ -173,20 +144,12 @@ function Signup() {
         style={{ display: "flex", flexDirection: "column" }}
         onSubmit={onSubmitHandler}
       >
-        <label htmlFor="name">이름</label>
+        <label htmlFor="email">아이디(이메일)</label>
         <input
-          type="text"
-          id="name"
-          value={Name}
-          onChange={(e) => setName(e.target.value)}
-        />
-
-        <label htmlFor="id">아이디</label>
-        <input
-          type="text"
-          id="id"
-          value={Id}
-          onChange={(e) => setId(e.target.value)}
+          type="email"
+          id="email"
+          value={Email}
+          onChange={(e) => setEmail(e.target.value)}
         />
 
         <label htmlFor="password">비밀번호</label>
@@ -205,12 +168,12 @@ function Signup() {
           onChange={(e) => setConfirmPassword(e.target.value)}
         />
 
-        <label htmlFor="email">이메일</label>
+        <label htmlFor="name">이름</label>
         <input
-          type="email"
-          id="email"
-          value={Email}
-          onChange={(e) => setEmail(e.target.value)}
+          type="text"
+          id="name"
+          value={Name}
+          onChange={(e) => setName(e.target.value)}
         />
 
         <label htmlFor="phoneNumber">전화번호</label>
@@ -258,7 +221,7 @@ function Signup() {
           
           <div>
             <input type="checkbox" id="all-check" checked={allCheck} onChange={allBtnEvent}/>
-            <label for='all-check'> 이용약관 전체동의 </label> <br/>
+            <label for='all-check'> 전체동의 </label> <br/>
             <input type="checkbox" id="check1" checked={ageCheck} onChange={ageBtnEvent}/>
         		<label for="check1"> 만 14세 이상입니다 <span>[필수]</span></label> <br/>
             <input type="checkbox" id="check1" checked={useCheck} onChange={useBtnEvent}/>

@@ -16,14 +16,20 @@
 
 */
 import React from "react";
-import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
+import {
+  BrowserRouter,
+  Route,
+  Routes,
+  Navigate,
+  Outlet,
+} from "react-router-dom";
 
 import "assets/css/nucleo-icons.css";
 import "assets/scss/blk-design-system-react.scss";
 import "assets/demo/demo.css";
 
 // ourpage
-// import Home from "./routes/Home";
+import Home from "./routes/Home";
 import First from "./routes/First";
 import UserBookShelf from "./routes/UserBookShelf";
 // import Search from "./pages/Search";
@@ -38,28 +44,41 @@ import SignUp from "./pages/Signup";
 import User from "./pages/ProfileEdit";
 import Stats from "./components/UserStatistics";
 import GetBookDetail from "./components/GetBookDetail"
+import IndexNavbar from "./components/Navbars/IndexNavbar";
+
+/** Header를 강제적으로 가지는 페이지를 위해 감싸주는 함수형 컴포넌트 */
+const HeaderWrapper = () => (
+  <>
+    <IndexNavbar />
+    <Outlet />
+  </>
+);
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default () => {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="/" element={<HeaderWrapper />}>
+          <Route path="main" element={auth(Home, true)} />
+          <Route path="bookshelf" element={<UserBookShelf />} />
+          <Route path="login" element={auth(Login, false)} />
+          <Route path="" element={auth(First, false)} />
+          <Route path="signup" element={<SignUp />} />
+          <Route path="search" element={<Searchpage />} />
+          <Route path="profile" element={<User />} />
+        </Route>
         {/* our page */}
         {/* <Route path="/" element={<Home />} /> */}
         {/* <Route path="/search" element={<Search />} /> */}
-        {/* <Route path="/home" element={<Home/>} /> */}
         {/* <Route path="/login" element={<Login/>} /> */}
-        <Route path="/bookshelf" element={<UserBookShelf />} />
-        <Route path="/login" element={auth(Login, false)} />
-        <Route path="/" element={<First />} />
-        <Route path="/bookshelf" element={<UserBookShelf />} />
-        <Route
+        {/* <Route
           path="/blk-design-system-react"
           element={<Navigate to="/" replace />}
-        />
+        /> */}
         <Route path="/upload" element={<Upload />} />
-        <Route path="/signup" element={<SignUp />} />
         <Route path="/result" element={<Resultpage />} />
+        {/* <Route path="/detail" element={<Detail />} /> */}
         <Route path="/search" element={<Searchpage />} />
         <Route path="/EditProfile" element={<User />} />
         <Route path="/profile" element={<User />} />

@@ -1,5 +1,4 @@
-import React from "react";
-
+import React, { useEffect } from "react";
 // reactstrap components
 import { Container, Button } from "reactstrap";
 
@@ -7,9 +6,9 @@ import { Container, Button } from "reactstrap";
 import IndexNavbar from "components/Navbars/IndexNavbar.js";
 import Footer from "components/Footer/Footer.js";
 
-
-export default function Index() {
-  React.useEffect(() => {
+// eslint-disable-next-line import/no-anonymous-default-export
+export default () => {
+  useEffect(() => {
     document.body.classList.toggle("index-page");
     // Specify how to clean up after this effect:
     return function cleanup() {
@@ -18,30 +17,28 @@ export default function Index() {
   }, []);
   return (
     <>
-      <IndexNavbar />
       <div className="wrapper">
-      <div className="page-header header-filter">
-      <div className="squares square1" />
-      <div className="squares square2" />
-      <div className="squares square3" />
-      <div className="squares square4" />
-      <div className="squares square5" />
-      <div className="squares square6" />
-      <div className="squares square7" />
-      <Container>
-        <div className="content-center brand">
-          <h1 className="h1-seo">Book is On & On</h1>
-          <h2 className="d-none d-sm-block">
-            인공지능으로 만드는 나만의 디지털 서재
-          </h2>
-          <Button color="info" size="lg" href="/login">
-              회원가입하고 서비스 시작하기
-          </Button>
+        <div className="page-header header-filter">
+          <div className="squares square1" />
+          <div className="squares square2" />
+          <div className="squares square3" />
+          <div className="squares square4" />
+          <div className="squares square5" />
+          <div className="squares square6" />
+          <div className="squares square7" />
+          <Container>
+            <div className="content-center brand">
+              <h1 className="h1-seo">Book is On & On</h1>
+              <h2 className="d-none d-sm-block">
+                인공지능으로 만드는 나만의 디지털 서재
+              </h2>
+              <Button color="info" size="lg" href="/login">
+                회원가입하고 서비스 시작하기
+              </Button>
+            </div>
+          </Container>
         </div>
-      </Container>
-    </div>
-        <div className="main">
-        </div>
+        <div className="main"></div>
         <Footer />
       </div>
     </>

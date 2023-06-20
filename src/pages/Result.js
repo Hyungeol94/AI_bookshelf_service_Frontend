@@ -113,7 +113,6 @@ function BookSearchView(props) {
   );
 }
 
-
 export default function Result() {
   const [selectedBookInfo, setSelectedBookInfo] = useState(sample[0]);
   const [data, setData] = useState(null);

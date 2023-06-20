@@ -16,7 +16,7 @@ export default (props) => {
           width={50}
           height={50}
         />
-        <h3>제목 : {props.booktitle}</h3>
+        <h3 style= {{color: 'black'}}>제목 : {props.booktitle} </h3>
       </div>
     </div>
   );

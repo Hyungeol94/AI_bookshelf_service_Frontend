@@ -57,7 +57,7 @@ export default () => {
           element={<Navigate to="/" replace />}
         />
         <Route path="/upload" element={<Upload />} />
-        <Route path="/signup" element={<SignUp />} />
+        <Route path="/signup" element={<Signuppage />} />
         <Route path="/result" element={<Resultpage />} />
         <Route path="/search" element={<Searchpage />} />
         <Route path="/EditProfile" element={<User />} />

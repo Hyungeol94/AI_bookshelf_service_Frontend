@@ -95,8 +95,8 @@ function BookSearchView(props) {
               return (
                 <BookList
                   key={num++}
-                  booktitle={book?.elements[0]?.elements[0]?.cdata}
-                  image={sampleBookImg}                
+                  booktitle={book?.title}
+                  image={book?.image}                
                 />
               );
             })}

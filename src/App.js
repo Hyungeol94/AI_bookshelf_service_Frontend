@@ -36,7 +36,8 @@ import Resultpage from "./routes/Result";
 import Searchpage from "./routes/Search";
 import SignUp from "./pages/Signup";
 import User from "./pages/ProfileEdit";
-import Detail from "./pages/Detail";
+import Stats from "./components/UserStatistics";
+import GetBookDetail from "./components/GetBookDetail"
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default () => {
@@ -57,11 +58,14 @@ export default () => {
           element={<Navigate to="/" replace />}
         />
         <Route path="/upload" element={<Upload />} />
-        <Route path="/signup" element={<Signuppage />} />
+        <Route path="/signup" element={<SignUp />} />
         <Route path="/result" element={<Resultpage />} />
         <Route path="/search" element={<Searchpage />} />
         <Route path="/EditProfile" element={<User />} />
-        <Route path="/detail" element={<Detail />} />
+        <Route path="/profile" element={<User />} />
+        <Route path="/stats" element={<Stats />} />
+        <Route path="/bookshelf/detail/:id" element={<GetBookDetail />} />
+
         {/* <Route path="/detail/:id" element={<Detail Detail={Detail} />} /> */}
       </Routes>
     </BrowserRouter>

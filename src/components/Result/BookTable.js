@@ -1,4 +1,4 @@
-import BookRow from "../../components/Result/BookRow.js"
+import BookRow from "./BookRow.js"
 import { useEffect } from "react";
 
 export default function BookTable(props) {

@@ -1,9 +1,9 @@
-import BookList from "../../components/BookList";
+import BookSearchResultRow from "./BookSearchResultRow"
 
 export default function BookSearchView(props) { 
     const {book_info, setSelectedBookInfo, setSearchValue, onSearch, isLoading, setIsLoading, data, setData} = props
     let num = 1;
-  
+
     return (
       <div style={{backgroundColor: 'white', padding : '10px', width: '300px', height:'450px'}}>
         <h3 style={{color:'black'}}>도서 검색 결과</h3>      
@@ -18,10 +18,10 @@ export default function BookSearchView(props) {
               {console.log(data)}            
               {data.map((book) => {
                 return (
-                  <BookList
-                    key={num++}
-                    booktitle={book?.title}
-                    image={book?.image}                
+                  <BookSearchResultRow
+                    key={num++}  
+                    book_info = {book}
+                    setSelectedBookInfo = {setSelectedBookInfo}       
                   />
                 );
               })}

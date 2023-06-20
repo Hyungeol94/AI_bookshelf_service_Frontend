@@ -34,8 +34,8 @@ import Login from "./pages/Login";
 import Upload from "./pages/Upload";
 import Resultpage from "./routes/Result";
 import Searchpage from "./routes/Search";
-import Signuppage from "./routes/Signup";
-import User from "./routes/User";
+import SignUp from "./pages/Signup";
+import User from "./pages/ProfileEdit";
 import Detail from "./pages/Detail";
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -60,7 +60,7 @@ export default () => {
         <Route path="/signup" element={<Signuppage />} />
         <Route path="/result" element={<Resultpage />} />
         <Route path="/search" element={<Searchpage />} />
-        <Route path="/profile" element={<User />} />
+        <Route path="/EditProfile" element={<User />} />
         <Route path="/detail" element={<Detail />} />
         {/* <Route path="/detail/:id" element={<Detail Detail={Detail} />} /> */}
       </Routes>

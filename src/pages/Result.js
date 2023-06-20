@@ -8,6 +8,7 @@ import BookList from "../components/BookList";
 import sampleBookImg from "../assets/img/sample_book.png";
 import "../styles/Result.css";
 
+
 function Card({ children }) {
   return (
     <div className="resultCard">
@@ -18,15 +19,10 @@ function Card({ children }) {
 
 function BookRow(props) {
   const {book_info, setSelectedBookInfo, searchValue, setSearchValue, onSearch} = props
-  useEffect(() => {
-    if (searchValue) {
-      onSearch()
-    }
-  }, [searchValue]);
 
-  async function handleClick(){    
-    setSelectedBookInfo(book_info)
+  function handleClick(){    
     setSearchValue(book_info.booktitle)    
+    setSelectedBookInfo(book_info)
   }
   return (
     <tr className = "bookRow" onClick={handleClick}>
@@ -38,6 +34,10 @@ function BookRow(props) {
 
 function BookTable(props) {
   const {books_info, setSelectedBookInfo, searchValue, setSearchValue, onSearch} = props
+  useEffect(() => {
+    onSearch()
+  }, [searchValue]);
+  
   return (
     <div className="bookTable">
       <h3 style={{ color: "black" }}>책 목록</h3>
@@ -95,8 +95,8 @@ function BookSearchView(props) {
               return (
                 <BookList
                   key={num++}
-                  booktitle={book?.elements[0]?.elements[0]?.cdata}
-                  image={sampleBookImg}                
+                  booktitle={book?.title}
+                  image={book?.image}                
                 />
               );
             })}
@@ -107,7 +107,6 @@ function BookSearchView(props) {
         </div>
       )}
         </div>
-      
       selectedBookInfo에 대한 도서 api 검색결과 나오는 창
     </div>
   );
@@ -119,11 +118,6 @@ export default function Result() {
   const [searchValue, setSearchValue] = useState(sample[0].booktitle);
   const [isLoading, setIsLoading] = useState(false);
   const [pageSize, setPageSize] = useState(10);
-  
-  useEffect(() => {
-    if (data && typeof data !== 'undefined')
-        console.log('Updated data:', data);
-  }, [data]);
 
   const onSearch = async () => {
     setIsLoading(true);
@@ -136,7 +130,7 @@ export default function Result() {
     }
     setIsLoading(false);
   };
-  
+
   return (
     <div style={{display:'flex'}}>
       <Card>      
@@ -169,4 +163,5 @@ export default function Result() {
       </Card>
     </div>
   );
+  
 }

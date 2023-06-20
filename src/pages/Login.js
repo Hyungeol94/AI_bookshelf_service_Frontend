@@ -40,19 +40,19 @@ export default () => {
   }, [loginState, navigate]);
 
   // /** 회원가입 페이지로 이동 */
-  // const moveSignupPage = () => {
-  //   navigate("/signup");
-  // };
+  const moveSignupPage = () => {
+    navigate("/Signup");
+  };
 
   // /** 아이디 찾기 페이지로 이동 */
-  // const moveFindId = () => {
-  //   navigate("/inquiry/id");
-  // };
+  const moveFindId = () => {
+    navigate("/inquiry/id");
+  };
 
   // /** 비밀번호 찾기 페이지로 이동 */
-  // const moveFindPw = () => {
-  //   navigate("/inquiry/pw");
-  // };
+  const moveFindPw = () => {
+    navigate("/inquiry/pw");
+  };
 
   // login 버튼 이벤트
   const onClickLogin = async (e) => {
@@ -90,6 +90,11 @@ export default () => {
         <button type="submit" onClick={onClickLogin}>
           Login
         </button>
+        <button onClick={moveSignupPage}> sign up </button>
+        <br/>
+        <button onClick={moveFindId}> ID 찾기 </button>
+        <button onClick={moveFindPw}> 비밀번호 찾기 </button>
+        
       </div>
     </div>
   );

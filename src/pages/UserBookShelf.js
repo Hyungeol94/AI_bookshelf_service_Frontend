@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 // our components
 // import BookList from "../components/BookList";
 import sample from "../assets/sample_book.json";
-import getlist from "../components/GetList_user";
+import getlist from "../components/GetList";
 //import get_likes_list from "../components/GetLikesList";
 import get_recentlyAdded_list from "../components/GetRecentlyAddedList";
 //import get_saved_list from "../components/GetSavedList";

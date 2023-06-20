@@ -12,7 +12,7 @@ function trim(books_info, includeCount){
   }
   
 
-export default function get_recentlyAdded_list(books_info){ 
+export default function get_recentlyAdded_list(books_info, includeCount){ 
     let res = trim(books_info, includeCount)
     console.log(res)
     return getlist(res)

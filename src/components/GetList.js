@@ -4,7 +4,6 @@ import "../styles/GetList.css";
 import BookDetail from "./GetBookDetail"
 import { useNavigate } from "react-router-dom";
 
-
 const Book = (props) => {
   const navigate = useNavigate();
 
@@ -22,7 +21,6 @@ const Book = (props) => {
         onClick={handleClick}
       />
     </div>
-    <h5>{props.booktitle}</h5>
   </div>
 );
 };
@@ -37,6 +35,7 @@ export default function getlist(books_info){
         image={book_info.image}
         booktitle={book_info.booktitle}
         id={book_info.id}
+      
       />
     ))}
     </div>

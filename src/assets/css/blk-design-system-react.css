@@ -19901,10 +19901,9 @@ hr.line-deafult {
   margin-bottom: 10px;
 }
 .section-basic img.path {
-  right: -400px;
+  position: relative;
 }
 
-.section-story-overview {
   padding: 50px 0;
 }
 .section-story-overview .image-container {

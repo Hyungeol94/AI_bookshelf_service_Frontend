@@ -81,17 +81,3 @@ export default function getlist(books_info){
 // );
 // };
   
-// export default function getlist(books_info){ 
-//     return ([
-//       books_info.length,
-//       <div className="book-container">
-//       {books_info.map((book_info) => (
-//       <Book
-//         key={book_info.id}
-//         image={book_info.image}
-//         booktitle={book_info.booktitle}
-//         id={book_info.id}
-//       />
-//     ))}
-//     </div>
-//   ])}

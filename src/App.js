@@ -35,7 +35,7 @@ import Upload from "./pages/Upload";
 import Resultpage from "./routes/Result";
 import Searchpage from "./routes/Search";
 import SignUp from "./pages/Signup";
-import User from "./routes/User";
+import User from "./pages/ProfileEdit";
 import Stats from "./components/UserStatistics";
 import GetBookDetail from "./components/GetBookDetail"
 
@@ -61,6 +61,8 @@ export default () => {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/result" element={<Resultpage />} />
         <Route path="/search" element={<Searchpage />} />
+        <Route path="/EditProfile" element={<User />} />
+        <Route path="/detail" element={<Detail />} />
         <Route path="/profile" element={<User />} />
         <Route path="/stats" element={<Stats />} />
         <Route path="/bookshelf/detail/:id" element={<GetBookDetail />} />

@@ -1,5 +1,5 @@
 import React from "react";
-import UserBookShelf from "../pages/UserStatistics";
+import UserBookShelf from "../components/UserStatistics";
 import Navigator from "../components/Navigator";
 
 

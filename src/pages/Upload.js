@@ -7,7 +7,7 @@ import {
 
 function Card({ children }) {
   return (
-    <div className="card" style={{ width: "208px", height: "210px" }}>
+    <div className="card">
       {children}
     </div>
   );
@@ -67,7 +67,7 @@ const Upload = () => {
               {imgFile?.map((img, idx) => (
                 <Card key={idx}>
                   <img
-                    style={{ margin: "5px", width: "200px", height: "200px" }}
+                    style={{width: "192", height: "192px" }}
                     src={img}
                     alt="img"
                   />

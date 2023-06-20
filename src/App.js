@@ -41,8 +41,9 @@ import Upload from "./pages/Upload";
 import Resultpage from "./routes/Result";
 import Searchpage from "./routes/Search";
 import SignUp from "./pages/Signup";
-import User from "./routes/User";
-// import Detail from "./pages/Detail";
+import User from "./pages/ProfileEdit";
+import Stats from "./components/UserStatistics";
+import GetBookDetail from "./components/GetBookDetail"
 import IndexNavbar from "./components/Navbars/IndexNavbar";
 
 /** Header를 강제적으로 가지는 페이지를 위해 감싸주는 함수형 컴포넌트 */
@@ -79,7 +80,10 @@ export default () => {
         <Route path="/result" element={<Resultpage />} />
         {/* <Route path="/detail" element={<Detail />} /> */}
         <Route path="/search" element={<Searchpage />} />
+        <Route path="/EditProfile" element={<User />} />
         <Route path="/profile" element={<User />} />
+        <Route path="/stats" element={<Stats />} />
+        <Route path="/bookshelf/detail/:id" element={<GetBookDetail />} />
 
         {/* <Route path="/detail/:id" element={<Detail Detail={Detail} />} /> */}
       </Routes>

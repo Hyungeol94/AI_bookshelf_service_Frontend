@@ -10,14 +10,14 @@ const Userprofile = () => {
   return(
     <div className='MyProfile'>
       <h2>My profile</h2>
-      
+
       <div>
       <img
         src={sample_user.profile.image}
         style={{ width: "80px", height: "80px"}}
       />
       <h3>{sample_user.profile.user_nickname}</h3>
-      <Link to="/Upload">
+      <Link to="/EditProfile">
           <button>내 정보 수정하기</button>
       </Link> 
       </div>

@@ -1,5 +1,18 @@
 import React, { useState, useEffect } from "react";
-// import { useDispatch } from "react-redux";
+import {
+  Select,
+  Button,
+  InputLabel,
+  MenuItem,
+  TextField,
+  FormControl,
+  FormControlLabel,
+  Checkbox,
+  FormGroup,
+  FormLabel,
+  RadioGroup,
+  Radio,
+} from "@mui/material";
 import { regEmail, checkReg, checkNull } from "../hooks/useCheck";
 import { userLogin } from "../redux/actions/userAction";
 import { useDispatch, useSelector } from "react-redux";
@@ -71,29 +84,65 @@ export default () => {
   };
 
   return (
-    <div>
-      <h2>Login</h2>
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        width: "100%",
+        height: "100vh",
+        font: "white",
+      }}
+    >
       <div>
-        <label htmlFor="input_id"> ID: </label>
-        <input type="text" name="email" value={email} onChange={handleInput} />
-      </div>
-      <div>
-        <label htmlFor="input_pw"> PW: </label>
-        <input
-          type="password"
-          name="password"
-          value={password}
-          onChange={handleInput}
-        />
-      </div>
-      <div>
-        <button type="submit" onClick={onClickLogin}>
-          Login
-        </button>
-        <button onClick={moveSignupPage}> sign up </button>
-        <br />
-        <button onClick={moveFindId}> ID 찾기 </button>
-        <button onClick={moveFindPw}> 비밀번호 찾기 </button>
+        <h2>Login</h2>
+        <FormControl>
+          <TextField
+            type="text"
+            id="id"
+            value={email}
+            onChange={handleInput}
+            label="ID"
+            variant="standard"
+            inputProps={{ style: { color: "white" } }}
+            SelectProps={{
+              style: { color: "white", backgroundColor: "white" },
+            }}
+            InputLabelProps={{
+              style: { color: "white" },
+            }}
+          />
+          <TextField
+            type="password"
+            id="password"
+            value={password}
+            onChange={handleInput}
+            label="Password"
+            style={{ marginTop: "1em" }}
+            variant="standard"
+            inputProps={{ style: { color: "white" } }}
+            SelectProps={{
+              style: { color: "white", backgroundColor: "white" },
+            }}
+            InputLabelProps={{
+              style: { color: "white" },
+            }}
+          />
+          <FormControl>
+            <Button variant="contained" type="submit" onClick={onClickLogin}>
+              Login
+            </Button>
+            <Button variant="contained" onClick={moveSignupPage}>
+              sign up
+            </Button>
+            <Button variant="contained" onClick={moveFindId}>
+              ID 찾기
+            </Button>
+            <Button variant="contained" onClick={moveFindPw}>
+              비밀번호 찾기
+            </Button>
+          </FormControl>
+        </FormControl>
       </div>
     </div>
   );

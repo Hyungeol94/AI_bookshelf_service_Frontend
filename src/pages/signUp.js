@@ -10,6 +10,9 @@ import {
   FormControlLabel,
   Checkbox,
   FormGroup,
+  FormLabel,
+  RadioGroup,
+  Radio,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
@@ -32,9 +35,9 @@ function Signup() {
   const [PhoneNumber, setPhoneNumber] = useState(""); // 전화번호
   const [Occupation, setOccupation] = useState(""); // 직업
   const [RegistrationPath, setRegistrationPath] = useState(""); // 가입경로
+  const [Birth, setBirth] = useState("male"); // 가입경로
   //  체크박스 함수
   const [allCheck, setAllCheck] = useState(false);
-  const [ageCheck, setAgeCheck] = useState(false);
   const [useCheck, setUseCheck] = useState(false);
   const [infoCheck, setInfoCheck] = useState(false);
   const [marketingCheck, setMarketingCheck] = useState(false);
@@ -53,7 +56,7 @@ function Signup() {
       );
     } else if (!checkReg(PhoneNumber.trim(), regPhone)) {
       return alert("전화번호 형식이 알맞지 않습니다.");
-    } else if (!infoCheck || !useCheck) {
+    } else if (!useCheck || !infoCheck) {
       return alert("필수 서비스 약관에 동의해주세요.");
     }
 
@@ -174,7 +177,7 @@ function Signup() {
     } else {
       setAllCheck(false);
     }
-  }, [ageCheck, useCheck, marketingCheck]);
+  }, [useCheck, marketingCheck]);
 
   // 여기서부터 실제 출력
   return (
@@ -263,6 +266,28 @@ function Signup() {
           }}
         />
 
+        <FormControl>
+          <FormLabel id="demo-row-radio-buttons-group-label">Gender</FormLabel>
+          <RadioGroup
+            row
+            aria-labelledby="demo-row-radio-buttons-group-label"
+            name="row-radio-buttons-group"
+          >
+            <FormControlLabel
+              value="female"
+              control={<Radio />}
+              label="Female"
+            />
+            <FormControlLabel value="male" control={<Radio />} label="Male" />
+            <FormControlLabel value="other" control={<Radio />} label="Other" />
+            <FormControlLabel
+              value="disabled"
+              disabled
+              control={<Radio />}
+              label="other"
+            />
+          </RadioGroup>
+        </FormControl>
         <FormControl
           variant="standard"
           style={{ marginTop: "3em", font: "White" }}

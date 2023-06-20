@@ -113,19 +113,6 @@ function BookSearchView(props) {
   );
 }
 
-function BookSearchView(props) {
-  const {book_info, setSelectedBookInfo} = props
-  return (
-    <div style={{backgroundColor: 'white', padding : '10px', width: '300px'}}>
-      <h3 style={{color:'black'}}>도서 검색 결과</h3>
-      {/* book_info에 대한 검색 결과가 나와야 함 */}
-      <div>{book_info.booktitle}</div>
-      selectedBookInfo에 대한 도서 api 검색결과 나오는 창
-    </div>
-  );
-}
-
-
 export default function Result() {
   const [selectedBookInfo, setSelectedBookInfo] = useState(sample[0]);
   const [data, setData] = useState(null);

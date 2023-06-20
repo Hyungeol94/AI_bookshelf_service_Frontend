@@ -62,7 +62,6 @@ export default () => {
         <Route path="/result" element={<Resultpage />} />
         <Route path="/search" element={<Searchpage />} />
         <Route path="/EditProfile" element={<User />} />
-        <Route path="/detail" element={<Detail />} />
         <Route path="/profile" element={<User />} />
         <Route path="/stats" element={<Stats />} />
         <Route path="/bookshelf/detail/:id" element={<GetBookDetail />} />

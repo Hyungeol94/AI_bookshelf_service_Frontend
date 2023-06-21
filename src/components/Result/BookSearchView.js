@@ -1,21 +1,30 @@
 import BookSearchResultRow from "./BookSearchResultRow"
 import "../../styles/Result.css";
-import {useRef} from 'react'
+import {useRef, useState, useEffect} from 'react'
 
 export default function BookSearchView(props) { 
-    const {book_info, setSelectedBookInfo, setSearchValue, onSearch, isLoading, setIsLoading, data, setData} = props
-    const inputRef = useRef(null);
+    const {selectedBookInfo, setSelectedBookInfo, setSearchValue, onSearch, isLoading, setIsLoading, data, setData} = props
+    const searchRef = useRef(null);
+    const [inputValue, setInputValue] = useState(selectedBookInfo.booktitle);
     
     let num = 1;
-    function handleClick(){    
-      setSearchValue(inputRef.current.value)    
+    const handleClick = () =>{    
+      setSearchValue(searchRef.current.value)    
     }
     
     const handleOnKeyPress = (e) => {
       if (e.key === "Enter") {
-        setSearchValue(inputRef.current.value) // Enter 입력이 되면 클릭 이벤트 실행
+        setSearchValue(searchRef.current.value) // Enter 입력이 되면 클릭 이벤트 실행
       }
     };
+
+    const handleChange = (event) => {
+      setInputValue(event.target.value);
+    };
+
+    useEffect(() => {
+      setInputValue(selectedBookInfo.booktitle)
+    }, [selectedBookInfo]);
 
     return (
       <div style={{backgroundColor: 'white', padding : '10px', width: '300px', height:'450px'}}>
@@ -23,15 +32,18 @@ export default function BookSearchView(props) {
         {/* <div>검색창 넣기</div>  */}        
         <div class="input-group mb-3">
           <input 
-            ref ={inputRef}
+            ref ={searchRef}
             className = "searchBar"           
             class="form-control" 
-            placeholder="Search your book!" 
+            value = {inputValue}
+            placeholder={selectedBookInfo.booktitle}            
             aria-label="book search" 
             aria-describedby="button-addon2" 
-            type="text"            
-            onKeyDown={handleOnKeyPress}
-            style={{color: "black"}}/>          
+            type="text"
+            onChange={handleChange}
+            onKeyDown={handleOnKeyPress}            
+            style={{color: "black"}}/>
+                      
           <a class="nav-link d-none d-lg-block btn btn-default" onClick={handleClick}>
             <i class="tim-icons icon-zoom-split"></i>
           </a>

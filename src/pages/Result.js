@@ -34,7 +34,7 @@ export default function Result() {
     }
     setIsLoading(false);
   };
-  
+
   useEffect(() => {
     onSearch()
   }, [searchValue]);
@@ -60,7 +60,7 @@ export default function Result() {
       <Card>
         {/* 클릭되어 있는 텍스트의 검색 결과 가져 오기 */}
         <BookSearchView
-          book_info = {selectedBookInfo}
+          selectedBookInfo = {selectedBookInfo}
           setSelectedBookInfo={setSelectedBookInfo}
           setSearchValue={setSearchValue}
           onSearch={onSearch}

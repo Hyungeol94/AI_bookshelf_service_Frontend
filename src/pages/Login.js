@@ -71,7 +71,7 @@ export default () => {
   };
 
   return (
-    <div>
+    <div className="login-page" style={{"margin-left": "550px", "margin-top": "250px"}}>
       <h2>Login</h2>
       <div>
         <label htmlFor="input_id"> ID: </label>

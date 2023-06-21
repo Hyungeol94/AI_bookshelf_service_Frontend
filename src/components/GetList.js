@@ -81,13 +81,6 @@ const Book = (props) => { // Book 표시 함수
     }
   };
 
-  const libraryBtnEvent = () => {
-    if (window.confirm("내 서재에 추가하시겠습니까?")) {
-      addToLibrary(props.id);
-    }
-  };
-
-
   // 모달창 함수
   const openModal = () => {
     setModalIsOpen(true);
@@ -108,47 +101,45 @@ const Book = (props) => { // Book 표시 함수
         onClick={ openModal }
       />
       <label onClick={ openModal }> {props.booktitle} </label>
-      <Modal
-      isOpen={modalIsOpen}
-      onRequestClose={closeModal}
-      contentLabel="File Modal">
-
-        {/* < BookDetail /> */}
-        <div style={{ color: 'black' }} className="book-info">
-        <button style={{ float:"right" }} onClick={closeModal}> 닫기 </button> <br/>
-        <img src={props.image} alt={props.booktitle} style ={{
-          width: 300
-        }}/>
-        <h2 style={{ color: 'black' }}> {props.booktitle} </h2>
-        <text style={{ color: 'black' }}>Author: {props.author} </text> <p/>
-        <text style={{ color: 'black' }}>description: {props.description} </text>
+      <div className="modal-container">
+        <Modal
+        isOpen={modalIsOpen}
+        onRequestClose={closeModal}
+        contentLabel="File Modal">
+          <div style={{ color: 'black' }} className="book-info">
+          <button style={{ float:"right" }} onClick={closeModal}> 닫기 </button> <br/>
+          <img src={props.image} alt={props.booktitle} style ={{
+            width: 300
+          }}/>
+          <h2 style={{ color: 'black' }}> {props.booktitle} </h2>
+          <text style={{ color: 'black' }}>Author: {props.author} </text> <p/>
+          <text style={{ color: 'black' }}>description: {props.description} </text>
+        </div>
+        <div className="add-to-mybrary">
+          <input type="checkbox" onChange={(e) => {if (e.target.checked) 
+                                        {addToLibrary(props.id);} 
+                                        else {removeFromLibrary(props.id);}}}/>
+                                        <label>내 서재에 추가</label>
+          <input type="checkbox" checked={ likeCheck } onChange={ likeBtnEvent }/><label> 좋아요 </label>
+        </div>
+        <div className="like-wishlist-cart">
+          
+          <input type="checkbox"  checked={ wishListCheck } onChange={ wishListBtnEvent } /><label> 찜 </label>
+          <input type="checkbox" checked={ cartCheck } onChange={ cartBtnEvent }/><label> 장바구니 </label>
+        </div>
+        <div className="buy-link">
+          <button 
+              onClick={() => window.open(`https://www.yes24.com/Product/Search?domain=ALL&query=${props.booktitle}`, "_blank")} >
+                Yes24 </button>
+          <button 
+              onClick={() => window.open(`https://www.aladin.co.kr/search/wsearchresult.aspx?SearchTarget=All&SearchWord=${props.booktitle}`, "_blank")} > 
+              알라딘 </button>
+          <button 
+              onClick={() => window.open(`https://search.kyobobook.co.kr/search?keyword=${props.booktitle}`, "_blank")} > 
+              교보문고 </button> <br/>
+        </div>
+        </Modal>
       </div>
-      <div className="add-to-mybrary">
-        <input type="checkbox" onChange={(e) => {if (e.target.checked) 
-                                      {addToLibrary(props.id);} 
-                                      else {removeFromLibrary(props.id);}}}/>
-                                      <label>내 서재에 추가</label>
-        <input type="checkbox" checked={ likeCheck } onChange={ likeBtnEvent }/><label> 좋아요 </label>
-      </div>
-      <div className="like-wishlist-cart">
-        
-        <input type="checkbox"  checked={ wishListCheck } onChange={ wishListBtnEvent } /><label> 찜 </label>
-        <input type="checkbox" checked={ cartCheck } onChange={ cartBtnEvent }/><label> 장바구니 </label>
-      </div>
-      <div className="buy-link">
-        <button 
-            onClick={() => window.open(`https://www.yes24.com/Product/Search?domain=ALL&query=${props.booktitle}`, "_blank")} >
-               Yes24 </button>
-        <button 
-            onClick={() => window.open(`https://www.aladin.co.kr/search/wsearchresult.aspx?SearchTarget=All&SearchWord=${props.booktitle}`, "_blank")} > 
-            알라딘 </button>
-        <button 
-            onClick={() => window.open(`https://search.kyobobook.co.kr/search?keyword=${props.booktitle}`, "_blank")} > 
-            교보문고 </button> <br/>
-        
-      </div>
-        
-      </Modal>
     </div>
   </div>]
 );

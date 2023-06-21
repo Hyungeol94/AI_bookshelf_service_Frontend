@@ -2,7 +2,10 @@ import React from "react";
 import "../../styles/BookList.css";
 
 // eslint-disable-next-line import/no-anonymous-default-export
-export default (props) => { 
+
+
+
+export default function BookSearchResultRow(props) { 
     const {book_info, setSelectedBookInfo} = props
 
     function handleClick(){
@@ -12,21 +15,22 @@ export default (props) => {
 
   return (
     <div onClick={handleClick}>
-      <div class="bookRow" >
+      <div class="bookRow" style={{display: "flex"}}>
         <div>
-        <img
-          src={
-            book_info.image ||
-            "/Users/edaumedo1/aivle0317/src/assets/img/sample_book.png"
-          }
-          alt={book_info.booktitle}
-          width={50}
-          height={50}
-        />
-        
+          <img
+            src={
+              book_info.image ||
+              "/Users/edaumedo1/aivle0317/src/assets/img/sample_book.png"
+            }
+            alt={book_info.booktitle}            
+            width={50}
+            height={50}
+          />
         </div>
-        <h8>{book_info.title}</h8>
-        <h8>{book_info.author}</h8>
+        <div>
+          <h6 style={{color: "black"}}>{book_info.title}</h6>
+          <h6 style={{color: "black", fontWeight: "normal"}}>{book_info.author}</h6>
+        </div>
       </div>
     </div>
   );

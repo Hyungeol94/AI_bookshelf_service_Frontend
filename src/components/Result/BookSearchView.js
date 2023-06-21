@@ -7,14 +7,13 @@ export default function BookSearchView(props) {
     return (
       <div style={{backgroundColor: 'white', padding : '10px', width: '300px', height:'450px'}}>
         <h3 style={{color:'black'}}>도서 검색 결과</h3>      
-        <div>{book_info.booktitle}</div>
-          {/* book_info에 대한 검색 결과*/}  
+        {/* <div>검색창 넣기</div>  */}
+          
           <div>
             {isLoading ? (
             <h3 style={{color: 'black'}}>로딩중..</h3>
           ) : (typeof data !== 'undefined' && data) ? (
-            <div className = "searchBlock">
-              검색결과
+            <div className = "searchBlock">              
               {console.log(data)}            
               {data.map((book) => {
                 return (

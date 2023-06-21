@@ -18,6 +18,7 @@ function Card({ children }) {
 
 export default function Result() {
   const [selectedBookInfo, setSelectedBookInfo] = useState(sample[0]);
+  //const [selectedBookRowInfo, setSelectedBookRowInfo] = useState(sample[0]);
   const [data, setData] = useState(null);
   const [searchValue, setSearchValue] = useState(sample[0].booktitle);
   const [isLoading, setIsLoading] = useState(false);
@@ -46,6 +47,7 @@ export default function Result() {
         <BookTable 
           books_info={sample} 
           setSelectedBookInfo={setSelectedBookInfo}
+          // setSelectedBookRowInfo = {setSelectedBookRowInfo}
           searchValue = {searchValue}          
           setSearchValue={setSearchValue}
           onSearch={onSearch}        
@@ -62,12 +64,11 @@ export default function Result() {
         <BookSearchView
           selectedBookInfo = {selectedBookInfo}
           setSelectedBookInfo={setSelectedBookInfo}
-          setSearchValue={setSearchValue}
-          onSearch={onSearch}
-          isLoading={isLoading}
-          setIsLoading= {setIsLoading}
-          data = {data}
-          setData = {setData}
+          // selectedBookRowInfo = {selectedBookRowInfo}
+          searchValue = {searchValue}
+          setSearchValue={setSearchValue}          
+          isLoading={isLoading}          
+          data = {data}          
         />
       </Card>
     </div>

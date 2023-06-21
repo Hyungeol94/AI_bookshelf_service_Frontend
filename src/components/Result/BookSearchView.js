@@ -3,18 +3,29 @@ import "../../styles/Result.css";
 import {useRef, useState, useEffect} from 'react'
 
 export default function BookSearchView(props) { 
-    const {selectedBookInfo, setSelectedBookInfo, setSearchValue, onSearch, isLoading, setIsLoading, data, setData} = props
+    const {selectedBookInfo, setSelectedBookInfo, searchValue, setSearchValue, isLoading, data} = props
     const searchRef = useRef(null);
     const [inputValue, setInputValue] = useState(selectedBookInfo.booktitle);
+
     
     let num = 1;
-    const handleClick = () =>{    
-      setSearchValue(searchRef.current.value)    
+    const handleClick = () =>{
+      if (searchRef.current.value!==''){    
+      setSearchValue(searchRef.current.value)
+    }
+      else{
+      setSearchValue(searchValue)
+      }
     }
     
     const handleOnKeyPress = (e) => {
       if (e.key === "Enter") {
-        setSearchValue(searchRef.current.value) // Enter 입력이 되면 클릭 이벤트 실행
+        if (searchRef.current.value!==''){    
+          setSearchValue(searchRef.current.value)
+        }
+          else{
+          setSearchValue(searchValue)
+          }
       }
     };
 
@@ -36,7 +47,7 @@ export default function BookSearchView(props) {
             className = "searchBar"           
             class="form-control" 
             value = {inputValue}
-            placeholder={selectedBookInfo.booktitle}            
+            placeholder={searchValue}            
             aria-label="book search" 
             aria-describedby="button-addon2" 
             type="text"

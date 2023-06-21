@@ -1,11 +1,8 @@
 import BookRow from "./BookRow.js"
-import { useEffect } from "react";
+
 
 export default function BookTable(props) {
     const {books_info, setSelectedBookInfo, searchValue, setSearchValue, onSearch} = props
-    useEffect(() => {
-      onSearch()
-    }, [searchValue]);
   
     return (
       <div className="bookTable">

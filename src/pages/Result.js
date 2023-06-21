@@ -6,6 +6,7 @@ import "../styles/Result.css";
 import BookSearchView from "../components/Result/BookSearchView.js"
 import BookTable from "../components/Result/BookTable.js"
 import BookDetail from "../components/Result/BookDetail.js"
+import {useEffect} from "react";
 
 function Card({ children }) {
   return (
@@ -21,6 +22,7 @@ export default function Result() {
   const [searchValue, setSearchValue] = useState(sample[0].booktitle);
   const [isLoading, setIsLoading] = useState(false);
   const [pageSize, setPageSize] = useState(10);
+  
   const onSearch = async () => {
     setIsLoading(true);
     const fetchedData = await bookinfo_api(searchValue, pageSize);
@@ -32,6 +34,11 @@ export default function Result() {
     }
     setIsLoading(false);
   };
+  
+  useEffect(() => {
+    onSearch()
+  }, [searchValue]);
+
 
   return (
     <div style={{display:'flex'}}>

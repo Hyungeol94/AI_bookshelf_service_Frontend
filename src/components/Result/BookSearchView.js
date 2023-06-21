@@ -62,7 +62,7 @@ export default function BookSearchView(props) {
         <div>
             {isLoading ? (
             <h3 style={{color: 'black'}}>로딩중..</h3>
-          ) : (typeof data !== 'undefined' && data) ? (
+          ) : (typeof data !== 'undefined' && data && data.length!=0) ? (
             <div className = "searchBlock">              
               {console.log(data)}            
               {data.map((book) => {

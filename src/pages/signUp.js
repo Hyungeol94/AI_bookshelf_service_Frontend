@@ -190,9 +190,13 @@ function Signup() {
           value={Occupation}
           onChange={(e) => setOccupation(e.target.value)}
         >
-          <option value="1">개발자</option>
-          <option value="2">학생</option>
-          <option value="3">기획자</option>
+          <option value="1"> 기술직 </option>
+          <option value="2"> 학생 </option>
+          <option value="3"> 서비스직 </option>
+          <option value="4"> 기획 </option>
+          <option value="5"> 사무직 </option>
+          <option value="6"> 영업/판매직 </option>
+          <option value="7"> 군인 </option>
         </select>
 
         <label htmlFor="registrationPath">가입경로</label>
@@ -201,9 +205,13 @@ function Signup() {
           value={RegistrationPath}
           onChange={(e) => setRegistrationPath(e.target.value)}
         >
-          <option value="1">지인의 권유</option>
-          <option value="2">광고</option>
-          <option value="3">다른 서비스를 통해서</option>
+          <option value="1"> 지인의 권유 </option>
+          <option value="2"> 인터넷 검색 </option>
+          <option value="3"> 광고를 보고 </option>
+          <option value="4"> 유입경로 4 </option>
+          <option value="5"> 유입경로 5 </option>
+          <option value="6"> 유입경로 6 </option>
+          <option value="7"> 유입경로 7 </option>
         </select>
         <br/>
         <br/>

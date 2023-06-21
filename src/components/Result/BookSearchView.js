@@ -13,7 +13,7 @@ export default function BookSearchView(props) {
             {isLoading ? (
             <h3 style={{color: 'black'}}>로딩중..</h3>
           ) : (typeof data !== 'undefined' && data) ? (
-            <div>
+            <div className = "searchBlock">
               검색결과
               {console.log(data)}            
               {data.map((book) => {
@@ -32,7 +32,6 @@ export default function BookSearchView(props) {
           </div>
         )}
           </div>
-        selectedBookInfo에 대한 도서 api 검색결과 나오는 창
       </div>
     );
   }

@@ -17,7 +17,7 @@ export default function BookTable(props) {
               <th>Price</th> */}
             </tr>
           </thead>
-          <tbody>
+          <tbody className="bookRowTable">
             {books_info.map((book_info) => (
               <BookRow key={book_info.id} 
               book_info={book_info} 

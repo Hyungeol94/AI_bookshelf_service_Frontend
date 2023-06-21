@@ -1,9 +1,6 @@
 import React from "react";
 import "../../styles/BookList.css";
 
-// eslint-disable-next-line import/no-anonymous-default-export
-
-
 
 export default function BookSearchResultRow(props) { 
     const {book_info, setSelectedBookInfo} = props

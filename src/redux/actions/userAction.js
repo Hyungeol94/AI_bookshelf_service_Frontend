@@ -12,6 +12,7 @@ export const userLogin = (formData) => async (dispatch) => {
       });
     }
   } catch (e) {
+    console.log(e);
     if (e.response?.status === 401) {
       alert("아이디 또는 비밀번호가 다릅니다.");
     }

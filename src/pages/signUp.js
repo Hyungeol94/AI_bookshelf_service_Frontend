@@ -63,7 +63,7 @@ function Signup() {
       ])
     ) {
       return alert("필수 항목을 모두 입력해주세요.");
-    } else if (!regEmail(Email)) {
+    } else if (!checkReg(Email.trim(), regEmail)) {
       return alert("dlapdlf 형식이 알맞지 않습니다.");
     } else if (Password.trim() !== ConfirmPassword.trim()) {
       return alert("비밀번호가 일치하지 않습니다.");
@@ -90,8 +90,6 @@ function Signup() {
       useCheck: useCheck,
       infoCheck: infoCheck,
       marketingCheck: marketingCheck,
-      user_type: 1,
-      signuptype: "local",
     };
     await api
       .signup(user_info)
@@ -103,6 +101,7 @@ function Signup() {
       })
       .catch((e) => {
         if (e?.response?.status === 400) {
+          console.log(e);
           alert("가입내역이 있는 이메일입니다.");
         } else {
           alert("알수 없는 오류(500)");
@@ -266,7 +265,13 @@ function Signup() {
           label="비밀번호"
           variant="standard"
           style={{ marginTop: "1em" }}
-          inputProps={{ style: { color: "white" } }}
+          inputProps={{
+            autocomplete: "new-password",
+            style: { color: "white" },
+            form: {
+              autocomplete: "off",
+            },
+          }}
           SelectProps={{ style: { color: "white", backgroundColor: "white" } }}
           InputLabelProps={{
             style: { color: "white" },
@@ -280,7 +285,13 @@ function Signup() {
           label="비밀번호 확인"
           variant="standard"
           style={{ marginTop: "1em" }}
-          inputProps={{ style: { color: "white" } }}
+          inputProps={{
+            autocomplete: "new-password",
+            style: { color: "white" },
+            form: {
+              autocomplete: "off",
+            },
+          }}
           SelectProps={{ style: { color: "white", backgroundColor: "white" } }}
           InputLabelProps={{
             style: { color: "white" },

@@ -24,7 +24,7 @@ import { useNavigate } from "react-router-dom";
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default () => {
-  const [email, setEmail] = useState(""); // 이메일
+  const [id, setId] = useState(""); // 이메일
   const [password, setPassword] = useState(""); // 비밀번호
 
   const dispatch = useDispatch();
@@ -39,15 +39,15 @@ export default () => {
 
   const handleInput = (e) => {
     const { name, value } = e.target;
-    if (name === "email") {
-      setEmail(value);
+    if (name === "id") {
+      setId(value);
     } else if (name === "password") setPassword(value);
   };
 
   useEffect(() => {
-    console.log("useEffect");
+    // console.log("useEffect");
     if (loginState) {
-      console.log("loginState");
+      // console.log("loginState");
       navigate("/main");
     }
   }, [loginState, navigate]);
@@ -71,13 +71,13 @@ export default () => {
   const onClickLogin = async (e) => {
     e.preventDefault();
 
-    if (checkNull([email, password])) {
+    if (checkNull([id, password])) {
       return alert("아이디와 비밀번호 모두 입력해주세요.");
-    } else if (!checkReg(email.trim(), regEmail)) {
+    } else if (!checkReg(id.trim(), regEmail)) {
       return alert("이메일 형식이 아닙니다.");
     }
     const login_info = {
-      email,
+      email: id,
       password,
     };
     dispatch(userLogin(login_info));
@@ -96,11 +96,12 @@ export default () => {
     >
       <div>
         <h2>Login</h2>
-        <FormControl>
+        <FormControl style={{ width: "300px" }}>
           <TextField
             type="text"
             id="id"
-            value={email}
+            value={id}
+            name="id"
             onChange={handleInput}
             label="ID"
             variant="standard"
@@ -115,12 +116,16 @@ export default () => {
           <TextField
             type="password"
             id="password"
+            name="password"
             value={password}
             onChange={handleInput}
             label="Password"
-            style={{ marginTop: "1em" }}
+            style={{ marginTop: "0em" }}
             variant="standard"
-            inputProps={{ style: { color: "white" } }}
+            placeholder="Password"
+            inputProps={{
+              style: { color: "white" },
+            }}
             SelectProps={{
               style: { color: "white", backgroundColor: "white" },
             }}
@@ -129,18 +134,34 @@ export default () => {
             }}
           />
           <FormControl>
-            <Button variant="contained" type="submit" onClick={onClickLogin}>
-              Login
+            <Button
+              size="large"
+              variant="outlined"
+              type="submit"
+              onClick={onClickLogin}
+              style={{ marginTop: "1em" }}
+            >
+              로그인
             </Button>
-            <Button variant="contained" onClick={moveSignupPage}>
-              sign up
-            </Button>
-            <Button variant="contained" onClick={moveFindId}>
-              ID 찾기
-            </Button>
-            <Button variant="contained" onClick={moveFindPw}>
-              비밀번호 찾기
-            </Button>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                marginTop: "1em",
+              }}
+            >
+              <div>
+                <Button size="small" onClick={moveFindId}>
+                  아이디 찾기
+                </Button>
+                <Button size="small" onClick={moveFindPw}>
+                  비밀번호 찾기
+                </Button>
+              </div>
+              <Button size="small" onClick={moveSignupPage}>
+                회원가입
+              </Button>
+            </div>
           </FormControl>
         </FormControl>
       </div>

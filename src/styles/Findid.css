@@ -1,0 +1,66 @@
+
+.title {
+    font-size: 3.5em;
+    justify-content: flex-start;
+    align-items: center;
+    display: flex;
+
+}
+
+.inside-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.input-form {
+  margin-top: 3px;
+  width: 280px;
+  height: 40px;
+  margin-bottom: 15px;
+  font-size: 1.1em;
+}
+
+.label-form {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 10px;
+    width: 100%;
+    font-size: 1.1em;
+  }
+
+.button {
+    width: 280px;
+    height: 40px;
+    font-size: 1.1em;
+}
+
+.mini-button {
+    width: 0 auto;
+    align-items: flex-end;
+    margin-top: 2.5px;
+    margin-block-end: 5px;
+    height: 40px;
+    font-size: 0.9em;
+    background: none;
+    border: none;
+    color: white;
+}
+
+
+.explain-txt {
+    font-size: 1.3em;
+    margin-bottom: 80px;
+
+}
+.ctn {
+    pointer-events: visibleStroke;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    
+  }
+

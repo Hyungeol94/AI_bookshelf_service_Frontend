@@ -16,3 +16,15 @@
     padding: 10px;
     width: 300px;
 }
+
+
+.bookRowTable{
+    display: block;
+    max-height: 365px;
+    overflow-y: auto;
+}
+
+.searchBlock{ 
+    max-height: 300px;
+    overflow-y: auto;
+}

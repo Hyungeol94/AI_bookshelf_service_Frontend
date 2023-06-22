@@ -3,6 +3,8 @@ import Homepage from "../pages/Home";
 
 // import sample from "../assets/sample_book.json";
 
+const time = 0;
+
 // eslint-disable-next-line import/no-anonymous-default-export
 class Home extends React.Component {
   state = {
@@ -12,15 +14,18 @@ class Home extends React.Component {
   componentDidMount() {
     setTimeout(() => {
       this.setState({ isLoading: false });
-    }, 600);
+    }, time);
   }
 
   render() {
     return (
       <div>
-        {this.state.isLoading ? (
+        {this.state.isLoading ? 
+        (
           <h1>"Loading..."</h1>
-        ) : (
+        ) 
+        : 
+        (
           <div>
             <Homepage />
           </div>

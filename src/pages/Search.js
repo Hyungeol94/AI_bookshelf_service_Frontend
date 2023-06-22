@@ -25,7 +25,7 @@ export default (props) => {
 
   const onSearch = async () => {
     setIsLoading(true);
-    setData(await bookinfo_api(searchValue, pageSize));
+    setData(await bookinfo_api(searchValue));
     setIsLoading(false);
     // console.log("data", data[0].elements[0].elements[0].cdata);
   };
@@ -77,8 +77,15 @@ export default (props) => {
             return (
               <BookList
                 key={num++}
-                booktitle={book?.elements[0]?.elements[0]?.cdata}
-                image={sampleBookImg}
+                title={book?.title}
+                author={book?.author}
+                description={book?.description}
+                discount={book?.discount}
+                isbn={book?.isbn}
+                link={book?.link}
+                pubdate={book?.pubdate}
+                publisher={book?.publisher}
+                image={book?.image}
               />
             );
           })}

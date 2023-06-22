@@ -1,10 +1,8 @@
-[
-  {
-    "id": 1,
-    "statsTitle": "aaaaaa",
-    "statsInfo":"aaaaaa",
-    "favoriteGenre":"Romance",
-    "booksRead":"3029",
-    "image": "https://blog.designs.ai/wp-content/uploads/2020/04/THE-MBTI-PERSONALITIES-IN-QUARANTINE-2.png"
-  }
-]
+{
+  "id": 123,
+  "statsTitle": "독서통계정보 타이틀이다",
+  "statsInfo":"독서통계정보 내용이다 ",
+  "favoriteGenre":"Romance",
+  "booksRead":"3029",
+  "image": "https://blog.designs.ai/wp-content/uploads/2020/04/THE-MBTI-PERSONALITIES-IN-QUARANTINE-2.png"
+}

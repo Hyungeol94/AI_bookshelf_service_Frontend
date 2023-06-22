@@ -1,30 +1,45 @@
 import React from "react";
-// import { Link } from "react-router-dom";
+import {useState} from "react";
 import sample from "../assets/sample_book.json";
+import bookinfo_api from "../services/bookinfo_api";
+import "../styles/Result.css";
+import BookSearchView from "../components/Result/BookSearchView.js"
+import BookTable from "../components/Result/BookTable.js"
+import BookDetail from "../components/Result/BookDetail.js"
+import {useEffect} from "react";
 
 function Card({ children }) {
   return (
-    <div
-      className="card"
-      style={{ backgroundColor: "gray", padding: "10px", width: "350px" }}
-    >
+    <div className="resultCard">
       {children}
     </div>
   );
 }
 
-function BookRow({ book_info }) {
+function BookRow(props) {
+  const {book_info, setSelectedBookInfo, searchValue, setSearchValue, onSearch} = props
+  useEffect(() => {
+    if (searchValue) {
+      onSearch()
+    }
+  }, [searchValue]);
+
+  async function handleClick(){    
+    setSelectedBookInfo(book_info)
+    setSearchValue(book_info.booktitle)    
+  }
   return (
-    <tr>
-      <td>{book_info.booktitle}</td>
+    <tr className = "bookRow" onClick={handleClick}>
+      <td >{book_info.booktitle}</td>
       <td>{book_info.price}</td>
     </tr>
   );
 }
 
-function BookTable({ books_info }) {
+function BookTable(props) {
+  const {books_info, setSelectedBookInfo, searchValue, setSearchValue, onSearch} = props
   return (
-    <div style={{ backgroundColor: "white", padding: "10px", width: "300px" }}>
+    <div className="bookTable">
       <h3 style={{ color: "black" }}>책 목록</h3>
       <table>
         <thead>
@@ -35,14 +50,18 @@ function BookTable({ books_info }) {
         </thead>
         <tbody>
           {books_info.map((book_info) => (
-            <BookRow key={book_info.id} book_info={book_info} />
+            <BookRow key={book_info.id} 
+            book_info={book_info} 
+            setSelectedBookInfo={setSelectedBookInfo}      
+            searchValue = {searchValue}      
+            setSearchValue={setSearchValue}
+            onSearch={onSearch}/>
           ))}
         </tbody>
       </table>
     </div>
   );
 }
-
 
 
 function BookDetail({book_info}) {
@@ -52,27 +71,104 @@ function BookDetail({book_info}) {
       <img src = {book_info.image} alt="Book Cover" style = {{height: '250px'}}/>
       <div>{book_info.booktitle}</div>
       <div>{book_info.author}</div>
-
     </div>
   );
 }
 
+function BookSearchView(props) { 
+  const {book_info, setSelectedBookInfo, setSearchValue, onSearch, isLoading, setIsLoading, data, setData} = props
+  let num = 1;
+
+  return (
+    <div style={{backgroundColor: 'white', padding : '10px', width: '300px', height:'450px'}}>
+      <h3 style={{color:'black'}}>도서 검색 결과</h3>      
+      <div>{book_info.booktitle}</div>
+        {/* book_info에 대한 검색 결과*/}  
+        <div>
+          {isLoading ? (
+          <h3 style={{color: 'black'}}>로딩중..</h3>
+        ) : (typeof data !== 'undefined' && data) ? (
+          <div>
+            검색결과
+            {console.log(data)}            
+            {data.map((book) => {
+              return (
+                <BookList
+                  key={num++}
+                  booktitle={book?.title}
+                  image={book?.image}                
+                />
+              );
+            })}
+        </div>
+      ) : (
+        <div>
+          <h3 style={{color:'black'}} >검색결과가 없습니다</h3>
+        </div>
+      )}
+        </div>
+      
+      selectedBookInfo에 대한 도서 api 검색결과 나오는 창
+    </div>
+  );
+}
 
 export default function Result() {
+  const [selectedBookInfo, setSelectedBookInfo] = useState(sample[0]);
+  //const [selectedBookRowInfo, setSelectedBookRowInfo] = useState(sample[0]);
+  const [data, setData] = useState(null);
+  const [searchValue, setSearchValue] = useState(sample[0].booktitle);
+  const [isLoading, setIsLoading] = useState(false);
+  const [pageSize, setPageSize] = useState(10);
+  
+  const onSearch = async () => {
+    setIsLoading(true);
+    const fetchedData = await bookinfo_api(searchValue, pageSize);
+    if (typeof fetchedData !== 'undefined' && fetchedData){
+      console.log('search and setting data complete and here is the fetched data')
+      setData(fetchedData);      
+    } else {
+      setData(null)
+    }
+    setIsLoading(false);
+  };
+
+  useEffect(() => {
+    onSearch()
+  }, [searchValue]);
+
+
   return (
     <div style={{display:'flex'}}>
-      <Card>
-          <BookTable books_info={sample} />;
+      <Card>      
+        <BookTable 
+          books_info={sample} 
+          setSelectedBookInfo={setSelectedBookInfo}
+          // setSelectedBookRowInfo = {setSelectedBookRowInfo}
+          searchValue = {searchValue}          
+          setSearchValue={setSearchValue}
+          onSearch={onSearch}        
+          />;
       </Card>
       <Card>
         <BookDetail
-        book_info = {sample[0]}
+          book_info = {selectedBookInfo}
         // 클릭되어 있는 텍스트 정보를 제공하기
         />
       </Card>
       <Card>
         {/* 클릭되어 있는 텍스트의 검색 결과 가져 오기 */}
+        <BookSearchView
+          selectedBookInfo = {selectedBookInfo}
+          setSelectedBookInfo={setSelectedBookInfo}
+          // selectedBookRowInfo = {selectedBookRowInfo}
+          searchValue = {searchValue}
+          setSearchValue={setSearchValue}          
+          isLoading={isLoading}          
+          data = {data}          
+        />
       </Card>
     </div>
   );
+  
 }

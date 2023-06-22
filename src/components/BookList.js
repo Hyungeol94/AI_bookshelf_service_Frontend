@@ -16,7 +16,18 @@ export default (props) => {
           width={50}
           height={50}
         />
-        <h3>제목 : {props.booktitle}</h3>
+        <div>
+          <h3>제목 : {props.booktitle}</h3>
+          <h8>{props?.title}</h8>
+          <h8>{props?.author}</h8>
+          <h8>{props?.description}</h8>
+          <h8>{props?.discount}</h8>
+          <h8>{props?.isbn}</h8>
+          <h8>{props?.link}</h8>
+          <h8>{props?.pubdate}</h8>
+          <h8>{props?.publisher}</h8>
+          <h8>{props?.image}</h8>
+        </div>
       </div>
     </div>
   );

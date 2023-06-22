@@ -1,22 +1,24 @@
 import axios from "axios";
 
-const converter = require("xml-js");
+// const converter = require("xml-js");
 
-const BOOKINFO_APIKEY = process.env.REACT_APP_BOOKINFO_APIKEY;
-
+// const BOOKINFO_APIKEY = process.env.REACT_APP_BOOKINFO_APIKEY;
+// const BOOKINFO_APIKEY = 'f2671199c0a54a75884db863acdb6287397dba388499b9f6e4a5dcb64f29d503';
 // eslint-disable-next-line import/no-anonymous-default-export
-export default async (searchvalue, pageSize) => {
+export default async (searchvalue) => {
   // console.log(searchvalue, pageSize);
   const bookdata = await axios
-    .get(`https://nl.go.kr/NL/search/openApi/search.do`, {
-      params: {
-        key: BOOKINFO_APIKEY,
-        kwd: searchvalue,
-        pageSize: pageSize || 10,
+    .get("/v1/search/book.json", {
+      params: { query: searchvalue },
+      headers: {
+        "X-Naver-Client-Id": "aUTQs989GIJxwutcnHAk",
+        "X-Naver-Client-Secret": "5iYHJDUjOd",
       },
     })
-    .then((data) => JSON.parse(converter.xml2json(data.data)))
-    .then((data) => data.elements[0].elements[1].elements);
+    .then((data) => {
+      return data.data.items;
+    })
+    .catch((e) => console.log(e));
   return bookdata;
   // console.log(bookdata);
 };

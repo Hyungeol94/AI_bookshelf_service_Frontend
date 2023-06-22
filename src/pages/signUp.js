@@ -262,61 +262,6 @@ function Signup() {
             style: { color: "white" },
           }}
         />
-
-        <FormControl
-          variant="standard"
-          style={{ marginTop: "3em", font: "White" }}
-        >
-          <InputLabel
-            id="demo-simple-select-standard-label"
-            style={{ color: "white" }}
-          >
-            직업
-          </InputLabel>
-          <Select
-            id="occupation"
-            value={Occupation}
-            onChange={(e) => setOccupation(e.target.value)}
-            label="직업"
-            color="primary"
-            sx={{ color: "white" }}
-            MenuProps={{ style: { color: "white" } }}
-            itemProp={{
-              style: { color: "white", backgroundColor: "white" },
-            }}
-            SelectDisplayProps={{
-              style: { color: "white" },
-            }}
-            InputLabelProps={{
-              style: { color: "white" },
-            }}
-          >
-            <MenuItem value="개발자">개발자</MenuItem>
-          </Select>
-        </FormControl>
-        <FormControl variant="standard" style={{ marginTop: "1em" }}>
-          <InputLabel
-            id="demo-simple-select-standard-label"
-            style={{ color: "white" }}
-          >
-            가입경로
-          </InputLabel>
-          <Select
-            sx={{ color: "white" }}
-            id="registrationPath"
-            value={RegistrationPath}
-            onChange={(e) => setRegistrationPath(e.target.value)}
-            label="가입경로"
-          >
-            <MenuItem value="지인의 권유">지인의 권유</MenuItem>
-            <MenuItem value="광고">광고</MenuItem>
-            <MenuItem value="다른 서비스를 통해서">
-              다른 서비스를 통해서
-            </MenuItem>
-          </Select>
-        </FormControl>
-        <div style={{ marginTop: "3em" }}>
-          <h3> 사용자 이용약관 </h3>
           <div>
             <OpenTerms />
             <br />

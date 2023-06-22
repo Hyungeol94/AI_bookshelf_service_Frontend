@@ -43,8 +43,11 @@ import Searchpage from "./routes/Search";
 import SignUp from "./pages/Signup";
 import User from "./pages/ProfileEdit";
 import Stats from "./components/UserStatistics";
+
 import GetBookDetail from "./components/GetBookDetail"
 import IndexNavbar from "./components/Navbars/IndexNavbar";
+import FindPw from "./pages/Findpw"
+import Findid from "./pages/Findid"
 
 /** Header를 강제적으로 가지는 페이지를 위해 감싸주는 함수형 컴포넌트 */
 const HeaderWrapper = () => (
@@ -53,7 +56,6 @@ const HeaderWrapper = () => (
     <Outlet />
   </>
 );
-
 // eslint-disable-next-line import/no-anonymous-default-export
 export default () => {
   return (
@@ -83,7 +85,9 @@ export default () => {
         <Route path="/EditProfile" element={<User />} />
         <Route path="/profile" element={<User />} />
         <Route path="/stats" element={<Stats />} />
-        <Route path="/bookshelf/detail/:id" element={<GetBookDetail />} />
+        {/* <Route path="/bookshelf/detail/:id" element={<GetBookDetail />} /> */}
+        <Route path="/inquiry/pw" element={<FindPw />} />
+        <Route path="/inquiry/id" element={<Findid />} />
 
         {/* <Route path="/detail/:id" element={<Detail Detail={Detail} />} /> */}
       </Routes>

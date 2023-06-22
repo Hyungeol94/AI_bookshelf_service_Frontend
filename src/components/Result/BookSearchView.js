@@ -4,54 +4,48 @@ import {useRef, useState, useEffect} from 'react'
 
 export default function BookSearchView(props) { 
     const {selectedBookInfo, setSelectedBookInfo, searchValue, setSearchValue, isLoading, data} = props
-    const searchRef = useRef(null);
-    const [inputValue, setInputValue] = useState(selectedBookInfo.booktitle);
+    const inputRef = useRef(searchValue);
 
     
     let num = 1;
     const handleClick = () =>{
-      if (searchRef.current.value!==''){    
-      setSearchValue(searchRef.current.value)
+      if (inputRef.current.value!==''){    
+       setSearchValue(inputRef.current.value)
     }
-      else{
-      setSearchValue(searchValue)
-      }
     }
     
     const handleOnKeyPress = (e) => {
       if (e.key === "Enter") {
-        if (searchRef.current.value!==''){    
-          setSearchValue(searchRef.current.value)
+        if (inputRef.current.value!==''){    
+          setSearchValue(inputRef.current.value)
         }
-          else{
-          setSearchValue(searchValue)
-          }
       }
     };
-
-    const handleChange = (event) => {
-      setInputValue(event.target.value);
-    };
+    
+    const handleFocus = () => {
+      inputRef.current.value = searchValue;
+    }
 
     useEffect(() => {
-      setInputValue(selectedBookInfo.booktitle)
-    }, [selectedBookInfo]);
+      inputRef.current.value = searchValue
+    }, [searchValue]);
 
+   
     return (
       <div style={{backgroundColor: 'white', padding : '10px', width: '300px', height:'450px'}}>
         <h3 style={{color:'black'}}>도서 검색 결과</h3>      
         {/* <div>검색창 넣기</div>  */}        
-        <div class="input-group mb-3">
+        <div class="input-group mb-3" >
           <input 
-            ref ={searchRef}
+            ref ={inputRef}
+            defaultValue={searchValue}
+            placeholder= {searchValue}
+            onFocus={handleFocus} // Preserve the defaultValue when the input is focused
             className = "searchBar"           
-            class="form-control" 
-            value = {inputValue}
-            placeholder={searchValue}            
+            class="form-control"                         
             aria-label="book search" 
             aria-describedby="button-addon2" 
-            type="text"
-            onChange={handleChange}
+            type="text"          
             onKeyDown={handleOnKeyPress}            
             style={{color: "black"}}/>
                       
@@ -84,3 +78,4 @@ export default function BookSearchView(props) {
       </div>
     );
   }
+

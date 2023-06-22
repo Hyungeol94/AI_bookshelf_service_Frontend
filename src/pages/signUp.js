@@ -10,6 +10,9 @@ import {
   FormControlLabel,
   Checkbox,
   FormGroup,
+  FormLabel,
+  RadioGroup,
+  Radio,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
@@ -32,9 +35,9 @@ function Signup() {
   const [PhoneNumber, setPhoneNumber] = useState(""); // 전화번호
   const [Occupation, setOccupation] = useState(""); // 직업
   const [RegistrationPath, setRegistrationPath] = useState(""); // 가입경로
+  const [Birth, setBirth] = useState("male"); // 가입경로
   //  체크박스 함수
   const [allCheck, setAllCheck] = useState(false);
-  const [ageCheck, setAgeCheck] = useState(false);
   const [useCheck, setUseCheck] = useState(false);
   const [infoCheck, setInfoCheck] = useState(false);
   const [marketingCheck, setMarketingCheck] = useState(false);
@@ -53,7 +56,7 @@ function Signup() {
       );
     } else if (!checkReg(PhoneNumber.trim(), regPhone)) {
       return alert("전화번호 형식이 알맞지 않습니다.");
-    } else if (!infoCheck || !useCheck) {
+    } else if (!useCheck || !infoCheck) {
       return alert("필수 서비스 약관에 동의해주세요.");
     }
 
@@ -174,7 +177,7 @@ function Signup() {
     } else {
       setAllCheck(false);
     }
-  }, [ageCheck, useCheck, marketingCheck]);
+  }, [useCheck, marketingCheck]);
 
   // 여기서부터 실제 출력
   return (
@@ -262,6 +265,83 @@ function Signup() {
             style: { color: "white" },
           }}
         />
+
+        <FormControl>
+          <FormLabel id="demo-row-radio-buttons-group-label">Gender</FormLabel>
+          <RadioGroup
+            row
+            aria-labelledby="demo-row-radio-buttons-group-label"
+            name="row-radio-buttons-group"
+          >
+            <FormControlLabel
+              value="female"
+              control={<Radio />}
+              label="Female"
+            />
+            <FormControlLabel value="male" control={<Radio />} label="Male" />
+            <FormControlLabel value="other" control={<Radio />} label="Other" />
+            <FormControlLabel
+              value="disabled"
+              disabled
+              control={<Radio />}
+              label="other"
+            />
+          </RadioGroup>
+        </FormControl>
+        <FormControl
+          variant="standard"
+          style={{ marginTop: "3em", font: "White" }}
+        >
+          <InputLabel
+            id="demo-simple-select-standard-label"
+            style={{ color: "white" }}
+          >
+            직업
+          </InputLabel>
+          <Select
+            id="occupation"
+            value={Occupation}
+            onChange={(e) => setOccupation(e.target.value)}
+            label="직업"
+            color="primary"
+            sx={{ color: "white" }}
+            MenuProps={{ style: { color: "white" } }}
+            itemProp={{
+              style: { color: "white", backgroundColor: "white" },
+            }}
+            SelectDisplayProps={{
+              style: { color: "white" },
+            }}
+            InputLabelProps={{
+              style: { color: "white" },
+            }}
+          >
+            <MenuItem value="개발자">개발자</MenuItem>
+          </Select>
+        </FormControl>
+        <FormControl variant="standard" style={{ marginTop: "1em" }}>
+          <InputLabel
+            id="demo-simple-select-standard-label"
+            style={{ color: "white" }}
+          >
+            가입경로
+          </InputLabel>
+          <Select
+            sx={{ color: "white" }}
+            id="registrationPath"
+            value={RegistrationPath}
+            onChange={(e) => setRegistrationPath(e.target.value)}
+            label="가입경로"
+          >
+            <MenuItem value="지인의 권유">지인의 권유</MenuItem>
+            <MenuItem value="광고">광고</MenuItem>
+            <MenuItem value="다른 서비스를 통해서">
+              다른 서비스를 통해서
+            </MenuItem>
+          </Select>
+        </FormControl>
+        <div style={{ marginTop: "3em" }}>
+          <h3> 사용자 이용약관 </h3>
           <div>
             <OpenTerms />
             <br />

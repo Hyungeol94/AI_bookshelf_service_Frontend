@@ -20,9 +20,12 @@ class Home extends React.Component {
   render() {
     return (
       <div>
-        {this.state.isLoading ? (
+        {this.state.isLoading ? 
+        (
           <h1>"Loading..."</h1>
-        ) : (
+        ) 
+        : 
+        (
           <div>
             <Homepage />
           </div>

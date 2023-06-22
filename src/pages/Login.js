@@ -11,8 +11,8 @@ import { useNavigate } from "react-router-dom";
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState(""); // 이메일
+  const [password, setPassword] = useState(""); // 비밀번호
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -35,7 +35,7 @@ export default () => {
     console.log("useEffect");
     if (loginState) {
       console.log("loginState");
-      navigate("/");
+      navigate("/main");
     }
   }, [loginState, navigate]);
 
@@ -91,10 +91,9 @@ export default () => {
           Login
         </button>
         <button onClick={moveSignupPage}> sign up </button>
-        <br/>
+        <br />
         <button onClick={moveFindId}> ID 찾기 </button>
         <button onClick={moveFindPw}> 비밀번호 찾기 </button>
-        
       </div>
     </div>
   );

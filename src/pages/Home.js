@@ -41,7 +41,6 @@ export default function Index() {
   }, []);
   return (
     <>
-      <IndexNavbar />
       <div className="wrapper">
         <div className="main">
           <div className="section section-basic" id="basic-elements">

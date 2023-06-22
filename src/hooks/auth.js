@@ -29,10 +29,10 @@ export default function auth(
         dispatch(userAuthorization(data?.userData));
         setReady(true);
       } catch (e) {
-        const { success } = e.response?.data;
+        const { success } = e?.response?.data;
         // 인증이 되지 않은 사람들
         if (success) {
-          dispatch(userAuthorizationError(e.response?.data));
+          dispatch(userAuthorizationError(e?.response?.data));
           setReady(true);
         }
       }
@@ -44,11 +44,9 @@ export default function auth(
           //로그인 상태
           if (!user) {
             //로그인 한 사람 모두 못들어가는 페이지이면
-            return navigate("/");
-          }
-
-          if (!user) {
-            return navigate("/");
+            return navigate("/main");
+          } else {
+            return navigate("/main");
           }
         } else {
           //로그아웃 상태

@@ -95,7 +95,6 @@ export default (props) => {
           <h3>검색결과가 없습니다</h3>
         </div>
       )}
-      {/* <p>bookinfo</p> */}
     </div>
   );
 };

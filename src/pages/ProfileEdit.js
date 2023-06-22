@@ -63,8 +63,8 @@ const UserEditPage = () => {
         <div className="main">
         {/* <div className="section section-basic" id="basic-elements"> */}
         <img alt="..." className="path" src={require("assets/img/path1.png")} />
-        
-        <div className="content-center brand">
+
+        <div className="section section-basic" id="basic-elements">
         <h2>회원정보 수정 페이지</h2>
             <form onSubmit={handleSubmit}>
                 <div>

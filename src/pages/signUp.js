@@ -486,6 +486,7 @@ function Signup() {
             회원가입
           </Button>
         </div>
+        </div>
       </FormControl>
     </div>
   );

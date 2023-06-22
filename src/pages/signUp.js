@@ -387,7 +387,6 @@ function Signup() {
               </FormGroup>
             </FormControl>
           </div>
-        </div>
         <div
           style={{
             display: "flex",

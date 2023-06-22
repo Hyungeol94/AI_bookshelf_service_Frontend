@@ -65,7 +65,7 @@ const Upload = () => {
           <div>
             <div style={{ display: "flex" }}>
               {imgFile?.map((img, idx) => (
-                <Card key={idx}>
+                <Card key={idx} >
                   <img
                     style={{width: "192", height: "192px" }}
                     src={img}

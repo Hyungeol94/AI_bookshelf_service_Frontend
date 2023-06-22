@@ -10,6 +10,9 @@ import {
   FormControlLabel,
   Checkbox,
   FormGroup,
+  FormLabel,
+  RadioGroup,
+  Radio,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
@@ -28,13 +31,15 @@ function Signup() {
   const [Email, setEmail] = useState(""); // 이메일 (아이디)
   const [Password, setPassword] = useState(""); // 비밀번호
   const [Name, setName] = useState(""); // 이름
+  const [Nickname, setNickname] = useState(""); // 닉네임(별명)
   const [ConfirmPassword, setConfirmPassword] = useState(""); // 비밀번호 확인
   const [PhoneNumber, setPhoneNumber] = useState(""); // 전화번호
   const [Occupation, setOccupation] = useState(""); // 직업
   const [RegistrationPath, setRegistrationPath] = useState(""); // 가입경로
+  const [Sex, setSex] = useState("male"); // 성별
+  const [Birth, setBirth] = useState(""); // 생년월일
   //  체크박스 함수
   const [allCheck, setAllCheck] = useState(false);
-  const [ageCheck, setAgeCheck] = useState(false);
   const [useCheck, setUseCheck] = useState(false);
   const [infoCheck, setInfoCheck] = useState(false);
   const [marketingCheck, setMarketingCheck] = useState(false);
@@ -43,8 +48,23 @@ function Signup() {
 
   const onClickSubmit = async () => {
     /** 입력값 유효성 검사 */
-    if (checkNull([Email, Password, ConfirmPassword, Name, PhoneNumber])) {
+    if (
+      checkNull([
+        Nickname,
+        Sex,
+        Birth,
+        Email,
+        Password,
+        ConfirmPassword,
+        Name,
+        PhoneNumber,
+        Occupation,
+        RegistrationPath,
+      ])
+    ) {
       return alert("필수 항목을 모두 입력해주세요.");
+    } else if (!checkReg(Email.trim(), regEmail)) {
+      return alert("dlapdlf 형식이 알맞지 않습니다.");
     } else if (Password.trim() !== ConfirmPassword.trim()) {
       return alert("비밀번호가 일치하지 않습니다.");
     } else if (!checkReg(Password.trim(), regPwd)) {
@@ -53,31 +73,43 @@ function Signup() {
       );
     } else if (!checkReg(PhoneNumber.trim(), regPhone)) {
       return alert("전화번호 형식이 알맞지 않습니다.");
-    } else if (!infoCheck || !useCheck) {
+    } else if (!useCheck || !infoCheck) {
       return alert("필수 서비스 약관에 동의해주세요.");
     }
 
     const user_info = {
       email: Email,
       password: Password,
+      nickname: Nickname,
       name: Name,
       phone: PhoneNumber,
+      birth: Birth,
+      sex: Sex,
       work: Occupation,
       signuppath: RegistrationPath,
+      useCheck: useCheck,
+      infoCheck: infoCheck,
+      marketingCheck: marketingCheck,
     };
     await api
       .signup(user_info)
       .then((data) => {
-        console.log(data);
+        console.log("then");
+        console.log(data.status);
+        alert("회원가입이 완료되었습니다.");
+        navigate("/main");
       })
-      .catch((e) => console.log(e));
-    console.log(Email);
-    console.log(Password);
-    console.log(Name);
-    console.log(ConfirmPassword);
-    console.log(PhoneNumber);
-    console.log(Occupation);
-    console.log(RegistrationPath);
+      .catch((e) => {
+        if (e?.response?.status === 400) {
+          console.log(e);
+          alert("가입내역이 있는 이메일입니다.");
+        } else {
+          alert("알수 없는 오류(500)");
+        }
+        console.log("catch");
+        console.log(e?.response?.status);
+      });
+    console.log(user_info);
   };
 
   // 입력창 입력 관련
@@ -174,7 +206,7 @@ function Signup() {
     } else {
       setAllCheck(false);
     }
-  }, [ageCheck, useCheck, marketingCheck]);
+  }, [useCheck, marketingCheck]);
 
   // 여기서부터 실제 출력
   return (
@@ -185,14 +217,32 @@ function Signup() {
         alignItems: "center",
         width: "100%",
         height: "100vh",
-        marginTop: "18em",
+        marginTop: "20em",
         font: "white",
       }}
     >
-      <form
-        style={{ display: "flex", flexDirection: "column" }}
+      <FormControl
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          color: "white",
+          borderColor: "white",
+        }}
         onSubmit={onSubmitHandler}
       >
+        <TextField
+          type="text"
+          id="nickname"
+          value={Nickname}
+          onChange={(e) => setNickname(e.target.value)}
+          label="닉네임"
+          variant="standard"
+          inputProps={{ style: { color: "white" } }}
+          SelectProps={{ style: { color: "white", backgroundColor: "white" } }}
+          InputLabelProps={{
+            style: { color: "white" },
+          }}
+        />
         <TextField
           type="email"
           id="email"
@@ -200,6 +250,7 @@ function Signup() {
           onChange={(e) => setEmail(e.target.value)}
           label="아이디(이메일)"
           variant="standard"
+          style={{ marginTop: "3em" }}
           inputProps={{ style: { color: "white" } }}
           SelectProps={{ style: { color: "white", backgroundColor: "white" } }}
           InputLabelProps={{
@@ -214,7 +265,13 @@ function Signup() {
           label="비밀번호"
           variant="standard"
           style={{ marginTop: "1em" }}
-          inputProps={{ style: { color: "white" } }}
+          inputProps={{
+            autocomplete: "new-password",
+            style: { color: "white" },
+            form: {
+              autocomplete: "off",
+            },
+          }}
           SelectProps={{ style: { color: "white", backgroundColor: "white" } }}
           InputLabelProps={{
             style: { color: "white" },
@@ -228,7 +285,13 @@ function Signup() {
           label="비밀번호 확인"
           variant="standard"
           style={{ marginTop: "1em" }}
-          inputProps={{ style: { color: "white" } }}
+          inputProps={{
+            autocomplete: "new-password",
+            style: { color: "white" },
+            form: {
+              autocomplete: "off",
+            },
+          }}
           SelectProps={{ style: { color: "white", backgroundColor: "white" } }}
           InputLabelProps={{
             style: { color: "white" },
@@ -252,7 +315,9 @@ function Signup() {
           type="text"
           id="phoneNumber"
           value={PhoneNumber}
-          onChange={(e) => setPhoneNumber(e.target.value)}
+          onChange={(e) => {
+            if (e.target.value.length <= 12) setPhoneNumber(e.target.value);
+          }}
           label="전화번호"
           variant="standard"
           style={{ marginTop: "1em" }}
@@ -262,7 +327,48 @@ function Signup() {
             style: { color: "white" },
           }}
         />
-
+        <TextField
+          type="text"
+          id="birth"
+          value={Birth}
+          onClick={(e) => {
+            setBirth("");
+          }}
+          onChange={(e) => {
+            if (e.target.value.length <= 6) setBirth(e.target.value);
+          }}
+          label="생년월일(6자리)"
+          variant="standard"
+          style={{ marginTop: "1em" }}
+          inputProps={{
+            style: { color: "white" },
+          }}
+          SelectProps={{ style: { color: "white", backgroundColor: "white" } }}
+          InputLabelProps={{
+            style: { color: "white" },
+          }}
+        />
+        <FormControl>
+          <FormLabel
+            id="demo-row-radio-buttons-group-label"
+            style={{ marginTop: "1em", color: "White" }}
+          >
+            성별
+          </FormLabel>
+          <RadioGroup
+            row
+            aria-labelledby="demo-row-radio-buttons-group-label"
+            name="row-radio-buttons-group"
+            value={Sex}
+            onChange={(e) => {
+              setSex(e.target.value);
+            }}
+            style={{ display: "flex", justifyContent: "flex-start" }}
+          >
+            <FormControlLabel value="male" control={<Radio />} label="남성" />
+            <FormControlLabel value="female" control={<Radio />} label="여성" />
+          </RadioGroup>
+        </FormControl>
         <FormControl
           variant="standard"
           style={{ marginTop: "3em", font: "White" }}
@@ -362,7 +468,6 @@ function Signup() {
               </FormGroup>
             </FormControl>
           </div>
-        </div>
         <div
           style={{
             display: "flex",
@@ -381,7 +486,7 @@ function Signup() {
             회원가입
           </Button>
         </div>
-      </form>
+      </FormControl>
     </div>
   );
 }

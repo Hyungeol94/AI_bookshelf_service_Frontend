@@ -1,5 +1,18 @@
 import React, { useState, useEffect } from "react";
-// import { useDispatch } from "react-redux";
+import {
+  Select,
+  Button,
+  InputLabel,
+  MenuItem,
+  TextField,
+  FormControl,
+  FormControlLabel,
+  Checkbox,
+  FormGroup,
+  FormLabel,
+  RadioGroup,
+  Radio,
+} from "@mui/material";
 import { regEmail, checkReg, checkNull } from "../hooks/useCheck";
 import { userLogin } from "../redux/actions/userAction";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,7 +24,7 @@ import { useNavigate } from "react-router-dom";
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default () => {
-  const [email, setEmail] = useState(""); // 이메일
+  const [id, setId] = useState(""); // 이메일
   const [password, setPassword] = useState(""); // 비밀번호
 
   const dispatch = useDispatch();
@@ -26,15 +39,15 @@ export default () => {
 
   const handleInput = (e) => {
     const { name, value } = e.target;
-    if (name === "email") {
-      setEmail(value);
+    if (name === "id") {
+      setId(value);
     } else if (name === "password") setPassword(value);
   };
 
   useEffect(() => {
-    console.log("useEffect");
+    // console.log("useEffect");
     if (loginState) {
-      console.log("loginState");
+      // console.log("loginState");
       navigate("/main");
     }
   }, [loginState, navigate]);
@@ -58,42 +71,99 @@ export default () => {
   const onClickLogin = async (e) => {
     e.preventDefault();
 
-    if (checkNull([email, password])) {
+    if (checkNull([id, password])) {
       return alert("아이디와 비밀번호 모두 입력해주세요.");
-    } else if (!checkReg(email.trim(), regEmail)) {
+    } else if (!checkReg(id.trim(), regEmail)) {
       return alert("이메일 형식이 아닙니다.");
     }
     const login_info = {
-      email,
+      email: id,
       password,
     };
     dispatch(userLogin(login_info));
   };
 
   return (
-    <div>
-      <h2>Login</h2>
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        width: "100%",
+        height: "100vh",
+        font: "white",
+      }}
+    >
       <div>
-        <label htmlFor="input_id"> ID: </label>
-        <input type="text" name="email" value={email} onChange={handleInput} />
-      </div>
-      <div>
-        <label htmlFor="input_pw"> PW: </label>
-        <input
-          type="password"
-          name="password"
-          value={password}
-          onChange={handleInput}
-        />
-      </div>
-      <div>
-        <button type="submit" onClick={onClickLogin}>
-          Login
-        </button>
-        <button onClick={moveSignupPage}> sign up </button>
-        <br />
-        <button onClick={moveFindId}> ID 찾기 </button>
-        <button onClick={moveFindPw}> 비밀번호 찾기 </button>
+        <h2>Login</h2>
+        <FormControl style={{ width: "300px" }}>
+          <TextField
+            type="text"
+            id="id"
+            value={id}
+            name="id"
+            onChange={handleInput}
+            label="ID"
+            variant="standard"
+            inputProps={{ style: { color: "white" } }}
+            SelectProps={{
+              style: { color: "white", backgroundColor: "white" },
+            }}
+            InputLabelProps={{
+              style: { color: "white" },
+            }}
+          />
+          <TextField
+            type="password"
+            id="password"
+            name="password"
+            value={password}
+            onChange={handleInput}
+            label="Password"
+            style={{ marginTop: "0em" }}
+            variant="standard"
+            placeholder="Password"
+            inputProps={{
+              style: { color: "white" },
+            }}
+            SelectProps={{
+              style: { color: "white", backgroundColor: "white" },
+            }}
+            InputLabelProps={{
+              style: { color: "white" },
+            }}
+          />
+          <FormControl>
+            <Button
+              size="large"
+              variant="outlined"
+              type="submit"
+              onClick={onClickLogin}
+              style={{ marginTop: "1em" }}
+            >
+              로그인
+            </Button>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                marginTop: "1em",
+              }}
+            >
+              <div>
+                <Button size="small" onClick={moveFindId}>
+                  아이디 찾기
+                </Button>
+                <Button size="small" onClick={moveFindPw}>
+                  비밀번호 찾기
+                </Button>
+              </div>
+              <Button size="small" onClick={moveSignupPage}>
+                회원가입
+              </Button>
+            </div>
+          </FormControl>
+        </FormControl>
       </div>
     </div>
   );

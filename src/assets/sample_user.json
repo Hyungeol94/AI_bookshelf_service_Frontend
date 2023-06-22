@@ -2,6 +2,7 @@
     "id": 1,
     "user_name": "최서연",
     "user_birth": "2000-01-01",
+    "user_email": "sychoi@naver.com",
     "user_sex": 1,
     "user_phone": "010-1234-5678",
     "profile" :
@@ -16,5 +17,5 @@
       },
     "user_like_book": [1, 2, 3],
     "user_cart": [7, 8, 9, 10],
-    "user_interest": [7, 8, 9, 10, 11, 12]
+    "user_interest": [7, 8, 9, 10, 11, 12, 13, 16]
 }

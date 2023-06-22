@@ -3,10 +3,10 @@ import "../../styles/Result.css";
 import {useRef, useState, useEffect} from 'react'
 
 export default function BookSearchView(props) { 
-    const {selectedBookInfo, setSelectedBookInfo, searchValue, setSearchValue, isLoading, data} = props
+    const {setSelectedBookInfo, searchValue, setSearchValue, isLoading, data} = props
     const inputRef = useRef(searchValue);
 
-    
+  
     let num = 1;
     const handleClick = () =>{
       if (inputRef.current.value!==''){    

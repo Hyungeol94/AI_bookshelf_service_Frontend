@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
+import LoginNavbar from "components/Navbars/LoginNavbar";
+import "../styles/Findid.css";
+import Login from './Login';
 
 
 const ForgotPassword = () => {
@@ -21,21 +24,29 @@ const moveToMain = () => {
 
   return (
     <div>
-      <h2>비밀번호 찾기</h2>
-      <p> 가입할 때 사용한 이메일 주소를 입력하면 해당 주소로 비밀번호 변경 e-mail이 발송됩니다. </p>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="email"
-          placeholder="이메일(e-mail)"
-          id="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <button type="submit"> 비밀번호 찾기 </button>
-      </form>
-      <button onClick={moveToLogin}> 뒤로가기 </button>
-      <button onClick={moveToMain}> 홈으로 </button>
+      < LoginNavbar />
+
+      <div class='ctn'>
+        <h2 className='title'>비밀번호 찾기</h2>
+        <p class='explain-txt'> 가입할 때 사용한 이메일 주소를 입력하면 해당 주소로 비밀번호 변경 e-mail이 발송됩니다. </p>
+        <form onSubmit={handleSubmit} className="input-form">
+          <input
+            type="email"
+            placeholder="이메일(e-mail)"
+            id="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className='input-form'
+            required
+          />
+        </form>
+        <div>
+          <button type="submit" class="button"> 비밀번호 찾기 </button> <br/>
+          <button onClick={moveToLogin} class="mini-button"> 뒤로가기 </button>
+          <button onClick={moveToMain} class="mini-button"> 홈으로 </button>
+        </div>
+        
+      </div>
     </div>
   );
 };

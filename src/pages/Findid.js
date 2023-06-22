@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import userData from '../assets/sample_user.json';
+import "../styles/Findid.css";
+import LoginNavbar from "components/Navbars/LoginNavbar";
 
 const ForgotId = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
+  const [birthDate, setBirthDate] = useState('')
+  const [name, setName] = useState('');
   const [foundId, setFoundId] = useState('');
 
   // JSON 파일이 배열이 아닌 경우 배열로 변환
@@ -27,19 +31,43 @@ const ForgotId = () => {
 
   return (
     <div>
-      <h2>아이디 찾기</h2>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="phoneNumber">전화번호:</label>
+      < LoginNavbar />
+      <div class="container">
+      <h2 class="title">아이디 찾기</h2>
+      <form onSubmit={handleSubmit} className='inside-container'>
+        <label htmlFor="phoneNumber" class='label-form'>전화번호:</label>
         <input
           type="tel"
           id="phoneNumber"
           value={phoneNumber}
+          placeholder="010-0000-0000"
           onChange={(e) => setPhoneNumber(e.target.value)}
+          className='input-form'
           required
-        />
-        <button type="submit">아이디 찾기</button>
+        /><br/>
+        <label htmlFor="name" class='label-form'>이름:</label>
+        <input
+          type="text"
+          id="name"
+          value={name}
+          placeholder="홍길동"
+          onChange={(e) => setName(e.target.value)}
+          className='input-form'
+          required
+        /><br/>
+        <label htmlFor="birthDate" class='label-form'>생년월일:</label>
+        <input
+          type="date"
+          id="birthDate"
+          value={birthDate}
+          onChange={(e) => setBirthDate(e.target.value)}
+          className='input-form'
+          required
+        /><br/>
+        <button type="submit" class="button">아이디 찾기</button>
       </form>
       {foundId && <div>찾은 아이디: {foundId}</div>}
+    </div>
     </div>
   );
 };

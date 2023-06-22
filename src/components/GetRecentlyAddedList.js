@@ -18,4 +18,3 @@ export default function get_recentlyAdded_list(books_info){
     console.log(res)
     return getlist(res)
   } 
-  

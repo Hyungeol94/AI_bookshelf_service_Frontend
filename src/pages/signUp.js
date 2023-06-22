@@ -31,13 +31,13 @@ function Signup() {
   const [Email, setEmail] = useState(""); // 이메일 (아이디)
   const [Password, setPassword] = useState(""); // 비밀번호
   const [Name, setName] = useState(""); // 이름
-  const [Nickname, setNickname] = useState(""); // 이름
+  const [Nickname, setNickname] = useState(""); // 닉네임(별명)
   const [ConfirmPassword, setConfirmPassword] = useState(""); // 비밀번호 확인
   const [PhoneNumber, setPhoneNumber] = useState(""); // 전화번호
   const [Occupation, setOccupation] = useState(""); // 직업
   const [RegistrationPath, setRegistrationPath] = useState(""); // 가입경로
-  const [Sex, setSex] = useState("male"); // 가입경로
-  const [Birth, setBirth] = useState(""); // 가입경로
+  const [Sex, setSex] = useState("male"); // 성별
+  const [Birth, setBirth] = useState(""); // 생년월일
   //  체크박스 함수
   const [allCheck, setAllCheck] = useState(false);
   const [useCheck, setUseCheck] = useState(false);
@@ -468,7 +468,6 @@ function Signup() {
               </FormGroup>
             </FormControl>
           </div>
-        </div>
         <div
           style={{
             display: "flex",

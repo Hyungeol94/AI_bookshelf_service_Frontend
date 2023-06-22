@@ -4,9 +4,11 @@ import { useEffect } from "react";
 // import { Link } from "react-router-dom";
 import sample from "../assets/sample_book.json";
 import bookinfo_api from "../services/bookinfo_api";
-import BookList from "../components/BookList";
-import sampleBookImg from "../assets/img/sample_book.png";
 import "../styles/Result.css";
+import BookSearchView from "../components/Result/BookSearchView.js"
+import BookTable from "../components/Result/BookTable.js"
+import BookDetail from "../components/Result/BookDetail.js"
+import {useEffect} from "react";
 
 function Card({ children }) {
   return <div className="resultCard">{children}</div>;
@@ -139,15 +141,14 @@ function BookSearchView(props) {
 
 export default function Result() {
   const [selectedBookInfo, setSelectedBookInfo] = useState(sample[0]);
+  //const [selectedBookRowInfo, setSelectedBookRowInfo] = useState(sample[0]);
   const [data, setData] = useState(null);
   const [searchValue, setSearchValue] = useState(sample[0].booktitle);
   const [isLoading, setIsLoading] = useState(false);
   const [pageSize, setPageSize] = useState(10);
-
   useEffect(() => {
     if (data && typeof data !== "undefined") console.log("Updated data:", data);
   }, [data]);
-
   const onSearch = async () => {
     setIsLoading(true);
     const fetchedData = await bookinfo_api(searchValue, pageSize);
@@ -161,14 +162,17 @@ export default function Result() {
     }
     setIsLoading(false);
   };
-
+  useEffect(() => {
+    onSearch()
+  }, [searchValue]);
   return (
     <div style={{ display: "flex" }}>
       <Card>
         <BookTable
           books_info={sample}
           setSelectedBookInfo={setSelectedBookInfo}
-          searchValue={searchValue}
+          // setSelectedBookRowInfo = {setSelectedBookRowInfo}
+          searchValue = {searchValue}  
           setSearchValue={setSearchValue}
           onSearch={onSearch}
         />
@@ -191,6 +195,9 @@ export default function Result() {
           setIsLoading={setIsLoading}
           data={data}
           setData={setData}
+          selectedBookInfo = {selectedBookInfo}
+          selectedBookRowInfo = {selectedBookRowInfo}
+          searchValue = {searchValue}    
         />
       </Card>
     </div>

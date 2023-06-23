@@ -1,4 +1,5 @@
 import BookSearchResultRow from "./BookSearchResultRow"
+import BookSearchResultTable from "./BookSearchResultTable"
 import BookSearchBar from "./BookSearchBar"
 import "../../styles/Result.css";
 import {useRef, useState, useEffect} from 'react'
@@ -17,7 +18,7 @@ const BookSearchView = (props) => {
 
    
     return (
-      <div style={{backgroundColor: 'white', padding : '10px', width: '300px', height:'450px'}}>
+      <div className= "bookSearchView">
         <h3 style={{color:'black'}}>도서 검색 결과</h3>      
         {/* <div>검색창 넣기</div>  */}        
         <BookSearchBar
@@ -25,28 +26,12 @@ const BookSearchView = (props) => {
           searchValue = {searchValue}
           setSearchValue = {setSearchValue}
         />
-        <div>
-            {isLoading ? (
-            <h3 style={{color: 'black'}}>로딩중..</h3>
-          ) : (typeof data !== 'undefined' && data && data.length!=0) ? (
-            <div className = "searchBlock">              
-              {console.log(data)}            
-              {data.map((book) => {
-                return (
-                  <BookSearchResultRow
-                    key={num++}  
-                    book_info = {book}
-                    setSelectedBookInfo = {setSelectedBookInfo}       
-                  />
-                );
-              })}
-          </div>
-        ) : (
-          <div>
-            <h3 style={{color:'black'}} >검색결과가 없습니다</h3>
-          </div>
-        )}
-          </div>
+        <BookSearchResultTable
+          isLoading = {isLoading}
+          data = {data} 
+          num = {num}
+          setSelectedBookInfo = {setSelectedBookInfo}        
+        />
       </div>
     );
   }

@@ -9,8 +9,7 @@ const BookRow = (props) => {
     }
     return (
       <tr className = "bookRow" onClick={handleClick}>
-        <td >{book_info.booktitle}</td>
-        <td>{book_info.price}</td>
+        <td >{book_info.booktitle}</td>        
       </tr>
     );
   }

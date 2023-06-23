@@ -1,12 +1,10 @@
 import React from 'react';
-import BookRow from "./BookRow.js"
+import BookRow from './BookRow';
 
 const BookTable = (props) => {
     const {books_info, setSelectedBookInfo, searchValue, setSearchValue, onSearch} = props
-  
-    return (
-      <div className="bookTable">
-        <h3 style={{ color: "black" }}>책 목록</h3>
+
+    return (        
         <table>
           <thead>
             <tr>
@@ -25,8 +23,7 @@ const BookTable = (props) => {
             ))}
           </tbody>
         </table>
-      </div>
-    );
-  }
+    )
+}
 
-  export default BookTable;
+export default BookTable;

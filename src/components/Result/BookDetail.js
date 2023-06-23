@@ -4,16 +4,14 @@ import "../../styles/Result.css";
 
 const BookDetail = ({book_info}) => {
     return (
-      <div className="bookDetailBlock">
-        <h3 style={{color:'black'}}>상세 정보</h3>
-        <img src = {book_info.image} alt="Book Cover" style = {{height: '250px'}}/>
-        <div>책제목 : {book_info.booktitle || book_info.title}</div>
-        <div>작가 : {book_info.author}</div>
-        <div style={{fontWeight: "normal"}}>출판사 : {book_info.publisher}</div>
-        <div style={{fontWeight: "normal"}}>상세 : {book_info.description}</div>
-        <Button style={{width:'200px',display: 'block'}}>책 목록에 추가하기</Button>
-      </div>
-    );
-  }
+        <div className = "bookDetailBlock">
+            <img src = {book_info.image} alt="Book Cover" style = {{height: '250px'}}/>
+            <div>책제목 : {book_info.booktitle || book_info.title}</div>
+            <div>작가 : {book_info.author}</div>
+            <div style={{fontWeight: "normal"}}>출판사 : {book_info.publisher}</div>
+            <div style={{fontWeight: "normal"}}>상세 : {book_info.description}</div>
+        </div>
+    )
+}
 
-export default BookDetail;
+export default BookDetail

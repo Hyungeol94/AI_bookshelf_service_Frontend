@@ -1,5 +1,4 @@
 import React from "react";
-import "../../styles/BookList.css";
 
 
 const BookSearchResultRow = (props) => { 
@@ -26,7 +25,7 @@ const BookSearchResultRow = (props) => {
         </div>
         <div>
           <h6 style={{color: "black"}}>{book_info.title}</h6>
-          <h6 style={{color: "black", fontWeight: "normal"}}>{book_info.author}</h6>
+          <h6 style={{color: "black", fontWeight: "normal"}}>{book_info.author}</h6>          
         </div>
       </div>
     </div>

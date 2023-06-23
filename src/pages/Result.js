@@ -6,8 +6,8 @@ import sample from "../assets/sample_book.json";
 import bookinfo_api from "../services/bookinfo_api";
 import "../styles/Result.css";
 import BookSearchView from "../components/Result/BookSearchView.js"
-import BookTable from "../components/Result/BookTable.js"
-import BookDetail from "../components/Result/BookDetail.js"
+import BookTableView from "../components/Result/BookTableView.js"
+import BookDetailView from "../components/Result/BookDetailView.js"
 
 function Card({ children }) {
   return <div className="resultCard">{children}</div>;
@@ -49,7 +49,7 @@ const Result = () => {
   return (
     <div style={{ display: "flex" }}>
       <Card>
-        <BookTable
+        <BookTableView
           books_info={sample}
           setSelectedBookInfo={setSelectedBookInfo}
           // setSelectedBookRowInfo = {setSelectedBookRowInfo}
@@ -60,7 +60,7 @@ const Result = () => {
         ;
       </Card>
       <Card>
-        <BookDetail
+        <BookDetailView
           book_info={selectedBookInfo}
           // 클릭되어 있는 텍스트 정보를 제공하기
         />

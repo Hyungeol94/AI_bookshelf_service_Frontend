@@ -1,5 +1,10 @@
 .book-view-card{
-    background-color: rgba(252, 252, 252, 0.352) !important;
-    width: 700px !important;
-    height: 70vh !important;
+    background-color: #1f2251 !important;
+    box-shadow: 0 1px 20px 0 rgba(0,0,0,.1);
+    border-radius: 30px 30px 30px 30px;
+}
+
+.book-view-card-header{
+    background-color: #1f2251 !important;
+    border-radius: 30px 30px 30px 30px !important;
 }

@@ -21,6 +21,9 @@ import {
     Nav,
     NavItem,
     NavLink,
+    Form,
+    FormGroup,
+    Input
   } from "reactstrap";
 
   
@@ -36,6 +39,7 @@ export default function Bookview(props) {
 
     const [iconTabs, setIconsTabs] = React.useState(1);
     const [textTabs, setTextTabs] = React.useState(4);
+    const [searchTerm, setSearchTerm] = React.useState("");
     let [recentlyAdded_count, recentlyAdded_list] = get_recentlyAdded_list(sample);
     let [totalBook_count, totalBook_list] = getlist(sample, user_info.user_bookshelf.book_id);
     let [likes_count, Likes_list] = getlist(sample, user_info.user_like_book);
@@ -45,7 +49,8 @@ export default function Bookview(props) {
     return (
             <>
             <Container className="" style={{width:'100%', padding:0, ...props.style}}>
-                        <CardHeader>
+                    <Card>
+                        <CardHeader className="book-view-card-header">
                             <Nav className="nav-tabs-info" role="tablist" tabs>
                                 <NavItem>
                                     <NavLink
@@ -67,7 +72,7 @@ export default function Bookview(props) {
                                         onClick={(e) => setIconsTabs(2)}
                                         href="#pablo"
                                     >
-                                        <i className="tim-icons icon-settings-gear-63" />
+                                        <i className="tim-icons icon-spaceship" />
                                         최근 추가 항목
                                     </NavLink>
                                 </NavItem>
@@ -95,6 +100,11 @@ export default function Bookview(props) {
                                         찜해둔 책
                                     </NavLink>
                                 </NavItem>  
+                                <Form className="form-inline ml-auto">
+                                    <FormGroup className="no-border">
+                                    <Input placeholder="Search" type="text" />
+                                    </FormGroup>
+                                </Form>
                             </Nav>
                         </CardHeader>
                         <CardBody>
@@ -125,6 +135,7 @@ export default function Bookview(props) {
                                 </TabPane>
                             </TabContent>
                         </CardBody>
+                        </Card>
             </Container>
         </>
         );

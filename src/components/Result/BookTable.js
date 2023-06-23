@@ -1,7 +1,7 @@
+import React from 'react';
 import BookRow from "./BookRow.js"
 
-
-export default function BookTable(props) {
+const BookTable = (props) => {
     const {books_info, setSelectedBookInfo, searchValue, setSearchValue, onSearch} = props
   
     return (
@@ -28,3 +28,5 @@ export default function BookTable(props) {
       </div>
     );
   }
+
+  export default BookTable;

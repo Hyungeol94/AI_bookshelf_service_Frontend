@@ -14,17 +14,14 @@ function Card({ children }) {
 }
 
 
-
-export default function Result() {
+const Result = () => {
   const [selectedBookInfo, setSelectedBookInfo] = useState(sample[0]);
   //const [selectedBookRowInfo, setSelectedBookRowInfo] = useState(sample[0]);
   const [data, setData] = useState(null);
   const [searchValue, setSearchValue] = useState(sample[0].booktitle);
   const [isLoading, setIsLoading] = useState(false);
   const [pageSize, setPageSize] = useState(10);
-  useEffect(() => {
-    if (data && typeof data !== "undefined") console.log("Updated data:", data);
-  }, [data]);
+
   const onSearch = async () => {
     setIsLoading(true);
     const fetchedData = await bookinfo_api(searchValue, pageSize);
@@ -38,9 +35,17 @@ export default function Result() {
     }
     setIsLoading(false);
   };
+
+  useEffect(() => {
+    if (data && typeof data !== "undefined") console.log("Updated data:", data);
+  }, [data]);
+
+    
   useEffect(() => {
     onSearch()
   }, [searchValue]);
+
+
   return (
     <div style={{ display: "flex" }}>
       <Card>
@@ -79,3 +84,5 @@ export default function Result() {
     </div>
   );
 }
+
+export default Result;

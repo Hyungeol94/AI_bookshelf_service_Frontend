@@ -1,4 +1,6 @@
-export default function BookRow(props) {
+import React from 'react';
+
+const BookRow = (props) => {
     const {book_info, setSelectedBookInfo, searchValue, setSearchValue, onSearch} = props
   
     function handleClick(){    
@@ -12,4 +14,5 @@ export default function BookRow(props) {
       </tr>
     );
   }
-  
+
+  export default BookRow;

@@ -2,7 +2,7 @@ import React from "react";
 import "../../styles/BookList.css";
 
 
-export default function BookSearchResultRow(props) { 
+const BookSearchResultRow = (props) => { 
     const {book_info, setSelectedBookInfo} = props
 
     function handleClick(){
@@ -32,3 +32,5 @@ export default function BookSearchResultRow(props) {
     </div>
   );
 };
+
+export default BookSearchResultRow;

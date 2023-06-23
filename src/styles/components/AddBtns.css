@@ -1,0 +1,39 @@
+
+.add-to-mybrary {
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.like-wishlist-cart {
+    margin-left: 10px;
+}
+
+.labels {
+    margin-right: 10px;
+}
+
+.btn-group {
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+
+.buy-link:hover {
+    background-color: #33aeff;
+  }
+  
+.buy-link:active {
+    background-color: #3819c2;
+  }
+
+.buy-link {
+    background-color: rgb(47, 78, 254);
+    border-color: transparent;
+    color: aliceblue;
+    margin-right: 5px;
+    border-radius: 10%;
+    
+}
+
+.input-box {
+    margin-right: 5px;
+}

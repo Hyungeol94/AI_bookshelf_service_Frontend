@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../styles/GetList.css";
+import "../styles/components/AddBtns.css";
 
 const Addtolib = (props) => {
     const [likeCheck, setLikeCheck] = useState(false); // 좋아요 변수
@@ -80,23 +80,32 @@ return( <div>
     <div className="add-to-mybrary">
           <input type="checkbox" onChange={(e) => {if (e.target.checked) 
                                         {addToLibrary(props.id);} 
-                                        else {removeFromLibrary(props.id);}}}/>
-                                        <label>내 서재에 추가</label>
-          <input type="checkbox" checked={ likeCheck } onChange={ likeBtnEvent }/><label> 좋아요 </label>
+                                        else {removeFromLibrary(props.id);}}}
+                                        className="input-box"/>
+                                        <label className="labels">내 서재에 추가</label>
+          <input type="checkbox" 
+                  checked={ likeCheck } 
+                  onChange={ likeBtnEvent }
+                  className="input-box"/><label> 좋아요 </label>
         </div>
         <div className="like-wishlist-cart">
-          
-          <input type="checkbox"  checked={ wishListCheck } onChange={ wishListBtnEvent } /><label> 찜 </label>
-          <input type="checkbox" checked={ cartCheck } onChange={ cartBtnEvent }/><label> 장바구니 </label>
+          <input type="checkbox"  
+          checked={ wishListCheck } 
+          onChange={ wishListBtnEvent }
+          className="input-box" /><label className="labels"> 찜 </label>
+          <input type="checkbox" 
+          checked={ cartCheck } 
+          onChange={ cartBtnEvent }
+          className="input-box"/><label> 장바구니 </label>
         </div>
-        <div className="buy-link">
-          <button 
+        <div className="btn-group">
+          <button className="buy-link"
               onClick={() => window.open(`https://www.yes24.com/Product/Search?domain=ALL&query=${props.booktitle}`, "_blank")} >
                 Yes24 </button>
-          <button 
+          <button className="buy-link"
               onClick={() => window.open(`https://www.aladin.co.kr/search/wsearchresult.aspx?SearchTarget=All&SearchWord=${props.booktitle}`, "_blank")} > 
               알라딘 </button>
-          <button 
+          <button className="buy-link"
               onClick={() => window.open(`https://search.kyobobook.co.kr/search?keyword=${props.booktitle}`, "_blank")} > 
               교보문고 </button> <br/>
         </div>

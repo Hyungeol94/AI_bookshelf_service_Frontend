@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import "../styles/GetList.css";
-// import { Modal } from "reactstrap";
+import { Modal } from "reactstrap";
 import AddBtns from "./AddBtns";
-import Modal from '@mui/material/Modal';
+// import Modal from '@mui/material/Modal';
 // import BookDetail from "./GetBookDetail";
 
 
@@ -29,21 +29,23 @@ const Book = (props) => { // Book 표시 함수
         onClick={ openModal }
       />
       <label onClick={ openModal }> {props.booktitle} </label>
-      <div className="modal-container">
+      <div>
         <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
-        contentLabel="File Modal">
+        contentLabel="File Modal"
+        className="modal-box">
+          <div>
+          <button style={{ float:"right" }} onClick={closeModal} className="close-btn"> 닫기 </button> <br/>
           <div style={{ color: 'black' }} className="book-info">
-          <button style={{ float:"right" }} onClick={closeModal}> 닫기 </button> <br/>
-          <img src={props.image} alt={props.booktitle} style ={{
-            width: 300
-          }}/>
-          <h2 style={{ color: 'black' }}> {props.booktitle} </h2>
-          <text style={{ color: 'black' }}>Author: {props.author} </text> <p/>
-          <text style={{ color: 'black' }}>description: {props.description} </text>
+          
+          <img src={props.image} alt={props.booktitle} className="modal-image"/>
+          <h2 style={{ color: 'black', "margin-bottom":"4px"}}> {props.booktitle} </h2>
+          <h4 style={{ color: 'black', "margin-bottom":"4px"}}> {props.author} </h4> <p/>
+          <text style={{ color: 'black' }} className="description-box"> {props.description} </text>
         </div>
-        <AddBtns/>
+          </div>
+        <AddBtns booktitle={props.booktitle}/>
         </Modal>
       </div>
     </div>

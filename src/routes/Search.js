@@ -10,14 +10,12 @@ class Searchpage extends React.Component {
   componentDidMount() {
     setTimeout(() => {
       this.setState({ isLoading: false });
-    }, 600);
+    }, 0);
   }
 
   render() {
     return (
-      <div>
-        {this.state.isLoading ? <h1>"Loading..."</h1> : <Search/>}
-      </div>
+      <div>{this.state.isLoading ? <h1>"Loading..."</h1> : <Search />}</div>
     );
   }
 }

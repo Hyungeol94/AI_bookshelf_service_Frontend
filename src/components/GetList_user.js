@@ -7,7 +7,7 @@ const Book = (props) => (
       <img
         src={props.image}
         alt={props.booktitle}
-        style={{ width: "80px", height: "80px"}}
+        style={{ width: "80px", height: "80px" }}
       />
     </div>
     <h5>{props.booktitle}</h5>
@@ -15,10 +15,10 @@ const Book = (props) => (
 );
 
 export default function getlist(books_info, bookId) {
-  let user_book = []
-  books_info.forEach(elm => {
+  let user_book = [];
+  books_info.forEach((elm) => {
     if (bookId.includes(elm.id)) {
-      console.log(bookId, elm.id)
+      console.log(bookId, elm.id);
       user_book.push(elm);
     }
   });

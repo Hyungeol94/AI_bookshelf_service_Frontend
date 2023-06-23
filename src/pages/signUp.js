@@ -206,7 +206,7 @@ function Signup() {
     } else {
       setAllCheck(false);
     }
-  }, [useCheck, marketingCheck]);
+  }, [useCheck, marketingCheck, infoCheck]);
 
   // 여기서부터 실제 출력
   return (
@@ -468,24 +468,24 @@ function Signup() {
               </FormGroup>
             </FormControl>
           </div>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            marginBottom: "5em",
-          }}
-        >
-          <Link to="../">
-            <Button style={{ width: "7em" }}>취소</Button>
-          </Link>
-          <Button
-            type="submit"
-            style={{ width: "20em", fontWeight: "bold" }}
-            onClick={onClickSubmit}
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              marginBottom: "5em",
+            }}
           >
-            회원가입
-          </Button>
-        </div>
+            <Link to="../">
+              <Button style={{ width: "7em" }}>취소</Button>
+            </Link>
+            <Button
+              type="submit"
+              style={{ width: "20em", fontWeight: "bold" }}
+              onClick={onClickSubmit}
+            >
+              회원가입
+            </Button>
+          </div>
         </div>
       </FormControl>
     </div>

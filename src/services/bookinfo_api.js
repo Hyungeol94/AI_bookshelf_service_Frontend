@@ -16,7 +16,7 @@ export default async (searchvalue) => {
       },
     })
     .then((data) => {
-      return data.data.items;
+      return data?.data;
     })
     .catch((e) => console.log(e));
   return bookdata;

@@ -31,7 +31,7 @@ import "assets/demo/demo.css";
 // ourpage
 import Home from "./routes/Home";
 import First from "./routes/First";
-import UserBookShelf from "./routes/UserBookShelf";
+import UserBookShelf from "./pages/UserBookShelf";
 // import Search from "./pages/Search";
 // import "./styles/App.css";
 // import { BrowserRouter, Route, Routes } from "react-router-dom";
@@ -44,10 +44,10 @@ import SignUp from "./pages/Signup";
 import User from "./pages/ProfileEdit";
 import Stats from "./components/UserStatistics";
 
-import GetBookDetail from "./components/GetBookDetail"
+import GetBookDetail from "./components/GetBookDetail";
 import IndexNavbar from "./components/Navbars/IndexNavbar";
-import FindPw from "./pages/Findpw"
-import Findid from "./pages/Findid"
+import FindPw from "./pages/Findpw";
+import Findid from "./pages/Findid";
 
 /** Header를 강제적으로 가지는 페이지를 위해 감싸주는 함수형 컴포넌트 */
 const HeaderWrapper = () => (
@@ -61,23 +61,19 @@ export default () => {
   return (
     <BrowserRouter>
       <Routes>
+        <Route
+          path="/blk-design-system-react"
+          element={<Navigate to="/" replace />}
+        />
         <Route path="/" element={<HeaderWrapper />}>
           <Route path="main" element={auth(Home, true)} />
-          <Route path="bookshelf" element={<UserBookShelf />} />
+          <Route path="bookshelf" element={auth(UserBookShelf, true)} />
           <Route path="login" element={auth(Login, false)} />
           <Route path="" element={auth(First, false)} />
           <Route path="signup" element={<SignUp />} />
           <Route path="search" element={<Searchpage />} />
           <Route path="profile" element={<User />} />
         </Route>
-        {/* our page */}
-        {/* <Route path="/" element={<Home />} /> */}
-        {/* <Route path="/search" element={<Search />} /> */}
-        {/* <Route path="/login" element={<Login/>} /> */}
-        {/* <Route
-          path="/blk-design-system-react"
-          element={<Navigate to="/" replace />}
-        /> */}
         <Route path="/upload" element={<Upload />} />
         <Route path="/result" element={<Resultpage />} />
         {/* <Route path="/detail" element={<Detail />} /> */}

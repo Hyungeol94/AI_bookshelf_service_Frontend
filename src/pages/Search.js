@@ -1,17 +1,21 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable import/no-anonymous-default-export */
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../styles/Home.css";
 import { Select, MenuItem } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import BookList from "../components/BookList";
 import bookinfo_api from "../services/bookinfo_api";
-import sampleBookImg from "../assets/img/sample_book.png";
+// import sampleBookImg from "../assets/img/sample_book.png";
 // import sample from "../assets/sample_book.json";
 
 export default (props) => {
+  const location = useLocation();
+  console.log(location.state.value);
+
   const [data, setData] = useState(props?.data || null);
-  const [searchValue, setSearchValue] = useState(props?.searchValue || null);
+  const [total, setTotal] = useState(props?.total || null);
+  const [searchValue, setSearchValue] = useState(location.state.value);
   const [pageSize, setPageSize] = useState(10);
   const [isloading, setIsLoading] = useState(false);
 
@@ -25,7 +29,11 @@ export default (props) => {
 
   const onSearch = async () => {
     setIsLoading(true);
-    setData(await bookinfo_api(searchValue));
+    await bookinfo_api(searchValue).then((data) => {
+      // console.log(data);
+      setData(data?.items);
+      setTotal(data?.total);
+    });
     setIsLoading(false);
     // console.log("data", data[0].elements[0].elements[0].cdata);
   };
@@ -36,65 +44,83 @@ export default (props) => {
     }
   };
 
+  useEffect(() => {
+    setSearchValue(location.state.value);
+    console.log(111, searchValue);
+  }, [location]);
+
+  useEffect(() => {
+    onSearch(searchValue);
+    console.log(222, searchValue);
+  }, [searchValue]);
+
   let num = 1;
 
   return (
-    <div id="search">
-      <h1>검색창 이다.</h1>
-      <Link to="/bookshelf">
-        <button>나의 서재</button>
-      </Link>
-      <Select
-        labelId="demo-simple-select-label"
-        id="demo-simple-select"
-        value={pageSize}
-        label="페이지수"
-        style={{ height: "2em" }}
-        onChange={onChangePageSize}
-      >
-        <MenuItem value={10}>10</MenuItem>
-        <MenuItem value={20}>20</MenuItem>
-        <MenuItem value={30}>30</MenuItem>
-      </Select>
+    <div
+      id="search"
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        width: "100%",
+        marginTop: "5em",
+      }}
+    >
       <div>
-        <input
-          id="search-item"
-          onChange={onChange}
-          onKeyDown={handleOnKeyPress}
-        ></input>
-        <button
-          id="search-btn"
-          onClick={async () => await onSearch(searchValue)}
+        {/* <Link to="/bookshelf">
+          <button>나의 서재</button>
+        </Link>
+        <Select
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          value={pageSize}
+          label="페이지수"
+          style={{ height: "2em" }}
+          onChange={onChangePageSize}
         >
-          검색
-        </button>
+          <MenuItem value={10}>10</MenuItem>
+          <MenuItem value={20}>20</MenuItem>
+          <MenuItem value={30}>30</MenuItem>
+        </Select>
+        <div>
+          <input
+            id="search-item"
+            onChange={onChange}
+            onKeyDown={handleOnKeyPress}
+            onFocus={(e) => e.target.select()}
+          ></input>
+          <button id="search-btn" onClick={onSearch}>
+            검색
+          </button>
+        </div> */}
+        {isloading ? (
+          <h3>로딩중..</h3>
+        ) : total > 0 ? (
+          <div>
+            {data.map((book) => {
+              return (
+                <BookList
+                  key={num++}
+                  title={book?.title}
+                  author={book?.author}
+                  description={book?.description}
+                  discount={book?.discount}
+                  isbn={book?.isbn}
+                  link={book?.link}
+                  pubdate={book?.pubdate}
+                  publisher={book?.publisher}
+                  image={book?.image}
+                />
+              );
+            })}
+          </div>
+        ) : (
+          <div style={{ marginTop: "2em" }}>
+            <h2>검색결과가 없습니다</h2>
+          </div>
+        )}
       </div>
-      {isloading ? (
-        <h3>로딩중..</h3>
-      ) : data ? (
-        <div>
-          {data.map((book) => {
-            return (
-              <BookList
-                key={num++}
-                title={book?.title}
-                author={book?.author}
-                description={book?.description}
-                discount={book?.discount}
-                isbn={book?.isbn}
-                link={book?.link}
-                pubdate={book?.pubdate}
-                publisher={book?.publisher}
-                image={book?.image}
-              />
-            );
-          })}
-        </div>
-      ) : (
-        <div>
-          <h3>검색결과가 없습니다</h3>
-        </div>
-      )}
     </div>
   );
 };

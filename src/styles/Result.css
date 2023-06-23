@@ -1,8 +1,9 @@
 .resultCard{
-    background-color: gray !important;
+    /* background-color: gray !important; */
     padding: 10px !important;
-    width: 350px !important;
-    height: 500px;
+    /* width: 435px !important; */
+    width: 33%;
+    height: 700px !important;
 }
 
 .bookRow:hover{
@@ -11,45 +12,55 @@
     cursor: pointer;
 }
 
+.bookRow{ 
+    width : 100%;    
+}
+
 .bookRowTable{
     display: block;
-    width : 300px;
-    max-height: 365px;
+    padding : 10px;    
+    width : 100%;
+    height: 80% !important;    
     overflow-y: auto;    
 }
 
 
 .bookTableView{
     background-color: white;
-    padding : 10px;
-    display: block;
-    height:450px;
+    padding : 10px;        
+    height : 100%;
+    display: block;    
 }
 
 
 .bookDetailBlock{ 
     background-color: white;
-    padding : 10px;
-    width: 300px;
-    max-height : 330px;
+    padding : 10px;    
+    height : 80%;
     overflow-y: auto;    
 }
 
 .bookDetailView{
     background-color: white;
     padding : 10px;
-    display: block;
-    height:450px;
+    height: 100%;
+    display: block;    
 }
 
 .bookSearchResultTable{ 
-    max-height: 300px;
+    /* max-height: 300px; */
+    max-height: 70%;
     overflow-y: auto;
 }
 
 .bookSearchView{
     background-color: white;
-    padding : 10px;
-    width: 300px;
-    height:450px;
+    padding : 10px;    
+    height : 100%;    
+}
+
+.viewHeader{
+    color: black;
+    padding: 10px;
+    margin-bottom: 0px;
 }

@@ -1,6 +1,5 @@
 import React from "react";
 
-
 const BookSearchResultRow = (props) => { 
     const {book_info, setSelectedBookInfo} = props
 

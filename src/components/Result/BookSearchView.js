@@ -19,7 +19,7 @@ const BookSearchView = (props) => {
    
     return (
       <div className= "bookSearchView">
-        <h3 style={{color:'black'}}>도서 검색 결과</h3>      
+        <h3 className="viewHeader">도서 검색 결과</h3>      
         {/* <div>검색창 넣기</div>  */}        
         <BookSearchBar
           inputRef = {inputRef}

@@ -6,7 +6,7 @@ import "../../styles/Result.css";
 const BookDetailView = ({book_info}) => {
     return (
       <div className="bookDetailView">
-        <h3 style={{color:'black'}}>상세 정보</h3>
+        <h3 className="viewHeader">상세 정보</h3>
         <BookDetail
           book_info = {book_info}
         />        

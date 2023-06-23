@@ -8,8 +8,8 @@ const BookRow = (props) => {
       setSelectedBookInfo(book_info)
     }
     return (
-      <tr className = "bookRow" onClick={handleClick}>
-        <td >{book_info.booktitle}</td>        
+      <tr onClick={handleClick}>
+        <td className = "bookRow">{book_info.booktitle}</td>                
       </tr>
     );
   }

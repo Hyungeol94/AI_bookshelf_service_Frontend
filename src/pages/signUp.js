@@ -405,9 +405,11 @@ function Signup() {
             회원가입
           </Button>
         </div>
+        </div>
       </form>
+      
     </div>
   );
-}
+};
 
 export default Signup;

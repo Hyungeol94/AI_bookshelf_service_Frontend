@@ -40,6 +40,8 @@ export default function Index() {
               alt="..."
               className="path"
               src={require("assets/img/path1.png")}
+              style={{"pointer-events": "none",
+                      "z-index": 0}}
             />
 
             <Container>

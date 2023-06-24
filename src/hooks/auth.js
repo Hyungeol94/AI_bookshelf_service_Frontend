@@ -30,7 +30,7 @@ export default function auth(
         setReady(true);
         console.log(data);
       } catch (e) {
-        const { success } = e?.response?.data;
+        const { success } = e?.response?.data || false;
         // 인증이 되지 않은 사람들
         if (success) {
           dispatch(userAuthorizationError(e?.response?.data));

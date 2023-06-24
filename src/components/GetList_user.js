@@ -18,12 +18,12 @@ export default function getlist(books_info, bookId) {
   let user_book = [];
   books_info.forEach((elm) => {
     if (bookId.includes(elm.id)) {
-      console.log(bookId, elm.id);
+      // console.log(bookId, elm.id);
       user_book.push(elm);
     }
   });
 
-  console.log(user_book);
+  // console.log(user_book);
   return [
     user_book.length,
 

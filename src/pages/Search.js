@@ -11,20 +11,20 @@ import bookinfo_api from "../services/bookinfo_api";
 
 export default (props) => {
   const location = useLocation();
-  console.log(location.state.value);
+  // console.log(location?.state?.value);
 
   const [data, setData] = useState(props?.data || null);
   const [total, setTotal] = useState(props?.total || null);
-  const [searchValue, setSearchValue] = useState(location.state.value);
+  const [searchValue, setSearchValue] = useState(location?.state?.value);
   const [pageSize, setPageSize] = useState(10);
   const [isloading, setIsLoading] = useState(false);
 
   const onChange = (e) => {
-    setSearchValue(e.target.value);
+    setSearchValue(e?.target?.value);
   };
 
   const onChangePageSize = (e) => {
-    setPageSize(e.target.value);
+    setPageSize(e?.target?.value);
   };
 
   const onSearch = async () => {
@@ -45,16 +45,14 @@ export default (props) => {
   };
 
   useEffect(() => {
-    setSearchValue(location.state.value);
-    console.log(111, searchValue);
+    setSearchValue(location?.state?.value);
+    // console.log(111, searchValue);
   }, [location]);
 
   useEffect(() => {
     onSearch(searchValue);
-    console.log(222, searchValue);
+    // console.log(222, searchValue);
   }, [searchValue]);
-
-  let num = 1;
 
   return (
     <div
@@ -101,7 +99,7 @@ export default (props) => {
             {data.map((book) => {
               return (
                 <BookList
-                  key={num++}
+                  key={book?.isbn}
                   title={book?.title}
                   author={book?.author}
                   description={book?.description}

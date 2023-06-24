@@ -38,7 +38,7 @@ const UserBookShelf = () => {
                 justifyContent: "center",
                 alignItems: "center",
                 width: "100%",
-                font: "white",
+                // font: "white",
               }}
             >
               <div>

@@ -490,6 +490,6 @@ function Signup() {
       </FormControl>
     </div>
   );
-}
+};
 
 export default Signup;

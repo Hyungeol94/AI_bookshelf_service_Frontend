@@ -12,7 +12,7 @@ const BookSearchResultTable = (props) => {
             <h3 style={{color: 'black'}}>로딩중..</h3>
           ) : (typeof data !== 'undefined' && data && data.length!=0) ? (
             <div className = "bookSearchResultTable">              
-              {console.log(data)}            
+              {console.log("loading done")}              
               {data.map((book) => {
                 return (
                   <BookSearchResultRow

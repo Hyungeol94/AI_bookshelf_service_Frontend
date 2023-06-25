@@ -15,10 +15,11 @@ function Card({ children }) {
 
 
 const Result = () => {
-  const [selectedBookInfo, setSelectedBookInfo] = useState(sample[0]);
+  const [bookList, setBookList] = useState(sample)
+  const [selectedBookInfo, setSelectedBookInfo] = useState(bookList[0]);
   //const [selectedBookRowInfo, setSelectedBookRowInfo] = useState(sample[0]);
   const [data, setData] = useState(null);
-  const [searchValue, setSearchValue] = useState(sample[0].booktitle);
+  const [searchValue, setSearchValue] = useState(bookList[0].booktitle);
   const [isLoading, setIsLoading] = useState(false);
   const [pageSize, setPageSize] = useState(10);
 
@@ -45,12 +46,21 @@ const Result = () => {
     onSearch()
   }, [searchValue]);
 
+  const addToBookList = (selectedBookInfo) => {    
+    const updatedBookList = bookList.concat(selectedBookInfo)
+    setBookList(updatedBookList)
+  };
+
+  useEffect(() => {
+    console.log("update bookList")
+  }, [bookList])
+
 
   return (
     <div style={{ display: "flex" }}>
       <Card>
         <BookTableView
-          books_info={sample}
+          books_info={bookList}
           setSelectedBookInfo={setSelectedBookInfo}
           // setSelectedBookRowInfo = {setSelectedBookRowInfo}
           searchValue = {searchValue}  
@@ -61,7 +71,8 @@ const Result = () => {
       </Card>
       <Card>
         <BookDetailView
-          book_info={selectedBookInfo}
+          book_info = {selectedBookInfo}
+          addToBookList = {addToBookList}
           // 클릭되어 있는 텍스트 정보를 제공하기
         />
       </Card>

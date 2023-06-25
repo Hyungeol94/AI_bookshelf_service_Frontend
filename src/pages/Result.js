@@ -46,14 +46,20 @@ const Result = () => {
     onSearch()
   }, [searchValue]);
 
-  const addToBookList = (selectedBookInfo) => {    
-    const updatedBookList = bookList.concat(selectedBookInfo)
+  const addToBookList = (book_info) => {    
+    const updatedBookList = bookList.concat(book_info)
+    setBookList(updatedBookList)
+  };
+
+  const deleteFromBookList = (book_info) => {    
+    const updatedBookList = bookList.filter(item => item !== book_info)
     setBookList(updatedBookList)
   };
 
   useEffect(() => {
     console.log("update bookList")
   }, [bookList])
+  
 
 
   return (
@@ -62,6 +68,7 @@ const Result = () => {
         <BookTableView
           books_info={bookList}
           setSelectedBookInfo={setSelectedBookInfo}
+          deleteFromBookList = {deleteFromBookList}
           // setSelectedBookRowInfo = {setSelectedBookRowInfo}
           searchValue = {searchValue}  
           setSearchValue={setSearchValue}

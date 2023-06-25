@@ -3,7 +3,7 @@ import BookTable from './BookTable'
 import "../../styles/Result.css";
 
 const BookTableView = (props) => {
-    const {books_info, setSelectedBookInfo, searchValue, setSearchValue, onSearch} = props  
+    const {books_info, setSelectedBookInfo, deleteFromBookList, searchValue, setSearchValue, onSearch} = props  
 
     return (
       <div className = "bookTableView">
@@ -11,6 +11,7 @@ const BookTableView = (props) => {
         <BookTable
           books_info = {books_info}
           setSelectedBookInfo = {setSelectedBookInfo}
+          deleteFromBookList = {deleteFromBookList}
           searchValue = {searchValue}
           setSearchValue = {setSearchValue}
           onSearch = {onSearch}          

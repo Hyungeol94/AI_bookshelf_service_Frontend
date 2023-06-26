@@ -18,19 +18,19 @@
 }
 
 .buy-link:hover {
-    background-color: #33aeff;
+    background-color: #00E1BE;
   }
   
 .buy-link:active {
-    background-color: #3819c2;
+    background-color: #00E1BE;
   }
 
 .buy-link {
-    background-color: rgb(47, 78, 254);
+    background-color: #2F3E66;
     border-color: transparent;
     color: aliceblue;
     margin-right: 5px;
-    border-radius: 10%;
+    /* border-radius: %; */
     
 }
 

@@ -35,8 +35,8 @@ export default function Footer() {
       <Container>
         <Row>
           <Col md="3">
-            <h3 className="title">KT AIVLE School</h3>
-            <h4 className="title">5반 17 비냉시켜조</h4>
+            <h1><strong> KT AIVLE School </strong></h1>
+            <h2><strong> 5반 17 비냉시켜조 </strong></h2>
             <h2 className="title"></h2>
           </Col>
           <Col md="3">
@@ -88,7 +88,7 @@ export default function Footer() {
             </Nav>
           </Col>
           <Col md="3">
-            <h3 className="title">Follow us:</h3>
+            <h1><strong> Follow us: </strong></h1>
             <div className="btn-wrapper profile">
               <Button
                 className="btn-icon btn-neutral btn-round btn-simple"

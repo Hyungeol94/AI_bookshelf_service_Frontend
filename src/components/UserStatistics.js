@@ -48,10 +48,13 @@ const StatShow = () => {
     setModalIsOpen(false);
   };
 
-  useEffect(() => {
-    // JSON 파일 데이터를 불러옵니다.
+   useEffect(() => {
     setBookStatsData(stat);
   }, []);
+
+  if (!bookStatsData) {
+    return <div>Loading...</div>;
+  };
 
   return (
     <div>

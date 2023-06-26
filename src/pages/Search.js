@@ -2,8 +2,9 @@
 /* eslint-disable import/no-anonymous-default-export */
 import React, { useState, useEffect } from "react";
 import "../styles/Home.css";
-import { Select, MenuItem } from "@mui/material";
-import { Link, useLocation } from "react-router-dom";
+// import { Select, MenuItem } from "@mui/material";
+import * as api from "../services/api";
+import { useLocation } from "react-router-dom";
 import BookList from "../components/BookList";
 import bookinfo_api from "../services/bookinfo_api";
 // import sampleBookImg from "../assets/img/sample_book.png";
@@ -15,21 +16,30 @@ export default (props) => {
 
   const [data, setData] = useState(props?.data || null);
   const [total, setTotal] = useState(props?.total || null);
+  const [list, setList] = useState([]);
   const [searchValue, setSearchValue] = useState(location?.state?.value);
-  const [pageSize, setPageSize] = useState(10);
   const [isloading, setIsLoading] = useState(false);
+  // const [pageSize, setPageSize] = useState(10);
 
-  const onChange = (e) => {
-    setSearchValue(e?.target?.value);
-  };
+  // const onChange = (e) => {
+  //   setSearchValue(e?.target?.value);
+  // };
 
-  const onChangePageSize = (e) => {
-    setPageSize(e?.target?.value);
-  };
+  // const onChangePageSize = (e) => {
+  //   setPageSize(e?.target?.value);
+  // };
 
   const onSearch = async () => {
-    setIsLoading(true);
-    await bookinfo_api(searchValue).then((data) => {
+    await bookinfo_api(searchValue).then(async (data) => {
+      setIsLoading(true);
+      await api
+        .likelist()
+        .then((data) => {
+          const booklist = data?.data?.info?.list;
+          setList(booklist);
+          console.log(data?.data?.info?.list);
+        })
+        .catch((e) => console.log(e));
       // console.log(data);
       setData(data?.items);
       setTotal(data?.total);
@@ -38,11 +48,11 @@ export default (props) => {
     // console.log("data", data[0].elements[0].elements[0].cdata);
   };
 
-  const handleOnKeyPress = (e) => {
-    if (e.key === "Enter") {
-      onSearch(); // Enter 입력이 되면 클릭 이벤트 실행
-    }
-  };
+  // const handleOnKeyPress = (e) => {
+  //   if (e.key === "Enter") {
+  //     onSearch(); // Enter 입력이 되면 클릭 이벤트 실행
+  //   }
+  // };
 
   useEffect(() => {
     setSearchValue(location?.state?.value);
@@ -100,6 +110,7 @@ export default (props) => {
               return (
                 <BookList
                   key={book?.isbn}
+                  list={list}
                   title={book?.title}
                   author={book?.author}
                   description={book?.description}

@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 import "../styles/BookList.css";
 import { Link } from "react-router-dom";
-import { styled } from "@mui/material/styles";
-// import { Button } from "reactstrap";
+import * as api from "../services/api";
 import { Button, Box, Modal, IconButton } from "@mui/material";
 import ClampLines from "react-clamp-lines";
 import { lightBlue } from "@mui/material/colors";
-import Icon from "@mui/material/Icon";
 
 import { Favorite, FavoriteBorder, AddShoppingCart } from "@mui/icons-material";
 
@@ -33,16 +31,37 @@ const styleImage = {
 };
 // eslint-disable-next-line import/no-anonymous-default-export
 export default (props) => {
+  // console.log(props?.list.includes(props?.isbn));
   const [open, setOpen] = useState(false);
   const [openImage, setOpenImage] = useState(false);
-  const [heart, setHeart] = useState(false);
+  const [heart, setHeart] = useState(
+    props?.list.includes(props?.isbn) || false
+  );
   const handleClose = () => setOpen(false);
   const handleOpen = () => setOpen(true);
   const handleCloseImage = () => setOpenImage(false);
   const handleOpenImage = () => setOpenImage(true);
-  const handleHeart = () => {
-    if (heart) setHeart(false);
-    else setHeart(true);
+
+  const request = {
+    title: props?.title,
+    author: props?.author,
+    description: props?.description,
+    discount: props?.discount,
+    isbn: props?.isbn,
+    link: props?.link,
+    pubdate: props?.pubdate,
+    publisher: props?.publisher,
+    image: props?.image,
+  };
+
+  const handleHeart = async () => {
+    if (heart) {
+      setHeart(false);
+      await api.deletelike(request);
+    } else {
+      setHeart(true);
+      await api.addlike(request);
+    }
   };
   const handleCart = () => {
     // eslint-disable-next-line no-restricted-globals

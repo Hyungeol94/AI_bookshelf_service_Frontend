@@ -71,7 +71,7 @@ export default () => {
           <Route path="login" element={auth(Login, false)} />
           <Route path="" element={auth(First, false)} />
           <Route path="signup" element={<SignUp />} />
-          <Route path="search" element={<Searchpage />} />
+          <Route path="search" element={auth(Searchpage, true)} />
           <Route path="profile" element={<User />} />
         </Route>
         <Route path="/upload" element={<Upload />} />

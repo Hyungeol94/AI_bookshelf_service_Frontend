@@ -42,9 +42,6 @@ import Resultpage from "./routes/Result";
 import Searchpage from "./routes/Search";
 import SignUp from "./pages/Signup";
 import User from "./pages/ProfileEdit";
-import Stats from "./components/UserStatistics";
-
-import GetBookDetail from "./components/GetBookDetail"
 import IndexNavbar from "./components/Navbars/IndexNavbar";
 import FindPw from "./pages/Findpw"
 import Findid from "./pages/Findid"
@@ -86,7 +83,6 @@ export default () => {
         <Route path="/search" element={<Searchpage />} />
         <Route path="/EditProfile" element={<User />} />
         <Route path="/profile" element={<User />} />
-        <Route path="/stats" element={<Stats />} />
         {/* <Route path="/bookshelf/detail/:id" element={<GetBookDetail />} /> */}
         <Route path="/inquiry/pw" element={<FindPw />} />
         <Route path="/inquiry/id" element={<Findid />} />

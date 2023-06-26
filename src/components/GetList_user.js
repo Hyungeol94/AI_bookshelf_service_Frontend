@@ -79,4 +79,4 @@ export default function getlist(books_info, bookId) {
       ))}
     </div>,
   ];
-}
+};

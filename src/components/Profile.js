@@ -4,6 +4,7 @@ import {Button} from "reactstrap"
 
 // our component
 import sample_user from "../assets/sample_user.json";
+import Statshow from "./UserStatistics"
 
 const Userprofile = () => {
   console.log(sample_user);
@@ -28,7 +29,8 @@ const Userprofile = () => {
           </Link> 
           <Link to="/Upload">
               <Button style={{width:'200px',display: 'block'}}>서재에 책 추가하기</Button>
-          </Link> 
+          </Link>
+           <Statshow/>
         </div>
       </div>
       {/* <div className='user_book'>

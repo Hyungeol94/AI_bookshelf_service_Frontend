@@ -46,13 +46,22 @@ const Result = () => {
     onSearch()
   }, [searchValue]);
 
-  const addToBookList = (book_info) => {    
-    const updatedBookList = bookList.concat(book_info)
-    setBookList(updatedBookList)
+  const addToBookList = (book_info) => {
+    const newBook_info = {...book_info}    
+    if (newBook_info.id !== undefined){      
+      newBook_info.id = parseInt(bookList[bookList.length-1].id)+1
+    }
+    else {
+      Object.defineProperty(newBook_info, 'id', {
+        value: (parseInt(bookList[bookList.length-1].id)+1)
+      })}
+    const updatedBookList = bookList.concat(newBook_info)
+    setBookList(updatedBookList)    
+    console.log(bookList)
   };
 
   const deleteFromBookList = (book_info) => {    
-    const updatedBookList = bookList.filter(item => item !== book_info)
+    const updatedBookList = bookList.filter(item => item.id !== book_info.id)
     setBookList(updatedBookList)
   };
 

@@ -28,7 +28,7 @@ const Book = (props) => { // Book 표시 함수
         style={{ width: "80px", height: "80px"}}
         onClick={ openModal }
       />
-      <label onClick={ openModal }> {props.booktitle} </label>
+      <label onClick={ openModal } style={{ width: "80px",}}> {props.booktitle} </label>
       <div>
         <Modal
         isOpen={modalIsOpen}

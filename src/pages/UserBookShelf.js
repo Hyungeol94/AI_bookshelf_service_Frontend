@@ -18,7 +18,6 @@ import User_profile from "../components/Profile";
 import Book_view from "../components/Bookview"
 import { useNavigate } from "react-router-dom";
 
-
 const UserBookShelf = () => {
 
   return (
@@ -47,6 +46,7 @@ const UserBookShelf = () => {
             </div>
         </div>
         </div>
+        <Footer/>
       </div>
       </div>
     </>

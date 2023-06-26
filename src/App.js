@@ -48,6 +48,8 @@ import GetBookDetail from "./components/GetBookDetail"
 import IndexNavbar from "./components/Navbars/IndexNavbar";
 import FindPw from "./pages/Findpw"
 import Findid from "./pages/Findid"
+import AboutUs from "./pages/About"
+
 
 /** Header를 강제적으로 가지는 페이지를 위해 감싸주는 함수형 컴포넌트 */
 const HeaderWrapper = () => (
@@ -88,6 +90,7 @@ export default () => {
         {/* <Route path="/bookshelf/detail/:id" element={<GetBookDetail />} /> */}
         <Route path="/inquiry/pw" element={<FindPw />} />
         <Route path="/inquiry/id" element={<Findid />} />
+        <Route path="/about-us" element={<AboutUs />} />
 
         {/* <Route path="/detail/:id" element={<Detail Detail={Detail} />} /> */}
       </Routes>

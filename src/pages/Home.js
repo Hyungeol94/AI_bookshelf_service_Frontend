@@ -158,7 +158,7 @@ export default function Index() {
                 paddingLeft: '7vw',
                 paddingRight: '7vw'
               }}>
-              <h3 style={{textAlign: 'center', fontWeight:'bold'}}> {user_info.profile.user_nickname}을 위한 추천 도서</h3>
+              <h3 style={{textAlign: 'center', fontWeight:'bold'}}> {user_info.profile.user_nickname}님을 위한 추천 도서</h3>
 
               <div className="productBodyScrollable">
                   <div

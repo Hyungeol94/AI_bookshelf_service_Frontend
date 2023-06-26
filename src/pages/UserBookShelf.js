@@ -1,4 +1,5 @@
 import React from "react";
+
 // reactstrap components
 import { Container, Row, Col } from "reactstrap";
 
@@ -34,11 +35,11 @@ const UserBookShelf = () => {
         alignItems: "center",
         width: "100%",
         height: "100vh",
-        marginTop: "18em",
+        marginTop: "4em",
         font: "white",
       }}>
         <div>
-            <h1 className="title">{user_info.profile.user_nickname} 님의 Mybrary 📚</h1>
+            <h2 className="title">{user_info.profile.user_nickname} 님의 Mybrary 📚</h2>
 
             <User_profile/>
             <Book_view style={{'marginTop':'30px'}}/>

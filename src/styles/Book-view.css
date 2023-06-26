@@ -8,3 +8,13 @@
     background-color: #1f2251 !important;
     border-radius: 30px 30px 30px 30px !important;
 }
+
+.book-view-search{
+    background-color: rgb(250, 235, 215) !important;
+    color: black !important;
+    font-family: "Poppins", sans-serif;
+}
+
+.card-body{
+    padding: 0px 40px 100px 40px;
+}

@@ -1,0 +1,147 @@
+[ {
+    "id": 1,
+    "user_name": "최서연",
+    "user_birth": "2000-01-01",
+    "user_email": "sychoi@naver.com",
+    "user_sex": 1,
+    "user_phone": "010-1234-5678",
+    "profile" :
+      {
+        "user_nickname": "책벌레",
+        "image": "https://user-images.githubusercontent.com/71605276/246986335-7ba7968b-679d-49fb-9997-d44031bc4cf3.png"   
+      },
+    "user_bookshelf": 
+      {
+        "bookshelf_image" : "../src/assets/img/apple-icon copy.png",
+        "book_id" : [1, 2, 3, 4, 5, 6]
+      },
+    "user_like_book": [1, 2, 3],
+    "user_cart": [7, 8, 9, 10],
+    "user_interest": [7, 8, 9, 10, 11, 12, 13, 16]
+},
+{
+  "id": 2,
+  "user_name": "김영빈",
+  "user_birth": "1999-02-02",
+  "user_email": "sychoi@naver.com",
+  "user_sex": 1,
+  "user_phone": "010-1234-5678",
+  "profile" :
+    {
+      "user_nickname": "책벌레",
+      "image": "https://user-images.githubusercontent.com/71605276/246986335-7ba7968b-679d-49fb-9997-d44031bc4cf3.png"   
+    },
+  "user_bookshelf": 
+    {
+      "bookshelf_image" : "../src/assets/img/apple-icon copy.png",
+      "book_id" : [7, 8, 9, 10]
+    },
+  "user_like_book": [1, 2, 3, 5, 6],
+  "user_cart": [1, 2, 7, 8, 9, 10],
+  "user_interest": [11, 12, 13, 16]
+},
+{
+  "id": 3,
+  "user_name": "김덕주",
+  "user_birth": "2000-01-01",
+  "user_email": "sychoi@naver.com",
+  "user_sex": 1,
+  "user_phone": "010-1234-5678",
+  "profile" :
+    {
+      "user_nickname": "책벌레",
+      "image": "https://user-images.githubusercontent.com/71605276/246986335-7ba7968b-679d-49fb-9997-d44031bc4cf3.png"   
+    },
+  "user_bookshelf": 
+    {
+      "bookshelf_image" : "../src/assets/img/apple-icon copy.png",
+      "book_id" : [3, 4, 5, 6]
+    },
+  "user_like_book": [1, 2, 4, 5, 6],
+  "user_cart": [7, 8, 9, 10],
+  "user_interest": [10, 11, 12, 13, 16]
+},
+{
+  "id": 4,
+  "user_name": "신윤하",
+  "user_birth": "2002-02-21",
+  "user_email": "sychoi@naver.com",
+  "user_sex": 1,
+  "user_phone": "010-1234-5678",
+  "profile" :
+    {
+      "user_nickname": "책벌레",
+      "image": "https://user-images.githubusercontent.com/71605276/246986335-7ba7968b-679d-49fb-9997-d44031bc4cf3.png"   
+    },
+  "user_bookshelf": 
+    {
+      "bookshelf_image" : "../src/assets/img/apple-icon copy.png",
+      "book_id" : [3, 4, 5, 6]
+    },
+  "user_like_book": [2, 3, 8, 9, 10],
+  "user_cart": [7, 9, 10],
+  "user_interest": [7, 8, 13, 16]
+},
+{
+  "id": 5,
+  "user_name": "천승우",
+  "user_birth": "2004-04-30",
+  "user_email": "sychoi@naver.com",
+  "user_sex": 1,
+  "user_phone": "010-1234-5678",
+  "profile" :
+    {
+      "user_nickname": "책벌레",
+      "image": "https://user-images.githubusercontent.com/71605276/246986335-7ba7968b-679d-49fb-9997-d44031bc4cf3.png"   
+    },
+  "user_bookshelf": 
+    {
+      "bookshelf_image" : "../src/assets/img/apple-icon copy.png",
+      "book_id" : [4, 5, 6, 10, 11, 12]
+    },
+  "user_like_book": [1, 2, 3, 4, 5, 6],
+  "user_cart": [10, 11, 12, 13],
+  "user_interest": [9, 10, 11, 12, 13, 16]
+},
+{
+  "id": 6,
+  "user_name": "박재경",
+  "user_birth": "2008-07-29",
+  "user_email": "sychoi@naver.com",
+  "user_sex": 1,
+  "user_phone": "010-1234-5678",
+  "profile" :
+    {
+      "user_nickname": "책벌레",
+      "image": "https://user-images.githubusercontent.com/71605276/246986335-7ba7968b-679d-49fb-9997-d44031bc4cf3.png"   
+    },
+  "user_bookshelf": 
+    {
+      "bookshelf_image" : "../src/assets/img/apple-icon copy.png",
+      "book_id" : [1, 4, 5, 6]
+    },
+  "user_like_book": [1, 2, 3, 5, 6, 7],
+  "user_cart": [7, 8, 9, 10],
+  "user_interest": [7, 8, 9, 10, 11, 12, 13, 16]
+},
+{
+  "id": 7,
+  "user_name": "이현걸",
+  "user_birth": "2000-01-01",
+  "user_email": "sychoi@naver.com",
+  "user_sex": 1,
+  "user_phone": "010-1234-5678",
+  "profile" :
+    {
+      "user_nickname": "책벌레",
+      "image": "https://user-images.githubusercontent.com/71605276/246986335-7ba7968b-679d-49fb-9997-d44031bc4cf3.png"   
+    },
+  "user_bookshelf": 
+    {
+      "bookshelf_image" : "../src/assets/img/apple-icon copy.png",
+      "book_id" : [2, 3, 4, 5, 6]
+    },
+  "user_like_book": [2, 6, 7, 10, 12, 14, 16],
+  "user_cart": [10],
+  "user_interest": [11, 12, 13, 16]
+}]

@@ -1,0 +1,17 @@
+.book-container {
+    display: flex;
+    overflow: auto;
+    max-width: 100%;
+    flex-wrap: nowrap;
+  }
+  
+  .book-container > div {
+    margin-right: 10px;
+  }
+  
+  .book-image-home {
+    width: 130px;
+    height: 130px;
+    object-fit: contain;
+  }
+  

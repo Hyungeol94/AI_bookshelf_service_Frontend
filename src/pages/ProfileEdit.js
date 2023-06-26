@@ -2,7 +2,7 @@ import React, { useState, useRef, Avatar } from 'react';
 import user_info from "../assets/sample_user.json"
 
 // reactstrap components
-import { Container, Button } from "reactstrap";
+import { Button } from "reactstrap";
 
 // core components
 import IndexNavbar from "components/Navbars/IndexNavbar.js";
@@ -58,39 +58,86 @@ const UserEditPage = () => {
 
   return (
     <>
-        <IndexNavbar />
         <div className='wrapper'>
         <div className="main">
         {/* <div className="section section-basic" id="basic-elements"> */}
         <img alt="..." className="path" src={require("assets/img/path1.png")} />
 
         <div className="section section-basic" id="basic-elements">
-        <h2>회원정보 수정 페이지</h2>
-            <form onSubmit={handleSubmit}>
-                <div>
-                <label htmlFor="nickname">닉네임 변경</label>
-                <input type="text" id="nickname" value={nickname} onChange={handleNicknameChange} />
-                </div>
 
-                <div>
-                <label htmlFor="profile_img">프로필 이미지 변경</label>
-                <img 
-                    src={image}
-                    style={{ width: "150px", height: "150px", margin:'20px'}} 
-                    size={200} 
-                    onClick={()=>{fileInput.current.click()}}/>
-                <input 
-                    type='file' 
-                    style={{display:'none'}}
-                    accept='image/jpg,impge/png,image/jpeg' 
-                    name='profile_img'
-                    onChange={onChange}
-                    ref={fileInput}/>
+          <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            flexDirection : 'column',
+            marginTop: "4em",
+            width: "100%",
+          }}>
+            <div style={{
+              padding: "10px 0px 20px 0px"
+            }}>
+            <h2 style={{fontWeight: 'bold'}}>회원정보 수정하기</h2>
+            </div>
 
+            <form onSubmit={handleSubmit}
+            style={{justifyContent: "center"}}>
 
-                </div>
-                <button type="submit" onClick={()=>alert("저장되었습니다!")}>저장</button>
+                  <div>
+                    <div style={{paddingRight:'10px'}}>
+                      <label htmlFor="nickname" 
+                      style={{
+                        color: '#ffffff',
+                        fontWeight:'bold',
+                        fontSize:'1.5em'}}>닉네임</label>
+                    </div>
+                  <input type="text" id="nickname" value={nickname} onChange={handleNicknameChange}
+                  style={{
+                    height:'40px',
+                    width:'250px'}} />
+                  </div>
+
+                  <div style={{marginTop:'8vh'}}>
+                    <div> 
+                      <label htmlFor="profile_img"
+                        style={{
+                          color: '#ffffff',
+                          fontWeight:'bold',
+                          fontSize:'1.5em'}}>프로필 이미지 변경</label>
+                    </div>
+                  <img 
+                      src={image}
+                      style={{ width: "200px", height: "200px", margin:'10px'}} 
+                      size={200} 
+                      onClick={()=>{fileInput.current.click()}}/>
+                  <input 
+                      type='file' 
+                      style={{display:'none'}}
+                      accept='image/jpg,impge/png,image/jpeg' 
+                      name='profile_img'
+                      onChange={onChange}
+                      ref={fileInput}/>
+                  </div>
+                  
+                  <div style={{
+                    paddingTop: '40px',
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    flexDirection : 'column',
+                  }}>
+                  <Button type="submit" onClick={()=>alert("저장되었습니다!")}
+                  style={{
+                    width:'20vw',
+                    height: '5vh',
+                    borderRadius: '10px 10px 10px 10px',
+                    fontWeight:'bold'
+                    }}> 저장 </Button>
+
+                  </div>
             </form>
+          </div>
+        
         </div>
 
         </div>

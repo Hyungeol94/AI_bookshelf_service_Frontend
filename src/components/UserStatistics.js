@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import { useSelector } from "react-redux";
 import stat from '../assets/sample_statistics.json';
 import { Button, Modal, ModalHeader, ModalBody  } from "reactstrap";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Pie } from 'react-chartjs-2';
+import * as api from "../services/api";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -36,18 +38,30 @@ export const data_chart = {
 
 const StatShow = (props) => {
 
-  const {
-    email,
-    name,
-    user_id,
-    nickname,
-    user_bookshelf,
-    user_like_book,
-    user_cart,
-    user_interest,
-    user_type,
-  } = props?.data;
-  console.log(props?.data);
+  const [likelist, setlikeList] = useState([]);
+  const { authData } = useSelector((state) => state.userReducer);
+
+  // console.log(authData);
+  const getlikebooklist = async () => {
+    console.log(111);
+    await api
+      .likebooklist()
+      .then((data) => {
+        const booklist = data.data.info.list;
+        setlikeList(booklist);
+        console.log(booklist);
+      })
+      .catch((e) => console.log(e));
+    // console.log("data", data[0].elements[0].elements[0].cdata);
+  };
+
+  console.log(likelist);
+
+  useEffect(() => {
+    console.log(222);
+    getlikebooklist();
+  }, []);
+
 
   const [bookStatsData, setBookStatsData] = useState(null);
   let [modalIsOpen, setModalIsOpen] = useState(false); // 모달 변수
@@ -96,8 +110,8 @@ const StatShow = (props) => {
         <div style={{margin: "15px"}}>
           <div className='subject'
             style={{marginTop:'20px', marginBottom:'30px'}}>
-            <h2 style={{color: "black", textAlign:'center', fontWeight:'bold', fontSize:'3em'}}>{nickname}님의 독서폴리오</h2>
-            <h4 style={{color: "black", textAlign:'center', fontWeight:'normal', }}>{nickname}님의 Mybrary를 바탕으로 어떤 책 취향이 있으신지 찾아봤어요!</h4>
+            <h2 style={{color: "black", textAlign:'center', fontWeight:'bold', fontSize:'3em'}}>{authData?.nickname || "undefined"}님의 독서폴리오</h2>
+            <h4 style={{color: "black", textAlign:'center', fontWeight:'normal', }}>{authData?.nickname || "undefined"}님의 Mybrary를 바탕으로 어떤 책 취향이 있으신지 찾아봤어요!</h4>
           </div>
           <div
             style={{
@@ -125,12 +139,12 @@ const StatShow = (props) => {
                     borderRadius: '20px 20px 20px 20px' }}>
                   <div style={{ paddingLeft: '3em', paddingTop: '2em', paddingBottom: '1em' }}>
                     <div>
-                      <h3 style={{ color: '#000000', fontWeight:'bold' }}>{nickname}님의 독서 취향</h3>
+                      <h3 style={{ color: '#000000', fontWeight:'bold' }}>{authData?.nickname || "undefined"}님의 독서 취향</h3>
                     </div>
                     <div>
-                      <h4 style={{ color: '#000000' }}>나의 독서 유형: 미래의 코난</h4>
-                      <h4 style={{ color: '#000000' }}>내가 좋아하는 장르: 탐정 소설</h4>
-                      <h4 style={{ color: '#000000' }}>내가 좋아하는 작가: 히가시노 게이고</h4>
+                      <h4 style={{ color: '#000000' }}>총 독서 권수: {likelist.length}권</h4>
+                      <h4 style={{ color: '#000000' }}>최애 카테고리: </h4>
+                      <h4 style={{ color: '#000000' }}>최애 작가: </h4>
                     </div>
                   </div>
                 </div>
@@ -142,12 +156,12 @@ const StatShow = (props) => {
                     borderRadius: '20px 20px 20px 20px' }}>
                   <div style={{ paddingLeft: '3em', paddingTop: '2em', paddingBottom: '1em' }}>
                     <div>
-                      <h3 style={{ color: '#000000', fontWeight:'bold' }}>{nickname}님의 독서 취향</h3>
+                      <h3 style={{ color: '#000000', fontWeight:'bold' }}>{authData?.nickname || "undefined"}님의 독서 기록</h3>
                     </div>
                     <div>
-                      <h4 style={{ color: '#000000' }}>나의 독서 유형: 미래의 코난</h4>
-                      <h4 style={{ color: '#000000' }}>내가 좋아하는 장르: 탐정 소설</h4>
-                      <h4 style={{ color: '#000000' }}>내가 좋아하는 작가: 히가시노 게이고</h4>
+                      <h4 style={{ color: '#000000' }}>평균 / 누적 페이지 수 : </h4>
+                      <h4 style={{ color: '#000000' }}>평균 / 누적 페이지 수 : </h4>
+                      <h4 style={{ color: '#000000' }}>평균 / 누적 도서 무게 : </h4>
                     </div>
                   </div>
                 </div>

@@ -74,6 +74,7 @@ export default function Bookview(props) {
                   })}
                   onClick={(e) => setIconsTabs(1)}
                   href="#pablo"
+                  style={{borderRadius:"30px"}}
                 >
                   <i className="tim-icons icon-align-left-2" />
                   전체보기
@@ -86,6 +87,7 @@ export default function Bookview(props) {
                   })}
                   onClick={(e) => setIconsTabs(2)}
                   href="#pablo"
+                  style={{borderRadius:"30px"}}
                 >
                   <i className="tim-icons icon-calendar-60" />
                   최근 추가 항목
@@ -98,6 +100,7 @@ export default function Bookview(props) {
                   })}
                   onClick={(e) => setIconsTabs(3)}
                   href="#pablo"
+                  style={{borderRadius:"30px"}}
                 >
                   <i className="tim-icons icon-heart-2" />
                   좋아하는 책
@@ -110,6 +113,7 @@ export default function Bookview(props) {
                   })}
                   onClick={(e) => setIconsTabs(4)}
                   href="#pablo"
+                  style={{borderRadius:"30px"}}
                 >
                   <i className="tim-icons icon-cart" />
                   찜해둔 책

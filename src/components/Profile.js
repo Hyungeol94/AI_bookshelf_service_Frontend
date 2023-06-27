@@ -78,7 +78,6 @@ const Userprofile = (props) => {
                 서재에 책 추가하기
               </Button>
             </Link>
-            <Statshow />
           </div>
         </div>
       </div>

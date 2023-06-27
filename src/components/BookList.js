@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 import * as api from "../services/api";
 import { Button, Box, Modal, IconButton } from "@mui/material";
 import ClampLines from "react-clamp-lines";
-import { lightBlue } from "@mui/material/colors";
+import { lightBlue, teal } from "@mui/material/colors";
 
-import { Favorite, FavoriteBorder, AddShoppingCart } from "@mui/icons-material";
+import { Favorite, FavoriteBorder, AddShoppingCart,ShoppingCart, LibraryAddOutlined, LibraryAddCheck} from "@mui/icons-material";
 
 const style = {
   position: "absolute",
@@ -29,12 +29,19 @@ const styleImage = {
   bgcolor: "#171941",
   boxShadow: 24,
 };
+
 // eslint-disable-next-line import/no-anonymous-default-export
 export default (props) => {
   // console.log(props?.list.includes(props?.isbn));
   const [open, setOpen] = useState(false);
   const [openImage, setOpenImage] = useState(false);
   const [heart, setHeart] = useState(
+    props?.list.includes(props?.isbn) || false
+  );
+  const [cart, setCart] = useState(
+    props?.list.includes(props?.isbn) || false
+  );
+  const [mybrary, setMybrary] = useState(
     props?.list.includes(props?.isbn) || false
   );
   const handleClose = () => setOpen(false);
@@ -64,10 +71,43 @@ export default (props) => {
     }
   };
   const handleCart = () => {
-    // eslint-disable-next-line no-restricted-globals
-    confirm("장바구니에 추가하시겠습니까?");
+    if (cart) {
+      // eslint-disable-next-line no-restricted-globals
+      var result_cart = confirm("장바구니에서 삭제하시겠습니까?");
+      if (result_cart === true) {
+        setCart(false);
+        // await api.deleteCart(request);
+      } 
+    } else {
+      // eslint-disable-next-line no-restricted-globals
+      var result_cart = confirm("장바구니에 추가하겠습니까?");
+      if (result_cart === true) {
+        setCart(true);
+        // await api.addCart(request);  
+      }
+    }
   };
   // console.log(props);
+  const handleMybrary = () => {
+    if (mybrary) {
+      // eslint-disable-next-line no-restricted-globals
+      var result_mybrary = confirm("내 서제에서 삭제하시겠습니까?");
+      if (result_mybrary === true) {
+        setMybrary(false);
+        // await api.deleteMybrary(request);
+      } 
+    } else {
+      // eslint-disable-next-line no-restricted-globals
+      var result_mybrary = confirm("내 서재에 추가하시겠습니까?");
+      if (result_mybrary === true) {
+        setMybrary(true);
+        // await api.addMybrary(request);  
+      }
+    }
+  };
+
+
+
   return (
     <div class="booklist">
       <div
@@ -208,14 +248,22 @@ export default (props) => {
                   style={{ width: "50px", height: "50px" }}
                   onClick={handleCart}
                 >
-                  <AddShoppingCart sx={{ color: lightBlue[500] }} />
+                  {cart ? <ShoppingCart sx={{ color: lightBlue[500] }} /> : <AddShoppingCart sx={{ color: lightBlue[500] }} />}
+                </IconButton>
+                <IconButton
+                  style={{ width: "50px", height: "50px" }}
+                  onClick={handleMybrary}
+                >
+
+                  {mybrary ? <LibraryAddCheck sx={{ color: teal[500] }} /> : <LibraryAddOutlined sx={{ color: teal[500] }} />}
+
                 </IconButton>
               </div>
               <Link to={props?.link}>
                 <Button
                   variant="outlined"
                   style={{
-                    width: "128px",
+                    width: "150px",
                   }}
                 >
                   {Number(props?.discount).toLocaleString("ko-KR")} 원
@@ -269,14 +317,22 @@ export default (props) => {
                   style={{ width: "50px", height: "50px" }}
                   onClick={handleCart}
                 >
-                  <AddShoppingCart sx={{ color: lightBlue[500] }} />
+                  {cart ? <ShoppingCart sx={{ color: lightBlue[500] }} /> : <AddShoppingCart sx={{ color: lightBlue[500] }} />}
+                </IconButton>
+                <IconButton
+                  style={{ width: "50px", height: "50px" }}
+                  onClick={handleMybrary}
+                >
+
+                  {mybrary ? <LibraryAddCheck sx={{ color: teal[500] }} /> : <LibraryAddOutlined sx={{ color: teal[500] }} />}
+
                 </IconButton>
               </div>
               <Link to={props?.link}>
                 <Button
                   variant="outlined"
                   style={{
-                    width: "128px",
+                    width: "150px",
                   }}
                 >
                   {Number(props?.discount).toLocaleString("ko-KR")} 원

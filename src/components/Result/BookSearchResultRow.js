@@ -1,8 +1,6 @@
 import React from "react";
-import "../../styles/BookList.css";
 
-
-export default function BookSearchResultRow(props) { 
+const BookSearchResultRow = (props) => { 
     const {book_info, setSelectedBookInfo} = props
 
     function handleClick(){
@@ -26,9 +24,11 @@ export default function BookSearchResultRow(props) {
         </div>
         <div>
           <h6 style={{color: "black"}}>{book_info.title}</h6>
-          <h6 style={{color: "black", fontWeight: "normal"}}>{book_info.author}</h6>
+          <h6 style={{color: "black", fontWeight: "normal"}}>{book_info.author}</h6>          
         </div>
       </div>
     </div>
   );
 };
+
+export default BookSearchResultRow;

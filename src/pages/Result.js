@@ -6,25 +6,23 @@ import sample from "../assets/sample_book.json";
 import bookinfo_api from "../services/bookinfo_api";
 import "../styles/Result.css";
 import BookSearchView from "../components/Result/BookSearchView.js"
-import BookTable from "../components/Result/BookTable.js"
-import BookDetail from "../components/Result/BookDetail.js"
+import BookTableView from "../components/Result/BookTableView.js"
+import BookDetailView from "../components/Result/BookDetailView.js"
 
 function Card({ children }) {
   return <div className="resultCard">{children}</div>;
 }
 
 
-
-export default function Result() {
-  const [selectedBookInfo, setSelectedBookInfo] = useState(sample[0]);
+const Result = () => {
+  const [bookList, setBookList] = useState(sample)
+  const [selectedBookInfo, setSelectedBookInfo] = useState(bookList[0]);
   //const [selectedBookRowInfo, setSelectedBookRowInfo] = useState(sample[0]);
   const [data, setData] = useState(null);
-  const [searchValue, setSearchValue] = useState(sample[0].booktitle);
+  const [searchValue, setSearchValue] = useState(bookList[0].booktitle);
   const [isLoading, setIsLoading] = useState(false);
   const [pageSize, setPageSize] = useState(10);
-  useEffect(() => {
-    if (data && typeof data !== "undefined") console.log("Updated data:", data);
-  }, [data]);
+
   const onSearch = async () => {
     setIsLoading(true);
     const fetchedData = await bookinfo_api(searchValue, pageSize);
@@ -38,15 +36,48 @@ export default function Result() {
     }
     setIsLoading(false);
   };
+
+  useEffect(() => {
+    if (data && typeof data !== "undefined") console.log("Updated data:", data);
+  }, [data]);
+
+    
   useEffect(() => {
     onSearch()
   }, [searchValue]);
+
+  const addToBookList = (book_info) => {
+    const newBook_info = {...book_info}    
+    if (newBook_info.id !== undefined){      
+      newBook_info.id = parseInt(bookList[bookList.length-1].id)+1
+    }
+    else {
+      Object.defineProperty(newBook_info, 'id', {
+        value: (parseInt(bookList[bookList.length-1].id)+1)
+      })}
+    const updatedBookList = bookList.concat(newBook_info)
+    setBookList(updatedBookList)    
+    console.log(bookList)
+  };
+
+  const deleteFromBookList = (book_info) => {    
+    const updatedBookList = bookList.filter(item => item.id !== book_info.id)
+    setBookList(updatedBookList)
+  };
+
+  useEffect(() => {
+    console.log("update bookList")
+  }, [bookList])
+  
+
+
   return (
     <div style={{ display: "flex" }}>
       <Card>
-        <BookTable
-          books_info={sample}
+        <BookTableView
+          books_info={bookList}
           setSelectedBookInfo={setSelectedBookInfo}
+          deleteFromBookList = {deleteFromBookList}
           // setSelectedBookRowInfo = {setSelectedBookRowInfo}
           searchValue = {searchValue}  
           setSearchValue={setSearchValue}
@@ -55,8 +86,9 @@ export default function Result() {
         ;
       </Card>
       <Card>
-        <BookDetail
-          book_info={selectedBookInfo}
+        <BookDetailView
+          book_info = {selectedBookInfo}
+          addToBookList = {addToBookList}
           // 클릭되어 있는 텍스트 정보를 제공하기
         />
       </Card>
@@ -79,3 +111,5 @@ export default function Result() {
     </div>
   );
 }
+
+export default Result;

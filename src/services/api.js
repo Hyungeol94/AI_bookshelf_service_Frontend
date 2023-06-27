@@ -10,5 +10,6 @@ export const signout = () => axios.get("/auth/signout");
 export const addlike = (data) => axios.post("/user/addlike", data);
 export const deletelike = (data) => axios.post("/user/deletelike", data);
 export const likelist = () => axios.post("/user/likelist");
+export const likebooklist = () => axios.post("/user/likebooklist");
 // export const logout = () => axios.delete("/api/user/logout");
 // export const signup = (data) => axios.post("/api/user/signup", data);

@@ -28,6 +28,7 @@ function Card({ children }) {
 }
 
 export default function Bookview(props) {
+  console.log(props.list);
   const [iconTabs, setIconsTabs] = React.useState(1);
   const [textTabs, setTextTabs] = React.useState(4);
   let [recentlyAdded_count, recentlyAdded_list] =
@@ -36,7 +37,7 @@ export default function Bookview(props) {
     sample,
     user_info.user_bookshelf.book_id
   );
-  let [likes_count, Likes_list] = getlist(sample, user_info.user_like_book);
+  // let [likes_count, Likes_list] = getlist(sample, user_info.user_like_book);
   let [saved_count, saved_list] = getlist(sample, user_info.user_cart);
 
   return (
@@ -45,8 +46,15 @@ export default function Bookview(props) {
         className=""
         style={{ width: "100%", padding: 0, ...props.style }}
       >
-        <CardHeader>
-          <Nav className="nav-tabs-info" role="tablist" tabs>
+        <CardHeader style={{ padding: 0, borderRadius: "10px" }}>
+          <Nav
+            className="nav-tabs-info"
+            role="tablist"
+            style={{
+              justifyContent: "space-around",
+            }}
+            tabs
+          >
             <NavItem>
               <NavLink
                 className={classnames({
@@ -98,7 +106,11 @@ export default function Bookview(props) {
           </Nav>
         </CardHeader>
         <CardBody>
-          <TabContent className="tab-space" activeTab={"link" + iconTabs}>
+          <TabContent
+            className="tab-space"
+            activeTab={"link" + iconTabs}
+            style={{ color: "black" }}
+          >
             <TabPane tabId="link1">
               <p>
                 <h3> 내 서재에 저장된 책 (총 {totalBook_count}개)</h3>
@@ -113,8 +125,40 @@ export default function Bookview(props) {
             </TabPane>
             <TabPane tabId="link3">
               <p>
-                <h3> 좋아하는 책 ({likes_count}개)</h3>
-                {Likes_list}
+                <h3> 좋아하는 책 ({props?.list.length}개)</h3>
+                <div
+                  style={{
+                    display: "flex",
+                    overflowX: "auto",
+                    flexDirection: "row-reverse",
+                    justifyContent: "flex-end",
+                  }}
+                >
+                  {props?.list.map((data) => (
+                    <div style={{ marginRight: "5px" }}>
+                      <div>
+                        <img
+                          src={data.image}
+                          alt={data.title}
+                          style={{ width: "80px", height: "105px" }}
+                        />
+                      </div>
+                      <p
+                        style={{
+                          display: "block",
+                          overflow: "hidden", // 을 사용해 영역을 감출 것
+                          textOverflow: "ellipsis", // 로 ... 을 만들기
+                          whiteSpace: "nowrap",
+                          width: "80px",
+                          marginTop: "3px",
+                          fontWeight: "bolder",
+                        }}
+                      >
+                        {data.title}
+                      </p>
+                    </div>
+                  ))}
+                </div>
               </p>
             </TabPane>
             <TabPane tabId="link4">

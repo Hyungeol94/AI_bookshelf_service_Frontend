@@ -7,17 +7,17 @@ import "../../styles/Result.css";
 
 
 const BookDetailView = (props) => {
-    const {book_info, bookList, setBookList, addToBookList, selectedBookRowInfo} = props
+    const {bookInfo, bookList, setBookList, addToBookList, selectedBookRowInfo} = props
  
     const handleClick = (e) => {
       console.log('clicked')
-      addToBookList(book_info)
+      addToBookList(bookInfo)
     }
 
     const changeBookRowInfo = (e) => {
       //속성 전체에 접근해서 바꾸는 로직
-      Object.keys(book_info).forEach((key) => {
-        selectedBookRowInfo[key] = book_info[key];
+      Object.keys(bookInfo).forEach((key) => {
+        selectedBookRowInfo[key] = bookInfo[key];
       })
 
       console.log('changed')
@@ -28,7 +28,7 @@ const BookDetailView = (props) => {
       <div className="bookDetailView">
         <h3 className="viewHeader">상세 정보</h3>
         <BookDetail
-          book_info = {book_info}
+          bookInfo = {bookInfo}
         />        
         <div style={{display: 'flex'}}>
           <Button onClick = {handleClick} style={{maxHeight: '5%', width:'200px',display: 'block'}}>책 목록에 추가</Button>

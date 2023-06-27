@@ -2,7 +2,7 @@ import React from 'react';
 import BookRow from './BookRow';
 
 const BookTable = (props) => {
-    const {books_info, setSelectedBookInfo, selectedBookRowInfo, setSelectedBookRowInfo, deleteFromBookList, searchValue, setSearchValue, onSearch} = props        
+    const {booksInfo, setSelectedBookInfo, selectedBookRowInfo, setSelectedBookRowInfo, deleteFromBookList, searchValue, setSearchValue, onSearch} = props        
 
     return (        
         <table className="bookRowTable">
@@ -13,9 +13,9 @@ const BookTable = (props) => {
             </tr>
           </thead>
           <tbody >
-            {books_info.map((book_info) => (
-              <BookRow key={book_info.id} 
-              book_info={book_info} 
+            {booksInfo.map((bookInfo) => (
+              <BookRow key={bookInfo.id} 
+              bookInfo={bookInfo} 
               setSelectedBookInfo={setSelectedBookInfo}
               selectedBookRowInfo={selectedBookRowInfo}
               setSelectedBookRowInfo = {setSelectedBookRowInfo}

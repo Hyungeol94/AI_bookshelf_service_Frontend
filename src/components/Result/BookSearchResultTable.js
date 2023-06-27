@@ -4,7 +4,7 @@ import BookSearchResultRow from './BookSearchResultRow'
 const BookSearchResultTable = (props) => {
     
     const {isLoading, data, setSelectedBookInfo} = props
-    let {num} = props
+    let num  = 1
 
     return (
         <div className = "bookSearchResultTable">
@@ -17,7 +17,7 @@ const BookSearchResultTable = (props) => {
                 return (
                   <BookSearchResultRow
                     key={num++}  
-                    book_info = {book}
+                    bookInfo = {book}
                     setSelectedBookInfo = {setSelectedBookInfo}       
                   />
                 );

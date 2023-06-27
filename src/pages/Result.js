@@ -46,16 +46,16 @@ const Result = () => {
     onSearch()
   }, [searchValue]);
 
-  const addToBookList = (book_info) => {
-    const newBook_info = {...book_info}    
-    newBook_info.id = parseInt(bookList[bookList.length-1].id)+1
-    const updatedBookList = bookList.concat(newBook_info)
+  const addToBookList = (bookInfo) => {
+    const newBookInfo = {...bookInfo}    
+    newBookInfo.id = parseInt(bookList[bookList.length-1].id)+1
+    const updatedBookList = bookList.concat(newBookInfo)
     setBookList(updatedBookList)    
     console.log(bookList)
   };  
 
-  const deleteFromBookList = (book_info) => {    
-    const updatedBookList = bookList.filter(item => item !== book_info)
+  const deleteFromBookList = (bookInfo) => {    
+    const updatedBookList = bookList.filter(item => item !== bookInfo)
     setBookList(updatedBookList)
   };
 
@@ -65,7 +65,7 @@ const Result = () => {
     <div style={{ display: "flex" }}>
       <Card>
         <BookTableView
-          books_info={bookList}
+          booksInfo={bookList}
           setSelectedBookInfo={setSelectedBookInfo}          
           selectedBookRowInfo={selectedBookRowInfo}
           setSelectedBookRowInfo = {setSelectedBookRowInfo}
@@ -78,7 +78,7 @@ const Result = () => {
       </Card>
       <Card>
         <BookDetailView
-          book_info = {selectedBookInfo}
+          bookInfo = {selectedBookInfo}
           bookList = {bookList}
           setBookList = {setBookList}
           addToBookList = {addToBookList}          
@@ -89,7 +89,7 @@ const Result = () => {
       <Card>
         {/* 클릭되어 있는 텍스트의 검색 결과 가져 오기 */}
         <BookSearchView
-          book_info={selectedBookInfo}
+          bookInfo={selectedBookInfo}
           setSelectedBookInfo={setSelectedBookInfo}
           setSearchValue={setSearchValue}
           onSearch={onSearch}

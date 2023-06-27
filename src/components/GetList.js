@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "../styles/GetList.css";
 import { Modal } from "reactstrap";
+import BookDetail from "./GetBookDetail";
 
 
 const Book = (props) => { // Book 표시 함수

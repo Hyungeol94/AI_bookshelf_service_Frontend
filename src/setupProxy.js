@@ -13,14 +13,14 @@ module.exports = (app) => {
   app.use(
     "/auth",
     createProxyMiddleware({
-      target: local, //"http://49.50.162.189:4000",
+      target: "http://49.50.162.189:4000",
       changeOrigin: true,
     })
   );
   app.use(
     "/user",
     createProxyMiddleware({
-      target: local, //"http://49.50.162.189:4000",
+      target: "http://49.50.162.189:4000",
       changeOrigin: true,
     })
   );

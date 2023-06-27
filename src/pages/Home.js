@@ -1,8 +1,8 @@
 import React from "react";
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
 // reactstrap components
-import{ Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 
 // core components
 import Footer from "components/Footer/Footer.js";
@@ -10,14 +10,13 @@ import Footer from "components/Footer/Footer.js";
 // our components
 import sample from "../assets/sample_book.json";
 import getlist from "../components/GetList_user_home";
-import user_info from "../assets/sample_user.json"
+import user_info from "../assets/sample_user.json";
 import { Link } from "react-router-dom";
 
 // let [totalBook_count, totalBook_list] = getlist(sample);
 let [interest_count, interest_list] = getlist(sample, user_info.user_interest);
 
 export default function Index() {
-  
   const [counter1, setCounter1] = useState(0);
 
   const leftBtnClickHandler1 = () => {
@@ -44,8 +43,8 @@ export default function Index() {
   let showLeftBtn2 = counter2 > 0;
   let showRightBtn2 = counter2 !== interest_count - 9 && interest_count > 9;
 
-  console.log(user_info)
-  console.log(interest_count, interest_list)
+  console.log(user_info);
+  console.log(interest_count, interest_list);
   useEffect(() => {
     document.body.classList.toggle("index-page");
     // Specify how to clean up after this effect:
@@ -53,70 +52,101 @@ export default function Index() {
       document.body.classList.toggle("index-page");
     };
   }, []);
-  
+
   return (
     <>
       <div className="wrapper">
         <div className="main">
-        <div className="section">
-        <img alt="..." className="path" src={require("assets/img/path1.png")} />
+          <div className="section section-basic" id="basic-elements">
+            <img
+              alt="..."
+              className="path"
+              src={require("assets/img/path1.png")}
+              style={{ "pointer-events": "none", "z-index": 0 }}
+            />
 
-        <div 
-        style={{
-          display: 'flex',
-          justifyContent: "center",
-          alignItems: "center",
-          flexDirection : 'column',
-          width: "100%",
-          height: "150vh",
-          font: "white",
-        }}>
-            <div style={{marginTop: '10px'}}>
-              <h1 className="title">Home</h1>
-            </div>
-
-            <div
-            style={{
-              marginTop: '20px',  
-              backgroundColor: 'rgba(255,255,255, 0.8)',
-              width:'85%',
-              borderRadius: '30px 30px 30px 30px'
-              }}> 
-                <div style={{paddingLeft: '30px', paddingTop:'25px', paddingBottom:'10px'}}>
-                  <div 
-                  style={{display:'flex'}}>
-                      <h3 style={{color: '#000000'}}>{user_info.profile.user_nickname}님의 독서 취향</h3>
-                      <div style={{marginLeft: '30px'}}>
-                        <Link to="/dash">
-                          <Button style={{marginTop: '0px'}}
-                          className="btn-round" color="primary" size="sm" href="">자세히 보기</Button>
-                        </Link>
-                      </div>
-                  </div> 
-                  <div>
-                    <h4 style={{color: '#000000'}}>나의 독서 유형 : 미래의 코난 </h4>
-                    <h4 style={{color: '#000000'}}>내가 좋아하는 장르 : 탐정 소설</h4>
-                    <h4 style={{color: '#000000'}}>내가 좋아하는 작가 : 히가시노 게이고</h4>
-                  </div>
-              </div>
-            </div>
-            
             <div
               style={{
-                width: '100%',
-                paddingTop: '8vh',
-                paddingLeft: '7vw',
-                paddingRight: '7vw'
-              }}>
-              <h3 style={{textAlign: 'center', fontWeight:'bold'}}> {user_info.profile.user_nickname}님이 최근 추가한 도서</h3>                
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                flexDirection: "column",
+                width: "100%",
+                height: "150vh",
+                font: "white",
+              }}
+            >
+              <div style={{ marginTop: "10px" }}>
+                <h1 className="title">Home</h1>
+              </div>
 
-              <div className="productBodyScrollable">
+              <div
+                style={{
+                  marginTop: "20px",
+                  backgroundColor: "rgba(255,255,255, 0.8)",
+                  width: "85%",
+                  borderRadius: "30px 30px 30px 30px",
+                }}
+              >
+                <div
+                  style={{
+                    paddingLeft: "30px",
+                    paddingTop: "25px",
+                    paddingBottom: "10px",
+                  }}
+                >
+                  <div style={{ display: "flex" }}>
+                    <h3 style={{ color: "#000000" }}>
+                      {user_info.profile.user_nickname}님의 독서 취향
+                    </h3>
+                    <div style={{ marginLeft: "30px" }}>
+                      <Link to="/dash">
+                        <Button
+                          style={{ marginTop: "0px" }}
+                          className="btn-round"
+                          color="primary"
+                          size="sm"
+                          href=""
+                        >
+                          자세히 보기
+                        </Button>
+                      </Link>
+                    </div>
+                  </div>
+                  <div>
+                    <h4 style={{ color: "#000000" }}>
+                      나의 독서 유형 : 미래의 코난{" "}
+                    </h4>
+                    <h4 style={{ color: "#000000" }}>
+                      내가 좋아하는 장르 : 탐정 소설
+                    </h4>
+                    <h4 style={{ color: "#000000" }}>
+                      내가 좋아하는 작가 : 히가시노 게이고
+                    </h4>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                style={{
+                  width: "100%",
+                  paddingTop: "8vh",
+                  paddingLeft: "7vw",
+                  paddingRight: "7vw",
+                }}
+              >
+                <h3 style={{ textAlign: "center", fontWeight: "bold" }}>
+                  {" "}
+                  {user_info.profile.user_nickname}님이 최근 추가한 도서
+                </h3>
+
+                <div className="productBodyScrollable">
                   <div
                     className="products"
                     style={{ transform: `translateX(-${10 * counter1}%)` }}
                   >
-                  {/* 임시로 넣어둠 */}
-                  {interest_list} 
+                    {/* 임시로 넣어둠 */}
+                    {interest_list}
                   </div>
                   {showLeftBtn1 && (
                     <div className="carouselLeft">
@@ -141,25 +171,28 @@ export default function Index() {
                     </div>
                   )}
                 </div>
-
               </div>
 
-            <div
-              style={{
-                width: '100%',
-                paddingTop: '8vh',
-                paddingLeft: '7vw',
-                paddingRight: '7vw'
-              }}>
-              <h3 style={{textAlign: 'center', fontWeight:'bold'}}> {user_info.profile.user_nickname}님을 위한 추천 도서</h3>
+              <div
+                style={{
+                  width: "100%",
+                  paddingTop: "8vh",
+                  paddingLeft: "7vw",
+                  paddingRight: "7vw",
+                }}
+              >
+                <h3 style={{ textAlign: "center", fontWeight: "bold" }}>
+                  {" "}
+                  {user_info.profile.user_nickname}님을 위한 추천 도서
+                </h3>
 
-              <div className="productBodyScrollable">
+                <div className="productBodyScrollable">
                   <div
                     className="products"
                     style={{ transform: `translateX(-${27 * counter2}%)` }}
                   >
-                  {/* 임시로 넣어둠 */}
-                  {interest_list} 
+                    {/* 임시로 넣어둠 */}
+                    {interest_list}
                   </div>
                   {showLeftBtn2 && (
                     <div className="carouselLeft">
@@ -184,11 +217,8 @@ export default function Index() {
                     </div>
                   )}
                 </div>
+              </div>
             </div>
-            
-            </div>
-
-
           </div>
           <Footer />
         </div>
@@ -196,7 +226,6 @@ export default function Index() {
     </>
   );
 }
-
 
 /*!
 

@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 // our components
 // import BookList from "../components/BookList";
 import sample from "../assets/sample_book.json";
-import getlist from "../components/GetList";
+import getlist from "../components/GetList_user";
 //import get_likes_list from "../components/GetLikesList";
 import get_recentlyAdded_list from "../components/GetRecentlyAddedList";
 //import get_saved_list from "../components/GetSavedList";
@@ -19,7 +19,6 @@ import User_profile from "../components/Profile";
 import Book_view from "../components/Bookview"
 import { useNavigate } from "react-router-dom";
 
-
 const UserBookShelf = () => {
 
   return (
@@ -27,7 +26,9 @@ const UserBookShelf = () => {
       <div className="wrapper">
         <div className="main">
         <div className="section">
-        <img alt="..." className="path" src={require("assets/img/path1.png")} />
+        <img alt="..." className="path" src={require("assets/img/path1.png")} 
+              style={{"pointer-events": "none",
+                      "z-index": 0}}/>
         <div 
       style={{
         display: "flex",
@@ -46,6 +47,7 @@ const UserBookShelf = () => {
             </div>
         </div>
         </div>
+        <Footer/>
       </div>
       </div>
     </>

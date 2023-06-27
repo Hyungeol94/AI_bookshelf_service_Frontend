@@ -135,6 +135,9 @@ function Signup() {
           isOpen={modalIsOpen}
           onRequestClose={closeModal}
           contentLInputLabel="File Modal"
+          style={{
+            width: "400px",
+            height: "20px",}}
         >
           <TermTxt />
           <div>
@@ -240,7 +243,7 @@ function Signup() {
           inputProps={{ style: { color: "white" } }}
           SelectProps={{ style: { color: "white", backgroundColor: "white" } }}
           InputLabelProps={{
-            style: { color: "white" },
+            style: { color: "white"},
           }}
         />
         <TextField
@@ -396,14 +399,24 @@ function Signup() {
             InputLabelProps={{
               style: { color: "white" },
             }}
-          >
-            <MenuItem value="개발자">개발자</MenuItem>
+          > 
+            <MenuItem value="개발자"> 개발자 </MenuItem>
+            <MenuItem value="경영사무">경영•사무•금융•보험직</MenuItem>
+            <MenuItem value="연구공학">경영•사무•금융•보험직</MenuItem>
+            <MenuItem value="교육법률">교육•법률•사회복지•경찰•소방직 및 군인</MenuItem>
+            <MenuItem value="보건의료">보건•의료직</MenuItem>
+            <MenuItem value="예술">예술•디자인•방송•스포츠직</MenuItem>
+            <MenuItem value="서비스">미용•여행•숙박•음식•경비•청소직</MenuItem>
+            <MenuItem value="영업판매">영업•판매•운전•운송직</MenuItem>
+            <MenuItem value="건설채굴">건설•채굴직</MenuItem>
+            <MenuItem value="설치정비">설치•정비•생산직</MenuItem>
+            <MenuItem value="농림어업">농림어업직</MenuItem>
           </Select>
         </FormControl>
         <FormControl variant="standard" style={{ marginTop: "1em" }}>
           <InputLabel
             id="demo-simple-select-standard-label"
-            style={{ color: "white" }}
+            style={{ color: "white"}}
           >
             가입경로
           </InputLabel>
@@ -490,6 +503,6 @@ function Signup() {
       </FormControl>
     </div>
   );
-}
+};
 
 export default Signup;

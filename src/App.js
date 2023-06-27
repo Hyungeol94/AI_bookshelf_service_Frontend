@@ -42,13 +42,11 @@ import Resultpage from "./routes/Result";
 import Searchpage from "./routes/Search";
 import SignUp from "./pages/Signup";
 import User from "./pages/ProfileEdit";
-import Stats from "./components/UserStatistics";
-
-import GetBookDetail from "./components/GetBookDetail"
 import IndexNavbar from "./components/Navbars/IndexNavbar";
-import FindPw from "./pages/Findpw"
-import Findid from "./pages/Findid"
+import FindPw from "./pages/Findpw";
+import Findid from "./pages/Findid";
 import Dashboard from "./pages/dashboard";
+import AboutUs from "./pages/About";
 
 /** Header를 강제적으로 가지는 페이지를 위해 감싸주는 함수형 컴포넌트 */
 const HeaderWrapper = () => (
@@ -85,11 +83,11 @@ export default () => {
         {/* <Route path="/detail" element={<Detail />} /> */}
         <Route path="/search" element={<Searchpage />} />
         <Route path="/profile" element={<User />} />
-        <Route path="/stats" element={<Stats />} />
         {/* <Route path="/bookshelf/detail/:id" element={<GetBookDetail />} /> */}
         <Route path="/inquiry/pw" element={<FindPw />} />
         <Route path="/inquiry/id" element={<Findid />} />
         <Route path="/dash" element={<Dashboard />} />
+        <Route path="/about-us" element={<AboutUs />} />
 
         {/* <Route path="/detail/:id" element={<Detail Detail={Detail} />} /> */}
       </Routes>

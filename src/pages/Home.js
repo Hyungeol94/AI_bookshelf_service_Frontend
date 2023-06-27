@@ -6,7 +6,7 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 
 // core components
 import Footer from "components/Footer/Footer.js";
-
+import { useSelector } from "react-redux";
 // our components
 import sample from "../assets/sample_book.json";
 import getlist from "../components/GetList_user_home";

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
+// import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getAuthToken } from "../services/api";
 import {
@@ -28,8 +28,9 @@ export default function auth(
         const { data } = await getAuthToken();
         dispatch(userAuthorization(data?.userData));
         setReady(true);
+        console.log(data);
       } catch (e) {
-        const { success } = e?.response?.data;
+        const { success } = e?.response?.data || false;
         // 인증이 되지 않은 사람들
         if (success) {
           dispatch(userAuthorizationError(e?.response?.data));
@@ -44,8 +45,6 @@ export default function auth(
           //로그인 상태
           if (!user) {
             //로그인 한 사람 모두 못들어가는 페이지이면
-            return navigate("/main");
-          } else {
             return navigate("/main");
           }
         } else {

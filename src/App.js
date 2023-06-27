@@ -31,10 +31,7 @@ import "assets/demo/demo.css";
 // ourpage
 import Home from "./routes/Home";
 import First from "./routes/First";
-import UserBookShelf from "./routes/UserBookShelf";
-// import Search from "./pages/Search";
-// import "./styles/App.css";
-// import { BrowserRouter, Route, Routes } from "react-router-dom";
+import UserBookShelf from "./pages/UserBookShelf";
 import auth from "./hooks/auth";
 import Login from "./pages/Login";
 import Upload from "./pages/Upload";
@@ -47,6 +44,11 @@ import FindPw from "./pages/Findpw";
 import Findid from "./pages/Findid";
 import Dashboard from "./pages/dashboard";
 import AboutUs from "./pages/About";
+// import Search from "./pages/Search";
+// import "./styles/App.css";
+// import { BrowserRouter, Route, Routes } from "react-router-dom";
+// import Stats from "./components/UserStatistics";
+// import GetBookDetail from "./components/GetBookDetail";
 
 /** Header를 강제적으로 가지는 페이지를 위해 감싸주는 함수형 컴포넌트 */
 const HeaderWrapper = () => (
@@ -60,24 +62,20 @@ export default () => {
   return (
     <BrowserRouter>
       <Routes>
+        <Route
+          path="/blk-design-system-react"
+          element={<Navigate to="/" replace />}
+        />
         <Route path="/" element={<HeaderWrapper />}>
           <Route path="main" element={auth(Home, true)} />
-          <Route path="bookshelf" element={<UserBookShelf />} />
+          <Route path="bookshelf" element={auth(UserBookShelf, true)} />
           <Route path="login" element={auth(Login, false)} />
           <Route path="" element={auth(First, false)} />
           <Route path="signup" element={<SignUp />} />
-          <Route path="search" element={<Searchpage />} />
+          <Route path="search" element={auth(Searchpage, true)} />
           <Route path="profile" element={<User />} />
           <Route path="/EditProfile" element={<User />} />
         </Route>
-        {/* our page */}
-        {/* <Route path="/" element={<Home />} /> */}
-        {/* <Route path="/search" element={<Search />} /> */}
-        {/* <Route path="/login" element={<Login/>} /> */}
-        {/* <Route
-          path="/blk-design-system-react"
-          element={<Navigate to="/" replace />}
-        /> */}
         <Route path="/upload" element={<Upload />} />
         <Route path="/result" element={<Resultpage />} />
         {/* <Route path="/detail" element={<Detail />} /> */}

@@ -43,6 +43,7 @@ export default () => {
   const [collapseOpen, setCollapseOpen] = useState(false);
   const [collapseOut, setCollapseOut] = useState("");
   const [color, setColor] = useState("navbar-transparent");
+  const [search_value, setSearch_value] = useState("");
 
   const { isAuth } = useSelector((state) => state.userReducer);
 
@@ -69,14 +70,11 @@ export default () => {
   }, []);
 
   const changeColor = () => {
-    if (
-      document.documentElement.scrollTop > 99 ||
-      document.body.scrollTop > 99
-    ) {
+    if (document.documentElement.scrollTop > 1 || document.body.scrollTop > 1) {
       setColor("bg-info");
     } else if (
-      document.documentElement.scrollTop < 100 ||
-      document.body.scrollTop < 100
+      document.documentElement.scrollTop < 2 ||
+      document.body.scrollTop < 2
     ) {
       setColor("navbar-transparent");
     }
@@ -167,13 +165,37 @@ export default () => {
                   type="text"
                   class="form-control"
                   placeholder="Search your book!"
-                  aria-label="book serach"
+                  aria-label="book search"
                   aria-describedby="button-addon2"
+                  id="search_input"
+                  name="search_input"
+                  value={search_value}
+                  onChange={(e) => setSearch_value(e.target.value)}
+                  onFocus={(e) => e.target.select()}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") {
+                      navigate("/search", {
+                        state: {
+                          value: search_value,
+                        },
+                      });
+                    }
+                  }}
                 />
                 <Button
                   className="nav-link d-none d-lg-block"
                   color="default"
-                  href="/search"
+                  // href="/search"
+                  onClick={() => {
+                    if (location.pathname === "/search") {
+                      window.location.reload();
+                    }
+                    navigate("/search", {
+                      state: {
+                        value: search_value,
+                      },
+                    });
+                  }}
                 >
                   <i className="tim-icons icon-zoom-split" />
                   Search
@@ -201,7 +223,7 @@ export default () => {
                   <i className="tim-icons icon-single-02" /> Login
                 </Button>
               )}
-              {isAuth && location.pathname !== "/" && (
+              {isAuth && (
                 <Button
                   className="nav-link d-none d-lg-block"
                   color="Success"

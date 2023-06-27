@@ -83,7 +83,7 @@ export default function getlist(books_info, bookId) {
 
   books_info.forEach((elm) => {
     if (bookId.includes(elm.id)) {
-      // console.log(bookId, elm.id)
+      // console.log(bookId, elm.id);
       user_book.push(elm);
     }
   });

@@ -1,14 +1,38 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "reactstrap";
+import { useCookies } from "react-cookie";
 
 // our component
 import sample_user from "../assets/sample_user.json";
 import Statshow from "./UserStatistics";
 
-const Userprofile = () => {
-  console.log(sample_user);
-  console.log("함수 실행 여부 확인");
+const Userprofile = (props) => {
+  // function getCookieValue(cookieName) {
+  //   let cookies = document.cookie.split(";");
+
+  //   for (let cookie of cookies) {
+  //     let trimmedCookie = cookie.trim();
+  //     if (trimmedCookie.startsWith(cookieName + "=")) {
+  //       return trimmedCookie.substring(cookieName.length + 1);
+  //     }
+  //   }
+
+  //   return null; // Cookie not found
+  // }
+  const {
+    email,
+    name,
+    user_id,
+    nickname,
+    user_bookshelf,
+    user_like_book,
+    user_cart,
+    user_interest,
+    user_type,
+  } = props?.data;
+  console.log(props?.data);
+
   return (
     <div
       className="MyProfile"
@@ -40,7 +64,7 @@ const Userprofile = () => {
                 marginLeft: "20px",
               }}
             >
-              {sample_user.profile.user_nickname}
+              {nickname || "undefined"}
             </h2>
           </div>
           <div style={{ display: "block", alignSelf: "center" }}>

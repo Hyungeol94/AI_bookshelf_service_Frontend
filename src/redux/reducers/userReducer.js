@@ -35,7 +35,17 @@ const userReducer = (state = initialState, action) => {
         loginState: false,
       };
     case "USER_AUTHORIZATION": {
-      const { email, name, user_id } = payload;
+      const {
+        email,
+        name,
+        user_id,
+        nickname,
+        user_bookshelf,
+        user_like_book,
+        user_cart,
+        user_interest,
+        user_type,
+      } = payload;
       return {
         ...state,
         authData: {
@@ -43,6 +53,12 @@ const userReducer = (state = initialState, action) => {
           email,
           name,
           user_id,
+          nickname,
+          user_bookshelf,
+          user_like_book,
+          user_cart,
+          user_interest,
+          user_type,
         },
         isAuth: true,
       };

@@ -4,6 +4,7 @@ import {
   // Link, Route, Routes,
   useNavigate,
 } from "react-router-dom";
+import axios from 'axios';
 
 function Card({ children }) {
   return (
@@ -16,7 +17,7 @@ function Card({ children }) {
 const Upload = () => {
   const [imgFile, setImgFile] = useState([]); // 이미지 배열
   const upload = useRef();
-
+  axios.defaults.withCredentials = true;
   // const imgUpload = () => {
   //   console.log(upload.current.files);
   //   setImgFile((prev) => [...prev, URL.createObjectURL(upload.current.files[0])]);
@@ -31,12 +32,62 @@ const Upload = () => {
   const navigate = useNavigate();
   const handleUpload = () => {
     if (imgFile.length === 0) {
-      alert("No images appended."); // Display alert if no images are appended
+      alert("No images appended.");
     } else {
+      console.log(imgFile)
+      
+      const formData = new FormData();
+      imgFile.forEach((img) => formData.append("image", img))
+      const conversionPromises = imgFile.map((img) =>
+      fetch(img)
+        .then((response) => response.blob())
+        .then((blob) => {
+          formData.append("image", blob);
+        })
+    );
+
+    Promise.all(conversionPromises)
+      .then(() => {
+        // Iterate over the FormData entries to verify the contents
+        for (const [name, value] of formData.entries()) {
+          console.log(`Name: ${name}, Value: ${value}`);
+        }
+
+        // Proceed with sending the FormData or performing further operations
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  
+  
+      Promise.all(conversionPromises)
+      .then(fetch('https://4b18-35-196-15-218.ngrok-free.app/img2title/', {
+        method: 'POST',
+        headers:{
+          'ngrok-skip-browswer-warning' : '69420',
+          enctype: 'multipart/form-data'
+        },
+        body: formData
+      })
+        .then((response) => {
+          if (response.ok) {
+            // Image successfully uploaded
+            console.log('Image uploaded!');
+          } else {
+            // Handle error case
+            console.error('Image upload failed.');
+          }
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        }));
+
+
       // Perform the AI logic here
-      //start the AI logic
+      // start the AI logic
       // ...
-      navigate("/result", { replace: true });
+
+      // navigate("/result", { replace: true });
     }
   };
 

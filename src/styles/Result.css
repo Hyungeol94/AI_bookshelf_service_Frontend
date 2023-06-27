@@ -15,6 +15,15 @@
 .bookRow{ 
     width : 100%;    
 }
+.bookRow-conditionMet{
+    color: blue;
+}
+
+.bookRow-conditionMet:hover{
+    text-decoration: underline;
+    color: blue;
+    cursor: pointer;
+}
 
 .bookRowTable{
     display: block;

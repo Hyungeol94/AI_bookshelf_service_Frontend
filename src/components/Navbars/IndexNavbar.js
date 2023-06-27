@@ -70,14 +70,11 @@ export default () => {
   }, []);
 
   const changeColor = () => {
-    if (
-      document.documentElement.scrollTop > 99 ||
-      document.body.scrollTop > 99
-    ) {
+    if (document.documentElement.scrollTop > 1 || document.body.scrollTop > 1) {
       setColor("bg-info");
     } else if (
-      document.documentElement.scrollTop < 100 ||
-      document.body.scrollTop < 100
+      document.documentElement.scrollTop < 2 ||
+      document.body.scrollTop < 2
     ) {
       setColor("navbar-transparent");
     }

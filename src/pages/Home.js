@@ -2,12 +2,7 @@ import React from "react";
 import { useState, useEffect } from 'react';
 
 // reactstrap components
-import {
-  Container,
-  Row,
-  Col,
-  Button,
-} from "reactstrap";
+import{ Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
 // core components
 import Footer from "components/Footer/Footer.js";
@@ -21,9 +16,7 @@ import { Link } from "react-router-dom";
 // let [totalBook_count, totalBook_list] = getlist(sample);
 let [interest_count, interest_list] = getlist(sample, user_info.user_interest);
 
-
 export default function Index() {
-
   
   const [counter1, setCounter1] = useState(0);
 

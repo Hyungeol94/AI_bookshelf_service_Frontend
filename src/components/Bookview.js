@@ -149,7 +149,7 @@ export default function Bookview(props) {
               </TabPane>
               <TabPane tabId="link3">
                 <p>
-                  <h3> 좋아하는 책 ({props?.list.length}개)</h3>
+                  <h4> 총 {props?.list.length}권 </h4>
                   <div
                     style={{
                       display: "flex",

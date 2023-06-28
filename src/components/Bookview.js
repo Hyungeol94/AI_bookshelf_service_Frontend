@@ -40,7 +40,6 @@ export default function Bookview(props) {
     sample,
     user_info.user_bookshelf.book_id
   );
-
   // let [likes_count, Likes_list] = getlist(sample, user_info.user_like_book);
   let [saved_count, saved_list] = getlist(sample, user_info.user_cart);
 
@@ -130,6 +129,7 @@ export default function Bookview(props) {
                     style={{
                       display: "flex",
                       overflowX: "auto",
+                      flexWrap:'wrap',
                       flexDirection: "row-reverse",
                       justifyContent: "flex-end",
                     }}

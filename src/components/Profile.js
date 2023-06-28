@@ -39,7 +39,8 @@ const Userprofile = (props) => {
       style={{
         display: "flex",
         justifyContent: "space-between",
-        width: "1000px",
+        // width: "100%",
+        // margin: "50px, 30px, 50px, 30px",
         paddingLeft: "30px",
         paddingRight: "30px",
         paddingTop: "30px",

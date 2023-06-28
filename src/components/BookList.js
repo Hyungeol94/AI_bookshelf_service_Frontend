@@ -102,14 +102,14 @@ export default (props) => {
       var delete_bookshelf = confirm("내 서제에서 삭제하시겠습니까?");
       if (delete_bookshelf === true) {
         setBookshelf(false);
-        await api.addbookshelf(request);
+        await api.deletebookshelf(request);
       }
     } else {
       // eslint-disable-next-line no-restricted-globals
       var add_bookshelf = confirm("내 서재에 추가하시겠습니까?");
       if (add_bookshelf === true) {
         setBookshelf(true);
-        await api.deletebookshelf(request);
+        await api.addbookshelf(request);
       }
     }
   };

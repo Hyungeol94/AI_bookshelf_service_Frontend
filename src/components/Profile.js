@@ -77,8 +77,7 @@ const Userprofile = (props) => {
               <Button style={{ width: "200px", display: "block" }}>
                 서재에 책 추가하기
               </Button>
-            </Link>
-            <Statshow />
+            </Link>            
           </div>
         </div>
       </div>

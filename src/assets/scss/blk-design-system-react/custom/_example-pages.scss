@@ -35,7 +35,7 @@
       position: absolute;
       transition: 0.9s ease-out;
       overflow: hidden;
-      border-radius: 15%;
+      border-radius: 15px;
       &.square1{
         animation: move-left-right 4s infinite;
         height: 300px;
@@ -111,7 +111,7 @@
           transform:rotate(0deg)
                     translate(-15px)
                     rotate(0deg);
-        
+
         }
         100%{
           transform:rotate(360deg)
@@ -122,6 +122,45 @@
       
     }
 }
+
+.floatimages{
+  animation: move-left-right 1s infinite;
+  @include linear-gradient($primary-states, $primary);
+  position: absolute;
+  transition: 0.9s ease-out;
+  overflow: hidden;
+  border-radius: 15px;
+  &.image1{
+    animation: circle 20s linear infinite; 
+    max-width: 700px;
+    max-height: 700px;
+    right: 27%;
+    bottom: 30%;
+    opacity: 0.8;
+  @keyframes circle{
+    0%{
+      transform:rotate(0deg)
+                translate(-15px)
+                rotate(0deg);
+    
+    }
+    100%{
+      transform:rotate(360deg)
+                translate(-15px)
+                rotate(-360deg);
+    }
+  }
+  }
+  &.image2{
+    animation: circle 20s linear infinite; 
+    max-width: 700px;
+    max-height: 700px;
+    right: 20%;
+    bottom: 30%;
+    opacity: 0.8;
+  }
+}
+
 .landing-page {
   overflow-x: hidden;
 

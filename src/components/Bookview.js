@@ -77,7 +77,7 @@ export default function Bookview(props) {
                   style={{ borderRadius: "30px" }}
                 >
                   <i className="tim-icons icon-align-left-2" />
-                  전체보기
+                  내 서재
                 </NavLink>
               </NavItem>
               <NavItem>
@@ -89,8 +89,8 @@ export default function Bookview(props) {
                   href="#pablo"
                   style={{ borderRadius: "30px" }}
                 >
-                  <i className="tim-icons icon-calendar-60" />
-                  최근 추가 항목
+                  <i className="tim-icons icon-heart-2" />
+                  좋아하는 책
                 </NavLink>
               </NavItem>
               <NavItem>
@@ -99,19 +99,6 @@ export default function Bookview(props) {
                     active: iconTabs === 3,
                   })}
                   onClick={(e) => setIconsTabs(3)}
-                  href="#pablo"
-                  style={{ borderRadius: "30px" }}
-                >
-                  <i className="tim-icons icon-heart-2" />
-                  좋아하는 책
-                </NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink
-                  className={classnames({
-                    active: iconTabs === 4,
-                  })}
-                  onClick={(e) => setIconsTabs(4)}
                   href="#pablo"
                   style={{ borderRadius: "30px" }}
                 >
@@ -137,17 +124,12 @@ export default function Bookview(props) {
             <TabContent className="tab-space" activeTab={"link" + iconTabs}>
               <TabPane tabId="link1">
                 <p>
-                  <h4> 총 {totalBook_count}권 </h4>
-                  {totalBook_list}
-                </p>
-              </TabPane>
-              <TabPane tabId="link2">
-                <p>
                   <h4> 총 {props?.bookshelflist?.length}권 </h4>
                   <div
                     style={{
                       display: "flex",
                       overflowX: "auto",
+                      flexWrap:'wrap',
                       flexDirection: "row-reverse",
                       justifyContent: "flex-end",
                     }}
@@ -179,7 +161,7 @@ export default function Bookview(props) {
                   </div>
                 </p>
               </TabPane>
-              <TabPane tabId="link3">
+              <TabPane tabId="link2">
                 <p>
                   <h4> 총 {props?.likelist?.length}권 </h4>
                   <div
@@ -217,7 +199,7 @@ export default function Bookview(props) {
                   </div>
                 </p>
               </TabPane>
-              <TabPane tabId="link4">
+              <TabPane tabId="link3">
                 <p>
                   <h4> 총 {props?.cartlist?.length}권 </h4>
                   <div

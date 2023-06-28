@@ -12,6 +12,7 @@ import getlist from "../components/GetList_user_home";
 import user_info from "../assets/sample_user.json";
 import { Link } from "react-router-dom";
 import Statshow from "../components/UserStatistics";
+import Bookslider from "../components/Bookslider";
 
 // api
 import * as api from "../services/api";
@@ -156,6 +157,8 @@ const Home = () => {
                   {" "}
                   {authData?.nickname || "undefined"}님이 최근 추가한 도서
                 </h3>
+
+                {/* <Bookslider list={list}/> */}
 
                 <div className="productBodyScrollable">
                   <div

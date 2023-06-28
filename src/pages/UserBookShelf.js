@@ -25,6 +25,7 @@ const UserBookShelf = () => {
   const [bookshelflist, setBookshelflist] = useState([]);
   const { authData } = useSelector((state) => state.userReducer);
   // console.log(authData);
+
   const getlikelist = async () => {
     console.log(111);
     await api
@@ -72,23 +73,25 @@ const UserBookShelf = () => {
 
   return (
     <>
-      <div className="wrapper">
+      <div className="wrapper"
+        style={{}}>
         <div className="main">
           <div className="section">
             <img
               alt="..."
               className="path"
               src={require("assets/img/path1.png")}
-              style={{ "pointer-events": "none", "z-index": 0 }}
+              style={{ "pointer-events": "none", "z-index": 0, }}
             />
+            <div></div>
             <div
               style={{
                 display: "flex",
                 justifyContent: "center",
-                alignItems: "center",
+                // alignItems: "center",
                 width: "100%",
                 height: "100vh",
-                marginTop: "4em",
+                // marginTop: "4em",
                 font: "white",
               }}
             >

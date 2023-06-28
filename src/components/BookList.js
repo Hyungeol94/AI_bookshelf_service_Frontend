@@ -135,7 +135,7 @@ export default (props) => {
             textAlign: "left",
             alignItems: "stretch",
             zIndex: 12,
-            // width: "1110px",
+            width: "1100px",
           }}
         >
           <img
@@ -167,7 +167,7 @@ export default (props) => {
                   position: "relative",
                 }}
               >
-                <h3 style={{ marginBottom: 0, fontSize: "18px" }}>
+                <h3 style={{ marginBottom: 0, fontSize: "18px", width:'610px' }}>
                   {props?.title}
                 </h3>
                 <p
@@ -373,7 +373,7 @@ export default (props) => {
                   position: "relative",
                 }}
               >
-                <h3 style={{ marginBottom: 0, fontSize: "18px" }}>
+                <h3 style={{ marginBottom: 0, fontSize: "18px", width:'575px' }}>
                   {props?.title}
                 </h3>
                 <p

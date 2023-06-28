@@ -21,16 +21,15 @@ function getBooksInfo() {
   if (jsonResult) {
     try {
       const decodedResult = decodeURIComponent(jsonResult);   
-      const parsedResult = JSON.parse(decodedResult);         
-      
+      const parsedResult = JSON.parse(decodedResult);               
+      const titleData = parsedResult.data      
       const booksInfo = [];
-      Object.keys(parsedResult).forEach((key) => {
+      Object.keys(titleData).forEach((key) => {
         const bookInfo = {};
         bookInfo.id = key;
-        bookInfo.title = parsedResult[key];
+        bookInfo.title = titleData[key];
         booksInfo.push(bookInfo);
-      });
-
+      });      
       return booksInfo;
     } catch (error) {
       console.error("Invalid JSON format:", error);

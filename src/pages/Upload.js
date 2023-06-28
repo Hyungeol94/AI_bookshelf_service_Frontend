@@ -19,9 +19,7 @@ function Card({ children }) {
 const Upload = () => {
   const [imgFile, setImgFile] = useState([]); // 이미지 배열
   const [imgFileView, setImgFileView] = useState([])
-  const upload = useRef();
-  const [jsonResult, setJsonResult] = useState([]);
-  axios.defaults.withCredentials = true;  
+  const upload = useRef();    
   
   const boximgUpload = () => {
     setImgFile((prev) => [
@@ -83,7 +81,7 @@ const Upload = () => {
             var jsonObject = response.json()            
             jsonObject.then((result) => {    
               console.log("uploaded object:", result)                        
-              const jsonresult = encodeURIComponent(JSON.stringify(result.data))              
+              const jsonresult = encodeURIComponent(JSON.stringify(result))              
               navigate(`/result?jsonResult=${encodeURIComponent(jsonresult)}`, { replace: true })
             })        
           } else {

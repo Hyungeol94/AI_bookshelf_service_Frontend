@@ -6,17 +6,45 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 
 // core components
 import Footer from "components/Footer/Footer.js";
-import { useSelector } from "react-redux";
 // our components
 import sample from "../assets/sample_book.json";
 import getlist from "../components/GetList_user_home";
 import user_info from "../assets/sample_user.json";
 import { Link } from "react-router-dom";
+import Statshow from "../components/UserStatistics";
+import Bookslider from "../components/Bookslider";
+
+// api
+import * as api from "../services/api";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 // let [totalBook_count, totalBook_list] = getlist(sample);
 let [interest_count, interest_list] = getlist(sample, user_info.user_interest);
 
-export default function Index() {
+const Home = () => {
+  const [list, setList] = useState([]);
+  const { authData } = useSelector((state) => state.userReducer);
+
+  // console.log(authData);
+  const getlikebooklist = async () => {
+    console.log(111);
+    await api
+      .likelist()
+      .then((data) => {
+        const booklist = data.data.info.list;
+        setList(booklist);
+        console.log(booklist);
+      })
+      .catch((e) => console.log(e));
+    // console.log("data", data[0].elements[0].elements[0].cdata);
+  };
+
+  useEffect(() => {
+    console.log(222);
+    getlikebooklist();
+  }, []);
+
   const [counter1, setCounter1] = useState(0);
 
   const leftBtnClickHandler1 = () => {
@@ -97,20 +125,10 @@ export default function Index() {
                 >
                   <div style={{ display: "flex" }}>
                     <h3 style={{ color: "#000000" }}>
-                      {user_info.profile.user_nickname}님의 독서 취향
+                      {authData?.nickname || "undefined"}님의 독서 취향
                     </h3>
                     <div style={{ marginLeft: "30px" }}>
-                      <Link to="/dash">
-                        <Button
-                          style={{ marginTop: "0px" }}
-                          className="btn-round"
-                          color="primary"
-                          size="sm"
-                          href=""
-                        >
-                          자세히 보기
-                        </Button>
-                      </Link>
+                      <Statshow data={authData} />
                     </div>
                   </div>
                   <div>
@@ -137,8 +155,10 @@ export default function Index() {
               >
                 <h3 style={{ textAlign: "center", fontWeight: "bold" }}>
                   {" "}
-                  {user_info.profile.user_nickname}님이 최근 추가한 도서
+                  {authData?.nickname || "undefined"}님이 최근 추가한 도서
                 </h3>
+
+                {/* <Bookslider list={list}/> */}
 
                 <div className="productBodyScrollable">
                   <div
@@ -189,7 +209,7 @@ export default function Index() {
               >
                 <h3 style={{ textAlign: "center", fontWeight: "bold" }}>
                   {" "}
-                  {user_info.profile.user_nickname}님을 위한 추천 도서
+                  {authData?.nickname || "undefined"}님을 위한 추천 도서
                 </h3>
 
                 <div className="productBodyScrollable">
@@ -231,7 +251,9 @@ export default function Index() {
       </div>
     </>
   );
-}
+};
+
+export default Home;
 
 /*!
 

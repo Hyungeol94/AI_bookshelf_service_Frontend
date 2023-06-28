@@ -12,8 +12,28 @@
     cursor: pointer;
 }
 
-.bookRow{ 
-    width : 100%;    
+.bookRow {
+    width: 100%;
+    position: relative;
+  }
+  
+  /* .bookRow .content {
+    display: inline-block;
+    max-width: 80%; 
+    max-height: 3em; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  } */
+
+.bookRow-conditionMet{
+    color: blue;
+}
+
+.bookRow-conditionMet:hover{
+    text-decoration: underline;
+    color: blue;
+    cursor: pointer;
 }
 
 .bookRowTable{
@@ -46,6 +66,17 @@
     height: 100%;
     display: block;    
 }
+
+.bookSearchRow:hover{
+    text-decoration: underline;
+    color: black;
+    cursor: pointer;
+}
+
+.bookSearchRow{ 
+    width : 100%;
+    text-overflow: ellipsis;
+} 
 
 .bookSearchResultTable{ 
     /* max-height: 300px; */

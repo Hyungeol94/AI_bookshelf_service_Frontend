@@ -4,9 +4,16 @@ import { Link } from "react-router-dom";
 import * as api from "../services/api";
 import { Button, Box, Modal, IconButton } from "@mui/material";
 import ClampLines from "react-clamp-lines";
-import { lightBlue } from "@mui/material/colors";
+import { lightBlue, teal } from "@mui/material/colors";
 
-import { Favorite, FavoriteBorder, AddShoppingCart } from "@mui/icons-material";
+import {
+  Favorite,
+  FavoriteBorder,
+  AddShoppingCart,
+  ShoppingCart,
+  LibraryAddOutlined,
+  LibraryAddCheck,
+} from "@mui/icons-material";
 
 const style = {
   position: "absolute",
@@ -29,13 +36,20 @@ const styleImage = {
   bgcolor: "#171941",
   boxShadow: 24,
 };
+
 // eslint-disable-next-line import/no-anonymous-default-export
 export default (props) => {
-  // console.log(props?.list.includes(props?.isbn));
+  // console.log(props?.likelist.includes(props?.isbn));
   const [open, setOpen] = useState(false);
   const [openImage, setOpenImage] = useState(false);
-  const [heart, setHeart] = useState(
-    props?.list.includes(props?.isbn) || false
+  const [like, setLike] = useState(
+    props?.likelist.includes(props?.isbn) || false
+  );
+  const [cart, setCart] = useState(
+    props?.cartlist.includes(props?.isbn) || false
+  );
+  const [bookshelf, setBookshelf] = useState(
+    props?.bookshelflist.includes(props?.isbn) || false
   );
   const handleClose = () => setOpen(false);
   const handleOpen = () => setOpen(true);
@@ -55,19 +69,51 @@ export default (props) => {
   };
 
   const handleHeart = async () => {
-    if (heart) {
-      setHeart(false);
+    if (like) {
+      setLike(false);
       await api.deletelike(request);
     } else {
-      setHeart(true);
+      setLike(true);
       await api.addlike(request);
     }
   };
-  const handleCart = () => {
-    // eslint-disable-next-line no-restricted-globals
-    confirm("장바구니에 추가하시겠습니까?");
+
+  const handleCart = async () => {
+    if (cart) {
+      // eslint-disable-next-line no-restricted-globals
+      var delete_cart = confirm("장바구니에서 삭제하시겠습니까?");
+      if (delete_cart === true) {
+        setCart(false);
+        await api.deletecart(request);
+      }
+    } else {
+      // eslint-disable-next-line no-restricted-globals
+      var add_cart = confirm("장바구니에 추가하겠습니까?");
+      if (add_cart === true) {
+        setCart(true);
+        await api.addcart(request);
+      }
+    }
   };
-  // console.log(props);
+
+  const handleBookshelf = async () => {
+    if (bookshelf) {
+      // eslint-disable-next-line no-restricted-globals
+      var delete_bookshelf = confirm("내 서제에서 삭제하시겠습니까?");
+      if (delete_bookshelf === true) {
+        setBookshelf(false);
+        await api.deletebookshelf(request);
+      }
+    } else {
+      // eslint-disable-next-line no-restricted-globals
+      var add_bookshelf = confirm("내 서재에 추가하시겠습니까?");
+      if (add_bookshelf === true) {
+        setBookshelf(true);
+        await api.addbookshelf(request);
+      }
+    }
+  };
+
   return (
     <div class="booklist">
       <div
@@ -90,7 +136,7 @@ export default (props) => {
             textAlign: "left",
             alignItems: "stretch",
             zIndex: 12,
-            // width: "1110px",
+            width: "1100px",
           }}
         >
           <img
@@ -123,7 +169,14 @@ export default (props) => {
                   position: "relative",
                 }}
               >
-                <h3 style={{ marginBottom: 0, fontSize: "18px", color: "black", }}>
+                <h3
+                  style={{
+                    marginBottom: 0,
+                    fontSize: "18px",
+                    color: "black",
+                    width: "610px",
+                  }}
+                >
                   {props?.title}
                 </h3>
                 <p
@@ -156,10 +209,14 @@ export default (props) => {
                   marginTop: "2px",
                 }}
               >
-                <p style={{ fontSize: "15px", fontWeight: 400, color: "black",}}>
+                <p
+                  style={{ fontSize: "15px", fontWeight: 400, color: "black" }}
+                >
                   {props?.author}
                 </p>
-                <p style={{ fontSize: "15px", fontWeight: 400, color: "black", }}>
+                <p
+                  style={{ fontSize: "15px", fontWeight: 400, color: "black" }}
+                >
                   {props?.publisher}
                 </p>
               </div>
@@ -168,7 +225,6 @@ export default (props) => {
                   width: "740px",
                   fontWeight: "border",
                   fontSize: "16px",
-                  
                 }}
               >
                 <ClampLines
@@ -178,11 +234,18 @@ export default (props) => {
                   // className="custom-class"
                   innerElement="p"
                   buttons={false}
-                  style={{color: "black"}}
+                  style={{ color: "black" }}
                 />
               </div>
             </div>
-            <h4 style={{ marginBottom: 0, fontSize: "14px", textAlign: "end", color: "black",}}>
+            <h4
+              style={{
+                marginBottom: 0,
+                fontSize: "14px",
+                textAlign: "end",
+                color: "black",
+              }}
+            >
               {String(props?.pubdate).slice(0, 4)}.
               {String(props?.pubdate).slice(4, 6)}.
               {String(props?.pubdate).slice(6, 8)}
@@ -207,22 +270,36 @@ export default (props) => {
                   }}
                   color="error"
                 >
-                  {heart ? <Favorite /> : <FavoriteBorder />}
+                  {like ? <Favorite /> : <FavoriteBorder />}
                 </IconButton>
                 <IconButton
                   style={{ width: "50px", height: "50px" }}
                   onClick={handleCart}
                 >
-                  <AddShoppingCart sx={{ color: lightBlue[500] }} />
+                  {cart ? (
+                    <ShoppingCart sx={{ color: lightBlue[500] }} />
+                  ) : (
+                    <AddShoppingCart sx={{ color: lightBlue[500] }} />
+                  )}
+                </IconButton>
+                <IconButton
+                  style={{ width: "50px", height: "50px" }}
+                  onClick={handleBookshelf}
+                >
+                  {bookshelf ? (
+                    <LibraryAddCheck sx={{ color: teal[500] }} />
+                  ) : (
+                    <LibraryAddOutlined sx={{ color: teal[500] }} />
+                  )}
                 </IconButton>
               </div>
               <Link to={props?.link}>
                 <Button
                   variant="outlined"
                   style={{
-                    width: "128px",
+                    width: "150px",
                     background: "blue",
-                    color: "white"
+                    color: "white",
                   }}
                 >
                   {Number(props?.discount).toLocaleString("ko-KR")} 원
@@ -271,22 +348,36 @@ export default (props) => {
                   }}
                   color="error"
                 >
-                  {heart ? <Favorite /> : <FavoriteBorder />}
+                  {like ? <Favorite /> : <FavoriteBorder />}
                 </IconButton>
                 <IconButton
                   style={{ width: "50px", height: "50px" }}
                   onClick={handleCart}
                 >
-                  <AddShoppingCart sx={{ color: lightBlue[500] }} />
+                  {cart ? (
+                    <ShoppingCart sx={{ color: lightBlue[500] }} />
+                  ) : (
+                    <AddShoppingCart sx={{ color: lightBlue[500] }} />
+                  )}
+                </IconButton>
+                <IconButton
+                  style={{ width: "50px", height: "50px" }}
+                  onClick={handleBookshelf}
+                >
+                  {bookshelf ? (
+                    <LibraryAddCheck sx={{ color: teal[500] }} />
+                  ) : (
+                    <LibraryAddOutlined sx={{ color: teal[500] }} />
+                  )}
                 </IconButton>
               </div>
               <Link to={props?.link}>
                 <Button
                   variant="outlined"
                   style={{
-                    width: "128px",
+                    width: "150px",
                     backgroundColor: "blue",
-                    color: "white"
+                    color: "white",
                   }}
                 >
                   {Number(props?.discount).toLocaleString("ko-KR")} 원
@@ -309,7 +400,14 @@ export default (props) => {
                   position: "relative",
                 }}
               >
-                <h3 style={{ marginBottom: 0, fontSize: "18px", color: "#000",}}>
+                <h3
+                  style={{
+                    marginBottom: 0,
+                    fontSize: "18px",
+                    color: "#000",
+                    width: "575px",
+                  }}
+                >
                   {props?.title}
                 </h3>
                 <p
@@ -342,10 +440,14 @@ export default (props) => {
                   marginTop: "2px",
                 }}
               >
-                <p style={{ fontSize: "15px", fontWeight: 400, color: "black",}}>
+                <p
+                  style={{ fontSize: "15px", fontWeight: 400, color: "black" }}
+                >
                   {props?.author}
                 </p>
-                <p style={{ fontSize: "15px", fontWeight: 400, color: "black", }}>
+                <p
+                  style={{ fontSize: "15px", fontWeight: 400, color: "black" }}
+                >
                   {props?.publisher} {String(props?.pubdate).slice(0, 4)}.
                   {String(props?.pubdate).slice(4, 6)}.
                   {String(props?.pubdate).slice(6, 8)}
@@ -367,8 +469,8 @@ export default (props) => {
                     display: "block",
                   }}
                 >
-                  <div style={{color: "black",}}>
-                    <p style={{color: "black",}}>{props?.description}</p>
+                  <div style={{ color: "black" }}>
+                    <p style={{ color: "black" }}>{props?.description}</p>
                   </div>
                 </div>
               </div>

@@ -3,6 +3,10 @@ import userData from '../assets/sample_user.json';
 import "../styles/Findid.css";
 import LoginNavbar from "components/Navbars/LoginNavbar";
 
+import {
+  Button,
+} from "reactstrap";
+
 const ForgotId = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [birthDate, setBirthDate] = useState('')
@@ -32,10 +36,35 @@ const ForgotId = () => {
   return (
     <div>
       < LoginNavbar />
-      <div class="container">
-      <h2 class="title">아이디 찾기</h2>
+      <div
+          // style={{
+          //   display: "flex",
+          //   justifyContent: "center",
+          //   alignItems: "center",
+          //   width: "100%",
+          //   height: "100vh",
+          //   font: "white",
+          // }}
+          >
+
+      <div class="container"
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          flexDirection : 'column',
+          width: "100%",
+          height: "100vh",
+          font: "white"}}>
+      <div
+        style={{
+          marginBottom: '50px'
+        }}>
+        <h2 class="title">아이디 찾기</h2>
+      </div>
       <form onSubmit={handleSubmit} className='inside-container'>
-        <label htmlFor="phoneNumber" class='label-form'>전화번호:</label>
+        <label htmlFor="phoneNumber" class='label-form'
+          style={{color:'#ffffff'}}>전화번호:</label>
         <input
           type="tel"
           id="phoneNumber"
@@ -45,7 +74,8 @@ const ForgotId = () => {
           className='input-form'
           required
         /><br/>
-        <label htmlFor="name" class='label-form'>이름:</label>
+        <label htmlFor="name" class='label-form'
+          style={{color:'#ffffff'}}>이름:</label>
         <input
           type="text"
           id="name"
@@ -55,7 +85,8 @@ const ForgotId = () => {
           className='input-form'
           required
         /><br/>
-        <label htmlFor="birthDate" class='label-form'>생년월일:</label>
+        <label htmlFor="birthDate" class='label-form'
+          style={{color:'#ffffff'}}>생년월일:</label>
         <input
           type="date"
           id="birthDate"
@@ -64,9 +95,12 @@ const ForgotId = () => {
           className='input-form'
           required
         /><br/>
-        <button type="submit" class="button">아이디 찾기</button>
+        <Button
+         variant="contained" class="button"
+         style={{width:'278px', height:'40px', marginTop:'20px'}}>아이디 찾기</Button>
       </form>
-      {foundId && <div>찾은 아이디: {foundId}</div>}
+        {foundId && <div>찾은 아이디: {foundId}</div>}
+    </div>
     </div>
     </div>
   );

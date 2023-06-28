@@ -5,6 +5,7 @@ import {
   useNavigate,
 } from "react-router-dom";
 import axios from 'axios';
+//import https from 'https';
 
 function Card({ children }) {
   return (
@@ -16,8 +17,10 @@ function Card({ children }) {
 
 const Upload = () => {
   const [imgFile, setImgFile] = useState([]); // 이미지 배열
+  const [imgFileView, setImgFileView] = useState([])
   const upload = useRef();
-  axios.defaults.withCredentials = true;
+  axios.defaults.withCredentials = true;  
+  
   // const imgUpload = () => {
   //   console.log(upload.current.files);
   //   setImgFile((prev) => [...prev, URL.createObjectURL(upload.current.files[0])]);
@@ -26,8 +29,13 @@ const Upload = () => {
   const boximgUpload = () => {
     setImgFile((prev) => [
       ...prev,
-      URL.createObjectURL(upload.current.files[0]),
+      upload.current.files[0],
     ]);
+
+    setImgFileView((prev)=>[
+      ...prev,
+      URL.createObjectURL(upload.current.files[0]),
+    ])
   };
   const navigate = useNavigate();
   const handleUpload = () => {
@@ -44,7 +52,7 @@ const Upload = () => {
         .then((blob) => {
           formData.append("image", blob);
         })
-    );
+    ); 
 
     Promise.all(conversionPromises)
       .then(() => {
@@ -58,10 +66,10 @@ const Upload = () => {
       .catch((error) => {
         console.error("Error:", error);
       });
-  
-  
+      
+
       Promise.all(conversionPromises)
-      .then(fetch('https://4b18-35-196-15-218.ngrok-free.app/img2title/', {
+      .then(fetch('https://51fb-35-201-200-223.ngrok-free.app/img2title/', {
         method: 'POST',
         headers:{
           'ngrok-skip-browswer-warning' : '69420',
@@ -73,6 +81,7 @@ const Upload = () => {
           if (response.ok) {
             // Image successfully uploaded
             console.log('Image uploaded!');
+            console.log(response.json())
           } else {
             // Handle error case
             console.error('Image upload failed.');
@@ -100,7 +109,7 @@ const Upload = () => {
       </h5>
 
       <div className="upload-box">
-        {imgFile.length === 0 ? (
+        {imgFileView.length === 0 ? (
           <>
             <p>책장 이미지를 업로드해 주세요.</p>
             <input
@@ -115,7 +124,7 @@ const Upload = () => {
         ) : (
           <div>
             <div style={{ display: "flex" }}>
-              {imgFile?.map((img, idx) => (
+              {imgFileView?.map((img, idx) => (
                 <Card key={idx} >
                   <img
                     style={{width: "192", height: "192px" }}

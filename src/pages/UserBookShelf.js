@@ -20,16 +20,43 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 const UserBookShelf = () => {
-  const [list, setList] = useState([]);
+  const [likelist, setLikelist] = useState([]);
+  const [cartlist, setCartlist] = useState([]);
+  const [bookshelflist, setBookshelflist] = useState([]);
   const { authData } = useSelector((state) => state.userReducer);
   // console.log(authData);
-  const getlikebooklist = async () => {
+  const getlikelist = async () => {
     console.log(111);
     await api
       .likelist()
       .then((data) => {
         const booklist = data.data.info.list;
-        setList(booklist);
+        setLikelist(booklist);
+        console.log(booklist);
+      })
+      .catch((e) => console.log(e));
+    // console.log("data", data[0].elements[0].elements[0].cdata);
+  };
+
+  const getcartlist = async () => {
+    console.log(111);
+    await api
+      .cartlist()
+      .then((data) => {
+        const booklist = data.data.info.list;
+        setCartlist(booklist);
+        console.log(booklist);
+      })
+      .catch((e) => console.log(e));
+    // console.log("data", data[0].elements[0].elements[0].cdata);
+  };
+  const getbookshelflist = async () => {
+    console.log(111);
+    await api
+      .bookshelflist()
+      .then((data) => {
+        const booklist = data.data.info.list;
+        setBookshelflist(booklist);
         console.log(booklist);
       })
       .catch((e) => console.log(e));
@@ -38,7 +65,9 @@ const UserBookShelf = () => {
 
   useEffect(() => {
     console.log(222);
-    getlikebooklist();
+    getlikelist();
+    getcartlist();
+    getbookshelflist();
   }, []);
 
   return (
@@ -72,7 +101,9 @@ const UserBookShelf = () => {
                 <Book_view
                   style={{ marginTop: "30px" }}
                   data={authData}
-                  list={list}
+                  likelist={likelist}
+                  cartlist={cartlist}
+                  bookshelflist={bookshelflist}
                 />
               </div>
             </div>

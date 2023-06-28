@@ -13,7 +13,6 @@ import user_info from "../assets/sample_user.json";
 import { Link } from "react-router-dom";
 import Statshow from "../components/UserStatistics";
 
-
 // api
 import * as api from "../services/api";
 import { useSelector } from "react-redux";
@@ -30,7 +29,7 @@ const Home = () => {
   const getlikebooklist = async () => {
     console.log(111);
     await api
-      .likebooklist()
+      .likelist()
       .then((data) => {
         const booklist = data.data.info.list;
         setList(booklist);
@@ -125,10 +124,10 @@ const Home = () => {
                 >
                   <div style={{ display: "flex" }}>
                     <h3 style={{ color: "#000000" }}>
-                    {authData?.nickname || "undefined"}님의 독서 취향
+                      {authData?.nickname || "undefined"}님의 독서 취향
                     </h3>
                     <div style={{ marginLeft: "30px" }}>
-                      <Statshow data={authData}/>
+                      <Statshow data={authData} />
                     </div>
                   </div>
                   <div>
@@ -243,7 +242,7 @@ const Home = () => {
       </div>
     </>
   );
-}
+};
 
 export default Home;
 

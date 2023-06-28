@@ -2,21 +2,32 @@ import React from 'react';
 import "../../styles/BookList.css";
 
 const BookRow = (props) => {
-    const {book_info, setSelectedBookInfo, deleteFromBookList, searchValue, setSearchValue, onSearch} = props
+    const {bookInfo, setSelectedBookInfo, selectedBookRowInfo, setSelectedBookRowInfo, deleteFromBookList, searchValue, setSearchValue, onSearch} = props
+    const isConditionMet = () => {      
+      if (bookInfo === selectedBookRowInfo){
+        return true
+      }      
+      return false
+    }
   
     function handleClick(){    
-      setSearchValue(book_info.booktitle||book_info.title)    
-      setSelectedBookInfo(book_info)
+      setSearchValue(bookInfo.title||bookInfo.booktitle)    
+      setSelectedBookInfo(bookInfo)
+      setSelectedBookRowInfo(bookInfo)      
     }
 
     function handleDelete(){
-      deleteFromBookList(book_info)
+      deleteFromBookList(bookInfo)
       console.log("delete")
     }
+    
+    const bookRowClassName = isConditionMet() ? 'bookRow-conditionMet' : 'bookRow';
 
     return (
       <tr>
-        <td onClick={handleClick} className = "bookRow">{book_info.booktitle || book_info.title}</td>                
+        <td onClick={handleClick} className = {bookRowClassName}>
+          <span className="content">{bookInfo.title||bookInfo.booktitle}</span>  
+        </td>                
         <td>
           <button className="deleteButton" onClick={handleDelete}>❎</button>
         </td>

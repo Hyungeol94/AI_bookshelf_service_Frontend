@@ -1,11 +1,11 @@
 
 .add-to-mybrary {
     margin-top: 10px;
-    margin-left: 10px;
+    margin-left: 15px;
 }
 
 .like-wishlist-cart {
-    margin-left: 10px;
+    margin-left: 15px;
 }
 
 .labels {
@@ -13,24 +13,23 @@
 }
 
 .btn-group {
-    margin-left: 10px;
+    margin-left: 15px;
     margin-bottom: 10px;
 }
-
+/* 
 .buy-link:hover {
     background-color: #00E1BE;
   }
   
 .buy-link:active {
     background-color: #00E1BE;
-  }
+  } */
 
 .buy-link {
-    background-color: #2F3E66;
-    border-color: transparent;
     color: aliceblue;
     margin-right: 5px;
-    /* border-radius: %; */
+    margin-right: 5px;
+    border-radius: 5px;
     
 }
 

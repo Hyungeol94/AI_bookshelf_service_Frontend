@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../styles/components/AddBtns.css";
+import { Button } from "reactstrap";
 
 const Addtolib = (props) => {
     const [likeCheck, setLikeCheck] = useState(false); // 좋아요 변수
@@ -99,15 +100,19 @@ return( <div>
           className="input-box"/><label> 장바구니 </label>
         </div>
         <div className="btn-group">
-          <button className="buy-link"
+          <card></card>
+          <Button color="info" size="sm" className="buy-link" // style={{width: "100px", height:"30px", "border-radious": "5px"}}
+              onClick={() => window.open(`https://search.shopping.naver.com/book/search?bookTabType=ALL&pageIndex=1&pageSize=40&query=${props.booktitle}&sort=REL`, "_blank")} >
+                네이버 북 </Button>
+          <Button color="info" size="sm" className="buy-link" // style={{width: "100px", height:"30px", "border-radious": "5px"}}
               onClick={() => window.open(`https://www.yes24.com/Product/Search?domain=ALL&query=${props.booktitle}`, "_blank")} >
-                Yes24 </button>
-          <button className="buy-link"
+                Yes24 </Button>
+          <Button color="info" size="sm" className="buy-link"
               onClick={() => window.open(`https://www.aladin.co.kr/search/wsearchresult.aspx?SearchTarget=All&SearchWord=${props.booktitle}`, "_blank")} > 
-              알라딘 </button>
-          <button className="buy-link"
+              알라딘 </Button>
+          <Button color="info" size="sm" className="buy-link"
               onClick={() => window.open(`https://search.kyobobook.co.kr/search?keyword=${props.booktitle}`, "_blank")} > 
-              교보문고 </button> <br/>
+              교보문고 </Button> <br/>
         </div>
 </div>
 

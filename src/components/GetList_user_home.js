@@ -1,6 +1,6 @@
 import React from "react";
 import "../styles/GetList_home.css";
-import "../styles/GetList.css";
+// import "../styles/GetList.css";
 import { Modal } from "reactstrap";
 import AddBtns from "./AddBtns";
 import { useState } from "react";

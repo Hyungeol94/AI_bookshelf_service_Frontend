@@ -147,29 +147,35 @@ export default function Index() {
                   >
                     {/* 임시로 넣어둠 */}
                     {interest_list}
+                  
+                  
                   </div>
                   {showLeftBtn1 && (
                     <div className="carouselLeft">
-                      <button
+                      <Button
                         name="left"
                         className="carouselLeftBtn"
                         onClick={leftBtnClickHandler1}
                       >
                         <i className="tim-icons icon-minimal-left" />
-                      </button>
+                      </Button>
                     </div>
                   )}
+
+
                   {showRightBtn1 && (
                     <div className="carouselRight">
-                      <button
+                      <Button
                         name="right"
                         className="carouselRightBtn"
                         onClick={rightBtnClickHandler1}
                       >
                         <i className="tim-icons icon-minimal-right" />
-                      </button>
+                      </Button>
                     </div>
                   )}
+
+                  
                 </div>
               </div>
 

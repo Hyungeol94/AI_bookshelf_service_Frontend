@@ -7,9 +7,24 @@ export const signin = (data) => axios.post("/auth/signin", data);
 export const signup = (data) => axios.post("/auth/signup", data);
 export const getAuthToken = () => axios.get("/auth/authtoken");
 export const signout = () => axios.get("/auth/signout");
+
+// USER_LIKE
 export const addlike = (data) => axios.post("/user/addlike", data);
 export const deletelike = (data) => axios.post("/user/deletelike", data);
+export const likecheck = () => axios.post("/user/likecheck");
 export const likelist = () => axios.post("/user/likelist");
-export const likebooklist = () => axios.post("/user/likebooklist");
+
+// USER_CART
+export const addcart = (data) => axios.post("/user/addcart", data);
+export const deletecart = (data) => axios.post("/user/deletecart", data);
+export const cartcheck = () => axios.post("/user/cartcheck");
+export const cartlist = () => axios.post("/user/cartlist");
+
+// USER_BOOKSHELF
+export const addbookshelf = (data) => axios.post("/user/addbookshelf", data);
+export const deletebookshelf = (data) =>
+  axios.post("/user/deletebookshelf", data);
+export const bookshelfcheck = () => axios.post("/user/bookshelfcheck");
+export const bookshelflist = () => axios.post("/user/bookshelflist");
 // export const logout = () => axios.delete("/api/user/logout");
 // export const signup = (data) => axios.post("/api/user/signup", data);

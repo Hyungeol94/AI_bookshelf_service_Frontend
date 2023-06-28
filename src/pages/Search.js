@@ -16,27 +16,38 @@ export default (props) => {
 
   const [data, setData] = useState(props?.data || null);
   const [total, setTotal] = useState(props?.total || null);
-  const [list, setList] = useState([]);
+  const [likelist, setLikelist] = useState([]);
+  const [cartlist, setCartlist] = useState([]);
+  const [bookshelflist, setBookshelflist] = useState([]);
   const [searchValue, setSearchValue] = useState(location?.state?.value);
   const [isloading, setIsLoading] = useState(false);
-  // const [pageSize, setPageSize] = useState(10);
-
-  // const onChange = (e) => {
-  //   setSearchValue(e?.target?.value);
-  // };
-
-  // const onChangePageSize = (e) => {
-  //   setPageSize(e?.target?.value);
-  // };
 
   const onSearch = async () => {
     await bookinfo_api(searchValue).then(async (data) => {
       setIsLoading(true);
       await api
-        .likelist()
+        .likecheck()
         .then((data) => {
           const booklist = data?.data?.info?.list;
-          setList(booklist);
+          setLikelist(booklist);
+          console.log(data?.data?.info?.list);
+        })
+        .catch((e) => console.log(e));
+
+      await api
+        .cartcheck()
+        .then((data) => {
+          const booklist = data?.data?.info?.list;
+          setCartlist(booklist);
+          console.log(data?.data?.info?.list);
+        })
+        .catch((e) => console.log(e));
+
+      await api
+        .bookshelfcheck()
+        .then((data) => {
+          const booklist = data?.data?.info?.list;
+          setBookshelflist(booklist);
           console.log(data?.data?.info?.list);
         })
         .catch((e) => console.log(e));
@@ -47,12 +58,6 @@ export default (props) => {
     setIsLoading(false);
     // console.log("data", data[0].elements[0].elements[0].cdata);
   };
-
-  // const handleOnKeyPress = (e) => {
-  //   if (e.key === "Enter") {
-  //     onSearch(); // Enter 입력이 되면 클릭 이벤트 실행
-  //   }
-  // };
 
   useEffect(() => {
     setSearchValue(location?.state?.value);
@@ -76,32 +81,6 @@ export default (props) => {
       }}
     >
       <div>
-        {/* <Link to="/bookshelf">
-          <button>나의 서재</button>
-        </Link>
-        <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          value={pageSize}
-          label="페이지수"
-          style={{ height: "2em" }}
-          onChange={onChangePageSize}
-        >
-          <MenuItem value={10}>10</MenuItem>
-          <MenuItem value={20}>20</MenuItem>
-          <MenuItem value={30}>30</MenuItem>
-        </Select>
-        <div>
-          <input
-            id="search-item"
-            onChange={onChange}
-            onKeyDown={handleOnKeyPress}
-            onFocus={(e) => e.target.select()}
-          ></input>
-          <button id="search-btn" onClick={onSearch}>
-            검색
-          </button>
-        </div> */}
         {isloading ? (
           <h3>로딩중..</h3>
         ) : total > 0 ? (
@@ -110,7 +89,9 @@ export default (props) => {
               return (
                 <BookList
                   key={book?.isbn}
-                  list={list}
+                  likelist={likelist}
+                  cartlist={cartlist}
+                  bookshelflist={bookshelflist}
                   title={book?.title}
                   author={book?.author}
                   description={book?.description}

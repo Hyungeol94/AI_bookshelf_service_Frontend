@@ -26,7 +26,7 @@ const UserBookShelf = () => {
   const getlikebooklist = async () => {
     console.log(111);
     await api
-      .likebooklist()
+      .likelist()
       .then((data) => {
         const booklist = data.data.info.list;
         setList(booklist);

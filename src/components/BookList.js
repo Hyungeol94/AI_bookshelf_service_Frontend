@@ -31,11 +31,17 @@ const styleImage = {
 };
 // eslint-disable-next-line import/no-anonymous-default-export
 export default (props) => {
-  // console.log(props?.list.includes(props?.isbn));
+  // console.log(props?.likelist.includes(props?.isbn));
   const [open, setOpen] = useState(false);
   const [openImage, setOpenImage] = useState(false);
-  const [heart, setHeart] = useState(
-    props?.list.includes(props?.isbn) || false
+  const [like, setLike] = useState(
+    props?.likelist.includes(props?.isbn) || false
+  );
+  const [cart, setCart] = useState(
+    props?.cartlist.includes(props?.isbn) || false
+  );
+  const [bookshelf, setBookshelf] = useState(
+    props?.bookshelflist.includes(props?.isbn) || false
   );
   const handleClose = () => setOpen(false);
   const handleOpen = () => setOpen(true);
@@ -55,17 +61,33 @@ export default (props) => {
   };
 
   const handleHeart = async () => {
-    if (heart) {
-      setHeart(false);
+    if (like) {
+      setLike(false);
       await api.deletelike(request);
     } else {
-      setHeart(true);
+      setLike(true);
       await api.addlike(request);
     }
   };
-  const handleCart = () => {
-    // eslint-disable-next-line no-restricted-globals
-    confirm("장바구니에 추가하시겠습니까?");
+
+  const handleCart = async () => {
+    if (cart) {
+      setCart(false);
+      await api.deletecart(request);
+    } else {
+      setCart(true);
+      await api.addcart(request);
+    }
+  };
+
+  const handleBookshelf = async () => {
+    if (bookshelf) {
+      setBookshelf(false);
+      await api.deletebookshelf(request);
+    } else {
+      setBookshelf(true);
+      await api.addbookshelf(request);
+    }
   };
   // console.log(props);
   return (
@@ -202,7 +224,7 @@ export default (props) => {
                   }}
                   color="error"
                 >
-                  {heart ? <Favorite /> : <FavoriteBorder />}
+                  {like ? <Favorite /> : <FavoriteBorder />}
                 </IconButton>
                 <IconButton
                   style={{ width: "50px", height: "50px" }}
@@ -263,7 +285,7 @@ export default (props) => {
                   }}
                   color="error"
                 >
-                  {heart ? <Favorite /> : <FavoriteBorder />}
+                  {like ? <Favorite /> : <FavoriteBorder />}
                 </IconButton>
                 <IconButton
                   style={{ width: "50px", height: "50px" }}

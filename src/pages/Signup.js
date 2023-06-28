@@ -321,7 +321,7 @@ function Signup() {
           onChange={(e) => {
             if (e.target.value.length <= 12) setPhoneNumber(e.target.value);
           }}
-          label="전화번호"
+          label="전화번호 (숫자만)"
           variant="standard"
           style={{ marginTop: "1em" }}
           inputProps={{ style: { color: "white" } }}
@@ -340,7 +340,7 @@ function Signup() {
           onChange={(e) => {
             if (e.target.value.length <= 6) setBirth(e.target.value);
           }}
-          label="생년월일(6자리)"
+          label="생년월일 (6자리)"
           variant="standard"
           style={{ marginTop: "1em" }}
           inputProps={{

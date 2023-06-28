@@ -63,7 +63,6 @@ export default function Dash() {
                 style={{
                   display: 'flex',
                   marginTop: '20px',
-                  backgroundColor: 'rgba(255,255,255, 0.8)',
                   paddingLeft: '10vw',
                   paddingRight: '10vw',
                   borderRadius: '30px 30px 30px 30px',

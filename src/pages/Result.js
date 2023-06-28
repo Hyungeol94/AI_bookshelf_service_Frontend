@@ -13,13 +13,41 @@ function Card({ children }) {
   return <div className="resultCard">{children}</div>;
 }
 
+function getBooksInfo() {
+  const searchParams = new URLSearchParams(window.location.search);
+  const jsonResult = searchParams.get('jsonResult');
+  
+  // Check if jsonResult is provided and valid
+  if (jsonResult) {
+    try {
+      const decodedResult = decodeURIComponent(jsonResult);   
+      const parsedResult = JSON.parse(decodedResult);         
+      
+      const booksInfo = [];
+      Object.keys(parsedResult).forEach((key) => {
+        const bookInfo = {};
+        bookInfo.id = key;
+        bookInfo.title = parsedResult[key];
+        booksInfo.push(bookInfo);
+      });
 
-const Result = () => {
-  const [bookList, setBookList] = useState(sample)
+      return booksInfo;
+    } catch (error) {
+      console.error("Invalid JSON format:", error);
+    }
+  }
+  
+  // Return an empty array if jsonResult is missing or invalid
+  return [];
+}
+
+
+const Result = () => {  
+  const [bookList, setBookList] = useState(getBooksInfo())
   const [selectedBookInfo, setSelectedBookInfo] = useState(bookList[0]);
   const [selectedBookRowInfo, setSelectedBookRowInfo] = useState(bookList[0]);
   const [data, setData] = useState(null);
-  const [searchValue, setSearchValue] = useState(bookList[0].booktitle);
+  const [searchValue, setSearchValue] = useState(bookList[0]?.booktitle);
   const [isLoading, setIsLoading] = useState(false);
   const [pageSize, setPageSize] = useState(10);
 

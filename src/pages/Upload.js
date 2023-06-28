@@ -1,10 +1,11 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import "../styles/Upload.css";
 import {
   // Link, Route, Routes,
   useNavigate,
 } from "react-router-dom";
 import axios from 'axios';
+
 //import https from 'https';
 
 function Card({ children }) {
@@ -19,13 +20,9 @@ const Upload = () => {
   const [imgFile, setImgFile] = useState([]); // 이미지 배열
   const [imgFileView, setImgFileView] = useState([])
   const upload = useRef();
+  const [jsonResult, setJsonResult] = useState([]);
   axios.defaults.withCredentials = true;  
   
-  // const imgUpload = () => {
-  //   console.log(upload.current.files);
-  //   setImgFile((prev) => [...prev, URL.createObjectURL(upload.current.files[0])]);
-  // };
-
   const boximgUpload = () => {
     setImgFile((prev) => [
       ...prev,
@@ -37,6 +34,9 @@ const Upload = () => {
       URL.createObjectURL(upload.current.files[0]),
     ])
   };
+
+
+
   const navigate = useNavigate();
   const handleUpload = () => {
     if (imgFile.length === 0) {
@@ -67,9 +67,8 @@ const Upload = () => {
         console.error("Error:", error);
       });
       
-
       Promise.all(conversionPromises)
-      .then(fetch('https://51fb-35-201-200-223.ngrok-free.app/img2title/', {
+      .then(fetch('https://69dd-34-139-206-56.ngrok-free.app/img2title/', {
         method: 'POST',
         headers:{
           'ngrok-skip-browswer-warning' : '69420',
@@ -80,8 +79,13 @@ const Upload = () => {
         .then((response) => {
           if (response.ok) {
             // Image successfully uploaded
-            console.log('Image uploaded!');
-            console.log(response.json())
+            console.log('Image uploaded!');                               
+            var jsonObject = response.json()            
+            jsonObject.then((result) => {    
+              console.log("uploaded object:", result)                        
+              const jsonresult = encodeURIComponent(JSON.stringify(result.data))              
+              navigate(`/result?jsonResult=${encodeURIComponent(jsonresult)}`, { replace: true })
+            })        
           } else {
             // Handle error case
             console.error('Image upload failed.');
@@ -89,14 +93,13 @@ const Upload = () => {
         })
         .catch((error) => {
           console.error('Error:', error);
-        }));
-
+        }))
 
       // Perform the AI logic here
       // start the AI logic
-      // ...
+      // ... 
 
-      // navigate("/result", { replace: true });
+      //.then(navigate(`/result?jsonResult=${encodeURIComponent(JSON.stringify(jsonResult))}`, { replace: true }));       
     }
   };
 

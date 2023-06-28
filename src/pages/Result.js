@@ -13,13 +13,40 @@ function Card({ children }) {
   return <div className="resultCard">{children}</div>;
 }
 
+function getBooksInfo() {
+  const searchParams = new URLSearchParams(window.location.search);
+  const jsonResult = searchParams.get('jsonResult');
+  
+  // Check if jsonResult is provided and valid
+  if (jsonResult) {
+    try {
+      const decodedResult = decodeURIComponent(jsonResult);   
+      const parsedResult = JSON.parse(decodedResult);               
+      const titleData = parsedResult.data      
+      const booksInfo = [];
+      Object.keys(titleData).forEach((key) => {
+        const bookInfo = {};
+        bookInfo.id = key;
+        bookInfo.title = titleData[key];
+        booksInfo.push(bookInfo);
+      });      
+      return booksInfo;
+    } catch (error) {
+      console.error("Invalid JSON format:", error);
+    }
+  }
+  
+  // Return an empty array if jsonResult is missing or invalid
+  return [];
+}
 
-const Result = () => {
-  const [bookList, setBookList] = useState(sample)
+
+const Result = () => {  
+  const [bookList, setBookList] = useState(getBooksInfo())
   const [selectedBookInfo, setSelectedBookInfo] = useState(bookList[0]);
-  //const [selectedBookRowInfo, setSelectedBookRowInfo] = useState(sample[0]);
+  const [selectedBookRowInfo, setSelectedBookRowInfo] = useState(bookList[0]);
   const [data, setData] = useState(null);
-  const [searchValue, setSearchValue] = useState(bookList[0].booktitle);
+  const [searchValue, setSearchValue] = useState(bookList[0]?.booktitle);
   const [isLoading, setIsLoading] = useState(false);
   const [pageSize, setPageSize] = useState(10);
 
@@ -46,39 +73,30 @@ const Result = () => {
     onSearch()
   }, [searchValue]);
 
-  const addToBookList = (book_info) => {
-    const newBook_info = {...book_info}    
-    if (newBook_info.id !== undefined){      
-      newBook_info.id = parseInt(bookList[bookList.length-1].id)+1
-    }
-    else {
-      Object.defineProperty(newBook_info, 'id', {
-        value: (parseInt(bookList[bookList.length-1].id)+1)
-      })}
-    const updatedBookList = bookList.concat(newBook_info)
+  const addToBookList = (bookInfo) => {
+    const newBookInfo = {...bookInfo}    
+    newBookInfo.id = parseInt(bookList[bookList.length-1].id)+1
+    const updatedBookList = bookList.concat(newBookInfo)
     setBookList(updatedBookList)    
     console.log(bookList)
-  };
+  };  
 
-  const deleteFromBookList = (book_info) => {    
-    const updatedBookList = bookList.filter(item => item.id !== book_info.id)
+  const deleteFromBookList = (bookInfo) => {    
+    const updatedBookList = bookList.filter(item => item !== bookInfo)
     setBookList(updatedBookList)
   };
 
-  useEffect(() => {
-    console.log("update bookList")
-  }, [bookList])
-  
 
 
   return (
     <div style={{ display: "flex" }}>
       <Card>
         <BookTableView
-          books_info={bookList}
-          setSelectedBookInfo={setSelectedBookInfo}
+          booksInfo={bookList}
+          setSelectedBookInfo={setSelectedBookInfo}          
+          selectedBookRowInfo={selectedBookRowInfo}
+          setSelectedBookRowInfo = {setSelectedBookRowInfo}
           deleteFromBookList = {deleteFromBookList}
-          // setSelectedBookRowInfo = {setSelectedBookRowInfo}
           searchValue = {searchValue}  
           setSearchValue={setSearchValue}
           onSearch={onSearch}
@@ -87,15 +105,18 @@ const Result = () => {
       </Card>
       <Card>
         <BookDetailView
-          book_info = {selectedBookInfo}
-          addToBookList = {addToBookList}
-          // 클릭되어 있는 텍스트 정보를 제공하기
+          bookInfo = {selectedBookInfo}
+          bookList = {bookList}
+          setBookList = {setBookList}
+          addToBookList = {addToBookList}          
+          selectedBookRowInfo = {selectedBookRowInfo} 
+          // 클릭되어 있는 텍스트 정보를 제공하기          
         />
       </Card>
       <Card>
         {/* 클릭되어 있는 텍스트의 검색 결과 가져 오기 */}
         <BookSearchView
-          book_info={selectedBookInfo}
+          bookInfo={selectedBookInfo}
           setSelectedBookInfo={setSelectedBookInfo}
           setSearchValue={setSearchValue}
           onSearch={onSearch}

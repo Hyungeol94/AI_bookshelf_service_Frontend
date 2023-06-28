@@ -8,9 +8,7 @@ import { Book } from "@mui/icons-material";
 
 const BookSearchView = (props) => { 
     const {setSelectedBookInfo, searchValue, setSearchValue, isLoading, data} = props
-    const inputRef = useRef(searchValue);
-
-    let num = 1;
+    const inputRef = useRef(searchValue);    
     
     useEffect(() => {
       inputRef.current.value = searchValue
@@ -28,8 +26,7 @@ const BookSearchView = (props) => {
         />
         <BookSearchResultTable
           isLoading = {isLoading}
-          data = {data} 
-          num = {num}
+          data = {data}           
           setSelectedBookInfo = {setSelectedBookInfo}        
         />
       </div>

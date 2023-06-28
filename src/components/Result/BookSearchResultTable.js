@@ -4,7 +4,7 @@ import BookSearchResultRow from './BookSearchResultRow'
 const BookSearchResultTable = (props) => {
     
     const {isLoading, data, setSelectedBookInfo} = props
-    let {num} = props
+    let num  = 1
 
     return (
         <div className = "bookSearchResultTable">
@@ -12,12 +12,12 @@ const BookSearchResultTable = (props) => {
             <h3 style={{color: 'black'}}>로딩중..</h3>
           ) : (typeof data !== 'undefined' && data && data.length!=0) ? (
             <div className = "bookSearchResultTable">              
-              {console.log("loading done")}              
-              {data.map((book) => {
+              {console.log("loading done")}                         
+              {data.items.map((book) => {
                 return (
                   <BookSearchResultRow
                     key={num++}  
-                    book_info = {book}
+                    bookInfo = {book}
                     setSelectedBookInfo = {setSelectedBookInfo}       
                   />
                 );

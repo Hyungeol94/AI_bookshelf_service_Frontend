@@ -84,6 +84,7 @@ export default (props) => {
             justifyContent: "space-between",
             border: "solid 2px",
             borderColor: "rgb(31 64 182 / 66%)",
+            backgroundColor: "#FFFFFF",
             borderRadius: "15px",
             padding: "20px",
             textAlign: "left",
@@ -118,10 +119,11 @@ export default (props) => {
                 style={{
                   display: "flex",
                   justifyContent: "space-between",
+                  color: "black",
                   position: "relative",
                 }}
               >
-                <h3 style={{ marginBottom: 0, fontSize: "18px" }}>
+                <h3 style={{ marginBottom: 0, fontSize: "18px", color: "black", }}>
                   {props?.title}
                 </h3>
                 <p
@@ -130,6 +132,7 @@ export default (props) => {
                     marginTop: "5px",
                     fontWeight: 400,
                     position: "absolute",
+                    color: "black",
                     // textAlign: "end",
                     right: 0,
                     bottom: 0,
@@ -153,10 +156,10 @@ export default (props) => {
                   marginTop: "2px",
                 }}
               >
-                <p style={{ fontSize: "15px", fontWeight: 400 }}>
+                <p style={{ fontSize: "15px", fontWeight: 400, color: "black",}}>
                   {props?.author}
                 </p>
-                <p style={{ fontSize: "15px", fontWeight: 400 }}>
+                <p style={{ fontSize: "15px", fontWeight: 400, color: "black", }}>
                   {props?.publisher}
                 </p>
               </div>
@@ -165,19 +168,21 @@ export default (props) => {
                   width: "740px",
                   fontWeight: "border",
                   fontSize: "16px",
+                  
                 }}
               >
                 <ClampLines
                   text={props?.description}
                   lines={5}
                   ellipsis="..."
-                  className="custom-class"
+                  // className="custom-class"
                   innerElement="p"
                   buttons={false}
+                  style={{color: "black"}}
                 />
               </div>
             </div>
-            <h4 style={{ marginBottom: 0, fontSize: "14px", textAlign: "end" }}>
+            <h4 style={{ marginBottom: 0, fontSize: "14px", textAlign: "end", color: "black",}}>
               {String(props?.pubdate).slice(0, 4)}.
               {String(props?.pubdate).slice(4, 6)}.
               {String(props?.pubdate).slice(6, 8)}
@@ -216,6 +221,8 @@ export default (props) => {
                   variant="outlined"
                   style={{
                     width: "128px",
+                    background: "blue",
+                    color: "white"
                   }}
                 >
                   {Number(props?.discount).toLocaleString("ko-KR")} 원
@@ -230,8 +237,9 @@ export default (props) => {
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
+        style={{}}
       >
-        <Box sx={style} style={{ color: "white" }}>
+        <Box sx={style} style={{ "background-color": "white" }}>
           <div style={{ display: "flex", justifyContent: "space-between" }}>
             <div>
               <img
@@ -277,6 +285,8 @@ export default (props) => {
                   variant="outlined"
                   style={{
                     width: "128px",
+                    backgroundColor: "blue",
+                    color: "white"
                   }}
                 >
                   {Number(props?.discount).toLocaleString("ko-KR")} 원
@@ -299,7 +309,7 @@ export default (props) => {
                   position: "relative",
                 }}
               >
-                <h3 style={{ marginBottom: 0, fontSize: "18px" }}>
+                <h3 style={{ marginBottom: 0, fontSize: "18px", color: "#000",}}>
                   {props?.title}
                 </h3>
                 <p
@@ -312,6 +322,7 @@ export default (props) => {
                     right: 0,
                     bottom: 0,
                     margin: 0,
+                    color: "black",
                   }}
                 >
                   {props?.isbn}
@@ -331,10 +342,10 @@ export default (props) => {
                   marginTop: "2px",
                 }}
               >
-                <p style={{ fontSize: "15px", fontWeight: 400 }}>
+                <p style={{ fontSize: "15px", fontWeight: 400, color: "black",}}>
                   {props?.author}
                 </p>
-                <p style={{ fontSize: "15px", fontWeight: 400 }}>
+                <p style={{ fontSize: "15px", fontWeight: 400, color: "black", }}>
                   {props?.publisher} {String(props?.pubdate).slice(0, 4)}.
                   {String(props?.pubdate).slice(4, 6)}.
                   {String(props?.pubdate).slice(6, 8)}
@@ -356,8 +367,8 @@ export default (props) => {
                     display: "block",
                   }}
                 >
-                  <div style={{}}>
-                    <p>{props?.description}</p>
+                  <div style={{color: "black",}}>
+                    <p style={{color: "black",}}>{props?.description}</p>
                   </div>
                 </div>
               </div>

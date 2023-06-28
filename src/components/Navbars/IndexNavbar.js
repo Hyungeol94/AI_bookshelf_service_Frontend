@@ -162,6 +162,7 @@ export default () => {
               </InputGroup> */}
               <div class="input-group mb-3">
                 <Input
+                  style={{borderColor:'#2b3553'}}
                   type="text"
                   class="form-control"
                   placeholder="Search your book!"
@@ -184,6 +185,7 @@ export default () => {
                 />
                 <Button
                   className="nav-link d-none d-lg-block"
+                  style={{marginLeft:'0px'}}
                   color="default"
                   // href="/search"
                   onClick={() => {

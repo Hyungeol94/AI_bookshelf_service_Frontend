@@ -100,6 +100,7 @@ const Result = () => {
           searchValue = {searchValue}  
           setSearchValue={setSearchValue}
           onSearch={onSearch}
+          bookInfoAPI={bookinfo_api}
         />
         ;
       </Card>

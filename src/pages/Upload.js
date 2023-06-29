@@ -4,6 +4,11 @@ import {
   // Link, Route, Routes,
   useNavigate,
 } from "react-router-dom";
+import {
+  Button,
+  Input,
+  UncontrolledTooltip,
+} from "reactstrap";
 import axios from 'axios';
 
 //import https from 'https';
@@ -103,16 +108,18 @@ const Upload = () => {
 
   return (
     <>
+    <div className="invisible"/>
       <h1 className="head">책장 사진을 업로드해 주세요</h1>
-      <h5 className="explain">정면에서 책장 사진을 찍어 업로드해 주세요.</h5>
-      <h5 className="explain">
-        인공지능이 책을 감지해 자동으로 내 서재를 만들어 줄 거에요.
-      </h5>
+      <h3 className="explain">
+        정면에서 책장 사진을 찍어 업로드해 주세요.<br/>
+      인공지능이 책을 감지해 자동으로 내 서재를 만들어 줄 거에요.
+      </h3>
 
       <div className="upload-box">
         {imgFileView.length === 0 ? (
           <>
             <p>책장 이미지를 업로드해 주세요.</p>
+            <label for="file">
             <input
               type="file"
               ref={upload}
@@ -120,7 +127,9 @@ const Upload = () => {
               onChange={boximgUpload}
               accept="image/*"
               value=""
+              className="input-box"
             />
+            </label>
           </>
         ) : (
           <div>
@@ -145,9 +154,9 @@ const Upload = () => {
           </div>
         )}
       </div>
-      <button onClick={handleUpload} className="continueButton">
+      <Button onClick={handleUpload} className="continueButton">
         계속하기
-      </button>
+      </Button>
     </>
   );
 };

@@ -17,18 +17,16 @@ const BookModal = (props) => {
     // 반환값
   return (
     <>
-    <div style={{  width: "90px", height: "130px"}}>
+    <div style={{  width: "92px", height: "140px"}}>
       <div className="book-image"
         style={{margin:'auto'}}>
         <img
           src={props.image}
           alt={props.booktitle}
-          style={{ width: "80px", height: "105px" }}
+          style={{ width: "80px", height: "100px" }}
           onClick={openModal}
         />
-      </div>
-
-
+        
       <label onClick={openModal} 
         style={{
           display: "block",
@@ -36,11 +34,17 @@ const BookModal = (props) => {
           textOverflow: "ellipsis", // 로 ... 을 만들기
           whiteSpace: "nowrap",
           width: "80px",
-          marginTop: "3px",
-          fontWeight: "bolder",      
+          // marginTop: "25px",
+          paddingTop: '0.2em',
+          fontWeight: "bolder",
+          margin:'auto'   
           }}>
         {props.booktitle}
       </label>
+
+      </div>
+
+
 
 
     </div>

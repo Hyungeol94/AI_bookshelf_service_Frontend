@@ -1,20 +1,10 @@
 import React, { useState, useEffect } from "react";
-// reactstrap components
-import { Container, Row, Col } from "reactstrap";
 
 // our components
-// import BookList from "../components/BookList";
-import sample from "../assets/sample_book.json";
-import getlist from "../components/GetList_user";
-//import get_likes_list from "../components/GetLikesList";
-import get_recentlyAdded_list from "../components/GetRecentlyAddedList";
-//import get_saved_list from "../components/GetSavedList";
-// import user_info from "../assets/sample_user.json";
-import User_profile from "../components/Profile";
+import UserProfile from "../components/Profile";
 import * as api from "../services/api";
-import Book_view from "../components/Bookview";
+import BookView from "../components/Bookview";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 
 const UserBookShelf = () => {
   const [likelist, setLikelist] = useState([]);
@@ -93,12 +83,9 @@ const UserBookShelf = () => {
               }}
             >
               <div>
-                <h2 className="title">
-                  {authData?.nickname || "undefined"} 님의 Mybrary 📚
-                </h2>
 
-                <User_profile data={authData} />
-                <Book_view
+                <UserProfile data={authData} />
+                <BookView
                   style={{ marginTop: "30px" }}
                   data={authData}
                   likelist={likelist}

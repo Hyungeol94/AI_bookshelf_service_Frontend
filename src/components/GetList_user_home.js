@@ -1,9 +1,8 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "../styles/GetList_home.css";
 // import "../styles/GetList.css";
-import { Modal } from "reactstrap";
+import { Modal, Button } from "reactstrap";
 import AddBtns from "./AddBtns";
-import { useState } from "react";
 // import BookModal from "./BookModal"
 
 const Book = (props) => {
@@ -19,8 +18,7 @@ const Book = (props) => {
   const closeModal = () => {
   setModalIsOpen(false);
     };
-
-
+  
 
   return (<div style={{display: 'block'}}>
     <div className="book-image-home">
@@ -79,6 +77,54 @@ const Book = (props) => {
 export default function Getlist(books_info, bookId) {
   
   let user_book = []
+  // 좌우함수 2 // <Scroll direction="left" /> 형태로 좌우 500px 읻종
+  const Scroll = ({ direction, scrollParent }) => {
+    const handleScroll = () => {
+      const { scrollY } = window;
+    };
+  
+    useEffect(() => {
+      window.addEventListener("scroll", handleScroll);
+  
+      return () => {
+        window.removeEventListener("scroll", handleScroll);
+      };
+    }, []);
+  
+    const move = () => {
+      const scrollX = direction === "left" ? -500 : 500;
+      const scrollDivs = document.querySelectorAll(`.${scrollParent}`);
+  
+      if (scrollDivs) {
+        scrollDivs.forEach((scrollDiv) => {
+          if (scrollDiv.style.overflowX === "auto") {
+            scrollDiv.scrollTo({ left: scrollX, behavior: "smooth" });
+          }
+        });
+      }
+    };
+  
+    return (
+      <button
+        onClick={move}
+        aria-label={direction}
+        style={{
+          maxHeight: "70px",
+          fontSize: "60px",
+          backgroundColor: "transparent",
+          marginTop: "50px",
+          marginLeft: "10px",
+          marginRight: "10px",
+          border: "none",
+          color: "white",
+        }}
+      >
+        <strong>{direction === "left" ? "<" : ">"}</strong>
+      </button>
+    );
+  };
+  
+
 
   books_info.forEach(elm => {
     if (bookId.includes(elm.id)) {
@@ -89,19 +135,26 @@ export default function Getlist(books_info, bookId) {
 
   return [
     user_book.length,
-
-    <div style={{ display: "flex", overflowX: "auto" }}>
-    {user_book.map((user_book) => (
-      <Book
-        key={user_book.id}
-        image={user_book.image}
-        booktitle={user_book.booktitle}
-        author={user_book.author}
-        description={user_book.description}
-        id={user_book.id}
-      />
-    ))}
-    </div>
-
+    <div style={{ display: "flex" }}>
+      <Scroll direction="left" scrollParent="scrollingDiv" />
+  
+      <div
+        className="scrollingDiv"
+        style={{ display: "flex", overflowX: "auto" }}
+      >
+        {user_book.map((user_book) => (
+          <Book
+            key={user_book.id}
+            image={user_book.image}
+            booktitle={user_book.booktitle}
+            author={user_book.author}
+            description={user_book.description}
+            id={user_book.id}
+          />
+        ))}
+      </div>
+      <Scroll direction="right" scrollParent="scrollingDiv" />
+    </div>,
   ];
+  
 }

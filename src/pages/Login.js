@@ -95,7 +95,7 @@ export default () => {
       }}
     >
       <div>
-        <h2>Login</h2>
+        <h1 ><strong> Login </strong></h1>
         <FormControl style={{ width: "300px" }}>
           <TextField
             type="text"
@@ -138,8 +138,9 @@ export default () => {
               size="large"
               variant="outlined"
               type="submit"
+              color="info"
               onClick={onClickLogin}
-              style={{ marginTop: "1em" }}
+              style={{ marginTop: "1em", color:"white", borderColor:"transparent", background:"#344675"}}
             >
               로그인
             </Button>
@@ -151,14 +152,14 @@ export default () => {
               }}
             >
               <div>
-                <Button size="small" onClick={moveFindId}>
+                <Button size="small" onClick={moveFindId} style={{color:"white"}}>
                   아이디 찾기
                 </Button>
-                <Button size="small" onClick={moveFindPw}>
+                <Button size="small" onClick={moveFindPw} style={{color:"white"}}>
                   비밀번호 찾기
                 </Button>
               </div>
-              <Button size="small" onClick={moveSignupPage}>
+              <Button size="small" onClick={moveSignupPage} style={{color:"white"}}>
                 회원가입
               </Button>
             </div>

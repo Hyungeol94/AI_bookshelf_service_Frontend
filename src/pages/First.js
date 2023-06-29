@@ -46,7 +46,7 @@ export default () => {
             </h2>
             <Link to="section1" smooth={true} duration={1000}>
               <Button color="info" size="lg">
-                알아보기
+              <strong> 알아보기 </strong>
               </Button>
             </Link>
           </div>
@@ -69,7 +69,7 @@ export default () => {
 
                 <Link to="section2" smooth={true} duration={1000}>
                   <Button color="info" size="lg">
-                    다음
+                  <strong> 다음 </strong>
                   </Button>
                 </Link>
               </div>
@@ -90,7 +90,7 @@ export default () => {
                 </h3>
                 <Link to="section3" smooth={true} duration={1000}>
                   <Button color="info" size="lg">
-                    다음
+                    <strong> 다음 </strong>
                   </Button>
                 </Link>
               </div>
@@ -110,7 +110,7 @@ export default () => {
                 나의 책들을 바탕으로 새로운 책들을 추천해줘요.
                 </h3>
                 <Button color="info" size="lg" href="/login">
-                  회원가입하고 서비스 시작하기
+                  <strong> 시작하기 </strong>
                 </Button>
               </div>
             </div>

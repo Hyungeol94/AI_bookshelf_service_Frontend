@@ -112,7 +112,7 @@ const Upload = () => {
       <h1 className="head">책장 사진을 업로드해 주세요</h1>
       <h3 className="explain">
         정면에서 책장 사진을 찍어 업로드해 주세요.<br/>
-      인공지능이 책을 감지해 자동으로 내 서재를 만들어 줄 거에요.
+        인공지능이 책을 감지해 자동으로 내 서재를 만들어 줄 거에요.
       </h3>
 
       <div className="upload-box">

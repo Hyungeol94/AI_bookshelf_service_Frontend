@@ -129,18 +129,32 @@ function Signup() {
     };
 
     return (
-      <div>
+      <div style={{}}>
         <Button onClick={openModal}>이용약관 상세보기</Button>
         <Modal
           isOpen={modalIsOpen}
           onRequestClose={closeModal}
           contentLInputLabel="File Modal"
-          style={{
-            width: "400px",
-            height: "20px",}}
-        >
-          <TermTxt />
+          style={{ 
+            overlay: {
+              position: 'fixed',
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              backgroundColor: 'rgba(0, 0, 0 0.3)'
+            },
+            content: {
+              "margin-top": "7%",
+              width: '40%',
+              height: '80%',
+              "margin-left": "auto",
+              "margin-right": "auto", 
+              
+            },
+          }}>
           <div>
+             <TermTxt />
             <div>
               <Button
                 style={{
@@ -436,10 +450,10 @@ function Signup() {
         </FormControl>
         <div style={{ marginTop: "3em" }}>
           <h3> 사용자 이용약관 </h3>
-          <div>
+   
             <OpenTerms />
             <br />
-          </div>
+     
 
           <br></br>
 

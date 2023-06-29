@@ -3,14 +3,14 @@ import user_info from "../assets/sample_user.json"
 
 // reactstrap components
 import { Button } from "reactstrap";
-
-// core components
-import IndexNavbar from "components/Navbars/IndexNavbar.js";
-import Footer from "components/Footer/Footer.js";
-import { Link } from "react-router-dom";
-
+import * as api from "../services/api";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const UserEditPage = () => {
+  const { authData } = useSelector((state) => state.userReducer);
+  console.log(authData);
+
   const [user, setUser] = useState(user_info);
 
   const [nickname, setNickname] = useState(user.profile.user_nickname);

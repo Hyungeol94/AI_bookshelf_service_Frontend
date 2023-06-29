@@ -7,6 +7,7 @@ import user_info from "../assets/sample_user.json";
 import sample from "../assets/sample_book.json";
 import getlist from "./GetList_user";
 import get_recentlyAdded_list from "./GetRecentlyAddedList";
+import BookModal from "./BookModal"
 
 import "../styles/Book-view.css";
 
@@ -135,28 +136,38 @@ export default function Bookview(props) {
                     }}
                   >
                     {props?.bookshelflist?.map((data) => (
-                      <div style={{ marginRight: "5px" }}>
-                        <div>
-                          <img
-                            src={data.image}
-                            alt={data.title}
-                            style={{ width: "80px", height: "105px" }}
-                          />
-                        </div>
-                        <p
-                          style={{
-                            display: "block",
-                            overflow: "hidden", // 을 사용해 영역을 감출 것
-                            textOverflow: "ellipsis", // 로 ... 을 만들기
-                            whiteSpace: "nowrap",
-                            width: "80px",
-                            marginTop: "3px",
-                            fontWeight: "bolder",
-                          }}
-                        >
-                          {data.title}
-                        </p>
-                      </div>
+                      // <div style={{ marginRight: "5px" }}>
+                      //   <div>
+                      //     <img
+                      //       src={data.image}
+                      //       alt={data.title}
+                      //       style={{ width: "80px", height: "105px" }}
+                      //     />
+                      //   </div>
+                      //   <p
+                      //     style={{
+                      //       display: "block",
+                      //       overflow: "hidden", // 을 사용해 영역을 감출 것
+                      //       textOverflow: "ellipsis", // 로 ... 을 만들기
+                      //       whiteSpace: "nowrap",
+                      //       width: "80px",
+                      //       marginTop: "3px",
+                      //       fontWeight: "bolder",
+                      //     }}
+                      //   >
+                      //     {data.title}
+                      //   </p>
+                      // </div>
+
+                      <BookModal
+                      key={data.id}
+                      image={data.image}
+                      booktitle={data.booktitle}
+                      author={data.author}
+                      description={data.description}
+                      id={data.id}
+                    />
+
                     ))}
                   </div>
                 </p>

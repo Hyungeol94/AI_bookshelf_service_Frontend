@@ -30,7 +30,7 @@ const BookDetailView = (props) => {
         <BookDetail
           bookInfo = {bookInfo}
         />        
-        <div style={{display: 'flex'}}>
+        <div style={{display: 'flex', justifyContent: 'center'}}>
           <Button onClick = {handleClick} style={{maxHeight: '5%', width:'200px',display: 'block'}}>책 목록에 추가</Button>
           <Button onClick = {changeBookRowInfo} style={{maxHeight: '5%', width:'200px',display: 'block'}}>이 책으로 바꾸기</Button>
         </div>

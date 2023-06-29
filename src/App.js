@@ -44,6 +44,7 @@ import FindPw from "./pages/Findpw";
 import Findid from "./pages/Findid";
 import Dashboard from "./pages/dashboard";
 import AboutUs from "./pages/About";
+import Result from "./pages/Result";
 // import Search from "./pages/Search";
 // import "./styles/App.css";
 // import { BrowserRouter, Route, Routes } from "react-router-dom";
@@ -75,6 +76,8 @@ export default () => {
           <Route path="search" element={auth(Searchpage, true)} />
           <Route path="profile" element={<User />} />
           <Route path="/EditProfile" element={<User />} />
+          <Route path="/upload" element={<Upload />} />
+          <Route path="/result" element={<Result />} />
         </Route>
         <Route path="/upload" element={<Upload />} />
         <Route path="/result" element={<Resultpage />} />

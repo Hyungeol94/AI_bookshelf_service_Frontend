@@ -10,8 +10,8 @@ const BookSearchResultTable = (props) => {
         <div className = "bookSearchResultTable">
             {isLoading ? (
             <h3 style={{color: 'black'}}>로딩중..</h3>
-          ) : (typeof data !== 'undefined' && data && data.length!=0) ? (
-            <div className = "bookSearchResultTable">              
+          ) : (typeof data !== 'undefined' && data && data.items.length!=0) ? (                        
+            <div className = "bookSearchResultTable">                                  
               {console.log("loading done")}                         
               {data.items.map((book) => {
                 return (

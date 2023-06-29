@@ -21,6 +21,8 @@ export const cartcheck = () => axios.post("/user/cartcheck");
 export const cartlist = () => axios.post("/user/cartlist");
 
 // USER_BOOKSHELF
+export const alladdbookshelf = (data) =>
+  axios.post("/user/alladdbookshelf", data);
 export const addbookshelf = (data) => axios.post("/user/addbookshelf", data);
 export const deletebookshelf = (data) =>
   axios.post("/user/deletebookshelf", data);

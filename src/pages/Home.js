@@ -248,9 +248,6 @@ const Home = () => {
                   
                   
                   </div>
-
-                  {/* <Scroll direction="left" />
-                  <Scroll direction="right" /> */}
                   {/* {showLeftBtn1 && (
                     <div className="carouselLeft">
                       <Button

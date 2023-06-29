@@ -2,8 +2,9 @@
     /* background-color: gray !important; */
     padding: 10px !important;
     /* width: 435px !important; */
-    width: 33%;
-    height: 700px !important;
+    width: 31%;
+    /* height: 600px !important; */
+    height: 88vh !important;
 }
 
 .bookRow:hover{

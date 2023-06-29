@@ -89,7 +89,7 @@ const Result = () => {
 
 
   return (
-    <div style={{ display: "flex" }}>
+    <div style={{ display: "flex", marginTop: "70px", justifyContent: "center" }}>
       <Card>
         <BookTableView
           booksInfo={bookList}

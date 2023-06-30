@@ -71,7 +71,7 @@ const Upload = () => {
       });
       
       Promise.all(conversionPromises)
-      .then(fetch('https://190d-34-90-55-135.ngrok-free.app/img2title/', {
+      .then(fetch('https://69dd-34-139-206-56.ngrok-free.app/img2title/', {
         method: 'POST',
         headers:{
           'ngrok-skip-browswer-warning' : '69420',
@@ -106,15 +106,6 @@ const Upload = () => {
     }
   };
 
-  const removeImage = (index) => {
-    setImgFile((prevImages) =>
-      prevImages.filter((_, idx) => idx !== index)
-    );
-    setImgFileView((prevImages) =>
-      prevImages.filter((_, idx) => idx !== index)
-    );
-  };
-
   return (
     <>
     <div className="invisible"/>
@@ -143,74 +134,34 @@ const Upload = () => {
         ) : (
           <div>
             <div style={{ display: "flex" }}>
-            {imgFileView?.map((img, idx) => (
-  <Card key={idx}>
-    <div style={{ position: "relative" }}>
-      <img
-        style={{ width: "192px", height: "192px" }}
-        src={img}
-        alt="img"
-      />
-      <button
-        className=""
-        style={{
-          fontSize: "15px",
-          position: "absolute",
-          top: 2,
-          right: 2,
-          background: "gray",
-          color: "white",
-          borderRadius: "50%",
-          width: "24px",
-          height: "24px",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          border: "none",
-          cursor: "pointer"
-        }}
-        onClick={() => removeImage(idx)}
-      >
-        <strong>X</strong>
-      </button>
-    </div>
-  </Card>
-))}
+              {imgFileView?.map((img, idx) => (
+                <Card key={idx} >
+                  <img
+                    style={{width: "192", height: "192px" }}
+                    src={img}
+                    alt="img"
+                  />
+                </Card>
+              ))}
             </div>
-            
-  <div style={{display: "flex", alignItems: "center", }}>
-  <Button style={{ position: "relative", overflow: "hidden", marginRight: "20px"}}>
-  <input
-    type="file"
-    ref={upload}
-    multiple
-    onChange={boximgUpload}
-    accept="image/*"
-    style={{
-      opacity: 0,
-      position: "absolute",
-      top: 0,
-      left: 0,
-      width: "100%",
-      height: "100%",
-      cursor: "pointer",
-    }}
-  />
-  사진 선택
-</Button>
-<h4 style={{marginTop: "13px", alignItems: "center", color:"black"}}> 현재 업로드된 이미지 ({imgFileView.length})개 </h4>
-  </div>
+            <input
+              type="file"
+              ref={upload}
+              multiple
+              onChange={boximgUpload}
+              accept="image/*"
+            />
           </div>
         )}
       </div>
-<div style={{"float": "right", marginRight:"10%"}}>
-<Button onClick={() => window.history.back()} className="continueButton" >
-        취소
+      <div style={{display:"flex", "max-width": "800px", "flex-direction": "row", "margin-top": "20px", "margin-left":"75%"}}> 
+      <Button onClick={()=> window.history.back()} >
+        취소하기
       </Button>
-      <Button onClick={handleUpload} className="continueButton" >
+      <Button onClick={handleUpload}>
         계속하기
       </Button>
-</div>
+      </div>
     </>
   );
 };

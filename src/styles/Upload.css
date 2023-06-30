@@ -20,7 +20,7 @@
 }
 .upload-box {
     background-color: rgb(191, 188, 209);
-    border-radius: 10px;
+    border-radius: 15px;
     padding: 20px;
     margin-left: 20vh;
     margin-right: 20vh;
@@ -30,12 +30,11 @@
 }
 .box{ 
     background-Color: gray;
-    border: 2px solid gray;
+    border: 1px solid black;
     padding: 20px;
     margin: 20px;
     width: 200px;
     height: 200px;
-    align-items: center;
     
 }
 .card{
@@ -43,36 +42,13 @@
     padding: 2px !important;
     border-radius: 5px;
     height: 200px;
-    align-items: center;
-    justify-content: center;
-    display: flex;
     background-color: gray !important;
     margin-right: 20px;
 }
-.btn-group{ 
-    float: right;
-    /* margin-top: 10px; */
-    margin-right: 10%;
-  }
 
 .continueButton{ 
-  margin: 15px;
+  float: right;
+  margin-top: 10px;
+  margin-right: 21vh;
   width: 150px;
-  /* height: 30px; */
-}
-
-.delete-button{
-    background-color: #2f3640; /* 임의의 배경색 */
-    color: currentColor;
-}
-
-p {
-    color: invert(currentColor);
-}
-
-/* invert() 함수를 적용하여 대비되는 글자색 찾음 */
-@supports (color: invert(currentColor)) {
-    p {
-    color: invert(currentColor);
-}
 }

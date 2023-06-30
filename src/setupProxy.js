@@ -25,10 +25,10 @@ module.exports = (app) => {
     })
   );
   app.use(
-    "/book",
-    createProxyMiddleware({
+    createProxyMiddleware("/book",{
       target: "https://search.shopping.naver.com",
       changeOrigin: true,
+      ws: true
     })
   );
 };

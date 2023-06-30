@@ -39,8 +39,8 @@ const Userprofile = (props) => {
       style={{
         display: "flex",
         justifyContent: "space-between",
-        // width: "100%",
-        // margin: "50px, 30px, 50px, 30px",
+        width: "1000px",
+        marginTop: "60px",
         paddingLeft: "30px",
         paddingRight: "30px",
         paddingTop: "30px",
@@ -50,7 +50,9 @@ const Userprofile = (props) => {
       }}
     >
       <div style={{ width: "1000px" }}>
-        <h1 style={{ color: "#000000" }}>My profile</h1>
+        <h1 style={{ 
+          color: "#000000",
+          fontWeight: "bold" }}> {nickname || "undefined"} 님의 Mybrary 📚</h1>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <div style={{ display: "flex" }}>
             <img

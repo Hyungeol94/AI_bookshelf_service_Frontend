@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from "react";
 // reactstrap components
 import { Container, Row, Col } from "reactstrap";
-// core components
-import Footer from "components/Footer/Footer.js";
-import { Link } from "react-router-dom";
 
 // our components
 // import BookList from "../components/BookList";

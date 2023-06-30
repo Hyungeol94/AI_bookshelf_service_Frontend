@@ -75,6 +75,7 @@
     "stream": "^0.0.2",
     "stream-browserify": "^3.0.0",
     "styled-components": "^6.0.0-rc.6",
+    "swiper": "6.8.4",
     "web-vitals": "3.3.1",
     "xml-js": "^1.6.11"
   },

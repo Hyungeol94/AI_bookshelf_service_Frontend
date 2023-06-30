@@ -45,109 +45,113 @@ const Home = () => {
     getlikebooklist();
   }, []);
 
-  // 좌우 버튼 함수 << 작동여부 확인 후 컴포넌트로 빼야함
-  // 좌우를 props?로 받아서 할 수 있는지 알아보자
+  const [counter1, setCounter1] = useState(0);
 
-  const ScrollLeft = () => {
-    // 토글 여부를 결정하는 state 선언
-    const [toggleBtn, setToggleBtn] = useState(true);
-  
-    // window 객체에서 scrollY 값을 받아옴
-    // 어느정도 스크롤이 된건지 판단 후, 토글 여부 결정
-    const handleScroll = () => {
-      const { scrollY } = window;
-  
-      scrollY > 200 ? setToggleBtn(true) : setToggleBtn(false);
-    };
-  
-    // scroll 이벤트 발생 시 이를 감지하고 handleScroll 함수를 실행
-    useEffect(() => {
-      window.addEventListener("scroll", handleScroll);
-  
-      return () => {
-        window.removeEventListener("scroll", handleScroll);
-      };
-    }, []);
-  
-    // 버튼 클릭 시 스크롤을 맨 위로 올려주는 함수
-    const goLeft = () => {
-      window.scrollTo({ left: "500px", behavior: "smooth" });
-    };
-  
-    // 토글 여부 state에 따라 버튼을 보여주거나 감추게 만듦
-    return toggleBtn ? (
-      <div onClick={goLeft}>
-      // ... //
+  const leftBtnClickHandler1 = () => {
+    setCounter1(counter1 - 1);
+  };
+
+  const rightBtnClickHandler1 = () => {
+    setCounter1(counter1 + 1);
+  };
+
+  let showLeftBtn1 = counter1 > 0;
+  let showRightBtn1 = counter1 !== interest_count - 9 && interest_count > 9;
+
+  const [counter2, setCounter2] = useState(0);
+
+  const leftBtnClickHandler2 = () => {
+    setCounter2(counter2 - 1);
+  };
+
+  const rightBtnClickHandler2 = () => {
+    setCounter2(counter2 + 1);
+  };
+
+  let showLeftBtn2 = counter2 > 0;
+  let showRightBtn2 = counter2 !== interest_count - 9 && interest_count > 9;
+
+  const LrBtn1 = () => {
+    return (
+      <div>
+        <div>
+          {showLeftBtn1 && (
+            <div className="carouselLeft">
+              <Button
+                name="left"
+                className="carouselLeftBtn"
+                onClick={leftBtnClickHandler1}
+                style={{
+                  position: "absolute",
+                  left: "3vw",
+                }}
+              >
+                <i className="tim-icons icon-minimal-left" />
+              </Button>
+            </div>
+          )}
+        </div>
+        <div>
+          {showRightBtn1 && (
+            <div className="carouselRight">
+              <Button
+                name="right"
+                className="carouselRightBtn"
+                onClick={rightBtnClickHandler1}
+                style={{
+                  position: "absolute",
+                  right: "3vw"
+                }}
+              >
+                <i className="tim-icons icon-minimal-right" />
+              </Button>
+            </div>
+          )}
+        </div>
       </div>
-    ) : null;
+    );
   };
 
-  const ScrollRight = () => {
-    // 토글 여부를 결정하는 state 선언
-    const [toggleBtn, setToggleBtn] = useState(true);
-  
-    // window 객체에서 scrollY 값을 받아옴
-    // 어느정도 스크롤이 된건지 판단 후, 토글 여부 결정
-    const handleScroll = () => {
-      const { scrollY } = window;
-  
-      scrollY > 200 ? setToggleBtn(true) : setToggleBtn(false);
-    };
-  
-    // scroll 이벤트 발생 시 이를 감지하고 handleScroll 함수를 실행
-    useEffect(() => {
-      window.addEventListener("scroll", handleScroll);
-  
-      return () => {
-        window.removeEventListener("scroll", handleScroll);
-      };
-    }, []);
-  
-    // 버튼 클릭 시 스크롤을 맨 위로 올려주는 함수
-    const goRight = () => {
-      window.scrollTo({ left: "500px", behavior: "smooth" });
-    };
-  
-    // 토글 여부 state에 따라 버튼을 보여주거나 감추게 만듦
-    return toggleBtn ? (
-      <div onClick={goRight}>
-      // ... //
+  const LrBtn2 = () => {
+    return (
+      <div>
+        <div>
+          {showLeftBtn2 && (
+            <div className="carouselLeft">
+              <Button
+                name="left"
+                className="carouselLeftBtn"
+                onClick={leftBtnClickHandler2}
+                style={{
+                  position: "absolute",
+                  left: "3vw",
+                }}
+              >
+                <i className="tim-icons icon-minimal-left" />
+              </Button>
+            </div>
+          )}
+        </div>
+        <div>
+          {showRightBtn2 && (
+            <div className="carouselRight">
+              <Button
+                name="right"
+                className="carouselRightBtn"
+                onClick={rightBtnClickHandler2}
+                style={{
+                  position: "absolute",
+                  right: "3vw"
+                }}
+              >
+                <i className="tim-icons icon-minimal-right" />
+              </Button>
+            </div>
+          )}
+        </div>
       </div>
-    ) : null;
+    );
   };
-
-  // 좌우함수 2 // <Scroll direction="left" /> 형태로 좌우 500px 읻종
-  const Scroll = ({ direction }) => {
-    const [toggleBtn, setToggleBtn] = useState(true);
-  
-    const handleScroll = () => {
-      const { scrollY } = window;
-  
-      scrollY > 200 ? setToggleBtn(true) : setToggleBtn(false);
-    };
-  
-    useEffect(() => {
-      window.addEventListener("scroll", handleScroll);
-  
-      return () => {
-        window.removeEventListener("scroll", handleScroll);
-      };
-    }, []);
-  
-    const goLeft = () => {
-      const scrollX = direction === "left" ? -500 : 500;
-      window.scrollTo({ left: scrollX, behavior: "smooth" });
-    };
-  
-    return toggleBtn ? (
-      <Button onClick={goLeft} aria-label={direction}>
-        {direction === "left" ? "<" : ">"}
-      </Button>
-    ) : null;
-  };
-  
-  
-  
 
   console.log(user_info);
   console.log(interest_count, interest_list);
@@ -241,7 +245,7 @@ const Home = () => {
                 <div className="productBodyScrollable">
                   <div
                     className="products"
-                    style={{ }}
+                    style={{ transform: `translateX(-${10 * counter1}%)` }}
                   >
                     {/* 임시로 넣어둠 */}
                     {interest_list}
@@ -261,7 +265,7 @@ const Home = () => {
                       </Button>
                     </div>
                   )} */}
-  
+                  <LrBtn1/>
 
 
                   
@@ -284,15 +288,27 @@ const Home = () => {
                 <div className="productBodyScrollable">
                   <div
                     className="products"
-                    style={{ }}
+                    style={{ transform: `translateX(-${27 * counter2}%)` }}
                   >
                     {/* 임시로 넣어둠 */}
                     {interest_list}
                   </div>
 
+                  {showLeftBtn2 && (
+                    <div className="carouselLeft">
+                      <Button
+                        name="left"
+                        className="carouselLeftBtn"
+                        onClick={leftBtnClickHandler2}
+                        style={{position: "absolute",
+                                right: "3vw"}}
+                      >
+                        <i className="tim-icons icon-minimal-left" />
+                      </Button>
+                    </div>
+                  )}
 
-
- 
+                  <LrBtn2/>
                 </div>
               </div>
             </div>

@@ -248,7 +248,23 @@ const Home = () => {
                   
                   
                   </div>
+                  {/* {showLeftBtn1 && (
+                    <div className="carouselLeft">
+                      <Button
+                        name="left"
+                        className="carouselLeftBtn"
+                        onClick={leftBtnClickHandler1}
+                        style={{position: "absolute",
+                                left: "3vw",}}
+                      >
+                        <i className="tim-icons icon-minimal-left" />
+                      </Button>
+                    </div>
+                  )} */}
+  
 
+
+                  
                 </div>
               </div>
 

@@ -18,13 +18,6 @@ const Book = (props) => {
   const closeModal = () => {
   setModalIsOpen(false);
     };
-
-  function truncateText(str, maxChar) {
-    if (str.length > maxChar) {
-      return str.slice(0, maxChar) + '...';
-    }
-    return str;
-  }
   
 
   return (<div style={{display: 'block'}}>
@@ -76,14 +69,7 @@ const Book = (props) => {
           </Modal>
     </div>
     <div style={{marginTop: '10px', width: "100px"}}>
-    <h5
-  style={{
-    fontSize: '1.1em',
-    textAlign: 'center',
-  }}
->
-  {truncateText(props.booktitle, 15)} {/* 원하는 글자수로 변경 */}
-</h5>
+    <h5 style={{fontSize: '1.1em', textAlign: 'center'}}> {props.booktitle} </h5>
     </div>
   </div>)
 }

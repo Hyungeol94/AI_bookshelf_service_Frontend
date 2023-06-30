@@ -20,7 +20,7 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: "700px",
+  width: "50%",
   bgcolor: "#171941",
   boxShadow: 24,
   height: "90%",
@@ -145,10 +145,9 @@ export default (props) => {
               "/Users/edaumedo1/aivle0317/src/assets/img/sample_book.png"
             }
             alt={props.booktitle}
-            // width={120}
-            // height={160}
+            width={120}
+            height={160}
             onClick={handleOpenImage}
-            style={{width:"130px", maxHeight:"220px",}}
           />
           <div
             style={{
@@ -173,12 +172,12 @@ export default (props) => {
                 <h3
                   style={{
                     marginBottom: 0,
-                    fontSize: "20px",
+                    fontSize: "18px",
                     color: "black",
                     width: "610px",
                   }}
                 >
-                  <strong>{props?.title}</strong>
+                  {props?.title}
                 </h3>
                 <p
                   style={{
@@ -226,7 +225,6 @@ export default (props) => {
                   width: "740px",
                   fontWeight: "border",
                   fontSize: "16px",
-                  color: "black"
                 }}
               >
                 <ClampLines
@@ -300,7 +298,7 @@ export default (props) => {
                   variant="outlined"
                   style={{
                     width: "150px",
-                    background: "rgba(35,45,145)",
+                    background: "blue",
                     color: "white",
                   }}
                 >
@@ -327,10 +325,9 @@ export default (props) => {
                   "/Users/edaumedo1/aivle0317/src/assets/img/sample_book.png"
                 }
                 alt={props.booktitle}
-                // width={120}
-                // height={160}
+                width={120}
+                height={160}
                 onClick={handleOpenImage}
-                style={{maxWidth:"200px", maxHeight:"250px",}}
               />
             </div>
             <div
@@ -345,8 +342,8 @@ export default (props) => {
                 <IconButton
                   onClick={handleHeart}
                   style={{
-                    maxWidth: "50px",
-                    maxHeight: "50px",
+                    width: "50px",
+                    height: "50px",
                     borderColor: "white",
                   }}
                   color="error"
@@ -379,7 +376,7 @@ export default (props) => {
                   variant="outlined"
                   style={{
                     width: "150px",
-                    backgroundColor: "rgba(35,45,145)",
+                    backgroundColor: "blue",
                     color: "white",
                   }}
                 >
@@ -406,14 +403,12 @@ export default (props) => {
                 <h3
                   style={{
                     marginBottom: 0,
-                    fontSize: "28px",
+                    fontSize: "18px",
                     color: "#000",
                     width: "575px",
-                    marginTop: "10px",
-                    marginBottom: "10px"
                   }}
                 >
-                  <strong>{props?.title}</strong>
+                  {props?.title}
                 </h3>
                 <p
                   style={{
@@ -446,7 +441,7 @@ export default (props) => {
                 }}
               >
                 <p
-                  style={{ fontSize: "15px", fontWeight: 400, color: "black"}}
+                  style={{ fontSize: "15px", fontWeight: 400, color: "black" }}
                 >
                   {props?.author}
                 </p>

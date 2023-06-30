@@ -25,6 +25,7 @@ export default (props) => {
   const onSearch = async () => {
     await bookinfo_api(searchValue).then(async (data) => {
       setIsLoading(true);
+
       await api
         .likecheck()
         .then((data) => {
@@ -51,6 +52,7 @@ export default (props) => {
           console.log(data?.data?.info?.list);
         })
         .catch((e) => console.log(e));
+        
       // console.log(data);
       setData(data?.items);
       setTotal(data?.total);

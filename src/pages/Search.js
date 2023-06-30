@@ -30,7 +30,7 @@ export default (props) => {
         .then((data) => {
           const booklist = data?.data?.info?.list;
           setLikelist(booklist);
-          console.log(data?.data?.info?.list);
+          // console.log(data?.data?.info?.list);
         })
         .catch((e) => console.log(e));
 
@@ -39,7 +39,7 @@ export default (props) => {
         .then((data) => {
           const booklist = data?.data?.info?.list;
           setCartlist(booklist);
-          console.log(data?.data?.info?.list);
+          // console.log(data?.data?.info?.list);
         })
         .catch((e) => console.log(e));
 
@@ -48,7 +48,7 @@ export default (props) => {
         .then((data) => {
           const booklist = data?.data?.info?.list;
           setBookshelflist(booklist);
-          console.log(data?.data?.info?.list);
+          // console.log(data?.data?.info?.list);
         })
         .catch((e) => console.log(e));
       // console.log(data);

@@ -13,15 +13,44 @@ function Card({ children }) {
   return <div className="resultCard">{children}</div>;
 }
 
-function getBooksInfo() {
-  const searchParams = new URLSearchParams(window.location.search);
-  const jsonResult = searchParams.get('jsonResult');
-  
+function getBookshelfImage (jsonResult) { 
+  // Check if jsonResult is provided and valid
+  if (jsonResult) {
+    try {
+          const decodedResult = decodeURIComponent(jsonResult);   
+          const parsedResult = JSON.parse(decodedResult);
+          const encodedImages = parsedResult.segment_images
+          const DecodedImages = []
+          const contentType = "image/jpeg";
+
+          Object.values(encodedImages).forEach(base64ImageString => {
+            const byteCharacters = atob(base64ImageString);
+            const byteNumbers = new Array(byteCharacters.length);
+            for (let i = 0; i < byteCharacters.length; i++) {
+              byteNumbers[i] = byteCharacters.charCodeAt(i);
+            }
+            const byteArray = new Uint8Array(byteNumbers);
+            const blob = new Blob([byteArray], {type: contentType});            
+            const imageUrl = URL.createObjectURL(blob);
+            DecodedImages.push(imageUrl)
+          })
+
+          return DecodedImages
+        } catch (error){
+          console.error("Invalid JSON format:", error);
+        }
+      }
+    // Return an empty array if jsonResult is missing or invalid
+  return [];
+  }
+
+function getBooksInfo (jsonResult) {
   // Check if jsonResult is provided and valid
   if (jsonResult) {
     try {
       const decodedResult = decodeURIComponent(jsonResult);   
-      const parsedResult = JSON.parse(decodedResult);               
+      const parsedResult = JSON.parse(decodedResult);
+      //setBookshelfImage(parsedResult.segment_images);               
       const titleData = parsedResult.data      
       const booksInfo = [];
       Object.keys(titleData).forEach((key) => {
@@ -29,7 +58,9 @@ function getBooksInfo() {
         bookInfo.id = key;
         bookInfo.title = titleData[key];
         booksInfo.push(bookInfo);
+       
       });      
+
       return booksInfo;
     } catch (error) {
       console.error("Invalid JSON format:", error);
@@ -42,11 +73,14 @@ function getBooksInfo() {
 
 
 const Result = () => {  
-  const [bookList, setBookList] = useState(getBooksInfo())
+  const searchParams = new URLSearchParams(window.location.search);
+  const jsonResult = searchParams.get('jsonResult'); 
+  const [bookImageList, setBookImageList] = useState(getBookshelfImage(jsonResult))
+  const [bookList, setBookList] = useState(getBooksInfo(jsonResult))
   const [selectedBookInfo, setSelectedBookInfo] = useState(bookList[0]);
   const [selectedBookRowInfo, setSelectedBookRowInfo] = useState(bookList[0]);
   const [data, setData] = useState(null);
-  const [searchValue, setSearchValue] = useState(bookList[0]?.booktitle);
+  const [searchValue, setSearchValue] = useState(bookList[0]?.title);
   const [isLoading, setIsLoading] = useState(false);
   const [pageSize, setPageSize] = useState(10);
 
@@ -87,7 +121,6 @@ const Result = () => {
   };
 
 
-
   return (
     <div style={{ display: "flex", marginTop: "70px", justifyContent: "center" }}>
       <Card>
@@ -101,6 +134,7 @@ const Result = () => {
           setSearchValue={setSearchValue}
           onSearch={onSearch}
           bookInfoAPI={bookinfo_api}
+          bookshelfImages = {bookImageList}
         />
         ;
       </Card>

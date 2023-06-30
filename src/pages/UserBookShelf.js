@@ -11,12 +11,42 @@ const UserBookShelf = () => {
   const [cartlist, setCartlist] = useState([]);
   const [bookshelflist, setBookshelflist] = useState([]);
   const { authData } = useSelector((state) => state.userReducer);
-  // console.log(authData);
+  
+  const [likecheck, setLikecheck] = useState([]);
+  const [cartcheck, setCartcheck] = useState([]);
+  const [bookshelfcheck, setBookshelfcheck] = useState([]);
 
-  const getlikelist = async () => {
+  const getlikecheck = ()=>{
+    api.likecheck()
+  .then((data) => {
+    const booklist = data?.data?.info?.list;
+    setLikecheck(booklist);
+    console.log(data?.data?.info?.list);
+  })
+  .catch((e) => console.log(e));
+}
+  const getcartcheck = () => {
+    api.cartcheck()
+    .then((data) => {
+      const booklist = data?.data?.info?.list;
+      setCartcheck(booklist);
+      console.log(data?.data?.info?.list);
+    })
+    .catch((e) => console.log(e));}
+
+  const getbookshelfcheck = ()=>{
+    api.bookshelfcheck()
+    .then((data) => {
+      const booklist = data?.data?.info?.list;
+      setBookshelfcheck(booklist);
+      console.log(data?.data?.info?.list);
+    })
+    .catch((e) => console.log(e));}
+
+
+  const getlikelist = () => {
     console.log(111);
-    await api
-      .likelist()
+    api.likelist()
       .then((data) => {
         const booklist = data.data.info.list;
         setLikelist(booklist);
@@ -26,10 +56,9 @@ const UserBookShelf = () => {
     // console.log("data", data[0].elements[0].elements[0].cdata);
   };
 
-  const getcartlist = async () => {
+  const getcartlist = () => {
     console.log(111);
-    await api
-      .cartlist()
+    api.cartlist()
       .then((data) => {
         const booklist = data.data.info.list;
         setCartlist(booklist);
@@ -38,10 +67,9 @@ const UserBookShelf = () => {
       .catch((e) => console.log(e));
     // console.log("data", data[0].elements[0].elements[0].cdata);
   };
-  const getbookshelflist = async () => {
+  const getbookshelflist = () => {
     console.log(111);
-    await api
-      .bookshelflist()
+    api.bookshelflist()
       .then((data) => {
         const booklist = data.data.info.list;
         setBookshelflist(booklist);
@@ -56,6 +84,11 @@ const UserBookShelf = () => {
     getlikelist();
     getcartlist();
     getbookshelflist();
+
+    getlikecheck();
+    getcartcheck();
+    getbookshelfcheck();
+
   }, []);
 
   return (
@@ -91,6 +124,9 @@ const UserBookShelf = () => {
                   likelist={likelist}
                   cartlist={cartlist}
                   bookshelflist={bookshelflist}
+                  bookshelfcheck = {bookshelfcheck}
+                  likecheck = {likecheck}
+                  cartcheck = {cartcheck}
                 />
               </div>
             </div>

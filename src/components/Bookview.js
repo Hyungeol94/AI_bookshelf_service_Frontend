@@ -1,12 +1,9 @@
-import React from "react";
+import React,{useState} from "react";
 import classnames from "classnames";
+import * as api from '../services/api'
 // reactstrap components
 
 //our components
-import user_info from "../assets/sample_user.json";
-import sample from "../assets/sample_book.json";
-import getlist from "./GetList_user";
-import get_recentlyAdded_list from "./GetRecentlyAddedList";
 import BookModal from "./BookModal"
 
 import "../styles/Book-view.css";
@@ -31,10 +28,9 @@ function Card({ children }) {
 
 export default function Bookview(props) {
   // console.log(props.list);
-  const [iconTabs, setIconsTabs] = React.useState(1);
-  const [textTabs, setTextTabs] = React.useState(4);
-  const [filterText, setFilterText] = React.useState('');
-
+  const [iconTabs, setIconsTabs] = useState(1);
+  const [textTabs, setTextTabs] = useState(4);
+  const [filterText, setFilterText] = useState('');
   return (
     <>
       <Container
@@ -102,7 +98,10 @@ export default function Bookview(props) {
             <TabContent className="tab-space" activeTab={"link" + iconTabs}>
               <TabPane tabId="link1">
                 <p>
-                  <h4> 총 {props?.bookshelflist?.length}권 </h4>
+                  <h4> 총 {props.bookshelflist
+                    .filter((data) =>
+                      data.title.toLowerCase().includes(filterText.toLowerCase())
+                    ).length}권 </h4>
                   <div
                     style={{
                       display: "flex",
@@ -126,15 +125,26 @@ export default function Bookview(props) {
                       author={data.author}
                       description={data.description}
                       id={data.id}
-                    />
-
+                      isbn={data.isbn}
+                      link={data.link}
+                      pubdate={data.pubdate}
+                      publisher={data.publisher}
+                      bookshelflist = {props?.bookshelflist}
+                      likelist = {props?.likelist}
+                      cartlist = {props?.cartlist}
+                      bookshelfcheck = {props?.bookshelfcheck}
+                      likecheck = {props?.likecheck}
+                      cartcheck = {props?.cartcheck}
+                      />
                     ))}
                   </div>
                 </p>
               </TabPane>
               <TabPane tabId="link2">
                 <p>
-                  <h4> 총 {props?.likelist?.length}권 </h4>
+                  <h4> 총 {props?.likelist?.filter((data) =>
+                      data.title.toLowerCase().includes(filterText.toLowerCase())
+                    ).length}권 </h4>
                   <div
                     style={{
                       display: "flex",
@@ -157,6 +167,16 @@ export default function Bookview(props) {
                       author={data.author}
                       description={data.description}
                       id={data.id}
+                      isbn={data.isbn}
+                      link={data.link}
+                      pubdate={data.pubdate}
+                      publisher={data.publisher}
+                      bookshelflist = {props?.bookshelflist}
+                      likelist = {props?.likelist}
+                      cartlist = {props?.cartlist}
+                      bookshelfcheck = {props?.bookshelfcheck}
+                      likecheck = {props?.likecheck}
+                      cartcheck = {props?.cartcheck}
                     />
 
                     ))}
@@ -165,7 +185,9 @@ export default function Bookview(props) {
               </TabPane>
               <TabPane tabId="link3">
                 <p>
-                  <h4> 총 {props?.cartlist?.length}권 </h4>
+                  <h4> 총 {props?.cartlist?.filter((data) =>
+                      data.title.toLowerCase().includes(filterText.toLowerCase())
+                    ).length}권 </h4>
                   <div
                     style={{
                       display: "flex",
@@ -188,6 +210,16 @@ export default function Bookview(props) {
                       author={data.author}
                       description={data.description}
                       id={data.id}
+                      isbn={data.isbn}
+                      link={data.link}
+                      pubdate={data.pubdate}
+                      publisher={data.publisher}
+                      bookshelflist = {props?.bookshelflist}
+                      likelist = {props?.likelist}
+                      cartlist = {props?.cartlist}
+                      bookshelfcheck = {props?.bookshelfcheck}
+                      likecheck = {props?.likecheck}
+                      cartcheck = {props?.cartcheck}
                     />
 
                     ))}
@@ -201,30 +233,3 @@ export default function Bookview(props) {
     </>
   );
 }
-
-function FilterableProductTable({ products }) {
-  const [filterText, setFilterText] = React.useState('');
-  
-  return (
-    <div>
-      <SearchBar 
-        filterText={filterText} 
-        onFilterTextChange={setFilterText}/>
-    </div>
-  )
-}
-
-
-function SearchBar({
-  filterText,
-  onFilterTextChange,
-}) {
-  return (
-      <input 
-        type="text" 
-        value={filterText} placeholder="Search..." 
-        onChange={(e) => onFilterTextChange(e.target.value)} />
-  );
-}
-
-// { products, filterText}

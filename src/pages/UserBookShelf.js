@@ -3,6 +3,8 @@ import React, { useState, useEffect } from "react";
 import { Container, Row, Col } from "reactstrap";
 
 // our components
+import Footer from "components/Footer/Footer.js";
+
 // import BookList from "../components/BookList";
 import sample from "../assets/sample_book.json";
 import getlist from "../components/GetList_user";
@@ -93,10 +95,6 @@ const UserBookShelf = () => {
               }}
             >
               <div>
-                <h2 className="title">
-                  {authData?.nickname || "undefined"} 님의 Mybrary 📚
-                </h2>
-
                 <User_profile data={authData} />
                 <Book_view
                   style={{ marginTop: "30px" }}
@@ -110,7 +108,7 @@ const UserBookShelf = () => {
           </div>
         </div>
       </div>
-      {/* <Footer/> */}
+      <Footer/>
     </>
   );
 };

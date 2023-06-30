@@ -1,52 +1,32 @@
 import React, { useState, useEffect } from "react";
+// reactstrap components
+import { Container, Row, Col } from "reactstrap";
 
 // our components
-import UserProfile from "../components/Profile";
+// import BookList from "../components/BookList";
+import sample from "../assets/sample_book.json";
+import getlist from "../components/GetList_user";
+//import get_likes_list from "../components/GetLikesList";
+import get_recentlyAdded_list from "../components/GetRecentlyAddedList";
+//import get_saved_list from "../components/GetSavedList";
+// import user_info from "../assets/sample_user.json";
+import User_profile from "../components/Profile";
 import * as api from "../services/api";
-import BookView from "../components/Bookview";
+import Book_view from "../components/Bookview";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const UserBookShelf = () => {
   const [likelist, setLikelist] = useState([]);
   const [cartlist, setCartlist] = useState([]);
   const [bookshelflist, setBookshelflist] = useState([]);
   const { authData } = useSelector((state) => state.userReducer);
-  
-  const [likecheck, setLikecheck] = useState([]);
-  const [cartcheck, setCartcheck] = useState([]);
-  const [bookshelfcheck, setBookshelfcheck] = useState([]);
+  // console.log(authData);
 
-  const getlikecheck = ()=>{
-    api.likecheck()
-  .then((data) => {
-    const booklist = data?.data?.info?.list;
-    setLikecheck(booklist);
-    console.log(data?.data?.info?.list);
-  })
-  .catch((e) => console.log(e));
-}
-  const getcartcheck = () => {
-    api.cartcheck()
-    .then((data) => {
-      const booklist = data?.data?.info?.list;
-      setCartcheck(booklist);
-      console.log(data?.data?.info?.list);
-    })
-    .catch((e) => console.log(e));}
-
-  const getbookshelfcheck = ()=>{
-    api.bookshelfcheck()
-    .then((data) => {
-      const booklist = data?.data?.info?.list;
-      setBookshelfcheck(booklist);
-      console.log(data?.data?.info?.list);
-    })
-    .catch((e) => console.log(e));}
-
-
-  const getlikelist = () => {
+  const getlikelist = async () => {
     console.log(111);
-    api.likelist()
+    await api
+      .likelist()
       .then((data) => {
         const booklist = data.data.info.list;
         setLikelist(booklist);
@@ -56,9 +36,10 @@ const UserBookShelf = () => {
     // console.log("data", data[0].elements[0].elements[0].cdata);
   };
 
-  const getcartlist = () => {
+  const getcartlist = async () => {
     console.log(111);
-    api.cartlist()
+    await api
+      .cartlist()
       .then((data) => {
         const booklist = data.data.info.list;
         setCartlist(booklist);
@@ -67,9 +48,10 @@ const UserBookShelf = () => {
       .catch((e) => console.log(e));
     // console.log("data", data[0].elements[0].elements[0].cdata);
   };
-  const getbookshelflist = () => {
+  const getbookshelflist = async () => {
     console.log(111);
-    api.bookshelflist()
+    await api
+      .bookshelflist()
       .then((data) => {
         const booklist = data.data.info.list;
         setBookshelflist(booklist);
@@ -84,11 +66,6 @@ const UserBookShelf = () => {
     getlikelist();
     getcartlist();
     getbookshelflist();
-
-    getlikecheck();
-    getcartcheck();
-    getbookshelfcheck();
-
   }, []);
 
   return (
@@ -116,17 +93,17 @@ const UserBookShelf = () => {
               }}
             >
               <div>
+                <h2 className="title">
+                  {authData?.nickname || "undefined"} 님의 Mybrary 📚
+                </h2>
 
-                <UserProfile data={authData} />
-                <BookView
+                <User_profile data={authData} />
+                <Book_view
                   style={{ marginTop: "30px" }}
                   data={authData}
                   likelist={likelist}
                   cartlist={cartlist}
                   bookshelflist={bookshelflist}
-                  bookshelfcheck = {bookshelfcheck}
-                  likecheck = {likecheck}
-                  cartcheck = {cartcheck}
                 />
               </div>
             </div>

@@ -15,8 +15,8 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from "react";
 import { Link } from "react-router-dom";
+import React, { Component } from "react";
 // reactstrap components
 import {
   Button,
@@ -30,6 +30,26 @@ import {
 } from "reactstrap";
 
 export default function Footer() {
+
+  class AboutUs extends Component {
+
+    handleClick = (e) => {
+      e.preventDefault();
+      window.scrollTo(0, 0); // 스크롤을 최상단으로 이동시킴
+      window.location.href = e.target.href; // 링크 이동
+    }
+  
+    render() {
+      return (
+        <NavItem>
+        <NavLink tag={Link} to="/about-us" onClick={this.handleClick}>
+          About Us
+        </NavLink>
+      </NavItem>
+      );
+    }
+  };
+
   return (
     <footer className="footer">
       <Container>
@@ -70,11 +90,7 @@ export default function Footer() {
                   About Template
                 </NavLink>
               </NavItem>
-              <NavItem>
-                <NavLink to="/about-us" tag={Link}>
-                  About Us
-                </NavLink>
-              </NavItem>
+              <AboutUs/>
               <NavItem>
                 <NavLink href="https://creative-tim.com/blog?ref=blkdsr-footer">
                   Blog

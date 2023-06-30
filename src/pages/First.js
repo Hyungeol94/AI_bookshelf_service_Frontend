@@ -6,6 +6,8 @@ import { animateScroll, scroller, Link } from "react-scroll";
 // core components
 import IndexNavbar from "components/Navbars/IndexNavbar.js";
 import Footer from "components/Footer/Footer.js";
+import "../styles/First.css";
+
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default () => {
@@ -44,7 +46,7 @@ export default () => {
             </h2>
             <Link to="section1" smooth={true} duration={1000}>
               <Button color="info" size="lg">
-                알아보기
+              <strong> 알아보기 </strong>
               </Button>
             </Link>
           </div>
@@ -56,10 +58,10 @@ export default () => {
             <div className="squares square3" />
             <div className="squares square5" />
             {/* <div className="squares square7" /> */}
-            <div style={{ height: "100vh", "margin-top": "20vh" }}>
+            <div style={{ height: "100vh", "margin-top": "10vh" }}>
               <h1><strong> Book is On & On </strong></h1>
               <div className="content-center brand">
-                <h2 className="h1-seo"><strong> 첫번째, 오프라인 서재의 온라인화 </strong></h2>
+                <h2 className="h1-seo"><strong> 오프라인 서재의 온라인화 </strong></h2>
                 <img src={require("assets/img/mybookshelf.jpg")} className="floatimages image1" style={{ border: "2px solid white" }} />
                 <h3 className="d-none d-sm-block">
                 오프라인 서재 사진을 온라인에 등록하고 관리할 수 있어요.
@@ -67,7 +69,7 @@ export default () => {
 
                 <Link to="section2" smooth={true} duration={1000}>
                   <Button color="info" size="lg">
-                    다음
+                  <strong> 다음 </strong>
                   </Button>
                 </Link>
               </div>
@@ -78,17 +80,17 @@ export default () => {
         <div className="section section-basic" id="section2">
           <div className="squares square7" />
           <Container>
-            <div style={{ height: "100vh", "margin-top": "20vh" }}>
+            <div style={{ height: "100vh", "margin-top": "10vh" }}>
               <h1><strong> Book is On & On </strong></h1>
               <div className="content-center brand">
-                <h1 className="h1-seo"><strong> 두번째, 도서 관리 기능 </strong></h1>
+                <h1 className="h1-seo"><strong> 도서 관리 기능 </strong></h1>
                 <img src={require("assets/img/bookmodal.jpg")} className="floatimages image2" style={{ border: "2px solid white" }} />
                 <h3 className="d-none d-sm-block">
                 등록된 온라인 서재를 기반으로 나의 책 취향을 확인할 수 있어요.
                 </h3>
                 <Link to="section3" smooth={true} duration={1000}>
                   <Button color="info" size="lg">
-                    다음
+                    <strong> 다음 </strong>
                   </Button>
                 </Link>
               </div>
@@ -99,31 +101,33 @@ export default () => {
         <div className="section section-basic" id="section3">
           <div className="squares square7" />
           <Container>
-            <div style={{ height: "100vh", "margin-top": "20vh" }}>
+            <div style={{ height: "100vh", "margin-top": "10vh" }}>
               <h1><strong> Book is On & On </strong></h1>
               <div className="content-center brand">
-                <h1 className="h1-seo"><strong>  세번째, 도서 추천 기능  </strong></h1>
+                <h1 className="h1-seo"><strong>  도서 추천 기능  </strong></h1>
                 <img src={require("assets/img/bookmodal.jpg")} className="floatimages image2" style={{ border: "2px solid white" }} />
                 <h3 className="d-none d-sm-block">
                 나의 책들을 바탕으로 새로운 책들을 추천해줘요.
                 </h3>
                 <Button color="info" size="lg" href="/login">
-                  회원가입하고 서비스 시작하기
+                  <strong> 시작하기 </strong>
                 </Button>
               </div>
             </div>
           </Container>
+          {/* <TopBtn/> */}
           <div>
-          <Link to="section0" smooth={true} duration={800}>
+          <Link to="section0" smooth={true} duration={800} className="topBtn">
                   <Button  color="info" size="sm"
-                  style={{"font-size": "26px", "position":"absolute", "bottom": "37vh",
-                                  "right": "2vw", "max-width": "200px", "max-height": "60px"
-                                  }}>
+                  style={{"font-size": "26px", "position": "sticky", 
+                          "position":"fixed", "bottom": "20px",
+                          "display" : "inline-block", "z-index":10,
+                          "right": "20px", "max-width": "200px", "max-height": "60px"
+                                  }} >
                   🛆
                   </Button>
                   </Link>
           </div>
-
         </div>
         <Footer />
       </div>

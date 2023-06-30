@@ -25,6 +25,7 @@ const Userprofile = (props) => {
     name,
     user_id,
     nickname,
+    image,
     user_bookshelf,
     user_like_book,
     user_cart,
@@ -54,8 +55,8 @@ const Userprofile = (props) => {
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <div style={{ display: "flex" }}>
             <img
-              src={sample_user.profile.image}
-              style={{ width: "130px", height: "130px" }}
+              src={image || sample_user.profile.image}
+              style={{ width: "130px", height: "130px", borderRadius: "100%" }}
             />
             <h2
               style={{

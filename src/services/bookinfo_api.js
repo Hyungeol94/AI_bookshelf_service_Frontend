@@ -9,7 +9,7 @@ export default async (searchvalue) => {
   // console.log(searchvalue, pageSize);
   const bookdata = await axios
     .get("/v1/search/book.json", {
-      params: { query: searchvalue },
+      params: { query: searchvalue, start: 100 },
       headers: {
         "X-Naver-Client-Id": "aUTQs989GIJxwutcnHAk",
         "X-Naver-Client-Secret": "5iYHJDUjOd",

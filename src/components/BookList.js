@@ -474,7 +474,7 @@ export default (props) => {
                     display: "block",
                   }}
                 >
-                  <div style={{ color: "black" , marginTop: "15px", overflowY: "scroll" }}>
+                  <div className="description-box" style={{ color: "black" , marginTop: "15px", width: "625px", height: "400px",}}>
                     <p style={{ color: "black"}}>{props?.description}</p>
                   </div>
                 </div>

@@ -154,9 +154,14 @@ const Upload = () => {
           </div>
         )}
       </div>
-      <Button onClick={handleUpload} className="continueButton">
+      <div style={{display:"flex", "max-width": "800px", "flex-direction": "row", "margin-top": "20px", "margin-left":"75%"}}> 
+      <Button onClick={()=> window.history.back()} >
+        취소하기
+      </Button>
+      <Button onClick={handleUpload}>
         계속하기
       </Button>
+      </div>
     </>
   );
 };

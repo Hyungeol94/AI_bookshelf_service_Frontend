@@ -25,7 +25,8 @@ module.exports = (app) => {
     })
   );
   app.use(
-    createProxyMiddleware("/book",{
+    "/book",
+    createProxyMiddleware({
       target: "https://search.shopping.naver.com",
       changeOrigin: true,
       ws: true

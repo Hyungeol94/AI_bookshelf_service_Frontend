@@ -468,7 +468,7 @@ export default (props) => {
               </div>
               <div
                 style={{
-                  width: "618px",
+                  width: "640px",
                   fontWeight: "border",
                   fontSize: "16px",
                   position: "absolute",
@@ -482,8 +482,8 @@ export default (props) => {
                     display: "block",
                   }}
                 >
-                  <div style={{ color: "black" , marginTop: "15px", overflowY: "scroll" }}>
-                    <p style={{ color: "black"}}>{props?.description}</p>
+                  <div style={{ height: "450px", width: "635px", color: "black" , marginTop: "15px", "overflow-y": "auto" }}>
+                    <p className="description-box" style={{ color: "black", height: "380px"}}>{props?.description}</p>
                   </div>
                 </div>
               </div>

@@ -45,7 +45,7 @@ const Userprofile = (props) => {
         paddingLeft: "30px",
         paddingRight: "30px",
         paddingTop: "30px",
-        paddingBottom: "30px",
+        paddingBottom: "20px",
         backgroundColor: "rgba(255,255,255, 0.5)",
         borderRadius: "20px 30px 20px 30px",
       }}

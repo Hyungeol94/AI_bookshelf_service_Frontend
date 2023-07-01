@@ -101,6 +101,9 @@ export default (props) => {
                   pubdate={book?.pubdate}
                   publisher={book?.publisher}
                   image={book?.image}
+                  category={book?.category}
+                  page={book?.page}
+                  weight={book?.weight}
                 />
               );
             })}

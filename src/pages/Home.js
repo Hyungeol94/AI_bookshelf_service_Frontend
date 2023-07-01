@@ -201,7 +201,7 @@ const Home = () => {
 
   let maxAuthor = '-';
   let maxCategory = '-';
-  
+
   if (bookshelflist.length > 0){
     let authorCount = {}
     let categoryCount = {}
@@ -252,7 +252,7 @@ const Home = () => {
               style={{ "pointer-events": "none", "z-index": 0 }}
             />
 
-            <PopupHome bookCount={bookshelflist.length} /> 
+            {/* <PopupHome bookCount={bookshelflist.length} />  */}
 
 
             <div

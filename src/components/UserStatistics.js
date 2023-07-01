@@ -5,35 +5,9 @@ import { Button, Modal, ModalHeader, ModalBody } from "reactstrap";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Pie } from "react-chartjs-2";
 import * as api from "../services/api";
+import PieChart from "../components/PieChart";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
-
-export const data_chart = {
-  labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-  datasets: [
-    {
-      label: "# of Votes",
-      data: [12, 19, 3, 5, 2, 3],
-      backgroundColor: [
-        "rgba(255, 99, 132, 0.5)",
-        "rgba(54, 162, 235, 0.5)",
-        "rgba(255, 206, 86, 0.5)",
-        "rgba(75, 192, 192, 0.5)",
-        "rgba(153, 102, 255, 0.5)",
-        "rgba(255, 159, 64, 0.5)",
-      ],
-      borderColor: [
-        "rgba(255, 99, 132, 1)",
-        "rgba(54, 162, 235, 1)",
-        "rgba(255, 206, 86, 1)",
-        "rgba(75, 192, 192, 1)",
-        "rgba(153, 102, 255, 1)",
-        "rgba(255, 159, 64, 1)",
-      ],
-      borderWidth: 0,
-    },
-  ],
-};
 
 const StatShow = (props) => {
   const { authData } = useSelector((state) => state.userReducer);
@@ -92,6 +66,50 @@ const StatShow = (props) => {
   if (!bookStatsData) {
     return <div>Loading...</div>;
   }
+
+  let maxAuthor = '-';
+  let maxCategory = '-';
+  let page_sum = 0;
+  let weight_sum = 0;
+  let weight_mean = 0;
+  let page_mean = 0;
+  let authorCount = {}
+  let categoryCount = {}
+
+  if (bookshelflist.length > 0) {
+
+  for (let i = 0; i < bookshelflist.length; i++){
+    page_sum = page_sum + bookshelflist[i].page
+    weight_sum = weight_sum + bookshelflist[i].weight
+  }
+
+  bookshelflist.forEach((book) => {
+    const author = book.author;
+    const category = book.category;
+    if (authorCount[author]) {
+      authorCount[author] += 1;
+    } else {
+      authorCount[author] = 1;
+    }
+    if (categoryCount[category]) {
+      categoryCount[category] += 1;
+    } else {
+      categoryCount[category] = 1;
+    }
+  });
+
+  page_mean = Math.floor( page_sum / bookshelflist.length ) 
+  weight_mean = Math.floor( weight_sum / bookshelflist.length ) 
+  maxAuthor = Object.entries(authorCount).reduce((prev, curr) => {
+                      return curr[1] > prev[1] ? curr : prev;
+                    })[0];
+  maxCategory = Object.entries(categoryCount).reduce((prev, curr) => {
+                        return curr[1] > prev[1] ? curr : prev;
+                      })[0];
+  console.log(authorCount);
+  console.log(categoryCount);
+  }
+
 
   return (
     <div>
@@ -199,10 +217,10 @@ const StatShow = (props) => {
                   </div>
                   <div>
                     <h4 style={{ color: "#000000" }}>
-                      총 독서 권수: {likelist.length}권
+                      총 독서 권수: {bookshelflist.length}권
                     </h4>
-                    <h4 style={{ color: "#000000" }}>최애 카테고리: </h4>
-                    <h4 style={{ color: "#000000" }}>최애 작가: </h4>
+                    <h4 style={{ color: "#000000" }}>최애 카테고리: {maxCategory}</h4>
+                    <h4 style={{ color: "#000000" }}>최애 작가: {maxAuthor}</h4>
                   </div>
                 </div>
               </div>
@@ -229,13 +247,11 @@ const StatShow = (props) => {
                   </div>
                   <div>
                     <h4 style={{ color: "#000000" }}>
-                      평균 / 누적 페이지 수 :{" "}
+                      평균 / 누적 페이지 수 : {page_mean}p / {page_sum}p
                     </h4>
+
                     <h4 style={{ color: "#000000" }}>
-                      평균 / 누적 페이지 수 :{" "}
-                    </h4>
-                    <h4 style={{ color: "#000000" }}>
-                      평균 / 누적 도서 무게 :{" "}
+                      평균 / 누적 도서 무게 : {weight_mean}g / {weight_sum}g
                     </h4>
                   </div>
                 </div>
@@ -251,7 +267,7 @@ const StatShow = (props) => {
                 alignItems: "center",
               }}
             >
-              <Pie data={data_chart} style={{ width: "50%" }} />
+              <PieChart categoryCount={categoryCount}/>
             </div>
           </div>
         </div>

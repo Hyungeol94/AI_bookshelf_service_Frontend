@@ -66,6 +66,9 @@ export default (props) => {
     pubdate: props?.pubdate,
     publisher: props?.publisher,
     image: props?.image,
+    category: props?.category,
+    page: props?.page,
+    weight: props?.weight,
   };
 
   const handleHeart = async () => {
@@ -294,6 +297,11 @@ export default (props) => {
                     <LibraryAddOutlined sx={{ color: teal[500] }} />
                   )}
                 </IconButton>
+              </div>
+              <div>
+                <div>{props?.category}</div>
+                <div>{props?.page}</div>
+                <div>{props?.weight}</div>
               </div>
               <Link to={props?.link}>
                 <Button

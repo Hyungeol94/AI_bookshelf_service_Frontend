@@ -157,6 +157,24 @@ const Home = () => {
         }});
       }
     };
+
+    let authorCount = {}
+    let categoryCount = {}
+
+    bookshelflist.forEach((book) => {
+      const author = book.author;
+      const category = book.category;
+      if (authorCount[author]) {
+        authorCount[author] += 1;
+      } else {
+        authorCount[author] = 1;
+      }
+      if (categoryCount[category]) {
+        categoryCount[category] += 1;
+      } else {
+        categoryCount[category] = 1;
+      }
+    });
   
     return (
       <button
@@ -180,9 +198,39 @@ const Home = () => {
       </button>
     );
   };
+
+  let maxAuthor = '-';
+  let maxCategory = '-';
   
+  if (bookshelflist.length > 0){
+    let authorCount = {}
+    let categoryCount = {}
   
-  console.log(user_info);
+    bookshelflist.forEach((book) => {
+      const author = book.author;
+      const category = book.category;
+      if (authorCount[author]) {
+        authorCount[author] += 1;
+      } else {
+        authorCount[author] = 1;
+      }
+      if (categoryCount[category]) {
+        categoryCount[category] += 1;
+      } else {
+        categoryCount[category] = 1;
+      }
+    });
+  
+    maxAuthor = Object.entries(authorCount).reduce((prev, curr) => {
+                        return curr[1] > prev[1] ? curr : prev;
+                      })[0];
+    maxCategory = Object.entries(categoryCount).reduce((prev, curr) => {
+                          return curr[1] > prev[1] ? curr : prev;
+                        })[0];
+  
+  }
+
+  
 
   useEffect(() => {
     document.body.classList.toggle("index-page");
@@ -303,10 +351,10 @@ const Home = () => {
 
                   <div>
                     <h4 style={{ color: "#000000" }}>
-                      내가 좋아하는 장르 : 탐정 소설
+                      내가 좋아하는 장르 : {maxCategory}
                     </h4>
                     <h4 style={{ color: "#000000" }}>
-                      내가 좋아하는 작가 : 히가시노 게이고
+                      내가 좋아하는 작가 : {maxAuthor}
                     </h4>
                   </div>
                 </div>

@@ -36,12 +36,24 @@ export const data_chart = {
 };
 
 const StatShow = (props) => {
-  const [likelist, setlikeList] = useState([]);
   const { authData } = useSelector((state) => state.userReducer);
+  const [likelist, setlikeList] = useState([]);
+  const [bookshelflist, setBookshelflist] = useState([]);
+
+  const getbookshelflist = async () => {
+    console.log('북리스트다');
+    await api.bookshelflist()
+      .then((data) => {
+        const booklist = data.data.info.list;
+        setBookshelflist(booklist);
+        console.log(booklist);
+      })
+      .catch((e) => console.log(e)); };
+
 
   // console.log(authData);
   const getlikebooklist = async () => {
-    console.log(111);
+    console.log('좋아요리스트다');
     await api
       .likelist()
       .then((data) => {
@@ -58,6 +70,7 @@ const StatShow = (props) => {
   useEffect(() => {
     console.log(222);
     getlikebooklist();
+    getbookshelflist();
   }, []);
 
   const [bookStatsData, setBookStatsData] = useState(null);

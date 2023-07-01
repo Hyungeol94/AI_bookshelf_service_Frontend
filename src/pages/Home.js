@@ -14,7 +14,8 @@ import getlist from "../components/GetList_user_home";
 import user_info from "../assets/sample_user.json";
 import Statshow from "../components/UserStatistics";
 import Bookslider from "../components/Bookslider";
-import BookModal from "../components/BookModalHome"
+import BookModal from "../components/BookModalHome";
+import PopupHome from "../components/PopupHome";
 
 // api
 import * as api from "../services/api";
@@ -203,6 +204,7 @@ const Home = () => {
               style={{ "pointer-events": "none", "z-index": 0 }}
             />
 
+            <PopupHome bookCount={bookshelflist.length} /> 
 
 
             <div

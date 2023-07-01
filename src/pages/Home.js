@@ -298,6 +298,7 @@ const Home = () => {
                       <Statshow data={authData} />
                     </div>
                   </div>
+
                   <div>
                     <h4 style={{ color: "#000000" }}>
                       내가 좋아하는 장르 : 탐정 소설

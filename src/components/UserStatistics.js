@@ -83,14 +83,14 @@ const StatShow = (props) => {
   return (
     <div>
       <Button
-        style={{ marginTop: "0px" }}
+        style={{ marginTop: "0px", marginLeft:'3em' }}
         className="btn-round"
         color="primary"
         size="sm"
         onClick={openModal}
       >
         {" "}
-        나의 독서폴리오 확인하기{" "}
+        나의 독서폴리오{" "}
       </Button>
 
       <Modal

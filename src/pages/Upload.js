@@ -14,62 +14,40 @@ import axios from 'axios';
 //import https from 'https';
 
 function Card({ children }) {
-  return (
-    <div className="card">
-      {children}
-    </div>
-  );
+  return <div className="card">{children}</div>;
 }
 
 const Upload = () => {
   const [imgFile, setImgFile] = useState([]); // 이미지 배열
-  const [imgFileView, setImgFileView] = useState([])
-  const upload = useRef();    
-  
-  const boximgUpload = () => {
-    setImgFile((prev) => [
-      ...prev,
-      upload.current.files[0],
-    ]);
+  const [imgFileView, setImgFileView] = useState([]);
+  const upload = useRef();
 
-    setImgFileView((prev)=>[
+  const boximgUpload = () => {
+    setImgFile((prev) => [...prev, upload.current.files[0]]);
+
+    setImgFileView((prev) => [
       ...prev,
       URL.createObjectURL(upload.current.files[0]),
-    ])
+    ]);
   };
-
-
 
   const navigate = useNavigate();
   const handleUpload = () => {
     if (imgFile.length === 0) {
       alert("No images appended.");
     } else {
-      console.log(imgFile)
-      
+      console.log(imgFile);
+
       const formData = new FormData();
-      imgFile.forEach((img) => formData.append("image", img))
+      imgFile.forEach((img) => formData.append("image", img));
       const conversionPromises = imgFile.map((img) =>
-      fetch(img)
-        .then((response) => response.blob())
-        .then((blob) => {
-          formData.append("image", blob);
-        })
-    ); 
+        fetch(img)
+          .then((response) => response.blob())
+          .then((blob) => {
+            formData.append("image", blob);
+          })
+      );
 
-    Promise.all(conversionPromises)
-      .then(() => {
-        // Iterate over the FormData entries to verify the contents
-        for (const [name, value] of formData.entries()) {
-          console.log(`Name: ${name}, Value: ${value}`);
-        }
-
-        // Proceed with sending the FormData or performing further operations
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
-      
       Promise.all(conversionPromises)
       .then(fetch('https://190d-34-90-55-135.ngrok-free.app/img2title/', {
         method: 'POST',
@@ -83,7 +61,7 @@ const Upload = () => {
           if (response.ok) {
             // Image successfully uploaded
             console.log('Image uploaded!');                               
-            var jsonObject = response.json()            
+            var jsonObject = response.json();            
             jsonObject.then((result) => {    
               console.log("uploaded object:", result)                        
               const jsonresult = encodeURIComponent(JSON.stringify(result))              
@@ -93,16 +71,50 @@ const Upload = () => {
             // Handle error case
             console.error('Image upload failed.');
           }
+
+          // Proceed with sending the FormData or performing further operations
         })
         .catch((error) => {
-          console.error('Error:', error);
-        }))
+          console.error("Error:", error);
+        }));
+
+      Promise.all(conversionPromises).then(
+        fetch("https://0754-35-187-152-57.ngrok-free.app/img2title/", {
+          method: "POST",
+          headers: {
+            "ngrok-skip-browswer-warning": "69420",
+            enctype: "multipart/form-data",
+          },
+          body: formData,
+        })
+          .then((response) => {
+            if (response.ok) {
+              // Image successfully uploaded
+              console.log("Image uploaded!");
+              var jsonObject = response.json();
+              jsonObject.then((result) => {
+                console.log("uploaded object:", result);
+                const jsonresult = encodeURIComponent(JSON.stringify(result));
+                navigate(
+                  `/result?jsonResult=${encodeURIComponent(jsonresult)}`,
+                  { replace: true }
+                );
+              });
+            } else {
+              // Handle error case
+              console.error("Image upload failed.");
+            }
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          })
+      );
 
       // Perform the AI logic here
       // start the AI logic
-      // ... 
+      // ...
 
-      //.then(navigate(`/result?jsonResult=${encodeURIComponent(JSON.stringify(jsonResult))}`, { replace: true }));       
+      //.then(navigate(`/result?jsonResult=${encodeURIComponent(JSON.stringify(jsonResult))}`, { replace: true }));
     }
   };
 

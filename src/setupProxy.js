@@ -24,4 +24,11 @@ module.exports = (app) => {
       changeOrigin: true,
     })
   );
+  app.use(
+    createProxyMiddleware("/book",{
+      target: "https://search.shopping.naver.com",
+      changeOrigin: true,
+      ws: true
+    })
+  );
 };

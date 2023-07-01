@@ -36,7 +36,7 @@
 .book-info {
   margin: 10px;
   width: 480px;
-  height: 650px;
+  height: 550px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -70,11 +70,20 @@
     background-color: rgb(215, 215, 215);
     border-radius: 50px;
 }
-.scrollingDiv {
+.scrollingDiv-recent {
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none; /* Internet Explorer 10+ */
 }
 
-.scrollingDiv::-webkit-scrollbar {
+.scrollingDiv-recent::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+.scrollingDiv-recommend {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+.scrollingDiv-recommend::-webkit-scrollbar {
   display: none; /* Chrome, Safari, Opera */
 }

@@ -28,8 +28,8 @@
 }
 
 .modal-image {
-  max-width: 300px;
-  max-height: 440px;
+  max-width: 250px;
+  max-height: 380px;
   margin-bottom: 20px;
   align-items: center;
   border: 5px solid rgb(236, 236, 236);
@@ -38,7 +38,7 @@
 .book-info {
   margin: 10px;
   width: 480px;
-  height: 650px;
+  height: 550px;
   display: flex;
   flex-direction: column;
   align-items: center;

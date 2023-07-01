@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "../styles/GetList.css";
 import { Modal, ModalHeader, Button } from "reactstrap";
 import { lightBlue, teal } from "@mui/material/colors";
-import {IconButton } from "@mui/material";
+import { IconButton } from "@mui/material";
 
 import * as api from "../services/api";
 
@@ -41,6 +41,7 @@ const BookModal = (props) => {
       publisher: props?.publisher,
       image: props?.image,
     };
+    
     
     const handleHeart = async () => {
       if (like) {
@@ -106,13 +107,17 @@ const BookModal = (props) => {
 
   return (
     <>
-    <div style={{  width: "92px", height: "140px"}}>
+    <div style={{  width: "130px", height: "160px", margin:'auto'}}>
       <div className="book-image"
-        style={{margin:'auto'}}>
+        style={{
+          margin:'auto',
+          width: "130px", 
+          height: "150px",
+          }}>
         <img
           src={props.image}
           alt={props.booktitle}
-          style={{ width: "80px", height: "100px" }}
+          style={{ width: "110px", height: "140px" }}
           onClick={openModal}
         />
         
@@ -122,16 +127,18 @@ const BookModal = (props) => {
           overflow: "hidden", // 을 사용해 영역을 감출 것
           textOverflow: "ellipsis", // 로 ... 을 만들기
           whiteSpace: "nowrap",
-          width: "80px",
+          width: "110px",
           // marginTop: "25px",
           paddingTop: '0.2em',
-          fontWeight: "bolder",
-          margin:'auto'   
+          fontWeight: "bolder",   
+          color:'#ffffff'
           }}>
         {props.booktitle}
       </label>
 
       </div>
+
+
 
 
     </div>
@@ -142,6 +149,7 @@ const BookModal = (props) => {
           onRequestClose={closeModal}
           contentLabel="File Modal"
           className="modal-box"
+          style={{}}
         >
         <ModalHeader className="justify-content-center">
         책 상세정보

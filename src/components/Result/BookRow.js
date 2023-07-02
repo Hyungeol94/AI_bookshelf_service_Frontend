@@ -2,7 +2,7 @@ import React from 'react';
 import "../../styles/BookList.css";
 import IconButton from '@mui/material/IconButton';
 import DeleteForeverRoundedIcon from '@mui/icons-material/DeleteForeverRounded';
-
+import PublishedWithChangesIcon from '@mui/icons-material/PublishedWithChanges';
 
 const BookRow = (props) => {
     const {bookInfo, setSelectedBookInfo, selectedBookRowInfo, setSelectedBookRowInfo, deleteFromBookList, searchValue, setSearchValue, onSearch, isDecidedBook} = props
@@ -32,7 +32,11 @@ const BookRow = (props) => {
           <tr style={{borderTop:'1px solid black', borderBottom: '1px solid black', verticalAlign: 'middle' }} >            
             <td onClick={handleClick} className = {bookRowClassName}>
               <span className="content">{bookInfo.title.length<=67? bookInfo.title: bookInfo.title.slice(0,67)+'...'}</span>  
-            </td>                
+            </td> 
+            {isDecidedBook(bookInfo)?
+            <td>
+               <PublishedWithChangesIcon/>
+            </td> :<td></td>}               
             <td>
               <IconButton className="deleteButton" onClick={handleDelete} size = "medium">
                 <DeleteForeverRoundedIcon/>

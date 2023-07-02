@@ -4,6 +4,7 @@ import {
   // Link, Route, Routes,
   useNavigate,
 } from "react-router-dom";
+import { Button, Input, UncontrolledTooltip } from "reactstrap";
 import axios from "axios";
 
 //import https from 'https';
@@ -57,7 +58,7 @@ const Upload = () => {
         });
 
       Promise.all(conversionPromises).then(
-        fetch("https://0754-35-187-152-57.ngrok-free.app/img2title/", {
+        fetch("https://190d-34-90-55-135.ngrok-free.app/img2title/", {
           method: "POST",
           headers: {
             "ngrok-skip-browswer-warning": "69420",
@@ -96,53 +97,146 @@ const Upload = () => {
     }
   };
 
+  const removeImage = (index) => {
+    setImgFile((prevImages) => prevImages.filter((_, idx) => idx !== index));
+    setImgFileView((prevImages) =>
+      prevImages.filter((_, idx) => idx !== index)
+    );
+  };
+
   return (
     <>
+      <div className="invisible" />
       <h1 className="head">책장 사진을 업로드해 주세요</h1>
-      <h5 className="explain">정면에서 책장 사진을 찍어 업로드해 주세요.</h5>
-      <h5 className="explain">
+      <h3 className="explain" style={{ marginBottom: "60px" }}>
+        정면에서 책장 사진을 찍어 업로드해 주세요.
+        <br />
         인공지능이 책을 감지해 자동으로 내 서재를 만들어 줄 거에요.
-      </h5>
+      </h3>
 
       <div className="upload-box">
         {imgFileView.length === 0 ? (
           <>
-            <p>책장 이미지를 업로드해 주세요.</p>
-            <input
-              type="file"
-              ref={upload}
-              multiple
-              onChange={boximgUpload}
-              accept="image/*"
-              value=""
-            />
+            <h3 style={{ marginTop: "20px", color: "black" }}>
+              책장 이미지를 업로드해 주세요.
+            </h3>
+            <label for="file">
+              <Button
+                style={{
+                  position: "relative",
+                  overflow: "hidden",
+                  marginRight: "20px",
+                }}
+              >
+                <input
+                  type="file"
+                  ref={upload}
+                  multiple
+                  onChange={boximgUpload}
+                  accept="image/*"
+                  style={{
+                    opacity: 0,
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    width: "100%",
+                    height: "100%",
+                    cursor: "pointer",
+                  }}
+                />
+                사진 선택
+              </Button>
+            </label>
           </>
         ) : (
           <div>
             <div style={{ display: "flex" }}>
               {imgFileView?.map((img, idx) => (
                 <Card key={idx}>
-                  <img
-                    style={{ width: "192", height: "192px" }}
-                    src={img}
-                    alt="img"
-                  />
+                  <div style={{ position: "relative" }}>
+                    <img
+                      style={{ width: "192px", height: "192px" }}
+                      src={img}
+                      alt="img"
+                    />
+                    <button
+                      className=""
+                      style={{
+                        fontSize: "15px",
+                        position: "absolute",
+                        top: 2,
+                        right: 2,
+                        background: "gray",
+                        color: "white",
+                        borderRadius: "50%",
+                        width: "24px",
+                        height: "24px",
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        border: "none",
+                        cursor: "pointer",
+                      }}
+                      onClick={() => removeImage(idx)}
+                    >
+                      <strong>X</strong>
+                    </button>
+                  </div>
                 </Card>
               ))}
             </div>
-            <input
-              type="file"
-              ref={upload}
-              multiple
-              onChange={boximgUpload}
-              accept="image/*"
-            />
+
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <Button
+                style={{
+                  position: "relative",
+                  overflow: "hidden",
+                  marginRight: "20px",
+                }}
+              >
+                <input
+                  type="file"
+                  ref={upload}
+                  multiple
+                  onChange={boximgUpload}
+                  accept="image/*"
+                  style={{
+                    opacity: 0,
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    width: "100%",
+                    height: "100%",
+                    cursor: "pointer",
+                  }}
+                />
+                사진 선택
+              </Button>
+              <h4
+                style={{
+                  marginTop: "13px",
+                  alignItems: "center",
+                  color: "black",
+                }}
+              >
+                {" "}
+                현재 업로드된 이미지 ({imgFileView.length})개{" "}
+              </h4>
+            </div>
           </div>
         )}
       </div>
-      <button onClick={handleUpload} className="continueButton">
-        계속하기
-      </button>
+      <div style={{ float: "right", marginRight: "10%" }}>
+        <Button
+          onClick={() => window.history.back()}
+          className="continueButton"
+        >
+          취소
+        </Button>
+        <Button onClick={handleUpload} className="continueButton">
+          계속하기
+        </Button>
+      </div>
     </>
   );
 };

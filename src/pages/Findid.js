@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import userData from '../assets/sample_user.json';
 import "../styles/Findid.css";
+import { useNavigate } from "react-router-dom";
 import LoginNavbar from "components/Navbars/LoginNavbar";
 
 import {
@@ -31,6 +32,14 @@ const ForgotId = () => {
       setFoundId('');
       alert('해당 전화번호와 일치하는 사용자를 찾을 수 없습니다. 전화번호를 다시 확인해주세요.');
     }
+  };
+
+  const navigate = useNavigate();
+  const moveToLogin = () => {
+    navigate("/login");
+  };
+  const moveToMain = () => {
+    navigate("/");
   };
 
   return (
@@ -64,29 +73,29 @@ const ForgotId = () => {
       </div>
       <form onSubmit={handleSubmit} className='inside-container'>
         <label htmlFor="phoneNumber" class='label-form'
-          style={{color:'#ffffff'}}>전화번호:</label>
+          style={{color:'#ffffff'}}></label>
         <input
           type="tel"
           id="phoneNumber"
           value={phoneNumber}
-          placeholder="010-0000-0000"
+          placeholder="전화번호(- 제외하고 입력)"
           onChange={(e) => setPhoneNumber(e.target.value)}
           className='input-form'
           required
         /><br/>
         <label htmlFor="name" class='label-form'
-          style={{color:'#ffffff'}}>이름:</label>
+          style={{color:'#ffffff'}}></label>
         <input
           type="text"
           id="name"
           value={name}
-          placeholder="홍길동"
+          placeholder="이름"
           onChange={(e) => setName(e.target.value)}
           className='input-form'
           required
         /><br/>
         <label htmlFor="birthDate" class='label-form'
-          style={{color:'#ffffff'}}>생년월일:</label>
+          style={{color:'#ffffff'}}></label>
         <input
           type="date"
           id="birthDate"
@@ -98,6 +107,10 @@ const ForgotId = () => {
         <Button
          variant="contained" class="button"
          style={{width:'278px', height:'40px', marginTop:'20px'}}>아이디 찾기</Button>
+         <div style={{"align-items":'flex-start', "left":0}}>
+         <button onClick={moveToLogin} class="mini-button"> 뒤로가기 </button>
+         <button onClick={moveToMain} class="mini-button"> 홈으로 </button>
+         </div>
       </form>
         {foundId && <div>찾은 아이디: {foundId}</div>}
     </div>

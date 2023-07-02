@@ -28,5 +28,9 @@ export const deletebookshelf = (data) =>
   axios.post("/user/deletebookshelf", data);
 export const bookshelfcheck = () => axios.post("/user/bookshelfcheck");
 export const bookshelflist = () => axios.post("/user/bookshelflist");
+
+// USER_PROFILE
+export const profilechange = (data) => axios.post("/user/profilechange", data);
+
 // export const logout = () => axios.delete("/api/user/logout");
 // export const signup = (data) => axios.post("/api/user/signup", data);

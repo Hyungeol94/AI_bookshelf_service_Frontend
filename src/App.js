@@ -78,12 +78,12 @@ export default () => {
           <Route path="/EditProfile" element={<User />} />
           <Route path="/upload" element={<Upload />} />
           <Route path="/result" element={<Result />} />
+          <Route path="/profile" element={auth(User, true)} />
         </Route>
         <Route path="/upload" element={<Upload />} />
         <Route path="/result" element={<Resultpage />} />
         {/* <Route path="/detail" element={<Detail />} /> */}
         <Route path="/search" element={<Searchpage />} />
-        <Route path="/profile" element={<User />} />
         {/* <Route path="/bookshelf/detail/:id" element={<GetBookDetail />} /> */}
         <Route path="/inquiry/pw" element={<FindPw />} />
         <Route path="/inquiry/id" element={<Findid />} />

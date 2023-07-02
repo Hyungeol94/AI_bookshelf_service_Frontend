@@ -25,6 +25,7 @@ const Userprofile = (props) => {
     name,
     user_id,
     nickname,
+    image,
     user_bookshelf,
     user_like_book,
     user_cart,
@@ -39,23 +40,25 @@ const Userprofile = (props) => {
       style={{
         display: "flex",
         justifyContent: "space-between",
-        // width: "100%",
-        // margin: "50px, 30px, 50px, 30px",
+        width: "1000px",
+        marginTop: "60px",
         paddingLeft: "30px",
         paddingRight: "30px",
         paddingTop: "30px",
-        paddingBottom: "30px",
+        paddingBottom: "20px",
         backgroundColor: "rgba(255,255,255, 0.5)",
         borderRadius: "20px 30px 20px 30px",
       }}
     >
       <div style={{ width: "1000px" }}>
-        <h1 style={{ color: "#000000" }}>My profile</h1>
+        <h1 style={{ 
+          color: "#000000",
+          fontWeight: "bold" }}> {nickname || "undefined"} 님의 Mybrary 📚</h1>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <div style={{ display: "flex" }}>
             <img
-              src={sample_user.profile.image}
-              style={{ width: "130px", height: "130px" }}
+              src={image || sample_user.profile.image}
+              style={{ width: "130px", height: "130px", borderRadius: "100%" }}
             />
             <h2
               style={{

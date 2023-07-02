@@ -149,20 +149,10 @@ export default () => {
           </div>
           <Nav navbar>
             <NavItem>
-              {/* <InputGroup>
-                <Input placeholder="Book Search" type="text" />
-                <InputGroupAddon addonType="append">
-                  <InputGroupText>
-                  <Button
-                    href="/bookshelf">                    
-                    <i className="tim-icons icon-zoom-split" />
-                  </Button>
-                  </InputGroupText>
-                </InputGroupAddon>
-              </InputGroup> */}
+
               <div class="input-group mb-3">
                 <Input
-                  style={{borderColor:'#2b3553'}}
+                  style={{borderColor:'#2b3553', width: "20vw"}}
                   type="text"
                   class="form-control"
                   placeholder="Search your book!"

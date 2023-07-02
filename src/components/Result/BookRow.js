@@ -24,14 +24,14 @@ const BookRow = (props) => {
     const bookRowClassName = isConditionMet() ? 'bookRow-conditionMet' : 'bookRow';
 
     return (
-      <tr>
-        <td onClick={handleClick} className = {bookRowClassName}>
-          <span className="content">{bookInfo.title||bookInfo.booktitle}</span>  
-        </td>                
-        <td>
-          <button className="deleteButton" onClick={handleDelete}>❎</button>
-        </td>
-      </tr>
+        <tr style={{verticalAlign: 'middle' }}>
+          <td onClick={handleClick} className = {bookRowClassName}>
+            <span className="content">{bookInfo.title||bookInfo.booktitle}</span>  
+          </td>                
+          <td>
+            <button className="deleteButton" onClick={handleDelete}>❎</button>
+          </td>
+        </tr>
     );
   }
 

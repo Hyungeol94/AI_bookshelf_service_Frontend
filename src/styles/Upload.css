@@ -1,11 +1,17 @@
+.invisible {
+    height: 20vh;
+}
 .head {
     text-align: center;
     font-weight: bold;
     margin: 20px;
+    font-size: 68px;
+    margin: 5vh;
 }
 .explain {
     text-align: center;
     font-weight: bold;
+    margin-top: 5vh;
 }
 .input{
     zIndex: 2;
@@ -13,29 +19,60 @@
     cursor: pointer;
 }
 .upload-box {
-    background-color: rgb(214, 214, 214);
+    background-color: rgb(191, 188, 209);
+    border-radius: 10px;
     padding: 20px;
-    margin: 20px;
-  }
-
+    margin-left: 20vh;
+    margin-right: 20vh;
+}
+.input-box {
+    background-color: ;
+}
 .box{ 
     background-Color: gray;
-    border: 1px solid black;
+    border: 2px solid gray;
     padding: 20px;
     margin: 20px;
     width: 200px;
     height: 200px;
+    align-items: center;
+    
 }
 .card{
     width: 200px !important; 
-    padding: 4px !important;
+    padding: 2px !important;
+    border-radius: 5px;
     height: 200px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
     background-color: gray !important;
+    margin-right: 20px;
 }
+.btn-group{ 
+    float: right;
+    /* margin-top: 10px; */
+    margin-right: 10%;
+  }
 
 .continueButton{ 
-  float: right;
-  margin-right: 20px;
-  width: 100px;
+  margin: 15px;
+  width: 150px;
+  /* height: 30px; */
 }
 
+.delete-button{
+    background-color: #2f3640; /* 임의의 배경색 */
+    color: currentColor;
+}
+
+p {
+    color: invert(currentColor);
+}
+
+/* invert() 함수를 적용하여 대비되는 글자색 찾음 */
+@supports (color: invert(currentColor)) {
+    p {
+    color: invert(currentColor);
+}
+}

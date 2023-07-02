@@ -1,13 +1,10 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import classnames from "classnames";
+import * as api from "../services/api";
 // reactstrap components
 
 //our components
-import user_info from "../assets/sample_user.json";
-import sample from "../assets/sample_book.json";
-import getlist from "./GetList_user";
-import get_recentlyAdded_list from "./GetRecentlyAddedList";
-import BookModal from "./BookModal"
+import BookModal from "./BookModal";
 
 import "../styles/Book-view.css";
 
@@ -15,8 +12,6 @@ import {
   TabContent,
   TabPane,
   Container,
-  Row,
-  Col,
   CardHeader,
   CardBody,
   Nav,
@@ -33,37 +28,104 @@ function Card({ children }) {
 
 export default function Bookview(props) {
   // console.log(props.list);
-  const [iconTabs, setIconsTabs] = React.useState(1);
-  const [textTabs, setTextTabs] = React.useState(4);
-  let [recentlyAdded_count, recentlyAdded_list] =
-    get_recentlyAdded_list(sample);
-  let [totalBook_count, totalBook_list] = getlist(
-    sample,
-    user_info.user_bookshelf.book_id
-  );
-  // let [likes_count, Likes_list] = getlist(sample, user_info.user_like_book);
-  let [saved_count, saved_list] = getlist(sample, user_info.user_cart);
+  const [iconTabs, setIconsTabs] = useState(1);
+  const [textTabs, setTextTabs] = useState(4);
+  const [filterText, setFilterText] = useState("");
+  const [likelist, setLikelist] = useState([]);
+  const [cartlist, setCartlist] = useState([]);
+  const [bookshelflist, setBookshelflist] = useState([]);
 
-  // handleValueChange = (e) => {
-  //     let nextState = {};
-  //     nextState[e.target.name] = e.target.value;
-  //     this.setState(nextState);
-  // }
+  const [likecheck, setLikecheck] = useState([]);
+  const [cartcheck, setCartcheck] = useState([]);
+  const [bookshelfcheck, setBookshelfcheck] = useState([]);
 
-  // const filteredComponents = (data) => {
-  //     data = data.filter((c) => {
-  //         return c.name.indexOf(this.state.searchKeyword) > -1;
-  //     } );
-  //     return data.map((c) => {
-  //         return <p> c.booktitle </p>
-  //     });
-  // }
+  const getlikecheck = async () => {
+    await api
+      .likecheck()
+      .then((data) => {
+        const booklist = data?.data?.info?.list;
+        setLikecheck(booklist);
+        console.log(data?.data?.info?.list);
+      })
+      .catch((e) => console.log(e));
+  };
+  const getcartcheck = async () => {
+    await api
+      .cartcheck()
+      .then((data) => {
+        const booklist = data?.data?.info?.list;
+        setCartcheck(booklist);
+        console.log(data?.data?.info?.list);
+      })
+      .catch((e) => console.log(e));
+  };
+
+  const getbookshelfcheck = async () => {
+    await api
+      .bookshelfcheck()
+      .then((data) => {
+        const booklist = data?.data?.info?.list;
+        setBookshelfcheck(booklist);
+        console.log(data?.data?.info?.list);
+      })
+      .catch((e) => console.log(e));
+  };
+
+  const getlikelist = async () => {
+    console.log(111);
+    await api
+      .likelist()
+      .then((data) => {
+        const booklist = data.data.info.list;
+        setLikelist(booklist);
+        console.log(booklist);
+      })
+      .catch((e) => console.log(e));
+    // console.log("data", data[0].elements[0].elements[0].cdata);
+  };
+
+  const getcartlist = async () => {
+    console.log(111);
+    await api
+      .cartlist()
+      .then((data) => {
+        const booklist = data.data.info.list;
+        setCartlist(booklist);
+        console.log(booklist);
+      })
+      .catch((e) => console.log(e));
+    // console.log("data", data[0].elements[0].elements[0].cdata);
+  };
+
+  const getbookshelflist = async () => {
+    console.log(111);
+    await api
+      .bookshelflist()
+      .then((data) => {
+        const booklist = data.data.info.list;
+        setBookshelflist(booklist);
+        console.log(booklist);
+      })
+      .catch((e) => console.log(e));
+    // console.log("data", data[0].elements[0].elements[0].cdata);
+  };
+
+  useEffect(() => {
+    console.log(222);
+    getlikelist();
+    getcartlist();
+    getbookshelflist();
+
+    getlikecheck();
+    getcartcheck();
+    getbookshelfcheck();
+  }, [iconTabs]);
 
   return (
     <>
       <Container
         className=""
-        style={{ width: "100%", padding: 0, ...props.style }}
+        style={{ width: "1000px", padding: 0, ...props.style }}
       >
         <Card>
           <CardHeader className="book-view-card-header">
@@ -77,8 +139,7 @@ export default function Bookview(props) {
                   href="#pablo"
                   style={{ borderRadius: "30px" }}
                 >
-                  <i className="tim-icons icon-align-left-2" />
-                  내 서재
+                  <i className="tim-icons icon-align-left-2" />내 서재
                 </NavLink>
               </NavItem>
               <NavItem>
@@ -114,8 +175,9 @@ export default function Bookview(props) {
                     placeholder="제목으로 검색하기"
                     type="text"
                     name="searchKeyword"
-                    // value = {this.state.searchKeyword}
-                    // onChange = {this.handleValueChange}
+                    filterText={filterText}
+                    value={filterText}
+                    onChange={(e) => setFilterText(e.target.value)} // 검색어 업데이트
                   />
                 </FormGroup>
               </Form>
@@ -125,126 +187,160 @@ export default function Bookview(props) {
             <TabContent className="tab-space" activeTab={"link" + iconTabs}>
               <TabPane tabId="link1">
                 <p>
-                  <h4> 총 {props?.bookshelflist?.length}권 </h4>
+                  <h4>
+                    {" "}
+                    총{" "}
+                    {
+                      bookshelflist.filter((data) =>
+                        data?.title
+                          ?.toLowerCase()
+                          .includes(filterText?.toLowerCase())
+                      ).length
+                    }
+                    권{" "}
+                  </h4>
                   <div
                     style={{
                       display: "flex",
                       overflowX: "auto",
-                      flexWrap:'wrap',
-                      flexDirection: "row-reverse",
-                      justifyContent: "flex-end",
+                      flexWrap: "wrap",
+                      flexDirection: "row",
+                      justifyContent: "flex-start",
                     }}
                   >
-                    {props?.bookshelflist?.map((data) => (
-                      // <div style={{ marginRight: "5px" }}>
-                      //   <div>
-                      //     <img
-                      //       src={data.image}
-                      //       alt={data.title}
-                      //       style={{ width: "80px", height: "105px" }}
-                      //     />
-                      //   </div>
-                      //   <p
-                      //     style={{
-                      //       display: "block",
-                      //       overflow: "hidden", // 을 사용해 영역을 감출 것
-                      //       textOverflow: "ellipsis", // 로 ... 을 만들기
-                      //       whiteSpace: "nowrap",
-                      //       width: "80px",
-                      //       marginTop: "3px",
-                      //       fontWeight: "bolder",
-                      //     }}
-                      //   >
-                      //     {data.title}
-                      //   </p>
-                      // </div>
-
-                      <BookModal
-                      key={data.id}
-                      image={data.image}
-                      booktitle={data.booktitle}
-                      author={data.author}
-                      description={data.description}
-                      id={data.id}
-                    />
-
-                    ))}
+                    {bookshelflist
+                      .filter((data) =>
+                        data?.title
+                          ?.toLowerCase()
+                          .includes(filterText?.toLowerCase())
+                      )
+                      .reverse()
+                      .map((data) => (
+                        <BookModal
+                          key={data.id}
+                          image={data.image}
+                          booktitle={data.title}
+                          author={data.author}
+                          description={data.description}
+                          id={data.id}
+                          isbn={data.isbn}
+                          link={data.link}
+                          pubdate={data.pubdate}
+                          publisher={data.publisher}
+                          bookshelflist={bookshelflist}
+                          likelist={likelist}
+                          cartlist={cartlist}
+                          bookshelfcheck={bookshelfcheck}
+                          likecheck={likecheck}
+                          cartcheck={cartcheck}
+                        />
+                      ))}
                   </div>
                 </p>
               </TabPane>
               <TabPane tabId="link2">
                 <p>
-                  <h4> 총 {props?.likelist?.length}권 </h4>
+                  <h4>
+                    {" "}
+                    총{" "}
+                    {
+                      likelist?.filter((data) =>
+                        data?.title
+                          ?.toLowerCase()
+                          .includes(filterText?.toLowerCase())
+                      ).length
+                    }
+                    권{" "}
+                  </h4>
                   <div
                     style={{
                       display: "flex",
                       overflowX: "auto",
-                      flexDirection: "row-reverse",
-                      justifyContent: "flex-end",
+                      flexWrap: "wrap",
+                      flexDirection: "row",
+                      justifyContent: "flex-start",
                     }}
                   >
-                    {props?.likelist?.map((data) => (
-                      <div style={{ marginRight: "5px" }}>
-                        <div>
-                          <img
-                            src={data.image}
-                            alt={data.title}
-                            style={{ width: "80px", height: "105px" }}
-                          />
-                        </div>
-                        <p
-                          style={{
-                            display: "block",
-                            overflow: "hidden", // 을 사용해 영역을 감출 것
-                            textOverflow: "ellipsis", // 로 ... 을 만들기
-                            whiteSpace: "nowrap",
-                            width: "80px",
-                            marginTop: "3px",
-                            fontWeight: "bolder",
-                          }}
-                        >
-                          {data.title}
-                        </p>
-                      </div>
-                    ))}
+                    {likelist
+                      ?.filter((data) =>
+                        data?.title
+                          ?.toLowerCase()
+                          .includes(filterText?.toLowerCase())
+                      )
+                      .reverse()
+                      .map((data) => (
+                        <BookModal
+                          key={data.id}
+                          image={data.image}
+                          booktitle={data.title}
+                          author={data.author}
+                          description={data.description}
+                          id={data.id}
+                          isbn={data.isbn}
+                          link={data.link}
+                          pubdate={data.pubdate}
+                          publisher={data.publisher}
+                          bookshelflist={bookshelflist}
+                          likelist={likelist}
+                          cartlist={cartlist}
+                          bookshelfcheck={bookshelfcheck}
+                          likecheck={likecheck}
+                          cartcheck={cartcheck}
+                        />
+                      ))}
                   </div>
                 </p>
               </TabPane>
               <TabPane tabId="link3">
                 <p>
-                  <h4> 총 {props?.cartlist?.length}권 </h4>
+                  <h4>
+                    {" "}
+                    총{" "}
+                    {
+                      cartlist?.filter((data) =>
+                        data?.title
+                          ?.toLowerCase()
+                          .includes(filterText?.toLowerCase())
+                      ).length
+                    }
+                    권{" "}
+                  </h4>
                   <div
                     style={{
                       display: "flex",
                       overflowX: "auto",
-                      flexDirection: "row-reverse",
-                      justifyContent: "flex-end",
+                      flexWrap: "wrap",
+                      flexDirection: "row",
+                      justifyContent: "flex-start",
                     }}
                   >
-                    {props?.cartlist?.map((data) => (
-                      <div style={{ marginRight: "5px" }}>
-                        <div>
-                          <img
-                            src={data.image}
-                            alt={data.title}
-                            style={{ width: "80px", height: "105px" }}
-                          />
-                        </div>
-                        <p
-                          style={{
-                            display: "block",
-                            overflow: "hidden", // 을 사용해 영역을 감출 것
-                            textOverflow: "ellipsis", // 로 ... 을 만들기
-                            whiteSpace: "nowrap",
-                            width: "80px",
-                            marginTop: "3px",
-                            fontWeight: "bolder",
-                          }}
-                        >
-                          {data.title}
-                        </p>
-                      </div>
-                    ))}
+                    {cartlist
+                      ?.filter((data) =>
+                        data?.title
+                          ?.toLowerCase()
+                          .includes(filterText?.toLowerCase())
+                      )
+                      .reverse()
+                      .map((data) => (
+                        <BookModal
+                          key={data.id}
+                          image={data.image}
+                          booktitle={data.title}
+                          author={data.author}
+                          description={data.description}
+                          id={data.id}
+                          isbn={data.isbn}
+                          link={data.link}
+                          pubdate={data.pubdate}
+                          publisher={data.publisher}
+                          bookshelflist={bookshelflist}
+                          likelist={likelist}
+                          cartlist={cartlist}
+                          bookshelfcheck={bookshelfcheck}
+                          likecheck={likecheck}
+                          cartcheck={cartcheck}
+                        />
+                      ))}
                   </div>
                 </p>
               </TabPane>

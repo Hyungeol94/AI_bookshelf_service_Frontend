@@ -3,6 +3,8 @@ import React, { useState, useEffect } from "react";
 import { Container, Row, Col } from "reactstrap";
 
 // our components
+import Footer from "components/Footer/Footer.js";
+
 // import BookList from "../components/BookList";
 import sample from "../assets/sample_book.json";
 import getlist from "../components/GetList_user";
@@ -17,11 +19,11 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 const UserBookShelf = () => {
+  const { authData } = useSelector((state) => state.userReducer);
+  // console.log(authData);
   const [likelist, setLikelist] = useState([]);
   const [cartlist, setCartlist] = useState([]);
   const [bookshelflist, setBookshelflist] = useState([]);
-  const { authData } = useSelector((state) => state.userReducer);
-  // console.log(authData);
 
   const getlikelist = async () => {
     console.log(111);
@@ -70,15 +72,14 @@ const UserBookShelf = () => {
 
   return (
     <>
-      <div className="wrapper"
-        style={{}}>
+      <div className="wrapper" style={{}}>
         <div className="main">
           <div className="section">
             <img
               alt="..."
               className="path"
               src={require("assets/img/path1.png")}
-              style={{ "pointer-events": "none", "z-index": 0, }}
+              style={{ "pointer-events": "none", "z-index": 0 }}
             />
             <div></div>
             <div
@@ -93,10 +94,6 @@ const UserBookShelf = () => {
               }}
             >
               <div>
-                <h2 className="title">
-                  {authData?.nickname || "undefined"} 님의 Mybrary 📚
-                </h2>
-
                 <User_profile data={authData} />
                 <Book_view
                   style={{ marginTop: "30px" }}
@@ -110,7 +107,7 @@ const UserBookShelf = () => {
           </div>
         </div>
       </div>
-      {/* <Footer/> */}
+      <Footer />
     </>
   );
 };

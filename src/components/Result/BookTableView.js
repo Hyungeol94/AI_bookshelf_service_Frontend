@@ -1,6 +1,8 @@
 import React from 'react';
+import { useState } from "react";
 import {Button} from "reactstrap";
 import BookTable from './BookTable'
+import BookshelfImageModal from './BookshelfImageModal';
 import "../../styles/Result.css";
 import * as api from "../../services/api";
 import {
@@ -9,8 +11,10 @@ import {
 } from "react-router-dom";
 
 const BookTableView = (props) => {
-    const {booksInfo, setSelectedBookInfo, deleteFromBookList, selectedBookRowInfo, setSelectedBookRowInfo, searchValue, setSearchValue, onSearch, bookInfoAPI} = props  
+    const {booksInfo, setSelectedBookInfo, deleteFromBookList, selectedBookRowInfo, setSelectedBookRowInfo, searchValue, setSearchValue, onSearch, bookInfoAPI, bookshelfImages} = props  
     const navigate = useNavigate();
+    let [modalIsOpen, setModalIsOpen] = useState(false)
+    
     const searchBookInfo = async (bookInfo) => {
       console.log('searched')
       const fetchedData = await bookInfoAPI(bookInfo.title, 1);
@@ -45,6 +49,14 @@ const BookTableView = (props) => {
       });      
     }
 
+ 
+    const openBookshelfImage = (e) => {
+      setModalIsOpen(modalIsOpen => ! modalIsOpen);
+      console.log(modalIsOpen)
+      console.log(bookshelfImages)
+    }
+
+
     return (
       <div className = "bookTableView">
         <h3 className="viewHeader">책 목록</h3>
@@ -59,8 +71,13 @@ const BookTableView = (props) => {
           onSearch = {onSearch}          
         />
         <div style={{display: 'flex'}}>
-          <Button style={{width: '70%', display: 'block'}}>책장 이미지 보기</Button>                
-          <Button onClick = {saveToMyBookShelf} style={{width: '70%', display: 'block'}}>내 서재에 추가</Button>                
+          <Button onClick = {openBookshelfImage} style={{width: '70%', display: 'block'}}>책장 이미지 보기</Button>    
+            <BookshelfImageModal
+              bookshelfImages = {bookshelfImages}
+              modalIsOpen = {modalIsOpen}
+              openBookshelfImage = {openBookshelfImage}
+              />
+          <Button onClick = {saveToMyBookShelf} style={{width: '70%', display: 'block'}}>내 서재에 추가</Button>                      
         </div>
       </div>
     );

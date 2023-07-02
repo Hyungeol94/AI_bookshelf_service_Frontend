@@ -97,10 +97,13 @@ const BookModal = (props) => {
 
     const openModal = () => {
         setModalIsOpen(true);
+        setLike(props?.likecheck?.includes(props?.isbn) || false);
+        setCart(props?.cartcheck?.includes(props?.isbn) || false);
+        setBookshelf(props?.bookshelfcheck?.includes(props?.isbn) || false);
       };
     
     const closeModal = () => {
-    setModalIsOpen(false);
+      setModalIsOpen(false);
       };
     // 반환값
 
@@ -140,7 +143,7 @@ const BookModal = (props) => {
         <Modal
           isOpen={modalIsOpen}
           onRequestClose={closeModal}
-          contentLabel="File Modal"
+          contentlabel="File Modal"
           className="modal-box"
         >
         <ModalHeader className="justify-content-center">
@@ -159,11 +162,11 @@ const BookModal = (props) => {
                 alt={props.booktitle}
                 className="modal-image"
               />
-              <h2 style={{ color: "black", "margin-bottom": "4px" }}>
+              <h2 style={{ color: "black", "marginBottom": "4px" }}>
                 {" "}
                 {props.booktitle}{" "}
               </h2>
-              <h4 style={{ color: "black", "margin-bottom": "4px" }}>
+              <h4 style={{ color: "black", "marginBottom": "4px" }}>
                 {" "}
                 {props.author}{" "}
               </h4>{" "}
@@ -210,9 +213,13 @@ const BookModal = (props) => {
                   )}
                 </IconButton>
               </div>
-
-              <div className="btn-group">
-              <card></card>
+              
+              <div className="btn-groups"
+                style={{
+                  display:'flex',
+                  justifyContent: 'center',
+                  marginBottom:'3%'
+                }}>
               <Button color="info" size="sm" className="buy-link" style={{borderRadius: "8px"}}
                   onClick={() => window.open(`https://search.shopping.naver.com/book/search?bookTabType=ALL&pageIndex=1&pageSize=40&query=${props.booktitle}&sort=REL`, "_blank")} >
                     네이버 북 </Button>

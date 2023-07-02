@@ -2,6 +2,8 @@ import axios from "axios";
 import cheerio from "cheerio";
 import cors from "cors";
 
+// home에서는 정보가 많이 필요 없어서 30개만 부르는 걸로 호출 -> 크롤링 낭비 최소화
+
 let itemslist = "";
 // const converter = require("xml-js");
 
@@ -59,7 +61,7 @@ export default async (searchvalue) => {
 
   const bookdata = await axios
     .get("/v1/search/book.json", {
-      params: { query: searchvalue, display: 100 },
+      params: { query: searchvalue, display: 25 },
       headers: {
         "X-Naver-Client-Id": "aUTQs989GIJxwutcnHAk",
         "X-Naver-Client-Secret": "5iYHJDUjOd",
@@ -124,3 +126,4 @@ export default async (searchvalue) => {
   return output(bookdata);
   // console.log(bookdata);
 };
+

@@ -26,7 +26,7 @@ const BookDetail = (props) => {
       <Modal
       isOpen={modalIsOpen}
       onRequestClose={closeModal}
-      contentLabel="File Modal">
+      contentlabel="File Modal">
 
         {/* < BookDetail /> */}
         <div style={{ color: 'black' }} className="book-info">

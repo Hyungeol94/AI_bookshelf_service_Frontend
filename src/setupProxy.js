@@ -3,7 +3,7 @@ const { createProxyMiddleware } = require("http-proxy-middleware");
 
 module.exports = (app) => {
   const SERVER = process.env.REACT_APP_DEV_ENV || "http://49.50.162.189:4000";
-
+  const local = 'http://localhost:4000/'
   console.log("백엔드서버:", SERVER);
 
   app.use(
@@ -16,14 +16,14 @@ module.exports = (app) => {
   app.use(
     "/auth",
     createProxyMiddleware({
-      target: SERVER,
+      target: local, //SERVER,
       changeOrigin: true,
     })
   );
   app.use(
     "/user",
     createProxyMiddleware({
-      target: SERVER,
+      target: local, //SERVER,
       changeOrigin: true,
     })
   );
@@ -32,7 +32,6 @@ module.exports = (app) => {
     createProxyMiddleware({
       target: "https://search.shopping.naver.com",
       changeOrigin: true,
-      ws: true
     })
   );
 };

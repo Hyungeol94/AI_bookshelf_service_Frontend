@@ -32,7 +32,6 @@ const Userprofile = (props) => {
     user_interest,
     user_type,
   } = props?.data;
-  console.log(props?.data);
 
   return (
     <div

@@ -58,7 +58,7 @@ const Upload = () => {
         });
 
       Promise.all(conversionPromises).then(
-        fetch("https://190d-34-90-55-135.ngrok-free.app/img2title/", {
+        fetch("https://8c50-34-143-144-216.ngrok-free.app/img2title/", {
           method: "POST",
           headers: {
             "ngrok-skip-browswer-warning": "69420",
@@ -75,7 +75,7 @@ const Upload = () => {
                 console.log("uploaded object:", result);
                 const jsonresult = encodeURIComponent(JSON.stringify(result));
                 navigate(
-                  `/result?jsonResult=${encodeURIComponent(jsonresult)}`,
+                  `/result?jsonResult=${jsonresult}`,
                   { replace: true }
                 );
               });

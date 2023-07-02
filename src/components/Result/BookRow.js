@@ -1,5 +1,8 @@
 import React from 'react';
 import "../../styles/BookList.css";
+import IconButton from '@mui/material/IconButton';
+import DeleteForeverRoundedIcon from '@mui/icons-material/DeleteForeverRounded';
+
 
 const BookRow = (props) => {
     const {bookInfo, setSelectedBookInfo, selectedBookRowInfo, setSelectedBookRowInfo, deleteFromBookList, searchValue, setSearchValue, onSearch} = props
@@ -24,14 +27,17 @@ const BookRow = (props) => {
     const bookRowClassName = isConditionMet() ? 'bookRow-conditionMet' : 'bookRow';
 
     return (
-        <tr style={{verticalAlign: 'middle' }}>
-          <td onClick={handleClick} className = {bookRowClassName}>
-            <span className="content">{bookInfo.title||bookInfo.booktitle}</span>  
-          </td>                
-          <td>
-            <button className="deleteButton" onClick={handleDelete}>❎</button>
-          </td>
-        </tr>
+          <tr style={{borderTop:'1px solid black', borderBottom: '1px solid black', verticalAlign: 'middle' }} >            
+            <td onClick={handleClick} className = {bookRowClassName}>
+              <span className="content">{bookInfo.title.length<=67? bookInfo.title: bookInfo.title.slice(0,67)+'...'}</span>  
+            </td>                
+            <td>
+              <IconButton className="deleteButton" onClick={handleDelete} size = "medium">
+                <DeleteForeverRoundedIcon/>
+              </IconButton>
+            </td>
+          </tr>
+        
     );
   }
 

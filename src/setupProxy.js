@@ -16,14 +16,14 @@ module.exports = (app) => {
   app.use(
     "/auth",
     createProxyMiddleware({
-      target: local, //SERVER,
+      target: SERVER,
       changeOrigin: true,
     })
   );
   app.use(
     "/user",
     createProxyMiddleware({
-      target: local, //SERVER,
+      target: SERVER,
       changeOrigin: true,
     })
   );

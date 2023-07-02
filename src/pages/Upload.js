@@ -4,9 +4,8 @@ import {
   // Link, Route, Routes,
   useNavigate,
 } from "react-router-dom";
-import { Button, Modal, Input, UncontrolledTooltip } from "reactstrap";
-import axios from "axios";
-import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
+import { Modal, Button, Input, UncontrolledTooltip } from "reactstrap";
+import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';  
 
 
 function Card({ children }) {
@@ -17,6 +16,7 @@ const Upload = () => {
   const [imgFile, setImgFile] = useState([]); // 이미지 배열
   const [imgFileView, setImgFileView] = useState([]);
   const upload = useRef();
+  const [isLoading, setIsLoading] = useState(false)
 
   const boximgUpload = () => {
     setImgFile((prev) => [...prev, upload.current.files[0]]);
@@ -67,7 +67,9 @@ const Upload = () => {
           console.error("Error:", error);
         });
 
-      Promise.all(conversionPromises).then(
+      Promise.all(conversionPromises)
+      .then(setIsLoading(true))
+      .then(  
         fetch("https://6724-34-143-144-216.ngrok-free.app/img2title/", {
           method: "POST",
           headers: {
@@ -85,7 +87,7 @@ const Upload = () => {
                 console.log("uploaded object:", result);
                 const jsonresult = encodeURIComponent(JSON.stringify(result));
                 navigate(
-                  `/result?jsonResult=${encodeURIComponent(jsonresult)}`,
+                  `/result?jsonResult=${jsonresult}`,
                   { replace: true }
                 );
               });

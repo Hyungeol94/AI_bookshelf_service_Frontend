@@ -7,6 +7,8 @@ export const signin = (data) => axios.post("/auth/signin", data);
 export const signup = (data) => axios.post("/auth/signup", data);
 export const getAuthToken = () => axios.get("/auth/authtoken");
 export const signout = () => axios.get("/auth/signout");
+export const checkuseremail = (data) =>
+  axios.post("/auth/checkuseremail", data);
 
 // USER_LIKE
 export const addlike = (data) => axios.post("/user/addlike", data);

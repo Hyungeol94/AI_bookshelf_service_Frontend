@@ -5,9 +5,7 @@ import {
   useNavigate,
 } from "react-router-dom";
 import { Button, Input, UncontrolledTooltip } from "reactstrap";
-import axios from "axios";
 
-//import https from 'https';
 
 function Card({ children }) {
   return <div className="card">{children}</div>;
@@ -17,6 +15,7 @@ const Upload = () => {
   const [imgFile, setImgFile] = useState([]); // 이미지 배열
   const [imgFileView, setImgFileView] = useState([]);
   const upload = useRef();
+  const [isLoading, setIsLoading] = useState(false)
 
   const boximgUpload = () => {
     setImgFile((prev) => [...prev, upload.current.files[0]]);
@@ -57,8 +56,10 @@ const Upload = () => {
           console.error("Error:", error);
         });
 
-      Promise.all(conversionPromises).then(
-        fetch("https://8c50-34-143-144-216.ngrok-free.app/img2title/", {
+      Promise.all(conversionPromises)
+      .then(setIsLoading(true))
+      .then(  
+        fetch("https://6724-34-143-144-216.ngrok-free.app/img2title/", {
           method: "POST",
           headers: {
             "ngrok-skip-browswer-warning": "69420",
@@ -107,16 +108,28 @@ const Upload = () => {
   return (
     <>
       <div className="invisible" />
-      <h1 className="head">책장 사진을 업로드해 주세요</h1>
-      <h3 className="explain" style={{ marginBottom: "60px" }}>
+      {isLoading ? (
+          <h1 className="head">감지중..</h1>        
+        ) :  (<h1 className="head">책장 사진을 업로드해 주세요</h1>)}
+      {isLoading?(
+        <h3 className="explain" style={{ marginBottom: "60px" }}>
+        인공지능이 책장에서 책을 감지하고 있어요.
+        <br />
+        책 한 권당 약 2초의 시간이 소요돼요.
+      </h3>
+      )
+      : (
+        <h3 className="explain" style={{ marginBottom: "60px" }}>
         정면에서 책장 사진을 찍어 업로드해 주세요.
         <br />
         인공지능이 책을 감지해 자동으로 내 서재를 만들어 줄 거에요.
       </h3>
+      )}
 
       <div className="upload-box">
         {imgFileView.length === 0 ? (
           <>
+
             <h3 style={{ marginTop: "20px", color: "black" }}>
               책장 이미지를 업로드해 주세요.
             </h3>

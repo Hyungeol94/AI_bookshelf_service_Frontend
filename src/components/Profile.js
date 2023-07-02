@@ -47,7 +47,7 @@ const Userprofile = (props) => {
         paddingTop: "30px",
         paddingBottom: "20px",
         backgroundColor: "rgba(255,255,255, 0.5)",
-        borderRadius: "20px 30px 20px 30px",
+        borderRadius: "20px",
       }}
     >
       <div style={{ width: "1000px" }}>
@@ -65,13 +65,15 @@ const Userprofile = (props) => {
                 color: "#000000",
                 alignSelf: "center",
                 height: "1px",
-                marginLeft: "20px",
+                marginLeft: "30px",
+                fontSize: "28px",
+                fontWeight: "bold"
               }}
             >
               {nickname || "undefined"}
             </h2>
           </div>
-          <div style={{ display: "block", alignSelf: "center" }}>
+          <div style={{ display: "block", alignSelf: "center"}}>
             <Link to="/EditProfile">
               <Button style={{ width: "200px", display: "block" }}>
                 내 정보 수정하기

@@ -91,12 +91,13 @@ const UserBookShelf = () => {
                 height: "100vh",
                 // marginTop: "4em",
                 font: "white",
+                marginBottom: "15%"
               }}
             >
               <div>
                 <User_profile data={authData} />
                 <Book_view
-                  style={{ marginTop: "30px" }}
+                  style={{ marginTop: "30px", }}
                   data={authData}
                   likelist={likelist}
                   cartlist={cartlist}

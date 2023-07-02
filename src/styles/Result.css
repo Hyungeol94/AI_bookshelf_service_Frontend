@@ -21,21 +21,33 @@
   /* .bookRow .content {
     display: inline-block;
     max-width: 80%; 
-    max-height: 3em; 
+    max-height: 40px; 
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
   } */
 
-.bookRow-conditionMet{
-    color: blue;
-}
 
 .bookRow-conditionMet:hover{
     text-decoration: underline;
     color: blue;
     cursor: pointer;
 }
+
+.bookRow-conditionMet{
+    /* height: 40px; */
+    color: blue;
+}
+
+/* .bookRow-conditionMet .content {
+    display: inline-block;
+    max-width: 80%; 
+    max-height: 40px; 
+    overflow:  hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  } */
+
 
 .bookRowTable{
     display: block;
@@ -103,3 +115,4 @@
     margin: 0px;
     padding: 0px;
 }
+

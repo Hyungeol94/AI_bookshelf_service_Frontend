@@ -58,7 +58,6 @@ function getBooksInfo (jsonResult) {
         bookInfo.id = key;
         bookInfo.title = titleData[key];
         booksInfo.push(bookInfo);
-       
       });      
 
       return booksInfo;

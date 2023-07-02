@@ -13,7 +13,9 @@ const BookTable = (props) => {
 
     return (        
         <table className="bookRowTable">
-          
+          <thead>
+            책 제목
+          </thead>
           <tbody >
             {booksInfo.map((bookInfo) => (            
                 <BookRow key={bookInfo.id} 

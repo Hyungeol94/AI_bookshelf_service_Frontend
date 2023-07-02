@@ -75,7 +75,7 @@ const BookTableView = (props) => {
               
         />
         <div style={{display: 'flex'}}>
-          <Button onClick = {openBookshelfImage} style={{width: '70%', display: 'block'}}>책장 이미지 보기</Button>    
+          <Button onClick = {openBookshelfImage} style={{width: '70%', display: 'block'}}>책장 이미지 확인</Button>    
             <BookshelfImageModal
               bookshelfImages = {bookshelfImages}
               modalIsOpen = {modalIsOpen}

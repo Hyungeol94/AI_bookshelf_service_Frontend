@@ -31,11 +31,11 @@ const BookRow = (props) => {
     return (
           <tr style={{borderTop:'1px solid black', borderBottom: '1px solid black', verticalAlign: 'middle' }} >            
             <td onClick={handleClick} className = {bookRowClassName}>
-              <span className="content">{bookInfo.title.length<=67? bookInfo.title: bookInfo.title.slice(0,67)+'...'}</span>  
+              <span className="content">{bookInfo.title.length<=50? bookInfo.title: bookInfo.title.slice(0,50)+'...'}</span>  
             </td> 
             {isDecidedBook(bookInfo)?
-            <td>
-               <PublishedWithChangesIcon/>
+            <td style={{padding : '8px'}}>
+               <PublishedWithChangesIcon />
             </td> :<td></td>}               
             <td>
               <IconButton className="deleteButton" onClick={handleDelete} size = "medium">

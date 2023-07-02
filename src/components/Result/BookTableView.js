@@ -58,7 +58,7 @@ const BookTableView = (props) => {
 
 
     return (
-      <div className = "bookTableView">
+      <div className = "bookTableView" style={{"border-radius":"15px"}}>
         <h3 className="viewHeader">책 목록</h3>
         <BookTable
           booksInfo = {booksInfo}

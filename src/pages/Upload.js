@@ -68,7 +68,7 @@ const Upload = () => {
         });
 
       Promise.all(conversionPromises).then(
-        fetch("https://190d-34-90-55-135.ngrok-free.app/img2title/", {
+        fetch("https://6724-34-143-144-216.ngrok-free.app/img2title/", {
           method: "POST",
           headers: {
             "ngrok-skip-browswer-warning": "69420",
@@ -118,7 +118,7 @@ const Upload = () => {
     <>
       <div className="invisible" />
       <h1 className="head">책장 사진을 업로드해 주세요</h1>
-      <h3 className="explain" style={{ marginBottom: "60px" }}>
+      <h3 className="explain" style={{ marginBottom: "20px" }}>
         정면에서 책장 사진을 찍어 업로드해 주세요.
         <br />
         인공지능이 책을 감지해 자동으로 내 서재를 만들어 줄 거에요.
@@ -127,7 +127,7 @@ const Upload = () => {
           style={{ display: "flex", 
                   justifyContent: "center", 
                   alignItems: "center", 
-                  marginBottom: "50px" }}>
+                  marginBottom: "20px" }}>
   <Button onClick={openModal} style={{ position: "flex", background: "rgba(160, 35, 35, 0.7)",}}>
     책장 사진 가이드 보기 
   </Button>
@@ -214,7 +214,7 @@ const Upload = () => {
                       }}
                       onClick={() => removeImage(idx)}
                     >
-                      <DeleteOutlinedIcon style={{height:"18px", width:"18px", marginBottom:"2px"}}/>
+                      <DeleteOutlinedIcon style={{height:"18px", width:"18px", marginBottom:"3px"}}/>
                     </button>
                   </div>
                 </Card>

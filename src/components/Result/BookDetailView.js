@@ -25,7 +25,7 @@ const BookDetailView = (props) => {
     } 
 
     return (
-      <div className="bookDetailView">
+      <div className="bookDetailView" style={{"border-radius":"15px"}}>
         <h3 className="viewHeader">상세 정보</h3>
         <BookDetail
           bookInfo = {bookInfo}

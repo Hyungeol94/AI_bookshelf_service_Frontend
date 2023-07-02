@@ -59,7 +59,7 @@ const BookTableView = (props) => {
 
     return (
       <div className = "bookTableView" style={{"border-radius":"15px"}}>
-        <h3 className="viewHeader">책 목록</h3>
+        <h3 className="viewHeader" style={{"font-size":"30px"}}>책 목록</h3>
         <BookTable
           booksInfo = {booksInfo}
           setSelectedBookInfo = {setSelectedBookInfo}
@@ -70,7 +70,7 @@ const BookTableView = (props) => {
           setSearchValue = {setSearchValue}
           onSearch = {onSearch}          
         />
-        <div style={{display: 'flex'}}>
+        <div style={{display: 'flex', marginTop: "50px"}}>
           <Button onClick = {openBookshelfImage} style={{width: '70%', display: 'block'}}>책장 이미지 보기</Button>    
             <BookshelfImageModal
               bookshelfImages = {bookshelfImages}

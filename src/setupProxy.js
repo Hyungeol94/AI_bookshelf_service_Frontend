@@ -32,7 +32,7 @@ module.exports = (app) => {
     createProxyMiddleware({
       target: "https://search.shopping.naver.com",
       changeOrigin: true,
-      ws: true
+      ws: false,
     })
   );
 };

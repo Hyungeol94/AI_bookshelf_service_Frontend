@@ -30,7 +30,7 @@ export default async (searchvalue) => {
         .then((data) => {
           //애초에 여기로 안들어오는 문제 해결해야됨
           // console.log(JSON.stringify(data.data));
-          // console.log(4444,data?.data);
+          console.log(4444, data?.data);
           const $ = cheerio.load(data?.data);
 
           const category_data = $(
@@ -59,7 +59,7 @@ export default async (searchvalue) => {
 
   const bookdata = await axios
     .get("/v1/search/book.json", {
-      params: { query: searchvalue, start: 100 },
+      params: { query: searchvalue },
       headers: {
         "X-Naver-Client-Id": "aUTQs989GIJxwutcnHAk",
         "X-Naver-Client-Secret": "5iYHJDUjOd",

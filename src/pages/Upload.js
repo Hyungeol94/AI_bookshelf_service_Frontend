@@ -4,7 +4,7 @@ import {
   // Link, Route, Routes,
   useNavigate,
 } from "react-router-dom";
-import { Button, Input, UncontrolledTooltip } from "reactstrap";
+import { Button, Modal, Input, UncontrolledTooltip } from "reactstrap";
 import axios from "axios";
 
 //import https from 'https';
@@ -26,6 +26,16 @@ const Upload = () => {
       URL.createObjectURL(upload.current.files[0]),
     ]);
   };
+
+  let [modalIsOpen, setModalIsOpen] = useState(false); // 모달 변수
+
+    const openModal = () => {
+        setModalIsOpen(true);
+      };
+    
+    const closeModal = () => {
+    setModalIsOpen(false);
+      };
 
   const navigate = useNavigate();
   const handleUpload = () => {
@@ -113,6 +123,32 @@ const Upload = () => {
         <br />
         인공지능이 책을 감지해 자동으로 내 서재를 만들어 줄 거에요.
       </h3>
+      <div 
+          style={{ display: "flex", 
+                  justifyContent: "center", 
+                  alignItems: "center", 
+                  marginBottom: "50px" }}>
+  <Button onClick={openModal} style={{ position: "flex" }}>
+    책장 사진 가이드 
+  </Button>
+  <Modal
+    size="xl"
+    isOpen={modalIsOpen}
+    onRequestClose={closeModal}
+    style={{
+      // width: '100%',
+      marginTop: "0px", 
+      backgroundColor: "transparent"
+      // height: '%',
+      // objectFit: 'contain'
+    }}>
+    <img 
+      src={require("assets/img/upload-guidelines.png")} 
+      onClick={closeModal}
+      style={{ maxWidth: "1200px", backgroundColor: "transparent" }}/>
+  </Modal>
+</div>
+
 
       <div className="upload-box">
         {imgFileView.length === 0 ? (

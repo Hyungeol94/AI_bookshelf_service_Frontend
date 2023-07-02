@@ -8,6 +8,8 @@ import IndexNavbar from "components/Navbars/IndexNavbar.js";
 import Footer from "components/Footer/Footer.js";
 import "../styles/First.css";
 
+import {KeyboardArrowUp} from '@mui/icons-material';
+
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default () => {
@@ -18,6 +20,21 @@ export default () => {
       document.body.classList.toggle("index-page");
     };
   }, []);
+
+  const [showTopBtn, setShowTopBtn] = useState(false);
+  const handleScroll = () => {
+    const section1 = document.getElementById("section1");
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    setShowTopBtn(scrollTop > section1.offsetTop);
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+  
 
   const handleClick = () => {
     scroller.scrollTo("section2", {
@@ -115,19 +132,34 @@ export default () => {
               </div>
             </div>
           </Container>
-          {/* <TopBtn/> */}
-          <div>
-          <Link to="section0" smooth={true} duration={800} className="topBtn">
-                  <Button  color="info" size="sm"
-                  style={{"font-size": "26px", "position": "sticky", 
-                          "position":"fixed", "bottom": "20px",
-                          "display" : "inline-block", "z-index":10,
-                          "right": "20px", "max-width": "200px", "max-height": "60px"
-                                  }} >
-                  🛆
-                  </Button>
-                  </Link>
-          </div>
+
+          {showTopBtn && (
+            <Link
+              to="section0"
+              smooth={true}
+              duration={800}
+              className="topBtn"
+            >
+              <Button
+                color="info"
+                size="sm"
+                style={{
+                  "font-size": "26px",
+                  position: "sticky",
+                  position: "fixed",
+                  bottom: "20px",
+                  display: "inline-block",
+                  "z-index": 10,
+                  right: "20px",
+                  "max-width": "200px",
+                  "max-height": "60px",
+                }}
+              >
+                <KeyboardArrowUp/>
+              </Button>
+            </Link>
+          )}
+
         </div>
         <Footer />
       </div>

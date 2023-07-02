@@ -11,7 +11,7 @@ import {
 } from "react-router-dom";
 
 const BookTableView = (props) => {
-    const {booksInfo, setSelectedBookInfo, deleteFromBookList, selectedBookRowInfo, setSelectedBookRowInfo, searchValue, setSearchValue, onSearch, bookInfoAPI, bookshelfImages} = props  
+    const {booksInfo, setSelectedBookInfo, deleteFromBookList, selectedBookRowInfo, setSelectedBookRowInfo, searchValue, setSearchValue, onSearch, bookInfoAPI, bookshelfImages, isDecidedBook, isLoading, data} = props  
     const navigate = useNavigate();
     let [modalIsOpen, setModalIsOpen] = useState(false)
     
@@ -68,7 +68,11 @@ const BookTableView = (props) => {
           deleteFromBookList = {deleteFromBookList}
           searchValue = {searchValue}
           setSearchValue = {setSearchValue}
-          onSearch = {onSearch}          
+          onSearch = {onSearch}      
+          isDecidedBook = {isDecidedBook}
+          isLoading = {isLoading}
+          data = {data}
+              
         />
         <div style={{display: 'flex'}}>
           <Button onClick = {openBookshelfImage} style={{width: '70%', display: 'block'}}>책장 이미지 보기</Button>    
@@ -77,7 +81,7 @@ const BookTableView = (props) => {
               modalIsOpen = {modalIsOpen}
               openBookshelfImage = {openBookshelfImage}
               />
-          <Button onClick = {saveToMyBookShelf} style={{width: '70%', display: 'block'}}>내 서재에 추가</Button>                      
+          <Button onClick = {saveToMyBookShelf} style={{width: '70%', display: 'block'}}>내 서재로 저장</Button>                      
         </div>
       </div>
     );

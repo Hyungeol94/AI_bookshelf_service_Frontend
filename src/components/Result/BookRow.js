@@ -5,7 +5,7 @@ import DeleteForeverRoundedIcon from '@mui/icons-material/DeleteForeverRounded';
 
 
 const BookRow = (props) => {
-    const {bookInfo, setSelectedBookInfo, selectedBookRowInfo, setSelectedBookRowInfo, deleteFromBookList, searchValue, setSearchValue, onSearch} = props
+    const {bookInfo, setSelectedBookInfo, selectedBookRowInfo, setSelectedBookRowInfo, deleteFromBookList, searchValue, setSearchValue, onSearch, isDecidedBook} = props
     const isConditionMet = () => {      
       if (bookInfo === selectedBookRowInfo){
         return true
@@ -14,8 +14,10 @@ const BookRow = (props) => {
     }
   
     function handleClick(){    
-      setSearchValue(bookInfo.title||bookInfo.booktitle)    
-      setSelectedBookInfo(bookInfo)
+      setSearchValue(bookInfo.title||bookInfo.booktitle)   
+      if (isDecidedBook(bookInfo)){
+        setSelectedBookInfo(bookInfo)
+      }
       setSelectedBookRowInfo(bookInfo)      
     }
 

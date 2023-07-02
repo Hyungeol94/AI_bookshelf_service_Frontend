@@ -9,7 +9,9 @@ const BookTable = (props) => {
           deleteFromBookList, 
           searchValue, 
           setSearchValue, 
-          onSearch} = props        
+          onSearch,
+          isDecidedBook,
+        } = props        
 
     return (        
         <table className="bookRowTable">
@@ -26,7 +28,8 @@ const BookTable = (props) => {
                 deleteFromBookList = {deleteFromBookList}      
                 searchValue = {searchValue}      
                 setSearchValue={setSearchValue}
-                onSearch={onSearch}/>
+                onSearch={onSearch}
+                isDecidedBook = {isDecidedBook}/>
             ))}
           </tbody>
         </table>

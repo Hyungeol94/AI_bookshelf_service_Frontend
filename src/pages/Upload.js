@@ -6,8 +6,8 @@ import {
 } from "react-router-dom";
 import { Button, Modal, Input, UncontrolledTooltip } from "reactstrap";
 import axios from "axios";
+import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 
-//import https from 'https';
 
 function Card({ children }) {
   return <div className="card">{children}</div>;
@@ -128,8 +128,8 @@ const Upload = () => {
                   justifyContent: "center", 
                   alignItems: "center", 
                   marginBottom: "50px" }}>
-  <Button onClick={openModal} style={{ position: "flex" }}>
-    책장 사진 가이드 
+  <Button onClick={openModal} style={{ position: "flex", background: "rgba(160, 35, 35, 0.7)",}}>
+    책장 사진 가이드 보기 
   </Button>
   <Modal
     size="xl"
@@ -138,14 +138,13 @@ const Upload = () => {
     style={{
       // width: '100%',
       marginTop: "0px", 
-      backgroundColor: "transparent"
       // height: '%',
       // objectFit: 'contain'
     }}>
     <img 
       src={require("assets/img/upload-guidelines.png")} 
       onClick={closeModal}
-      style={{ maxWidth: "1200px", backgroundColor: "transparent" }}/>
+      style={{ maxWidth: "1300px", display: "block" }}/>
   </Modal>
 </div>
 
@@ -198,15 +197,15 @@ const Upload = () => {
                     <button
                       className=""
                       style={{
-                        fontSize: "15px",
+                        fontSize: "10px",
                         position: "absolute",
-                        top: 2,
-                        right: 2,
-                        background: "gray",
+                        top: 4,
+                        right: 4,
+                        background: "red",
                         color: "white",
-                        borderRadius: "50%",
-                        width: "24px",
-                        height: "24px",
+                        borderRadius: "100%",
+                        width: "22px",
+                        height: "22px",
                         display: "flex",
                         justifyContent: "center",
                         alignItems: "center",
@@ -215,7 +214,7 @@ const Upload = () => {
                       }}
                       onClick={() => removeImage(idx)}
                     >
-                      <strong>X</strong>
+                      <DeleteOutlinedIcon style={{height:"18px", width:"18px", marginBottom:"2px"}}/>
                     </button>
                   </div>
                 </Card>

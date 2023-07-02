@@ -57,7 +57,10 @@ export default () => {
          
         <Container>
           <div className="content-center brand">
-            <h1 className="h1-seo">Book is On & On</h1>
+          {/* <img src={require("assets/img/BookLogo.png")} style={{height:"200px", marginBottom: "22px"}}/> */}
+          <h1 className="h1-seo">
+            <img src={require("assets/img/BookLogo.png")} style={{height:"80px", marginBottom: "42px", marginRight:"-5px"}}/>
+            Book is On & On</h1>
             <h2 className="d-none d-sm-block">
               인공지능으로 만드는 나만의 디지털 서재
             </h2>
@@ -76,7 +79,10 @@ export default () => {
             <div className="squares square5" />
             {/* <div className="squares square7" /> */}
             <div style={{ height: "100vh", "margin-top": "10vh" }}>
-              <h1><strong> Book is On & On </strong></h1>
+            <h1><strong> 
+                <img src={require("assets/img/BookLogo.png")} 
+                    style={{height:"40px", marginBottom: "16px", marginRight:"-2px"}}/>
+                  Book is On & On </strong></h1>
               <div className="content-center brand">
                 <h2 className="h1-seo"><strong> 오프라인 서재의 온라인화 </strong></h2>
                 <img src={require("assets/img/mybookshelf.jpg")} className="floatimages image1" style={{ border: "2px solid white" }} />
@@ -98,7 +104,10 @@ export default () => {
           <div className="squares square7" />
           <Container>
             <div style={{ height: "100vh", "margin-top": "10vh" }}>
-              <h1><strong> Book is On & On </strong></h1>
+              <h1><strong> 
+                <img src={require("assets/img/BookLogo.png")} 
+                    style={{height:"40px", marginBottom: "16px", marginRight:"-2px"}}/>
+                  Book is On & On </strong></h1>
               <div className="content-center brand">
                 <h1 className="h1-seo"><strong> 도서 관리 기능 </strong></h1>
                 <img src={require("assets/img/bookmodal.jpg")} className="floatimages image2" style={{ border: "2px solid white" }} />
@@ -119,7 +128,10 @@ export default () => {
           <div className="squares square7" />
           <Container>
             <div style={{ height: "100vh", "margin-top": "10vh" }}>
-              <h1><strong> Book is On & On </strong></h1>
+              <h1><strong> 
+              <img src={require("assets/img/BookLogo.png")} 
+                    style={{height:"40px", marginBottom: "16px", marginRight:"-2px"}}/>
+                    Book is On & On </strong></h1>
               <div className="content-center brand">
                 <h1 className="h1-seo"><strong>  도서 추천 기능  </strong></h1>
                 <img src={require("assets/img/bookmodal.jpg")} className="floatimages image2" style={{ border: "2px solid white" }} />

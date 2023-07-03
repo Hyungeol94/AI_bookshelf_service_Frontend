@@ -24,7 +24,7 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import bookinfo_api from "../services/bookinfo_api_home";
 
-const data = await api.countBookshelfInfo();
+const data = await api.countBookshelfInfo().catch((e) => console.log(e));
 const statlist = data?.data?.output || 'null';
 
 const Home = () => {

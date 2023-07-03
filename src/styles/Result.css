@@ -58,6 +58,7 @@
 }
 
 
+
 .bookTableView{
     background-color: white;
     padding : 10px;        
@@ -137,4 +138,9 @@
 .carousel-control-icon {
     width: 50px;
     height: 50px;
+}
+
+.columnName {
+    font-weight: bold;
+    color :rgb(43, 26, 150)
 }

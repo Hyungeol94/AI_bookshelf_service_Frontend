@@ -349,6 +349,9 @@ const Home = () => {
                       bookshelfcheck = {bookshelfcheck}
                       likecheck = {likecheck}
                       cartcheck = {cartcheck}
+                      setLikelist={setLikelist}
+                      setBookshelflist={setBookshelflist}
+                      setCartlist={setCartlist}
                       />
                       ))}
 
@@ -404,13 +407,28 @@ const Home = () => {
                     paddingBottom: "30px",
                   }}
                   >
-                  <div style={{ display: "flex" }}>
-                    <h3 style={{ color: "#000000" }}>
-                      {authData?.nickname || "undefined"}님의 독서 취향
-                    </h3>
-                    <div>
-                      <Statshow data={authData} />
-                    </div>
+                  <div style={{ display: "flex", justifyContent:'space-between' }}>
+                    {
+                      authData?.nickname.length > 5?
+                        <>  
+                        <h3 style={{ color: "#000000" }}>
+                          {authData?.nickname || "undefined"}님의<br/>
+                          독서 취향
+                        </h3>
+                        <div>
+                          <Statshow data={authData} />
+                        </div>
+                        </>
+                      :
+                        <>
+                        <h3 style={{ color: "#000000" }}>
+                          {authData?.nickname || "undefined"}님의 독서 취향
+                        </h3>
+                        <div>
+                          <Statshow data={authData} />
+                        </div>
+                        </>
+                    }
                   </div>
 
                   <div>

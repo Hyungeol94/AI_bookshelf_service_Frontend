@@ -78,7 +78,7 @@ export default function Bookview(props) {
       .then((data) => {
         const booklist = data.data.info.list;
         setLikelist(booklist);
-        // console.log(booklist);
+        console.log('좋아요', booklist);
       })
       .catch((e) => console.log(e));
     // console.log("data", data[0].elements[0].elements[0].cdata);
@@ -91,7 +91,7 @@ export default function Bookview(props) {
       .then((data) => {
         const booklist = data.data.info.list;
         setCartlist(booklist);
-        // console.log(booklist);
+        console.log('장바구니', booklist);
       })
       .catch((e) => console.log(e));
     // console.log("data", data[0].elements[0].elements[0].cdata);
@@ -104,7 +104,7 @@ export default function Bookview(props) {
       .then((data) => {
         const booklist = data.data.info.list;
         setBookshelflist(booklist);
-        // console.log(booklist);
+        console.log('내서재', booklist);
       })
       .catch((e) => console.log(e));
     // console.log("data", data[0].elements[0].elements[0].cdata);
@@ -232,7 +232,10 @@ export default function Bookview(props) {
                           bookshelfcheck={bookshelfcheck}
                           likecheck={likecheck}
                           cartcheck={cartcheck}
-                        />
+                          setLikelist={setLikelist}
+                          setBookshelflist={setBookshelflist}
+                          setCartlist={setCartlist}
+                          />
                       ))}
                   </div>
                 </p>
@@ -244,9 +247,7 @@ export default function Bookview(props) {
                     총{" "}
                     {
                       likelist?.filter((data) =>
-                        data?.title
-                          ?.toLowerCase()
-                          .includes(filterText?.toLowerCase())
+                        data?.title?.toLowerCase().includes(filterText?.toLowerCase())
                       ).length
                     }
                     권{" "}
@@ -284,6 +285,9 @@ export default function Bookview(props) {
                           bookshelfcheck={bookshelfcheck}
                           likecheck={likecheck}
                           cartcheck={cartcheck}
+                          setLikelist={setLikelist}
+                          setBookshelflist={setBookshelflist}
+                          setCartlist={setCartlist}
                         />
                       ))}
                   </div>
@@ -336,6 +340,9 @@ export default function Bookview(props) {
                           bookshelfcheck={bookshelfcheck}
                           likecheck={likecheck}
                           cartcheck={cartcheck}
+                          setLikelist={setLikelist}
+                          setBookshelflist={setBookshelflist}
+                          setCartlist={setCartlist}
                         />
                       ))}
                   </div>

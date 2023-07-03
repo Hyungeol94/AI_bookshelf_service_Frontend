@@ -12,6 +12,7 @@
     text-align: center;
     font-weight: bold;
     margin-top: 5vh;
+    margin-bottom: 20px;
 }
 .input{
     zIndex: 2;
@@ -24,9 +25,14 @@
     padding: 20px;
     margin-left: 20vh;
     margin-right: 20vh;
+    display: "flex"; 
+    justify-content: "center";
+    align-items: "center";
+    margin-bottom: "20px";
+
 }
 .input-box {
-    background-color: ;
+    background-color: gray;
 }
 .box{ 
     background-Color: gray;

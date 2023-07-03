@@ -70,7 +70,7 @@ const Upload = () => {
       Promise.all(conversionPromises)
       .then(setIsLoading(true))
       .then(  
-        fetch("https://28fd-34-135-52-107.ngrok-free.app/img2title/", {
+        fetch("https://28fd-34-135-52-107.ngrok-free.app", {
           method: "POST",
           headers: {
             "ngrok-skip-browswer-warning": "69420",
@@ -134,26 +134,20 @@ const Upload = () => {
         정면에서 책장 사진을 찍어 업로드해 주세요.
         <br />
         인공지능이 책을 감지해 자동으로 내 서재를 만들어 줄 거에요.
-      </h3>
-       )}
-  <div style = {{justifyContent: 'center', display: 'flex '}}>    
-    <Button onClick={openModal} style={{ position: "flex", background: "rgba(160, 35, 35, 0.7)",}}>
+      </h3>)}
+  <div className="guide-photos-container">    
+    <Button className="guide-btn" onClick={openModal}>
       책장 사진 가이드 보기 
     </Button>
     <Modal
       size="xl"
       isOpen={modalIsOpen}
       onRequestClose={closeModal}
-      style={{
-        // width: '100%',
-        marginTop: "0px", 
-        // height: '%',
-        // objectFit: 'contain'
-      }}>
+      className="modal-container">
       <img 
         src={require("assets/img/upload-guidelines.png")} 
         onClick={closeModal}
-        style={{ maxWidth: "1300px", display: "block"}}/>
+        className="guide-photo"/>
     </Modal>
   </div>
 
@@ -161,108 +155,63 @@ const Upload = () => {
       <div className="upload-box">
         {imgFileView.length === 0 ? (
           <>
-            <h3 style={{ marginTop: "20px", color: "black" }}>
+            <h3 className="upload-description">
               책장 이미지를 업로드해 주세요.
             </h3>
-            <label for="file">
+              <div className="upload-btn-group">
               <Button
-                style={{
-                  position: "relative",
-                  overflow: "hidden",
-                  marginRight: "20px",
-                }}
-              >
+                className="upload-btn">
                 <input
                   type="file"
                   ref={upload}
                   multiple
                   onChange={boximgUpload}
                   accept="image/*"
-                  style={{
-                    opacity: 0,
-                    position: "absolute",
-                    top: 0,
-                    left: 0,
-                    width: "100%",
-                    height: "100%",
-                    cursor: "pointer",
-                  }}
-                />
+                  className="upload-btn-inside"/>
                 사진 선택
               </Button>
-            </label>
+              <h4
+                className="upload-btn-description">
+                {" "}
+                현재 업로드된 이미지 ({imgFileView.length})개{" "}
+              </h4>
+            </div>
           </>
         ) : (
           <div>
-            <div style={{ display: "flex" }}>
+            <div className="img-view">
               {imgFileView?.map((img, idx) => (
                 <Card key={idx}>
-                  <div style={{ position: "relative" }}>
+                  <div className="inside-card">
                     <img
-                      style={{ width: "192px", height: "192px" }}
+                      className="card-img"
                       src={img}
                       alt="img"
                     />
                     <button
-                      className=""
-                      style={{
-                        fontSize: "10px",
-                        position: "absolute",
-                        top: 4,
-                        right: 4,
-                        background: "red",
-                        color: "white",
-                        borderRadius: "100%",
-                        width: "22px",
-                        height: "22px",
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
-                        border: "none",
-                        cursor: "pointer",
-                      }}
-                      onClick={() => removeImage(idx)}
-                    >
-                      <DeleteOutlinedIcon style={{height:"18px", width:"18px", marginBottom:"3px"}}/>
+                      className="delete-circle"
+                      onClick={() => removeImage(idx)}>
+                      <DeleteOutlinedIcon className="delete-icon"/>
                     </button>
                   </div>
                 </Card>
               ))}
             </div>
 
-            <div style={{ display: "flex", alignItems: "center" }}>
+            <div className="upload-btn-group">
               <Button
-                style={{
-                  position: "relative",
-                  overflow: "hidden",
-                  marginRight: "20px",
-                }}
-              >
+                className="upload-btn">
                 <input
                   type="file"
                   ref={upload}
                   multiple
                   onChange={boximgUpload}
                   accept="image/*"
-                  style={{
-                    opacity: 0,
-                    position: "absolute",
-                    top: 0,
-                    left: 0,
-                    width: "100%",
-                    height: "100%",
-                    cursor: "pointer",
-                  }}
-                />
+                  className="upload-btn-inside"/>
                 사진 선택
               </Button>
               <h4
-                style={{
-                  marginTop: "13px",
-                  alignItems: "center",
-                  color: "black",
-                }}
-              >
+                className="upload-btn-description">
                 {" "}
                 현재 업로드된 이미지 ({imgFileView.length})개{" "}
               </h4>
@@ -270,7 +219,7 @@ const Upload = () => {
           </div>
         )}
       </div>
-      <div style={{ float: "right", marginRight: "10%" }}>
+      <div className="cont-del-btn-group">
         <Button
           onClick={() => window.history.back()}
           className="continueButton"

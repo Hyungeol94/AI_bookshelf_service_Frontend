@@ -14,6 +14,22 @@
     margin-top: 5vh;
     margin-bottom: 20px;
 }
+.guide-photos-container {
+    justify-content: center;
+    display: flex;
+}
+.modal-container {
+    margin-top: -8%;
+}
+.guide-btn {
+    background: rgba(160, 35, 35, 0.7);
+    margin-bottom: 2%;
+}
+.guide-photo {
+    max-width: 1300px;
+    display: block;
+    margin-top: 0%;
+}
 .input{
     zIndex: 2;
     marginBottom: 10px;
@@ -29,10 +45,74 @@
     justify-content: "center";
     align-items: "center";
     margin-bottom: "20px";
-
 }
-.input-box {
-    background-color: gray;
+.upload-description {
+    margin-top: 20px;
+    color: black;
+}
+.delete-circle {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    background-color: red;
+    color: white;
+    border-radius: 100%;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    cursor: pointer;
+}
+.delete-icon {
+    height: 3px;
+    width: 3px;
+    font-size: 10px;
+    margin-bottom: 3px;
+}
+.upload-btn-group {
+    display: flex;
+    align-items: center;
+}
+.upload-btn {
+    position: relative;
+    overflow: hidden;
+    margin-right: 20px;
+}
+.upload-btn-invisible {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+.upload-btn-inside {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+.img-view {
+    display: flex;
+}
+.inside-card {
+    position: relative;
+}
+.card-img {
+    width: 192px;
+    height: 192px;
+}
+
+.upload-btn-description {
+    margin-top: 13px;
+    align-items: center;
+    color: black;
 }
 .box{ 
     background-Color: gray;
@@ -52,14 +132,15 @@
     align-items: center;
     justify-content: center;
     display: flex;
-    background-color: gray !important;
+    background-color: rgb(255, 254, 254) !important;
     margin-right: 20px;
 }
-.btn-group{ 
+.cont-del-btn-group{ 
+    margin-left: 20vh;
+    margin-right: 20vh;
     float: right;
     /* margin-top: 10px; */
-    margin-right: 10%;
-  }
+}
 
 .continueButton{ 
   margin: 15px;

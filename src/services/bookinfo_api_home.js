@@ -82,7 +82,7 @@ export default async (searchvalue) => {
     for (let i = 0; i < itemslist?.items.length; i++) {
       // setTimeout(() => {
 
-      getHtml(itemslist?.items[i]?.link, i);
+      // getHtml(itemslist?.items[i]?.link, i);
 
       // console.log(1111,data);
 

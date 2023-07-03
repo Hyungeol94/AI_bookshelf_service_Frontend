@@ -24,7 +24,8 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import bookinfo_api from "../services/bookinfo_api_home";
 
-
+const data = await api.countBookshelfInfo();
+const statlist = data?.data?.output || 'null';
 
 const Home = () => {
   const [list, setList] = useState([]);
@@ -38,7 +39,7 @@ const Home = () => {
   const [cartcheck, setCartcheck] = useState([]);
   const [bookshelfcheck, setBookshelfcheck] = useState([]);
 
-  const [userstat, setUserstat] = useState([]); // user 통계 정보 받는 곳
+  const [userstat, setUserstat] = useState(statlist); // user 통계 정보 받는 곳
   const [recommendAuthorlist, setRecommendAuthorlist] = useState([]) // 추천 책 받는 로직_작가
   const [recommendCategorylist, setRecommendCategorylist] = useState([]) // 추천 책 받는 로직_작가
   const [newbooklist, setNewbooklist] = useState([]) // 새로운 책
@@ -98,7 +99,7 @@ const Home = () => {
     // console.log(111);
     await api.cartlist()
       .then((data) => {
-        const booklist = data?.data?.info?.list  || 'df';
+        const booklist = data?.data?.output  || 'df';
         setCartlist(booklist);
         // console.log(booklist);
       })
@@ -122,20 +123,24 @@ const Home = () => {
 
   const getuserstat = async () => {
     console.log('userstat_home');
-    await api
-      .userstat()
-      .then((data) => {
-        const statlist = data?.data?.info?.list || 'null';
-        setUserstat(statlist);
-        console.log(statlist);
-      })
-      .catch((e) => console.log(e));
-  }
+    try {
+      const data = await api.countBookshelfInfo();
+      const statlist = data?.data?.output || 'null';
+      setUserstat(statlist);
+
+      await getrecommendAuthorlist();
+      await getrecommendCategorylist();
+      await getnewbooklist();
+
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const getrecommendAuthorlist = async () => {
-    console.log(userstat.maxAuthor || 'undefined');
+    // console.log(userstat.maxAuthor || 'undefined');
     await bookinfo_api(userstat.maxAuthor || '베스트셀러').then(async (data) => {
-      console.log('작가 추천시스템 점검')
+      console.log(userstat.maxAuthor, '작가 추천시스템 점검')
       // console.log(data);
       // console.log(bookshelfcheck);
       // console.log(cartcheck);
@@ -153,9 +158,9 @@ const Home = () => {
   };
 
   const getrecommendCategorylist = async () => {
-    console.log(userstat.maxCategory || 'undefined');
+    // console.log(userstat.maxCategory || 'undefined');
     await bookinfo_api(userstat.maxCategory || '신간 도서').then(async (data) => {
-      console.log('카테고리 추천시스템 점검')
+      console.log(userstat.maxCategory, '카테고리 추천시스템 점검')
       // console.log(data);
       // console.log(bookshelfcheck);
       // console.log(cartcheck);
@@ -184,6 +189,8 @@ const Home = () => {
     });
   };
 
+  
+
 
   useEffect(() => {
     console.log('Home_useEffect check');
@@ -196,9 +203,6 @@ const Home = () => {
     getbookshelfcheck();
 
     getuserstat();
-    getrecommendAuthorlist();
-    getrecommendCategorylist();
-    getnewbooklist();
 
     document.body.classList.toggle("index-page");
     // Specify how to clean up after this effect:

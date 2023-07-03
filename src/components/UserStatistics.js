@@ -48,9 +48,9 @@ const StatShow = (props) => {
   const getuserstat = async () => {
     console.log('userstat_home');
     await api
-      .userstat()
+      .countBookshelfInfo()
       .then((data) => {
-        const statlist = data?.data?.info?.list || 'null';
+        const statlist = data?.data?.output || 'null';
         setUserstat(statlist);
         console.log(statlist);
       })

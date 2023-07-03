@@ -58,7 +58,7 @@ const Upload = () => {
         });
 
       Promise.all(conversionPromises).then(
-        fetch("https://190d-34-90-55-135.ngrok-free.app/img2title/", {
+        fetch("https://f61d-34-87-35-162.ngrok-free.app/img2title/", {
           method: "POST",
           headers: {
             "ngrok-skip-browswer-warning": "69420",

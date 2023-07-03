@@ -39,6 +39,7 @@ function Signup() {
   const [Sex, setSex] = useState("male"); // 성별
   const [Birth, setBirth] = useState(""); // 생년월일
   //  체크박스 함수
+  const [emailCheck, setEmailCheck] = useState(null);
   const [allCheck, setAllCheck] = useState(false);
   const [useCheck, setUseCheck] = useState(false);
   const [infoCheck, setInfoCheck] = useState(false);
@@ -63,8 +64,8 @@ function Signup() {
       ])
     ) {
       return alert("필수 항목을 모두 입력해주세요.");
-    } else if (!checkReg(Email.trim(), regEmail)) {
-      return alert("dlapdlf 형식이 알맞지 않습니다.");
+    } else if (!emailCheck) {
+      return alert("이메일 중복확인이 되어있지 않습니다.");
     } else if (Password.trim() !== ConfirmPassword.trim()) {
       return alert("비밀번호가 일치하지 않습니다.");
     } else if (!checkReg(Password.trim(), regPwd)) {
@@ -135,41 +136,40 @@ function Signup() {
           isOpen={modalIsOpen}
           onRequestClose={closeModal}
           contentLInputLabel="File Modal"
-          style={{ 
+          style={{
             overlay: {
-              position: 'fixed',
+              position: "fixed",
               top: 0,
               left: 0,
               right: 0,
               bottom: 0,
-              backgroundColor: 'rgba(0, 0, 0 0.3)'
+              backgroundColor: "rgba(0, 0, 0 0.3)",
             },
             content: {
               "margin-top": "3%",
-              width: '30%',
-              height: '85%',
+              width: "30%",
+              height: "85%",
               "margin-left": "auto",
-              "margin-right": "auto", 
-              
+              "margin-right": "auto",
             },
-          }}>
+          }}
+        >
           <div>
-             <TermTxt />
+            <TermTxt />
 
-              <Button
-                style={{
-                  display: "right",
-                  justifyContent: "right",
-                  alignItems: "right",
-                  // width: "30%",
-                  "margin-left": "auto",
-                  "margin-right": "auto",
-                }}
-                onClick={closeModal}
-              >
-                닫기
-              </Button>
-          
+            <Button
+              style={{
+                display: "right",
+                justifyContent: "right",
+                alignItems: "right",
+                // width: "30%",
+                "margin-left": "auto",
+                "margin-right": "auto",
+              }}
+              onClick={closeModal}
+            >
+              닫기
+            </Button>
           </div>
         </Modal>
       </div>
@@ -233,10 +233,10 @@ function Signup() {
       style={{
         display: "flex",
         justifyContent: "center",
-        alignItems: "center",
+        // alignItems: "center",
         width: "100%",
         height: "100vh",
-        marginTop: "20em",
+        marginTop: "8em",
         font: "white",
       }}
     >
@@ -259,23 +259,59 @@ function Signup() {
           inputProps={{ style: { color: "white" } }}
           SelectProps={{ style: { color: "white", backgroundColor: "white" } }}
           InputLabelProps={{
-            style: { color: "white"},
-          }}
-        />
-        <TextField
-          type="email"
-          id="email"
-          value={Email}
-          onChange={(e) => setEmail(e.target.value)}
-          label="아이디(이메일)"
-          variant="standard"
-          style={{ marginTop: "3em" }}
-          inputProps={{ style: { color: "white" } }}
-          SelectProps={{ style: { color: "white", backgroundColor: "white" } }}
-          InputLabelProps={{
             style: { color: "white" },
           }}
         />
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignContent: "center",
+            alignItems: "flex-end",
+          }}
+        >
+          <TextField
+            type="email"
+            id="email"
+            value={Email}
+            onChange={(e) => setEmail(e.target.value)}
+            label="아이디(이메일)"
+            variant="standard"
+            style={{ marginTop: "3em", width: "100%" }}
+            inputProps={{ style: { color: "white" } }}
+            SelectProps={{
+              style: { color: "white", backgroundColor: "white" },
+            }}
+            InputLabelProps={{
+              style: { color: "white" },
+            }}
+          />
+          <Button
+            style={{ width: "77px" }}
+            onClick={async (e) => {
+              if (!checkReg(Email.trim(), regEmail)) {
+                return alert("이메일 형식이 알맞지 않습니다.");
+              } else {
+                await api
+                  .checkuseremail({ email: Email })
+                  .then((data) => {
+                    setEmailCheck(data.data.info.check);
+                    console.log(Email, data.data.info.check);
+                  })
+                  .catch((e) => console.log(e));
+              }
+            }}
+          >
+            중복확인
+          </Button>
+        </div>
+        {emailCheck === null || undefined ? (
+          <p></p>
+        ) : emailCheck ? (
+          <p>중복확인이 완료되었습니다</p>
+        ) : (
+          <p style={{ color: "red" }}>중복된 이메일입니다.</p>
+        )}
         <TextField
           type="password"
           id="password"
@@ -415,11 +451,13 @@ function Signup() {
             InputLabelProps={{
               style: { color: "white" },
             }}
-          > 
+          >
             <MenuItem value="개발자"> 개발자 </MenuItem>
             <MenuItem value="경영사무">경영•사무•금융•보험직</MenuItem>
             <MenuItem value="연구공학">경영•사무•금융•보험직</MenuItem>
-            <MenuItem value="교육법률">교육•법률•사회복지•경찰•소방직 및 군인</MenuItem>
+            <MenuItem value="교육법률">
+              교육•법률•사회복지•경찰•소방직 및 군인
+            </MenuItem>
             <MenuItem value="보건의료">보건•의료직</MenuItem>
             <MenuItem value="예술">예술•디자인•방송•스포츠직</MenuItem>
             <MenuItem value="서비스">미용•여행•숙박•음식•경비•청소직</MenuItem>
@@ -432,7 +470,7 @@ function Signup() {
         <FormControl variant="standard" style={{ marginTop: "1em" }}>
           <InputLabel
             id="demo-simple-select-standard-label"
-            style={{ color: "white"}}
+            style={{ color: "white" }}
           >
             가입경로
           </InputLabel>
@@ -452,10 +490,9 @@ function Signup() {
         </FormControl>
         <div style={{ marginTop: "3em" }}>
           <h3> 사용자 이용약관 </h3>
-   
-            <OpenTerms />
-            <br />
-     
+
+          <OpenTerms />
+          <br />
 
           <br></br>
 
@@ -519,6 +556,6 @@ function Signup() {
       </FormControl>
     </div>
   );
-};
+}
 
 export default Signup;

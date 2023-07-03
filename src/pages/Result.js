@@ -253,10 +253,10 @@ const Result = () => {
       style={{"margin-top":"-250px"}}>
         <ModalHeader toggle={closeModal}><b style={{"font-size": "26px", borderRadius: "56px"}}>책 목록 편집 가이드</b></ModalHeader>
         <ModalBody style={{}}>
-          <Carousel activeIndex={activeIndex} next={next} previous={previous}>
+          <Carousel activeIndex={activeIndex} next={next} previous={previous} interval={false}>
             <CarouselIndicators items={images} activeIndex={activeIndex} onClickHandler={goToIndex} />
             {slides}
-            <CarouselControl direction="prev" directionText="Previous" onClickHandler={previous} />
+            <CarouselControl direction="prev" directionText="Previous" onClickHandler={previous}/>
             <CarouselControl direction="next" directionText="Next" onClickHandler={next} />
           </Carousel>
         </ModalBody>

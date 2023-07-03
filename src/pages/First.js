@@ -85,7 +85,7 @@ export default () => {
                   Book is On & On </strong></h1>
               <div className="content-center brand">
                 <h2 className="h1-seo"><strong> 오프라인 서재의 온라인화 </strong></h2>
-                <img src={require("assets/img/mybookshelf.jpg")} className="floatimages image1" style={{ border: "2px solid white" }} />
+                <img src={require("assets/img/mybookshelf.jpg")} className="floatimages image2" style={{ border: "2px solid white" }} />
                 <h3 className="d-none d-sm-block">
                 오프라인 서재 사진을 온라인에 등록하고 관리할 수 있어요. 
                 </h3>
@@ -112,7 +112,7 @@ export default () => {
                 <h1 className="h1-seo"><strong> 도서 관리 기능 </strong></h1>
                 <img src={require("assets/img/First1.png")} className="floatimages image2" style={{ border: "2px solid white" }} />
                 <h3 className="d-none d-sm-block">
-                등록된 온라인 서재를 기반으로 나의 책 취향을 확인할 수 있어요.
+                등록된 온라인 서재로 나의 책 취향을 확인할 수 있어요.
                 </h3>
                 <Link to="section3" smooth={true} duration={1000}>
                   <Button color="info" size="lg">

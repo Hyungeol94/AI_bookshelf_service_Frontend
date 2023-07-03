@@ -106,10 +106,11 @@ const Result = () => {
     }
     setIsLoading(false);
 
-    if (isDecidedBook(selectedBookRowInfo) == false){
+    if (!isDecidedBook(selectedBookRowInfo)){
       if (typeof fetchedData !== 'undefined' && fetchedData && fetchedData.items.length!=0){
         setSelectedBookInfo({...fetchedData.items[0]})
       }
+      else setSelectedBookInfo(selectedBookRowInfo)
     }
   };
 

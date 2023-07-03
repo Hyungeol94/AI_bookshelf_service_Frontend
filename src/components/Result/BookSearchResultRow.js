@@ -9,22 +9,21 @@ const BookSearchResultRow = (props) => {
     }
 
   return (
-    <div onClick={handleClick}>
+    <div onClick={handleClick} style={{marginBottom:'5px'}}>
       <div class="bookSearchRow" style={{display: "flex"}}>
-        <div>
+        <div style = {{width: '40px', height: '50px'}}>
           <img
             src={
               bookInfo.image ||
               "/Users/edaumedo1/aivle0317/src/assets/img/sample_book.png"
             }
             alt={bookInfo.booktitle}            
-            width={50}
-            height={50}
+            style = {{width : '40px', height: '50px'}}            
           />
         </div>
         <div>
-          <h6 style={{color: "black"}}>{bookInfo.title}</h6>
-          <h6 style={{color: "black", fontWeight: "normal"}}>{bookInfo.author}</h6>          
+          <h6 style={{color: "black"}}>{bookInfo.title.length<=50? bookInfo.title: bookInfo.title.slice(0,50)+'...'}</h6>
+          <h6 style={{color: "black", fontWeight: "normal", marginBottom: '0px'}}>{bookInfo.author}</h6>          
         </div>
       </div>
     </div>

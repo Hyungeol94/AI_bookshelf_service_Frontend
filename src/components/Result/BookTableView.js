@@ -28,8 +28,9 @@ const BookTableView = (props) => {
 
     const saveToMyBookShelf = (e) => {
       console.log('clicked')
+      const uniqueBooksInfo = Array.from(new Set(booksInfo));
       const newBooksInfo = []
-      const promises = booksInfo.map((bookInfo) => {
+      const promises = uniqueBooksInfo.map((bookInfo) => {
         if (bookInfo.isbn === undefined) {
           return searchBookInfo(bookInfo);
         } else {

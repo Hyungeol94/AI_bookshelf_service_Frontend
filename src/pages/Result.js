@@ -102,6 +102,12 @@ const Result = () => {
       setData(null);
     }
     setIsLoading(false);
+
+    if (isDecidedBook(selectedBookRowInfo) == false){
+      if (typeof fetchedData !== 'undefined' && fetchedData && fetchedData.items.length!=0){
+        setSelectedBookInfo({...fetchedData.items[0]})
+      }
+    }
   };
 
   useEffect(() => {
@@ -126,8 +132,12 @@ const Result = () => {
     setBookList(updatedBookList)
   };
 
-  // 모달 관련 (가이드라인)
 
+  const isDecidedBook = (bookInfo) => {
+    return (bookInfo.isbn !== undefined)
+  }
+
+  // 모달 관련 (가이드라인)
   const images = [
     `${process.env.PUBLIC_URL}/assets/img/resultguide1.png`,
     `${process.env.PUBLIC_URL}/assets/img/resultguide2.png`,
@@ -187,6 +197,9 @@ const Result = () => {
           onSearch={onSearch}
           bookInfoAPI={bookinfo_api}
           bookshelfImages = {bookImageList}
+          isDecidedBook = {isDecidedBook}
+          isLoading = {isLoading}
+          data = {data}
         />
         ;
       </Card>
@@ -197,6 +210,10 @@ const Result = () => {
           setBookList = {setBookList}
           addToBookList = {addToBookList}          
           selectedBookRowInfo = {selectedBookRowInfo} 
+          isDecidedBook = {isDecidedBook}
+          isLoading = {isLoading}
+          data = {data}
+          setSelectedBookInfo = {setSelectedBookInfo}
           // 클릭되어 있는 텍스트 정보를 제공하기          
         />
       </Card>
@@ -212,7 +229,7 @@ const Result = () => {
           data={data}
           setData={setData}
           selectedBookInfo = {selectedBookInfo}
-          // selectedBookRowInfo = {selectedBookRowInfo}
+          selectedBookRowInfo = {selectedBookRowInfo}
           searchValue = {searchValue}    
         />
       </Card>

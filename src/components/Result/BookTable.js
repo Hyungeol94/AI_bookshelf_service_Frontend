@@ -1,5 +1,22 @@
 import React from 'react';
 import BookRow from './BookRow';
+const BookTableHeader = () => {
+  return (
+    <tr>            
+      <td >
+        <span className="content">제목</span>  
+      </td> 
+      <td >
+        <div style={{width: '40px'}}>
+          상태
+        </div>              
+      </td> 
+      <td>
+        삭제
+      </td>
+    </tr>  
+  )
+}
 
 const BookTable = (props) => {
     const {booksInfo, 
@@ -9,14 +26,14 @@ const BookTable = (props) => {
           deleteFromBookList, 
           searchValue, 
           setSearchValue, 
-          onSearch} = props        
+          onSearch,
+          isDecidedBook,
+        } = props        
 
     return (        
-        <table className="bookRowTable">
-          <thead>
-            책 제목
-          </thead>
+        <table className="bookRowTable">         
           <tbody >
+            <BookTableHeader/>
             {booksInfo.map((bookInfo) => (            
                 <BookRow key={bookInfo.id} 
                 bookInfo={bookInfo} 
@@ -26,11 +43,14 @@ const BookTable = (props) => {
                 deleteFromBookList = {deleteFromBookList}      
                 searchValue = {searchValue}      
                 setSearchValue={setSearchValue}
-                onSearch={onSearch}/>
+                onSearch={onSearch}
+                isDecidedBook = {isDecidedBook}/>
             ))}
           </tbody>
         </table>
     )
 }
 
+
 export default BookTable;
+

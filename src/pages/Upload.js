@@ -70,7 +70,7 @@ const Upload = () => {
       Promise.all(conversionPromises)
       .then(setIsLoading(true))
       .then(  
-        fetch("https://6724-34-143-144-216.ngrok-free.app/img2title/", {
+        fetch("https://28fd-34-135-52-107.ngrok-free.app/img2title/", {
           method: "POST",
           headers: {
             "ngrok-skip-browswer-warning": "69420",
@@ -119,36 +119,43 @@ const Upload = () => {
   return (
     <>
       <div className="invisible" />
-      <h1 className="head">책장 사진을 업로드해 주세요</h1>
-      <h3 className="explain" style={{ marginBottom: "20px" }}>
+      {isLoading? (
+        <h1 className="head">감지중..</h1>  
+    ): (<h1 className="head">책장 사진을 업로드해 주세요</h1> )}
+      {isLoading?(
+        <h3 className="explain">
+        인공지능이 책장에서 책을 감지하고 있어요.
+        <br />
+        책 한 권당 약 2초의 시간이 소요돼요.
+      </h3>
+      )
+      : (
+      <h3 className="explain">
         정면에서 책장 사진을 찍어 업로드해 주세요.
         <br />
         인공지능이 책을 감지해 자동으로 내 서재를 만들어 줄 거에요.
       </h3>
-      <div 
-          style={{ display: "flex", 
-                  justifyContent: "center", 
-                  alignItems: "center", 
-                  marginBottom: "20px" }}>
-  <Button onClick={openModal} style={{ position: "flex", background: "rgba(160, 35, 35, 0.7)",}}>
-    책장 사진 가이드 보기 
-  </Button>
-  <Modal
-    size="xl"
-    isOpen={modalIsOpen}
-    onRequestClose={closeModal}
-    style={{
-      // width: '100%',
-      marginTop: "0px", 
-      // height: '%',
-      // objectFit: 'contain'
-    }}>
-    <img 
-      src={require("assets/img/upload-guidelines.png")} 
-      onClick={closeModal}
-      style={{ maxWidth: "1300px", display: "block"}}/>
-  </Modal>
-</div>
+       )}
+  <div style = {{justifyContent: 'center', display: 'flex '}}>    
+    <Button onClick={openModal} style={{ position: "flex", background: "rgba(160, 35, 35, 0.7)",}}>
+      책장 사진 가이드 보기 
+    </Button>
+    <Modal
+      size="xl"
+      isOpen={modalIsOpen}
+      onRequestClose={closeModal}
+      style={{
+        // width: '100%',
+        marginTop: "0px", 
+        // height: '%',
+        // objectFit: 'contain'
+      }}>
+      <img 
+        src={require("assets/img/upload-guidelines.png")} 
+        onClick={closeModal}
+        style={{ maxWidth: "1300px", display: "block"}}/>
+    </Modal>
+  </div>
 
 
       <div className="upload-box">

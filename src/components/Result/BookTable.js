@@ -1,18 +1,23 @@
 import React from 'react';
 import BookRow from './BookRow';
+import "../../styles/Result.css";
+
 const BookTableHeader = () => {
   return (
-    <tr>            
+    <tr >            
       <td >
-        <span className="content">제목</span>  
+        <div style = {{width: '313.35px'}}> 
+        {/*오른쪽 스크롤바 생성시 좌우 스크롤바가 생기지 않는 최대 길이로 설정*/}          
+          <span className="columnName">제목</span>  
+        </div>
       </td> 
       <td >
         <div style={{width: '40px'}}>
-          상태
+          <span className="columnName">상태</span>
         </div>              
       </td> 
       <td>
-        삭제
+      <span className="columnName">삭제</span>
       </td>
     </tr>  
   )
@@ -30,10 +35,12 @@ const BookTable = (props) => {
           isDecidedBook,
         } = props        
 
-    return (        
-        <table className="bookRowTable">         
-          <tbody >
-            <BookTableHeader/>
+    return (
+        <table className="bookRowTable">        
+          <thead>
+          <BookTableHeader /> 
+          </thead>           
+          <tbody >          
             {booksInfo.map((bookInfo) => (            
                 <BookRow key={bookInfo.id} 
                 bookInfo={bookInfo} 

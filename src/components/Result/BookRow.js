@@ -18,6 +18,7 @@ const BookRow = (props) => {
       if (isDecidedBook(bookInfo)){
         setSelectedBookInfo(bookInfo)
       }
+      //else는 result.js의 onSearch()에서 처리
       setSelectedBookRowInfo(bookInfo)      
     }
 

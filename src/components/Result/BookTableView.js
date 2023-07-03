@@ -26,7 +26,7 @@ const BookTableView = (props) => {
       }
     }
 
-    const saveToMyBookShelf = (e) => {
+    const saveToMyBookshelf = () => {
       console.log('clicked')
       const uniqueBooksInfo = Array.from(new Set(booksInfo));
       const newBooksInfo = []
@@ -56,6 +56,18 @@ const BookTableView = (props) => {
       // console.log(modalIsOpen)      
     }
 
+    const handleSaveToMyBookshelf = (e) => {
+      if (booksInfo.length !== 0){
+        let reply = window.confirm("내 서재로 저장하시겠습니까?")
+        if (reply){
+          saveToMyBookshelf()
+        }
+      }
+      else{
+        window.alert("책 목록이 비어있습니다. 저장을 수행할 수 없습니다.")
+      }
+    }
+
     return (
       <div className = "bookTableView" style={{"border-radius":"15px"}}>
         <h3 className="viewHeader" style={{"font-size":"30px"}}>책 목록</h3>
@@ -70,10 +82,8 @@ const BookTableView = (props) => {
           onSearch = {onSearch}      
           isDecidedBook = {isDecidedBook}
           isLoading = {isLoading}
-          data = {data}
-              
+          data = {data}              
         />
-
         <div style={{display: 'flex', marginTop: '10px'}}>
           <Button onClick = {openBookshelfImage} style={{width: '70%', display: 'block'}}>책장 이미지 확인 </Button>    
             <BookshelfImageModal
@@ -81,7 +91,7 @@ const BookTableView = (props) => {
               modalIsOpen = {modalIsOpen}              
               openBookshelfImage = {openBookshelfImage}
               />
-          <Button onClick = {saveToMyBookShelf} style={{width: '70%', display: 'block'}}>내 서재로 저장</Button>                      
+          <Button onClick = {handleSaveToMyBookshelf} style={{width: '70%', display: 'block'}}>내 서재로 저장</Button>                      
         </div>
       </div>
     );

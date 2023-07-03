@@ -93,7 +93,7 @@ const Result = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
 
-  const onSearch = async () => {
+  const onSearch = async () => {    
     setIsLoading(true);
     const fetchedData = await bookinfo_api(searchValue, pageSize);
     if (typeof fetchedData !== "undefined" && fetchedData) {
@@ -106,10 +106,11 @@ const Result = () => {
     }
     setIsLoading(false);
 
-    if (isDecidedBook(selectedBookRowInfo) == false){
+    if (!isDecidedBook(selectedBookRowInfo)){
       if (typeof fetchedData !== 'undefined' && fetchedData && fetchedData.items.length!=0){
         setSelectedBookInfo({...fetchedData.items[0]})
       }
+      else setSelectedBookInfo(selectedBookRowInfo)
     }
   };
 
@@ -123,8 +124,12 @@ const Result = () => {
   }, [searchValue]);
 
   const addToBookList = (bookInfo) => {
-    const newBookInfo = {...bookInfo}    
+    const newBookInfo = {...bookInfo}
+    if (bookList.length!==0){
     newBookInfo.id = parseInt(bookList[bookList.length-1].id)+1
+    }else{
+      newBookInfo.id = 1 
+    }
     const updatedBookList = bookList.concat(newBookInfo)
     setBookList(updatedBookList)    
     console.log(bookList)

@@ -45,6 +45,8 @@ import Findid from "./pages/Findid";
 import Dashboard from "./pages/dashboard";
 import AboutUs from "./pages/About";
 import Result from "./pages/Result";
+import TermsPage from "./pages/Terms";
+
 // import Search from "./pages/Search";
 // import "./styles/App.css";
 // import { BrowserRouter, Route, Routes } from "react-router-dom";
@@ -89,6 +91,7 @@ export default () => {
         <Route path="/inquiry/id" element={<Findid />} />
         <Route path="/dash" element={<Dashboard />} />
         <Route path="/about-us" element={<AboutUs />} />
+        <Route path="/terms" element={<TermsPage />} />
 
         {/* <Route path="/detail/:id" element={<Detail Detail={Detail} />} /> */}
       </Routes>

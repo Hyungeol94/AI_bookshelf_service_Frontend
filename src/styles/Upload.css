@@ -19,7 +19,8 @@
     display: flex;
 }
 .modal-container {
-    margin-top: -8%;
+    /* margin-top: ; */
+    max-height: 70%
 }
 .guide-btn {
     background: rgba(160, 35, 35, 0.7);

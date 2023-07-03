@@ -1,0 +1,53 @@
+.terms-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}  
+.terms-txt {
+    font-weight: bold;
+    margin-bottom: 2rem;
+}
+.terms-card {
+    width: 90%;
+    color: rgb(255, 255, 255);
+    background: rgba(49, 52, 59, 0.5);
+    border-radius: 15px;
+    margin-top: 12%;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
+.terms-card::-webkit-scrollbar {
+    width: 10px;
+}
+.termtxt {
+    margin-top: 500px;
+    font-weight: bold;
+    font-size: 32px;
+}
+.terms-card::-webkit-scrollbar-thumb {
+    background-color: #ffffff;
+    border-radius: 10px;
+    background-clip: padding-box;
+    border: 2px solid transparent;
+}
+.terms-card::-webkit-scrollbar-track {
+    background-color: rgb(73, 73, 73, 0.3);
+    border-radius: 10px;
+    box-shadow: inset 0px 0px 5px white;
+}
+.button-container {
+    margin-top: 1%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.back-button {
+    align-self: center;
+    margin-top: 3%;
+    margin-bottom: 5%;
+}

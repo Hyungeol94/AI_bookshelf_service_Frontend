@@ -140,7 +140,7 @@ const Upload = () => {
       책장 사진 가이드 보기 
     </Button>
     <Modal
-      size="xl"
+      size="lg"
       isOpen={modalIsOpen}
       onRequestClose={closeModal}
       className="modal-container">

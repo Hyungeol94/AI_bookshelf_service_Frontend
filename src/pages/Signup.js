@@ -146,7 +146,7 @@ function Signup() {
             },
             content: {
               "margin-top": "3%",
-              width: '40%',
+              width: '30%',
               height: '85%',
               "margin-left": "auto",
               "margin-right": "auto", 
@@ -158,11 +158,10 @@ function Signup() {
 
               <Button
                 style={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
+                  display: "right",
+                  justifyContent: "right",
+                  alignItems: "right",
                   // width: "30%",
-                  marginTop: "40px",
                   "margin-left": "auto",
                   "margin-right": "auto",
                 }}

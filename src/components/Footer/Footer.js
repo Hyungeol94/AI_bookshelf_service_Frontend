@@ -71,11 +71,11 @@ export default function Footer() {
             </Nav>
           </Col>
 
-          <Col md="1">
+          <Col md="2">
             <Nav>
             <NavItem>
-                <NavLink to="/login" tag={Link}>
-                  <h4> Log in </h4>
+                <NavLink to="/terms" tag={Link}>
+                  <h4> Terms of Service </h4>
                 </NavLink>
               </NavItem>
             </Nav>
@@ -88,7 +88,7 @@ export default function Footer() {
               </NavItem>
             </Nav>
           </Col>
-          <Col md="4">
+          <Col md="3">
           <h4 style={{marginTop: "30px"}}> 
           Kt Aivle School 3기 5반 17조 <br/><br/>
             경기 성남시 분당구 불정로 90 <br/>

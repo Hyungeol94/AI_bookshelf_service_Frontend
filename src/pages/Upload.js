@@ -4,7 +4,8 @@ import {
   // Link, Route, Routes,
   useNavigate,
 } from "react-router-dom";
-import { Button, Input, UncontrolledTooltip } from "reactstrap";
+import { Modal, Button, Input, UncontrolledTooltip } from "reactstrap";
+import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';  
 
 
 function Card({ children }) {
@@ -25,6 +26,16 @@ const Upload = () => {
       URL.createObjectURL(upload.current.files[0]),
     ]);
   };
+
+  let [modalIsOpen, setModalIsOpen] = useState(false); // 모달 변수
+
+    const openModal = () => {
+        setModalIsOpen(true);
+      };
+    
+    const closeModal = () => {
+    setModalIsOpen(false);
+      };
 
   const navigate = useNavigate();
   const handleUpload = () => {
@@ -108,28 +119,41 @@ const Upload = () => {
   return (
     <>
       <div className="invisible" />
-      {isLoading ? (
-          <h1 className="head">감지중..</h1>        
-        ) :  (<h1 className="head">책장 사진을 업로드해 주세요</h1>)}
-      {isLoading?(
-        <h3 className="explain" style={{ marginBottom: "60px" }}>
-        인공지능이 책장에서 책을 감지하고 있어요.
-        <br />
-        책 한 권당 약 2초의 시간이 소요돼요.
-      </h3>
-      )
-      : (
-        <h3 className="explain" style={{ marginBottom: "60px" }}>
+      <h1 className="head">책장 사진을 업로드해 주세요</h1>
+      <h3 className="explain" style={{ marginBottom: "20px" }}>
         정면에서 책장 사진을 찍어 업로드해 주세요.
         <br />
         인공지능이 책을 감지해 자동으로 내 서재를 만들어 줄 거에요.
       </h3>
-      )}
+      <div 
+          style={{ display: "flex", 
+                  justifyContent: "center", 
+                  alignItems: "center", 
+                  marginBottom: "20px" }}>
+  <Button onClick={openModal} style={{ position: "flex", background: "rgba(160, 35, 35, 0.7)",}}>
+    책장 사진 가이드 보기 
+  </Button>
+  <Modal
+    size="xl"
+    isOpen={modalIsOpen}
+    onRequestClose={closeModal}
+    style={{
+      // width: '100%',
+      marginTop: "0px", 
+      // height: '%',
+      // objectFit: 'contain'
+    }}>
+    <img 
+      src={require("assets/img/upload-guidelines.png")} 
+      onClick={closeModal}
+      style={{ maxWidth: "1300px", display: "block"}}/>
+  </Modal>
+</div>
+
 
       <div className="upload-box">
         {imgFileView.length === 0 ? (
           <>
-
             <h3 style={{ marginTop: "20px", color: "black" }}>
               책장 이미지를 업로드해 주세요.
             </h3>
@@ -175,15 +199,15 @@ const Upload = () => {
                     <button
                       className=""
                       style={{
-                        fontSize: "15px",
+                        fontSize: "10px",
                         position: "absolute",
-                        top: 2,
-                        right: 2,
-                        background: "gray",
+                        top: 4,
+                        right: 4,
+                        background: "red",
                         color: "white",
-                        borderRadius: "50%",
-                        width: "24px",
-                        height: "24px",
+                        borderRadius: "100%",
+                        width: "22px",
+                        height: "22px",
                         display: "flex",
                         justifyContent: "center",
                         alignItems: "center",
@@ -192,7 +216,7 @@ const Upload = () => {
                       }}
                       onClick={() => removeImage(idx)}
                     >
-                      <strong>X</strong>
+                      <DeleteOutlinedIcon style={{height:"18px", width:"18px", marginBottom:"3px"}}/>
                     </button>
                   </div>
                 </Card>

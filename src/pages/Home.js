@@ -325,11 +325,12 @@ const Home = () => {
 
                 <div
                 style={{
-                  marginTop: "20px",
+                  marginTop: "5%",
                   backgroundColor: "rgba(255,255,255, 0.8)",
                   width: "40%",
+                  height: "12%",
                   // height:'100%',
-                  borderRadius: "30px 30px 30px 30px",
+                  borderRadius: "20px",
                 }}
               >
                 <div

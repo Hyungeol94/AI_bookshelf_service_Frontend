@@ -58,8 +58,8 @@ const BookTableView = (props) => {
 
 
     return (
-      <div className = "bookTableView">
-        <h3 className="viewHeader">책 목록</h3>
+      <div className = "bookTableView" style={{"border-radius":"15px"}}>
+        <h3 className="viewHeader" style={{"font-size":"30px"}}>책 목록</h3>
         <BookTable
           booksInfo = {booksInfo}
           setSelectedBookInfo = {setSelectedBookInfo}
@@ -74,8 +74,10 @@ const BookTableView = (props) => {
           data = {data}
               
         />
-        <div style={{display: 'flex'}}>
-          <Button onClick = {openBookshelfImage} style={{width: '70%', display: 'block'}}>책장 이미지 확인</Button>    
+
+        <div style={{display: 'flex', marginTop: "50px"}}>
+          <Button onClick = {openBookshelfImage} style={{width: '70%', display: 'block'}}>책장 이미지 </Button>    
+
             <BookshelfImageModal
               bookshelfImages = {bookshelfImages}
               modalIsOpen = {modalIsOpen}

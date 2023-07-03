@@ -114,7 +114,7 @@ const StatShow = (props) => {
   return (
     <div>
       <Button
-        style={{ marginTop: "0px", marginLeft:'3em' }}
+        style={{ marginTop: "0px", marginLeft:'5px', width: "150px", height:"50px" }}
         className="btn-round"
         color="primary"
         size="sm"

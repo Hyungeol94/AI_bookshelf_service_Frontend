@@ -34,10 +34,10 @@ const BookSearchBar = (props) => {
                 aria-describedby="button-addon2" 
                 type="text"          
                 onKeyDown={handleOnKeyPress}            
-                style={{color: "black"}}/>
+                style={{color: "black", height: "33px", marginTop: "5px", "margin-left":"1px"}}/>
                         
             <a class="nav-link d-none d-lg-block btn btn-default" onClick={handleClick}>
-                <i class="tim-icons icon-zoom-split"></i>
+                <i class="tim-icons icon-zoom-split" style={{"margin-right":"3px"}}></i>
             </a>
     </div>
     )

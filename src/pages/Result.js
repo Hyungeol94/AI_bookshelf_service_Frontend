@@ -9,6 +9,13 @@ import BookSearchView from "../components/Result/BookSearchView.js"
 import BookTableView from "../components/Result/BookTableView.js"
 import BookDetailView from "../components/Result/BookDetailView.js"
 
+
+import { Button, Modal, ModalHeader, 
+          ModalBody, Carousel, CarouselItem, 
+          CarouselControl, CarouselIndicators} from "reactstrap";
+import LiveHelpIcon from '@mui/icons-material/LiveHelp';
+
+
 function Card({ children }) {
   return <div className="resultCard">{children}</div>;
 }
@@ -125,9 +132,56 @@ const Result = () => {
     setBookList(updatedBookList)
   };
 
+
   const isDecidedBook = (bookInfo) => {
     return (bookInfo.isbn !== undefined)
   }
+
+  // 모달 관련 (가이드라인)
+  const images = [
+    `${process.env.PUBLIC_URL}/assets/img/resultguide1.png`,
+    `${process.env.PUBLIC_URL}/assets/img/resultguide2.png`,
+    `${process.env.PUBLIC_URL}/assets/img/resultguide3.png`,
+    `${process.env.PUBLIC_URL}/assets/img/resultguide4.png`
+  ];
+  
+
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [animating, setAnimating] = useState(false);
+
+  const closeModal = () => {
+    setModalIsOpen(false);
+  };
+
+  const next = () => {
+    if (animating) return;
+    const nextIndex = activeIndex === images.length - 1 ? 0 : activeIndex + 1;
+    setActiveIndex(nextIndex);
+  };
+
+  const previous = () => {
+    if (animating) return;
+    const prevIndex = activeIndex === 0 ? images.length - 1 : activeIndex - 1;
+    setActiveIndex(prevIndex);
+  };
+
+  const goToIndex = (newIndex) => {
+    if (animating) return;
+    setActiveIndex(newIndex);
+  };
+
+  const slides = images.map((image, index) => (
+    <CarouselItem
+      onExiting={() => setAnimating(true)}
+      onExited={() => setAnimating(false)}
+      key={index}
+    >
+      <img src={image} alt={`slide${index}`} />
+    </CarouselItem>
+  ));
+  
+
 
   return (
     <div style={{ display: "flex", marginTop: "70px", justifyContent: "center" }}>
@@ -179,6 +233,38 @@ const Result = () => {
           searchValue = {searchValue}    
         />
       </Card>
+      <Button
+        style={{
+          height: "7%",
+          width: "5%",
+          position: "fixed",
+          right: "20px",
+          bottom: "20px",
+          borderRadius: "20%",
+          alignItems: "center",
+          justifyContent: "center",
+          display: "flex",
+          background: "orange",}}
+          onClick={() => setModalIsOpen(true)}>
+  <LiveHelpIcon style={{ fontSize: "400%" }} />
+</Button>
+
+  <Modal isOpen={modalIsOpen} toggle={closeModal} size="xl" centered
+      style={{"margin-top":"-250px"}}>
+        <ModalHeader toggle={closeModal}><b style={{"font-size": "26px", borderRadius: "56px"}}>책 목록 편집 가이드</b></ModalHeader>
+        <ModalBody style={{}}>
+          <Carousel activeIndex={activeIndex} next={next} previous={previous}>
+            <CarouselIndicators items={images} activeIndex={activeIndex} onClickHandler={goToIndex} />
+            {slides}
+            <CarouselControl direction="prev" directionText="Previous" onClickHandler={previous} />
+            <CarouselControl direction="next" directionText="Next" onClickHandler={next} />
+          </Carousel>
+        </ModalBody>
+      </Modal>
+
+
+
+
     </div>
   );
 }

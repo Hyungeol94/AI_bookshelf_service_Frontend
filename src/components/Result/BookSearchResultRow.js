@@ -1,4 +1,5 @@
 import React from "react";
+import emptyBookImage from "../../assets/img/sample_book.png"
 
 const BookSearchResultRow = (props) => { 
     const {bookInfo, setSelectedBookInfo} = props
@@ -14,15 +15,15 @@ const BookSearchResultRow = (props) => {
         <div style = {{width: '40px', height: '50px'}}>
           <img
             src={
-              bookInfo.image ||
-              "/Users/edaumedo1/aivle0317/src/assets/img/sample_book.png"
+              bookInfo?.image ||              
+              emptyBookImage
             }
             alt={bookInfo.booktitle}            
-            style = {{width : '40px', height: '50px'}}            
+            style = {{width: '100%', height: '100%', objectFit: 'cover' }}            
           />
         </div>
-        <div>
-          <h6 style={{color: "black"}}>{bookInfo.title.length<=50? bookInfo.title: bookInfo.title.slice(0,50)+'...'}</h6>
+        <div style = {{maxWidth: '358px'}}>
+          <h6 style={{color: "black"}}>{bookInfo.title.length<=70? bookInfo.title: bookInfo.title.slice(0,70)+'...'}</h6>
           <h6 style={{color: "black", fontWeight: "normal", marginBottom: '0px'}}>{bookInfo.author}</h6>          
         </div>
       </div>

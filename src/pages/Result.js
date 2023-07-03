@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 // import { Link } from "react-router-dom";
 import sample from "../assets/sample_book.json";
-import bookinfo_api from "../services/bookinfo_api";
+import bookinfo_api from "../services/bookinfo_api_result";
 import "../styles/Result.css";
 import BookSearchView from "../components/Result/BookSearchView.js"
 import BookTableView from "../components/Result/BookTableView.js"

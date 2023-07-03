@@ -32,7 +32,7 @@ const BookDetailView = (props) => {
         />        
         <div style={{display: 'flex', justifyContent: 'center', marginTop: "10px"}}>
           <Button onClick = {handleClick} style={{width: '70%', display: 'block'}}>책 목록에 추가</Button>
-          <Button onClick = {changeBookRowInfo} style={{width: '70%', display: 'block'}}>이 책으로 바꾸기</Button>
+          <Button onClick = {changeBookRowInfo} style={{width: '70%', display: 'block'}}>이 책으로 변경</Button>
         </div>
       </div>
     );

@@ -134,7 +134,7 @@ const Result = () => {
 
 
   const isDecidedBook = (bookInfo) => {
-    return (bookInfo.isbn !== undefined)
+    return (bookInfo?.isbn !== undefined)
   }
 
   // 모달 관련 (가이드라인)

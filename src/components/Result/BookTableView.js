@@ -13,7 +13,8 @@ import {
 const BookTableView = (props) => {
     const {booksInfo, setSelectedBookInfo, deleteFromBookList, selectedBookRowInfo, setSelectedBookRowInfo, searchValue, setSearchValue, onSearch, bookInfoAPI, bookshelfImages, isDecidedBook, isLoading, data} = props  
     const navigate = useNavigate();
-    let [modalIsOpen, setModalIsOpen] = useState(false)
+    const [modalIsOpen, setModalIsOpen] = useState(false)
+    
     
     const searchBookInfo = async (bookInfo) => {
       console.log('searched')
@@ -49,13 +50,10 @@ const BookTableView = (props) => {
       });      
     }
 
- 
     const openBookshelfImage = (e) => {
       setModalIsOpen(modalIsOpen => ! modalIsOpen);
-      console.log(modalIsOpen)
-      console.log(bookshelfImages)
+      // console.log(modalIsOpen)      
     }
-
 
     return (
       <div className = "bookTableView" style={{"border-radius":"15px"}}>
@@ -76,11 +74,10 @@ const BookTableView = (props) => {
         />
 
         <div style={{display: 'flex', marginTop: '10px'}}>
-          <Button onClick = {openBookshelfImage} style={{width: '70%', display: 'block'}}>책장 이미지 </Button>    
-
+          <Button onClick = {openBookshelfImage} style={{width: '70%', display: 'block'}}>책장 이미지 확인 </Button>    
             <BookshelfImageModal
               bookshelfImages = {bookshelfImages}
-              modalIsOpen = {modalIsOpen}
+              modalIsOpen = {modalIsOpen}              
               openBookshelfImage = {openBookshelfImage}
               />
           <Button onClick = {saveToMyBookShelf} style={{width: '70%', display: 'block'}}>내 서재로 저장</Button>                      

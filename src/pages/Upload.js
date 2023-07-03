@@ -116,11 +116,23 @@ const Upload = () => {
     );
   };
 
+  // 감지중 함수
+  const texts = ["감지중..", "감지중...", "감지중...."];
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIndex(prevIndex => (prevIndex === texts.length - 1 ? 0 : prevIndex + 1));
+    }, 500);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <>
       <div className="invisible" />
       {isLoading? (
-        <h1 className="head">감지중..</h1>  
+        <h1 className="head">{texts[index]}</h1>  
     ): (<h1 className="head">책장 사진을 업로드해 주세요</h1> )}
       {isLoading?(
         <h3 className="explain">
@@ -128,13 +140,17 @@ const Upload = () => {
         <br />
         책 한 권당 약 2초의 시간이 소요돼요.
       </h3>
+      
       )
       : (
-      <h3 className="explain">
+      <div>
+        <h3 className="explain">
         정면에서 책장 사진을 찍어 업로드해 주세요.
         <br />
         인공지능이 책을 감지해 자동으로 내 서재를 만들어 줄 거에요.
-      </h3>)}
+      </h3>
+      <h4 className="explain"> 각 이미지당 최대 10Mb, 총 10장까지 업로드 가능합니다. </h4>
+      </div>)}
   <div className="guide-photos-container">    
     <Button className="guide-btn" onClick={openModal}>
       책장 사진 가이드 보기 

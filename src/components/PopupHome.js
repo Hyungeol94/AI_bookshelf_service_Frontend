@@ -8,6 +8,7 @@ const PopupHome = (props) => {
 
   const toggle = () => {
     setModalIsOpen(!modalIsOpen);
+    console.log(modalIsOpen);
   };
 
   if (props.bookCount === 0) {

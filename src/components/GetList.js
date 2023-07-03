@@ -105,7 +105,7 @@ const Book = (props) => { // Book 표시 함수
         <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
-        contentLabel="File Modal">
+        contentlabel="File Modal">
           <div style={{ color: 'black' }} className="book-info">
           <button style={{ float:"right" }} onClick={closeModal}> 닫기 </button> <br/>
           <img src={props.image} alt={props.booktitle} style ={{

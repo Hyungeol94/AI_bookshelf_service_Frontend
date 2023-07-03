@@ -38,7 +38,7 @@ const Book = (props) => {
       <Modal
             isOpen={modalIsOpen}
             onRequestClose={closeModal}
-            contentLabel="File Modal"
+            contentlabel="File Modal"
             className="modal-box"
           >
             <div>
@@ -57,11 +57,11 @@ const Book = (props) => {
                   alt={props.booktitle}
                   className="modal-image"
                 />
-                <h2 style={{ color: "black", "margin-bottom": "4px" }}>
+                <h2 style={{ color: "black", "marginBottom": "4px" }}>
                   {" "}
                   {props.booktitle}{" "}
                 </h2>
-                <h4 style={{ color: "black", "margin-bottom": "4px" }}>
+                <h4 style={{ color: "black", "marginBottom": "4px" }}>
                   {" "}
                   {props.author}{" "}
                 </h4>{" "}

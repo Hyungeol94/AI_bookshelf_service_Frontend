@@ -21,21 +21,33 @@
   /* .bookRow .content {
     display: inline-block;
     max-width: 80%; 
-    max-height: 3em; 
+    max-height: 40px; 
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
   } */
 
-.bookRow-conditionMet{
-    color: blue;
-}
 
 .bookRow-conditionMet:hover{
     text-decoration: underline;
     color: blue;
     cursor: pointer;
 }
+
+.bookRow-conditionMet{
+    /* height: 40px; */
+    color: blue;
+}
+
+/* .bookRow-conditionMet .content {
+    display: inline-block;
+    max-width: 80%; 
+    max-height: 40px; 
+    overflow:  hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  } */
+
 
 .bookRowTable{
     display: block;
@@ -102,4 +114,27 @@
     border-color:aliceblue;
     margin: 0px;
     padding: 0px;
+}
+
+.custom-modal-style {
+    /* width: 897px;
+    height: 802px; */
+    margin-top: -100px;
+    }
+
+ .guide-Button {
+        height: 7%;
+        width: 5%;
+        position: fixed;
+        right: 20px;
+        bottom: 20px;
+        border-Radius: 20%;
+        align-Items: center;
+        justify-Content: center;
+        display: flex;
+        background: orange;
+}
+.carousel-control-icon {
+    width: 50px;
+    height: 50px;
 }

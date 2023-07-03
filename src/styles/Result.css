@@ -14,6 +14,7 @@
 }
 
 .bookRow {
+    height: 44.8px;
     width: 100%;
     position: relative;
   }
@@ -35,7 +36,9 @@
 }
 
 .bookRow-conditionMet{
-    /* height: 40px; */
+    height: 44.8px;
+    width: 100%;
+    position: relative;
     color: blue;
 }
 

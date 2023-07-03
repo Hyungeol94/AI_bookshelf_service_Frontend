@@ -71,6 +71,8 @@ export default () => {
         />
         <Route path="/" element={<HeaderWrapper />}>
           <Route path="main" element={auth(Home, true)} />
+          {/* <Route path="main" element={<Home/>} /> */}
+
           <Route path="bookshelf" element={auth(UserBookShelf, true)} />
           <Route path="login" element={auth(Login, false)} />
           <Route path="" element={auth(First, false)} />
@@ -85,7 +87,9 @@ export default () => {
         <Route path="/upload" element={<Upload />} />
         <Route path="/result" element={<Resultpage />} />
         {/* <Route path="/detail" element={<Detail />} /> */}
-        <Route path="/search" element={<Searchpage />} />
+
+        {/* <Route path="search" element={<Searchpage />} /> */}
+
         {/* <Route path="/bookshelf/detail/:id" element={<GetBookDetail />} /> */}
         <Route path="/inquiry/pw" element={<FindPw />} />
         <Route path="/inquiry/id" element={<Findid />} />

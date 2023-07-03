@@ -7,6 +7,8 @@ export const signin = (data) => axios.post("/auth/signin", data);
 export const signup = (data) => axios.post("/auth/signup", data);
 export const getAuthToken = () => axios.get("/auth/authtoken");
 export const signout = () => axios.get("/auth/signout");
+export const checkuseremail = (data) =>
+  axios.post("/auth/checkuseremail", data);
 
 // USER_LIKE
 export const addlike = (data) => axios.post("/user/addlike", data);
@@ -31,6 +33,9 @@ export const bookshelflist = () => axios.post("/user/bookshelflist");
 
 // USER_PROFILE
 export const profilechange = (data) => axios.post("/user/profilechange", data);
+
+// USER_STAT 아직 미완
+export const countBookshelfInfo = () => axios.post("/user/countBookshelfInfo");
 
 // export const logout = () => axios.delete("/api/user/logout");
 // export const signup = (data) => axios.post("/api/user/signup", data);

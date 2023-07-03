@@ -32,7 +32,7 @@ const UserBookShelf = () => {
       .then((data) => {
         const booklist = data.data.info.list;
         setLikelist(booklist);
-        console.log(booklist);
+        // console.log(booklist);
       })
       .catch((e) => console.log(e));
     // console.log("data", data[0].elements[0].elements[0].cdata);
@@ -45,7 +45,7 @@ const UserBookShelf = () => {
       .then((data) => {
         const booklist = data.data.info.list;
         setCartlist(booklist);
-        console.log(booklist);
+        // console.log(booklist);
       })
       .catch((e) => console.log(e));
     // console.log("data", data[0].elements[0].elements[0].cdata);
@@ -57,7 +57,7 @@ const UserBookShelf = () => {
       .then((data) => {
         const booklist = data.data.info.list;
         setBookshelflist(booklist);
-        console.log(booklist);
+        // console.log(booklist);
       })
       .catch((e) => console.log(e));
     // console.log("data", data[0].elements[0].elements[0].cdata);

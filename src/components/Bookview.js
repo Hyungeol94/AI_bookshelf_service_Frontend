@@ -29,7 +29,6 @@ function Card({ children }) {
 export default function Bookview(props) {
   // console.log(props.list);
   const [iconTabs, setIconsTabs] = useState(1);
-  const [textTabs, setTextTabs] = useState(4);
   const [filterText, setFilterText] = useState("");
   const [likelist, setLikelist] = useState([]);
   const [cartlist, setCartlist] = useState([]);
@@ -39,13 +38,14 @@ export default function Bookview(props) {
   const [cartcheck, setCartcheck] = useState([]);
   const [bookshelfcheck, setBookshelfcheck] = useState([]);
 
+
   const getlikecheck = async () => {
     await api
       .likecheck()
       .then((data) => {
         const booklist = data?.data?.info?.list;
         setLikecheck(booklist);
-        console.log(data?.data?.info?.list);
+        // console.log(data?.data?.info?.list);
       })
       .catch((e) => console.log(e));
   };
@@ -55,7 +55,7 @@ export default function Bookview(props) {
       .then((data) => {
         const booklist = data?.data?.info?.list;
         setCartcheck(booklist);
-        console.log(data?.data?.info?.list);
+        // console.log(data?.data?.info?.list);
       })
       .catch((e) => console.log(e));
   };
@@ -66,45 +66,45 @@ export default function Bookview(props) {
       .then((data) => {
         const booklist = data?.data?.info?.list;
         setBookshelfcheck(booklist);
-        console.log(data?.data?.info?.list);
+        // console.log(data?.data?.info?.list);
       })
       .catch((e) => console.log(e));
   };
 
   const getlikelist = async () => {
-    console.log(111);
+    // console.log(111);
     await api
       .likelist()
       .then((data) => {
         const booklist = data.data.info.list;
         setLikelist(booklist);
-        console.log(booklist);
+        // console.log(booklist);
       })
       .catch((e) => console.log(e));
     // console.log("data", data[0].elements[0].elements[0].cdata);
   };
 
   const getcartlist = async () => {
-    console.log(111);
+    // console.log(111);
     await api
       .cartlist()
       .then((data) => {
         const booklist = data.data.info.list;
         setCartlist(booklist);
-        console.log(booklist);
+        // console.log(booklist);
       })
       .catch((e) => console.log(e));
     // console.log("data", data[0].elements[0].elements[0].cdata);
   };
 
   const getbookshelflist = async () => {
-    console.log(111);
+    // console.log(111);
     await api
       .bookshelflist()
       .then((data) => {
         const booklist = data.data.info.list;
         setBookshelflist(booklist);
-        console.log(booklist);
+        // console.log(booklist);
       })
       .catch((e) => console.log(e));
     // console.log("data", data[0].elements[0].elements[0].cdata);
@@ -165,7 +165,7 @@ export default function Bookview(props) {
                   style={{ borderRadius: "30px" }}
                 >
                   <i className="tim-icons icon-cart" />
-                  찜해둔 책
+                  장바구니
                 </NavLink>
               </NavItem>
               <Form className="form-inline ml-auto">
@@ -214,7 +214,6 @@ export default function Bookview(props) {
                           ?.toLowerCase()
                           .includes(filterText?.toLowerCase())
                       )
-                      .reverse()
                       .map((data) => (
                         <BookModal
                           key={data.id}
@@ -267,7 +266,6 @@ export default function Bookview(props) {
                           ?.toLowerCase()
                           .includes(filterText?.toLowerCase())
                       )
-                      .reverse()
                       .map((data) => (
                         <BookModal
                           key={data.id}
@@ -320,7 +318,6 @@ export default function Bookview(props) {
                           ?.toLowerCase()
                           .includes(filterText?.toLowerCase())
                       )
-                      .reverse()
                       .map((data) => (
                         <BookModal
                           key={data.id}

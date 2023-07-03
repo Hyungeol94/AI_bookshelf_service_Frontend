@@ -34,8 +34,18 @@ const PieChart = (props) => {
     };
   
     return (
-      <div>
-        <Pie data={chartData} style={{ width: "50%" }} />
+      <div style={{ 
+        width: "95vw" , 
+        height:'430px', 
+        alignItems:'center',
+        justifyContent:'center',
+        display:'flex',
+        backgroundColor: "rgba(236, 213, 227, 0.5)",
+        // marginBottom: "20px",
+        borderRadius: "20px 20px 20px 20px",
+
+        }}>
+        <Pie data={chartData} />
       </div>
     );
   };

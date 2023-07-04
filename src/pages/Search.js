@@ -7,6 +7,7 @@ import * as api from "../services/api";
 import { useLocation } from "react-router-dom";
 import BookList from "../components/BookList";
 import bookinfo_api from "../services/bookinfo_api";
+import { TailSpin } from "react-loader-spinner";
 // import sampleBookImg from "../assets/img/sample_book.png";
 // import sample from "../assets/sample_book.json";
 
@@ -87,7 +88,8 @@ export default (props) => {
           <div
             style={{ display: "flex", alignItems: "center", height: "70vh" }}
           >
-            <h3>로딩중..</h3>
+            <TailSpin color="#fff" height={100} width={100} />
+            {/* <h3>로딩중..</h3> */}
           </div>
         ) : total > 0 ? (
           <div>

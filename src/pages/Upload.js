@@ -142,7 +142,6 @@ const Upload = () => {
           <TailSpin color="#fff" height={100} width={100} />
         </div>
       ) : (
-        // <h1 className="head">감지중..</h1>
         <h1 className="head">책장 사진을 업로드해 주세요</h1>
       )}
       {isLoading ? (
@@ -151,11 +150,17 @@ const Upload = () => {
           <br />책 한 권당 약 2초의 시간이 소요돼요.
         </h3>
       ) : (
-        <h3 className="explain">
-          정면에서 책장 사진을 찍어 업로드해 주세요.
-          <br />
-          인공지능이 책을 감지해 자동으로 내 서재를 만들어 줄 거에요.
-        </h3>
+        <div>
+          <h3 className="explain">
+            정면에서 책장 사진을 찍어 업로드해 주세요.
+            <br />
+            인공지능이 책을 감지해 자동으로 내 서재를 만들어 줄 거에요.
+          </h3>
+          <h4 className="explain">
+            {" "}
+            각 이미지당 최대 10Mb, 총 10장까지 업로드 가능합니다.{" "}
+          </h4>
+        </div>
       )}
       <div className="guide-photos-container">
         <Button className="guide-btn" onClick={openModal}>

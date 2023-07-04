@@ -1,33 +1,34 @@
-import React, { useRef, useState, useEffect } from "react";
-import "../styles/Upload.css";
-import {
-  // Link, Route, Routes,
-  useNavigate,
-} from "react-router-dom";
-import { Modal, Button, Input, UncontrolledTooltip } from "reactstrap";
+/* eslint-disable jsx-a11y/alt-text */
+import React, { useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+// style
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 import { TailSpin } from "react-loader-spinner";
+import { Modal, Button } from "reactstrap";
+import "../styles/Upload.css";
 
 function Card({ children }) {
   return <div className="card">{children}</div>;
 }
 
 const Upload = () => {
-  const [imgFile, setImgFile] = useState([]); // 이미지 배열
-  const [imgFileView, setImgFileView] = useState([]);
+  const formData = new FormData();
+  const navigate = useNavigate();
   const upload = useRef();
+
+  const [modalIsOpen, setModalIsOpen] = useState(false); // 모달 변수
+  const [imgFileView, setImgFileView] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [imgFile, setImgFile] = useState([]); // 이미지 배열
 
   const boximgUpload = () => {
     setImgFile((prev) => [...prev, upload.current.files[0]]);
-
     setImgFileView((prev) => [
       ...prev,
       URL.createObjectURL(upload.current.files[0]),
     ]);
   };
-
-  let [modalIsOpen, setModalIsOpen] = useState(false); // 모달 변수
 
   const openModal = () => {
     setModalIsOpen(true);
@@ -37,14 +38,19 @@ const Upload = () => {
     setModalIsOpen(false);
   };
 
-  const navigate = useNavigate();
+  const removeImage = (index) => {
+    setImgFile((prevImages) => prevImages.filter((_, idx) => idx !== index));
+    setImgFileView((prevImages) =>
+      prevImages.filter((_, idx) => idx !== index)
+    );
+  };
+
   const handleUpload = () => {
     if (imgFile.length === 0) {
       alert("No images appended.");
     } else {
       console.log(imgFile);
 
-      const formData = new FormData();
       imgFile.forEach((img) => formData.append("image", img));
       const conversionPromises = imgFile.map((img) =>
         fetch(img)
@@ -101,27 +107,6 @@ const Upload = () => {
         );
     }
   };
-
-  const removeImage = (index) => {
-    setImgFile((prevImages) => prevImages.filter((_, idx) => idx !== index));
-    setImgFileView((prevImages) =>
-      prevImages.filter((_, idx) => idx !== index)
-    );
-  };
-
-  // 감지중 함수
-  const texts = ["감지중..", "감지중...", "감지중...."];
-  const [index, setIndex] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setIndex((prevIndex) =>
-        prevIndex === texts.length - 1 ? 0 : prevIndex + 1
-      );
-    }, 500);
-
-    return () => clearInterval(interval);
-  }, []);
 
   return (
     <>

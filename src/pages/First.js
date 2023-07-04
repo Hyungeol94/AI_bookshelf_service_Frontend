@@ -1,45 +1,35 @@
+/* eslint-disable jsx-a11y/alt-text */
+// REACT
 import React, { useEffect, useState } from "react";
-// reactstrap components
-import { Container, Button } from "reactstrap";
-import { animateScroll, scroller, Link } from "react-scroll";
+import { Link } from "react-scroll";
 
-// core components
-import IndexNavbar from "components/Navbars/IndexNavbar.js";
-import Footer from "components/Footer/Footer.js";
-import "../styles/First.css";
-
+// COMPONENT
 import { KeyboardArrowUp } from "@mui/icons-material";
+import { Container, Button } from "reactstrap";
+import Footer from "components/Footer/Footer.js";
+
+// STYLE
+import "../styles/First.css";
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default () => {
+  // useState
+  const [showTopBtn, setShowTopBtn] = useState(false);
+
   useEffect(() => {
     document.body.classList.toggle("index-page");
-    // Specify how to clean up after this effect:
+    window.addEventListener("scroll", handleScroll);
+
     return function cleanup() {
+      window.removeEventListener("scroll", handleScroll);
       document.body.classList.toggle("index-page");
     };
   }, []);
 
-  const [showTopBtn, setShowTopBtn] = useState(false);
   const handleScroll = () => {
     const section1 = document.getElementById("section1");
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     setShowTopBtn(scrollTop > section1.offsetTop);
-  };
-
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
-  const handleClick = () => {
-    scroller.scrollTo("section2", {
-      duration: 800,
-      delay: 0,
-      smooth: "easeInOutQuart",
-    });
   };
 
   return (
@@ -219,24 +209,5 @@ export default () => {
         <Footer />
       </div>
     </div>
-    // 이미지 애니메이션 설정은 assets/scss/blk-design-system-react/custom에 있음!
   );
 };
-
-/*!
-
-=========================================================
-* BLK Design System React - v1.2.2
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/blk-design-system-react
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/blk-design-system-react/blob/main/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/

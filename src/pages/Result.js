@@ -1,26 +1,16 @@
-import React from "react";
-import { useState } from "react";
-import { useEffect } from "react";
-// import { Link } from "react-router-dom";
-// import sample from "../assets/sample_book.json";
+import React, { useState, useEffect } from "react";
 import bookinfo_api from "../services/bookinfo_api";
-import "../styles/Result.css";
-import BookSearchView from "../components/Result/BookSearchView.js";
-import BookTableView from "../components/Result/BookTableView.js";
-import BookDetailView from "../components/Result/BookDetailView.js";
-import GuideModal from "../components/Result/GuideModal.js";
-
 import {
-  Button,
-  Modal,
-  ModalHeader,
-  ModalBody,
-  Carousel,
-  CarouselItem,
-  CarouselControl,
-  CarouselIndicators,
-} from "reactstrap";
-import LiveHelpIcon from "@mui/icons-material/LiveHelp";
+  BookSearchView,
+  BookDetailView,
+  BookTableView,
+  GuideModal,
+} from "../components/Result";
+
+// style
+import { LiveHelp } from "@mui/icons-material";
+import { Button } from "reactstrap";
+import "../styles/Result.css";
 
 function Card({ children }) {
   return <div className="resultCard">{children}</div>;
@@ -78,7 +68,6 @@ function getBooksInfo(jsonResult) {
       console.error("Invalid JSON format:", error);
     }
   }
-
   // Return an empty array if jsonResult is missing or invalid
   return [];
 }
@@ -86,9 +75,6 @@ function getBooksInfo(jsonResult) {
 const Result = () => {
   const searchParams = new URLSearchParams(window.location.search);
   const jsonResult = searchParams.get("jsonResult");
-  const [bookImageList, setBookImageList] = useState(
-    getBookshelfImage(jsonResult)
-  );
   const [bookList, setBookList] = useState(getBooksInfo(jsonResult));
   const [selectedBookInfo, setSelectedBookInfo] = useState(bookList[0]);
   const [selectedBookRowInfo, setSelectedBookRowInfo] = useState(bookList[0]);
@@ -96,6 +82,9 @@ const Result = () => {
   const [searchValue, setSearchValue] = useState(bookList[0]?.title);
   const [isLoading, setIsLoading] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [bookImageList, setBookImageList] = useState(
+    getBookshelfImage(jsonResult)
+  );
 
   const onSearch = async () => {
     setIsLoading(true);
@@ -114,7 +103,7 @@ const Result = () => {
       if (
         typeof fetchedData !== "undefined" &&
         fetchedData &&
-        fetchedData.items.length != 0
+        fetchedData.items.length !== 0
       ) {
         setSelectedBookInfo({ ...fetchedData.items[0] });
       } else setSelectedBookInfo(selectedBookRowInfo);
@@ -203,7 +192,7 @@ const Result = () => {
         />
       </Card>
       <Button className="guide-Button" onClick={() => setModalIsOpen(true)}>
-        <LiveHelpIcon style={{ fontSize: "400%" }} />
+        <LiveHelp style={{ fontSize: "400%" }} />
       </Button>
       <GuideModal modalIsOpen={modalIsOpen} setModalIsOpen={setModalIsOpen} />
     </div>

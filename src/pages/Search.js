@@ -1,27 +1,29 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable import/no-anonymous-default-export */
 import React, { useState, useEffect } from "react";
-import "../styles/Home.css";
-// import { Select, MenuItem } from "@mui/material";
-import * as api from "../services/api";
 import { useLocation } from "react-router-dom";
+
+//component
 import BookList from "../components/BookList";
+
+// rest-api
 import bookinfo_api from "../services/bookinfo_api";
+import * as api from "../services/api";
+
+// style
+import "../styles/Home.css";
 import { TailSpin } from "react-loader-spinner";
-// import sampleBookImg from "../assets/img/sample_book.png";
-// import sample from "../assets/sample_book.json";
 
 export default (props) => {
   const location = useLocation();
-  // console.log(location?.state?.value);
 
-  const [data, setData] = useState(props?.data || null);
+  const [searchValue, setSearchValue] = useState(location?.state?.value);
   const [total, setTotal] = useState(props?.total || null);
+  const [bookshelflist, setBookshelflist] = useState([]);
+  const [data, setData] = useState(props?.data || null);
+  const [isloading, setIsLoading] = useState(false);
   const [likelist, setLikelist] = useState([]);
   const [cartlist, setCartlist] = useState([]);
-  const [bookshelflist, setBookshelflist] = useState([]);
-  const [searchValue, setSearchValue] = useState(location?.state?.value);
-  const [isloading, setIsLoading] = useState(false);
 
   const onSearch = async () => {
     await bookinfo_api(searchValue).then(async (data) => {
@@ -32,7 +34,6 @@ export default (props) => {
         .then((data) => {
           const booklist = data?.data?.info?.list;
           setLikelist(booklist);
-          // console.log(data?.data?.info?.list);
         })
         .catch((e) => console.log(e));
 
@@ -41,7 +42,6 @@ export default (props) => {
         .then((data) => {
           const booklist = data?.data?.info?.list;
           setCartlist(booklist);
-          // console.log(data?.data?.info?.list);
         })
         .catch((e) => console.log(e));
 
@@ -50,26 +50,21 @@ export default (props) => {
         .then((data) => {
           const booklist = data?.data?.info?.list;
           setBookshelflist(booklist);
-          // console.log(data?.data?.info?.list);
         })
         .catch((e) => console.log(e));
 
-      // console.log(data);
-      setData(data?.items);
       setTotal(data?.total);
+      setData(data?.items);
     });
     setIsLoading(false);
-    // console.log("data", data[0].elements[0].elements[0].cdata);
   };
 
   useEffect(() => {
     setSearchValue(location?.state?.value);
-    // console.log(111, searchValue);
   }, [location]);
 
   useEffect(() => {
     onSearch(searchValue);
-    // console.log(222, searchValue);
   }, [searchValue]);
 
   return (
@@ -89,7 +84,6 @@ export default (props) => {
             style={{ display: "flex", alignItems: "center", height: "70vh" }}
           >
             <TailSpin color="#fff" height={100} width={100} />
-            {/* <h3>로딩중..</h3> */}
           </div>
         ) : total > 0 ? (
           <div>

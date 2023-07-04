@@ -1,9 +1,8 @@
 /* eslint-disable import/no-anonymous-default-export */
-import React, { useState } from "react";
+import React from "react";
 import { Button } from "reactstrap";
 import BookTable from "./BookTable";
 import ReUploadButton from "./ReUploadButton";
-import BookshelfImageModal from "./BookshelfImageModal";
 import "../../styles/Result.css";
 import * as api from "../../services/api";
 
@@ -14,22 +13,20 @@ import {
 
 export default (props) => {
   const {
-    booksInfo,
-    setSelectedBookInfo,
-    deleteFromBookList,
-    selectedBookRowInfo,
     setSelectedBookRowInfo,
-    searchValue,
+    setSelectedBookInfo,
+    selectedBookRowInfo,
+    deleteFromBookList,
     setSearchValue,
-    onSearch,
-    bookInfoAPI,
-    bookshelfImages,
     isDecidedBook,
+    searchValue,
+    bookInfoAPI,
+    booksInfo,
     isLoading,
+    onSearch,
     data,
   } = props;
   const navigate = useNavigate();
-  const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const searchBookInfo = async (bookInfo) => {
     console.log("searched");
@@ -68,11 +65,6 @@ export default (props) => {
       });
       navigate("/bookshelf", { replace: true });
     });
-  };
-
-  const openBookshelfImage = (e) => {
-    setModalIsOpen((modalIsOpen) => !modalIsOpen);
-    // console.log(modalIsOpen)
   };
 
   const handleSaveToMyBookshelf = (e) => {

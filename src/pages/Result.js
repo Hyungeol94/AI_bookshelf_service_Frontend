@@ -52,7 +52,6 @@ function getBooksInfo(jsonResult) {
     try {
       const decodedResult = decodeURIComponent(jsonResult);
       const parsedResult = JSON.parse(decodedResult);
-      //setBookshelfImage(parsedResult.segment_images);
       const titleData = parsedResult.data;
       const booksInfo = [];
       Object.keys(titleData).forEach((key) => {
@@ -75,14 +74,15 @@ function getBooksInfo(jsonResult) {
 const Result = () => {
   const searchParams = new URLSearchParams(window.location.search);
   const jsonResult = searchParams.get("jsonResult");
-  const [bookList, setBookList] = useState(getBooksInfo(jsonResult));
-  const [selectedBookInfo, setSelectedBookInfo] = useState(bookList[0]);
-  const [selectedBookRowInfo, setSelectedBookRowInfo] = useState(bookList[0]);
-  const [data, setData] = useState(null);
-  const [searchValue, setSearchValue] = useState(bookList[0]?.title);
-  const [isLoading, setIsLoading] = useState(false);
-  const [modalIsOpen, setModalIsOpen] = useState(false);
+
   const bookImageList = getBookshelfImage(jsonResult);
+  const [bookList, setBookList] = useState(getBooksInfo(jsonResult));
+  const [selectedBookRowInfo, setSelectedBookRowInfo] = useState(bookList[0]);
+  const [selectedBookInfo, setSelectedBookInfo] = useState(bookList[0]);
+  const [searchValue, setSearchValue] = useState(bookList[0]?.title);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [data, setData] = useState(null);
 
   const onSearch = async () => {
     setIsLoading(true);

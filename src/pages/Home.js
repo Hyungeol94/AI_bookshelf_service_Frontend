@@ -1,48 +1,39 @@
-import React from "react";
-import { useState, useEffect } from "react";
-import { IconButton } from "@mui/material";
+/* eslint-disable react-hooks/exhaustive-deps */
+// react
+import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
+// style
 import { lightBlue } from "@mui/material/colors";
+import { IconButton } from "@mui/material";
 import {
   ArrowBackIos,
   ArrowForwardIos,
   InfoOutlined,
 } from "@mui/icons-material";
-
-// core components
-import Footer from "components/Footer/Footer.js";
-// our components
-import getlist from "../components/GetList_user_home";
-// import user_info from "../assets/sample_user.json";
-import Statshow from "../components/UserStatistics";
-import Bookslider from "../components/Bookslider";
+// components
 import BookModal from "../components/BookModalHome";
-import PopupHome from "../components/PopupHome";
-
-// api
+import Statshow from "../components/UserStatistics";
+import Footer from "components/Footer/Footer.js";
+// rest-api
+import bookinfo_api from "../services/bookinfo_api";
 import * as api from "../services/api";
-import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import bookinfo_api from "../services/bookinfo_api_home";
-
-const data = await api.countBookshelfInfo().catch((e) => console.log(e));
-const statlist = data?.data?.output || "null";
+import "../styles/GetList_home.css";
 
 const Home = () => {
-  const [list, setList] = useState([]);
   const { authData } = useSelector((state) => state.userReducer);
-
-  const [likelist, setLikelist] = useState([]);
-  const [cartlist, setCartlist] = useState([]);
-  const [bookshelflist, setBookshelflist] = useState([]);
-
+  // useState
+  const [recommendCategorylist, setRecommendCategorylist] = useState([]); // 추천 책 받는 로직_작가
+  const [recommendAuthorlist, setRecommendAuthorlist] = useState([]); // 추천 책 받는 로직_작가
+  const [userstat, setUserstat] = useState([]); // user 통계 정보 받는 곳
+  const [newbooklist, setNewbooklist] = useState([]); // 새로운 책
+  // DB 유뮤 확인
+  const [bookshelfcheck, setBookshelfcheck] = useState([]);
   const [likecheck, setLikecheck] = useState([]);
   const [cartcheck, setCartcheck] = useState([]);
-  const [bookshelfcheck, setBookshelfcheck] = useState([]);
-
-  const [userstat, setUserstat] = useState(statlist); // user 통계 정보 받는 곳
-  const [recommendAuthorlist, setRecommendAuthorlist] = useState([]); // 추천 책 받는 로직_작가
-  const [recommendCategorylist, setRecommendCategorylist] = useState([]); // 추천 책 받는 로직_작가
-  const [newbooklist, setNewbooklist] = useState([]); // 새로운 책
+  // DB 불러오기
+  const [bookshelflist, setBookshelflist] = useState([]);
+  const [likelist, setLikelist] = useState([]);
+  const [cartlist, setCartlist] = useState([]);
 
   const getlikecheck = async () => {
     await api
@@ -50,7 +41,6 @@ const Home = () => {
       .then((data) => {
         const booklist = data?.data?.info?.list || "df";
         setLikecheck(booklist);
-        // console.log(data?.data?.info?.list);
       })
       .catch((e) => console.log(e));
   };
@@ -61,7 +51,6 @@ const Home = () => {
       .then((data) => {
         const booklist = data?.data?.info?.list || "df";
         setCartcheck(booklist);
-        // console.log(data?.data?.info?.list);
       })
       .catch((e) => console.log(e));
   };
@@ -72,66 +61,41 @@ const Home = () => {
       .then((data) => {
         const booklist = data?.data?.info?.list || "df";
         setBookshelfcheck(booklist);
-        // console.log(data?.data?.info?.list);
       })
       .catch((e) => console.log(e));
   };
 
   const getbookshelflist = async () => {
-    // console.log(111);
     await api
       .bookshelflist()
       .then((data) => {
         const booklist = data?.data?.info?.list || "df";
         setBookshelflist(booklist);
-        // console.log(booklist);
       })
       .catch((e) => console.log(e));
-    // console.log("data", data[0].elements[0].elements[0].cdata);
   };
 
   const getlikelist = async () => {
-    // console.log(111);
     await api
       .likelist()
       .then((data) => {
         const booklist = data?.data?.info?.list || "df";
         setLikelist(booklist);
-        // console.log(booklist);
       })
       .catch((e) => console.log(e));
-    // console.log("data", data[0].elements[0].elements[0].cdata);
   };
 
   const getcartlist = async () => {
-    // console.log(111);
     await api
       .cartlist()
       .then((data) => {
         const booklist = data?.data?.output || "df";
         setCartlist(booklist);
-        // console.log(booklist);
       })
       .catch((e) => console.log(e));
-    // console.log("data", data[0].elements[0].elements[0].cdata);
-  };
-
-  // console.log(authData);
-  const getlikebooklist = async () => {
-    console.log(111);
-    await api
-      .likelist()
-      .then((data) => {
-        const booklist = data?.data?.info?.list || "df";
-        setList(booklist);
-        // console.log(booklist);
-      })
-      .catch((e) => console.log(e));
-    // console.log("data", data[0].elements[0].elements[0].cdata);
   };
 
   const getuserstat = async () => {
-    console.log("userstat_home");
     try {
       const data = await api.countBookshelfInfo();
       const statlist = data?.data?.output || "null";
@@ -146,23 +110,15 @@ const Home = () => {
   };
 
   const getrecommendAuthorlist = async () => {
-    // console.log(userstat.maxAuthor || 'undefined');
-    await bookinfo_api(userstat.maxAuthor || "베스트셀러").then(
+    await bookinfo_api(userstat.maxAuthor || "베스트셀러", 25).then(
       async (data) => {
-        console.log(userstat.maxAuthor, "작가 추천시스템 점검");
-        // console.log(data);
-        // console.log(bookshelfcheck);
-        // console.log(cartcheck);
         data.items.slice(0, 50).forEach((item) => {
           if (
             !likecheck.includes(item.isbn) &&
             !cartcheck.includes(item.isbn) &&
             !bookshelfcheck.includes(item.isbn)
           ) {
-            // console.log(item.isbn, bookshelfcheck);
             setRecommendAuthorlist((prevList) => [...prevList, item]);
-          } else {
-            // console.log(data.isbn);
           }
         });
       }
@@ -171,7 +127,7 @@ const Home = () => {
 
   const getrecommendCategorylist = async () => {
     // console.log(userstat.maxCategory || 'undefined');
-    await bookinfo_api(userstat.maxCategory || "신간 도서").then(
+    await bookinfo_api(userstat.maxCategory || "신간 도서", 25).then(
       async (data) => {
         console.log(userstat.maxCategory, "카테고리 추천시스템 점검");
         // console.log(data);
@@ -194,7 +150,7 @@ const Home = () => {
   };
 
   const getnewbooklist = async () => {
-    await bookinfo_api("신간 도서").then(async (data) => {
+    await bookinfo_api("신간 도서", 25).then(async (data) => {
       console.log("신간 도서 시스템 점검");
       // console.log(data);
       // console.log(bookshelfcheck);
@@ -206,7 +162,6 @@ const Home = () => {
   };
 
   useEffect(() => {
-    console.log("Home_useEffect check");
     getlikelist();
     getcartlist();
     getbookshelflist();
@@ -238,7 +193,6 @@ const Home = () => {
             const maxScrollLeft =
               scrollDiv.scrollWidth + 10 - scrollDiv.clientWidth + scrollX;
             const newScrollLeft = scrollDiv.scrollLeft + scrollX;
-            // scrollDiv.scrollTo({ left: scrollX, behavior: "smooth" });
             if (newScrollLeft >= -130 && newScrollLeft <= maxScrollLeft) {
               scrollDiv.scrollTo({ left: newScrollLeft, behavior: "smooth" });
             }
@@ -278,7 +232,7 @@ const Home = () => {
               alt="..."
               className="path"
               src={require("assets/img/path1.png")}
-              style={{ "pointer-events": "none", "z-index": 0 }}
+              style={{ pointerEvents: "none", zIndex: 0 }}
             />
 
             {/* <PopupHome bookCount={bookshelflist.length} />  */}
@@ -581,21 +535,3 @@ const Home = () => {
 };
 
 export default Home;
-
-/*!
-
-=========================================================
-* BLK Design System React - v1.2.2
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/blk-design-system-react
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/blk-design-system-react/blob/main/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/

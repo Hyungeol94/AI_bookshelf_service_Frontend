@@ -1,7 +1,7 @@
-import React from 'react';
+import React from "react";
 
 const TermTxt = () => {
-  var text = `서비스 이용약관
+  let text = `서비스 이용약관
 
   제 1조 (목적)
   
@@ -271,8 +271,8 @@ const TermTxt = () => {
   부칙
   
   제 1조 (시행일)
-  본 약관은 2023.07.01.부터 시행됩니다.`
-  var lines = text.split('\n');
+  본 약관은 2023.07.01.부터 시행됩니다.`;
+  let lines = text.split("\n");
 
   return (
     <div>

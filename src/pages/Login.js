@@ -1,26 +1,13 @@
-import React, { useState, useEffect } from "react";
-import {
-  Select,
-  Button,
-  InputLabel,
-  MenuItem,
-  TextField,
-  FormControl,
-  FormControlLabel,
-  Checkbox,
-  FormGroup,
-  FormLabel,
-  RadioGroup,
-  Radio,
-} from "@mui/material";
-import { regEmail, checkReg, checkNull } from "../hooks/useCheck";
-import { userLogin } from "../redux/actions/userAction";
+// react
 import { useDispatch, useSelector } from "react-redux";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-
-// 참고 페이지: https://ddeck.tistory.com/33
-// 참고 페이지 2 (코드는 안봄): https://velog.io/@94lfnv/React-%ED%9A%8C%EC%9B%90%EA%B0%80%EC%9E%85-%EA%B5%AC%ED%98%84%ED%95%98%EA%B8%B0
-// Please note that the provided code assumes you have a server running at 'http://49.50.162.189:4000' that handles the /auth/signin endpoint. Make sure the server is running and properly configured to handle the request.
+// hooks
+import { regEmail, checkReg, checkNull } from "../hooks/useCheck";
+// actions
+import { userLogin } from "../redux/actions/userAction";
+// styles
+import { Button, TextField, FormControl } from "@mui/material";
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default () => {
@@ -122,8 +109,6 @@ export default () => {
             value={password}
             onChange={handleInput}
             onKeyDown={(e) => {
-              // console.log(e.key);
-              // e.preventDefault();
               if (e.key === "Enter") {
                 onClickLogin();
               }

@@ -1,5 +1,19 @@
-// 참고 페이지: https://velog.io/@ppmyor/%EB%85%B8%EB%93%9C-%EB%A6%AC%EC%95%A1%ED%8A%B8-%EA%B8%B0%EC%B4%88-React-24.-%ED%9A%8C%EC%9B%90%EA%B0%80%EC%9E%85-%ED%8E%98%EC%9D%B4%EC%A7%80-%EA%B5%AC%ED%98%84
+// react
 import React, { useState, useEffect } from "react";
+import { useNavigate, Link } from "react-router-dom";
+import Modal from "react-modal";
+// components
+import TermTxt from "../components/Termtxt";
+// rest-api
+import * as api from "../services/api";
+import {
+  regEmail,
+  regPwd,
+  regPhone,
+  checkNull,
+  checkReg,
+} from "../hooks/useCheck";
+
 import {
   Select,
   Button,
@@ -14,20 +28,11 @@ import {
   RadioGroup,
   Radio,
 } from "@mui/material";
-import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
-import TermTxt from "../components/Termtxt";
-import Modal from "react-modal";
-import * as api from "../services/api";
-import {
-  regEmail,
-  regPwd,
-  regPhone,
-  checkNull,
-  checkReg,
-} from "../hooks/useCheck";
 
 function Signup() {
+  const navigate = useNavigate();
+
+  // useState
   const [Email, setEmail] = useState(""); // 이메일 (아이디)
   const [Password, setPassword] = useState(""); // 비밀번호
   const [Name, setName] = useState(""); // 이름
@@ -45,7 +50,6 @@ function Signup() {
   const [infoCheck, setInfoCheck] = useState(false);
   const [marketingCheck, setMarketingCheck] = useState(false);
   // 각각 const들은 아래 return 부분에서 입력값을 받음
-  const navigate = useNavigate();
 
   const onClickSubmit = async () => {
     /** 입력값 유효성 검사 */
@@ -95,8 +99,6 @@ function Signup() {
     await api
       .signup(user_info)
       .then((data) => {
-        console.log("then");
-        console.log(data.status);
         alert("회원가입이 완료되었습니다.");
         navigate("/main");
       })
@@ -107,10 +109,7 @@ function Signup() {
         } else {
           alert("알수 없는 오류(500)");
         }
-        console.log("catch");
-        console.log(e?.response?.status);
       });
-    console.log(user_info);
   };
 
   // 입력창 입력 관련
@@ -233,7 +232,6 @@ function Signup() {
       style={{
         display: "flex",
         justifyContent: "center",
-        // alignItems: "center",
         width: "100%",
         height: "100vh",
         marginTop: "8em",
@@ -493,9 +491,7 @@ function Signup() {
 
           <OpenTerms />
           <br />
-
-          <br></br>
-
+          <br />
           <div style={{ right: 0 }}>
             <FormControl component="fieldset">
               <FormGroup aria-label="position">

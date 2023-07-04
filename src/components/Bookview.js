@@ -1,25 +1,24 @@
+// react
 import React, { useState, useEffect } from "react";
-import classnames from "classnames";
+// rest-api
 import * as api from "../services/api";
-// reactstrap components
-
-//our components
+// components
+import classnames from "classnames";
 import BookModal from "./BookModal";
-
+// styles
 import "../styles/Book-view.css";
-
 import {
   TabContent,
-  TabPane,
-  Container,
   CardHeader,
+  Container,
+  FormGroup,
   CardBody,
-  Nav,
   NavItem,
   NavLink,
-  Form,
-  FormGroup,
+  TabPane,
   Input,
+  Form,
+  Nav,
 } from "reactstrap";
 
 function Card({ children }) {
@@ -27,17 +26,14 @@ function Card({ children }) {
 }
 
 export default function Bookview(props) {
-  // console.log(props.list);
-  const [iconTabs, setIconsTabs] = useState(1);
-  const [filterText, setFilterText] = useState("");
-  const [likelist, setLikelist] = useState([]);
-  const [cartlist, setCartlist] = useState([]);
+  const [bookshelfcheck, setBookshelfcheck] = useState([]);
   const [bookshelflist, setBookshelflist] = useState([]);
-
+  const [filterText, setFilterText] = useState("");
   const [likecheck, setLikecheck] = useState([]);
   const [cartcheck, setCartcheck] = useState([]);
-  const [bookshelfcheck, setBookshelfcheck] = useState([]);
-
+  const [iconTabs, setIconsTabs] = useState(1);
+  const [likelist, setLikelist] = useState([]);
+  const [cartlist, setCartlist] = useState([]);
 
   const getlikecheck = async () => {
     await api
@@ -45,7 +41,6 @@ export default function Bookview(props) {
       .then((data) => {
         const booklist = data?.data?.info?.list;
         setLikecheck(booklist);
-        // console.log(data?.data?.info?.list);
       })
       .catch((e) => console.log(e));
   };
@@ -55,7 +50,6 @@ export default function Bookview(props) {
       .then((data) => {
         const booklist = data?.data?.info?.list;
         setCartcheck(booklist);
-        // console.log(data?.data?.info?.list);
       })
       .catch((e) => console.log(e));
   };
@@ -66,52 +60,41 @@ export default function Bookview(props) {
       .then((data) => {
         const booklist = data?.data?.info?.list;
         setBookshelfcheck(booklist);
-        // console.log(data?.data?.info?.list);
       })
       .catch((e) => console.log(e));
   };
 
   const getlikelist = async () => {
-    // console.log(111);
     await api
       .likelist()
       .then((data) => {
         const booklist = data.data.info.list;
         setLikelist(booklist);
-        console.log('좋아요', booklist);
       })
       .catch((e) => console.log(e));
-    // console.log("data", data[0].elements[0].elements[0].cdata);
   };
 
   const getcartlist = async () => {
-    // console.log(111);
     await api
       .cartlist()
       .then((data) => {
         const booklist = data.data.info.list;
         setCartlist(booklist);
-        console.log('장바구니', booklist);
       })
       .catch((e) => console.log(e));
-    // console.log("data", data[0].elements[0].elements[0].cdata);
   };
 
   const getbookshelflist = async () => {
-    // console.log(111);
     await api
       .bookshelflist()
       .then((data) => {
         const booklist = data.data.info.list;
         setBookshelflist(booklist);
-        console.log('내서재', booklist);
       })
       .catch((e) => console.log(e));
-    // console.log("data", data[0].elements[0].elements[0].cdata);
   };
 
   useEffect(() => {
-    console.log(222);
     getlikelist();
     getcartlist();
     getbookshelflist();
@@ -235,7 +218,7 @@ export default function Bookview(props) {
                           setLikelist={setLikelist}
                           setBookshelflist={setBookshelflist}
                           setCartlist={setCartlist}
-                          />
+                        />
                       ))}
                   </div>
                 </p>
@@ -247,7 +230,9 @@ export default function Bookview(props) {
                     총{" "}
                     {
                       likelist?.filter((data) =>
-                        data?.title?.toLowerCase().includes(filterText?.toLowerCase())
+                        data?.title
+                          ?.toLowerCase()
+                          .includes(filterText?.toLowerCase())
                       ).length
                     }
                     권{" "}

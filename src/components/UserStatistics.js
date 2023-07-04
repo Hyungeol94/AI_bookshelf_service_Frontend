@@ -1,16 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import stat from "../assets/sample_statistics.json";
-import { Button, Modal, ModalHeader, ModalBody } from "reactstrap";
+import { Button, Modal, ModalHeader, ModalBody, Tooltip as TooltipReactStrap } from "reactstrap";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Pie } from "react-chartjs-2";
 import * as api from "../services/api";
 import PieChart from "../components/PieChart";
 import { useNavigate,Link } from "react-router-dom";
+import { IconButton } from "@mui/material";
+import {
+  InfoOutlined,
+} from "@mui/icons-material";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const StatShow = (props) => {
+  const [tooltipOpen, setTooltipOpen] = useState(false);
+  const toggle = () => setTooltipOpen(!tooltipOpen);
   const { authData } = useSelector((state) => state.userReducer);
   const [likelist, setlikeList] = useState([]);
   const [bookshelflist, setBookshelflist] = useState([]);
@@ -91,7 +97,7 @@ const StatShow = (props) => {
       {
         bookshelflist.length > 0?
         <Button
-          style={{ marginTop: "0px", marginLeft:'3em' }}
+          style={{ marginTop: "0px", marginLeft:'3em', width: '150px' }}
           className="btn-round"
           color="primary"
           size="sm"
@@ -216,7 +222,21 @@ const StatShow = (props) => {
                     <h4 style={{ color: "#000000" }}>
                       총 독서 권수: {bookshelflist.length}권
                     </h4>
+                    <div style={{display:'flex'}}>
                     <h4 style={{ color: "#000000" }}>최애 카테고리: {userstat.maxCategory}</h4>
+                    <InfoOutlined style={{marginLeft:'8px'}} id="DisabledAutoHideExample"/> 
+                    </div>
+                    <TooltipReactStrap
+                      placement="right"
+                      isOpen={tooltipOpen}
+                      autohide={false}
+                      target="DisabledAutoHideExample"
+                      toggle={toggle} 
+                      >
+
+                    카테고리는 네이버 책 정보를 <br/> 기반으로 분석됩니다.
+                    </TooltipReactStrap>
+                    
                     <h4 style={{ color: "#000000" }}>최애 작가: {userstat.maxAuthor}</h4>
                   </div>
                 </div>

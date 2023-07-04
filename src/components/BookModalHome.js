@@ -18,6 +18,10 @@ import {
 
 const BookModal = (props) => {
 
+  const { 
+    setBookshelflist,
+    } = props
+
     const [like, setLike] = useState(
       props?.likecheck?.includes(props?.isbn) || false
     );
@@ -31,7 +35,7 @@ const BookModal = (props) => {
     // console.log(props?.likecheck)
 
     const request = {
-      title: props?.title,
+      title: props?.booktitle,
       author: props?.author,
       description: props?.description,
       discount: props?.discount,
@@ -80,7 +84,7 @@ const BookModal = (props) => {
         if (delete_bookshelf === true) {
           setBookshelf(false);
           await api.deletebookshelf(request);
-          // window.location.reload(); // 페이지 새로고침
+          window.location.reload(); // 페이지 새로고침
         }
       } else {
         // eslint-disable-next-line no-restricted-globals
@@ -88,6 +92,7 @@ const BookModal = (props) => {
         if (add_bookshelf === true) {
           setBookshelf(true);
           await api.addbookshelf(request);
+          window.location.reload();
         }
       }
     };

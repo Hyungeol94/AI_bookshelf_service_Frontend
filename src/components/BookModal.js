@@ -17,7 +17,26 @@ import {
 
 
 const BookModal = (props) => {
-
+    const { 
+          image,
+          booktitle,
+          author,
+          description,
+          id,
+          isbn,
+          link,
+          pubdate,
+          publisher,
+          bookshelflist,
+          likelist,
+          cartlist,
+          bookshelfcheck,
+          likecheck,
+          cartcheck,
+          setLikelist,
+          setBookshelflist,
+          setCartlist
+          } = props
     const [like, setLike] = useState(
       props?.likecheck?.includes(props?.isbn) || false
     );
@@ -31,7 +50,7 @@ const BookModal = (props) => {
     // console.log(props?.likecheck)
 
     const request = {
-      title: props?.title,
+      title: props?.booktitle,
       author: props?.author,
       description: props?.description,
       discount: props?.discount,
@@ -46,11 +65,18 @@ const BookModal = (props) => {
       if (like) {
         setLike(false);
         await api.deletelike(request);
+        await api.likelist().then((data) => {
+          const booklist = data?.data?.info?.list;
+          setLikelist(booklist);})
         // window.location.reload(); // 페이지 새로고침
       } else {
         setLike(true);
         await api.addlike(request);
+        await api.likelist().then((data) => {
+          const booklist = data?.data?.info?.list;
+          setLikelist(booklist);})
       }
+
     };
     
     const handleCart = async () => {
@@ -61,6 +87,9 @@ const BookModal = (props) => {
           setCart(false);
           await api.deletecart(request);
           // window.location.reload(); // 페이지 새로고침
+          await api.cartlist().then((data) => {
+            const booklist = data?.data?.info?.list;
+            setCartlist(booklist);})
         }
       } else {
         // eslint-disable-next-line no-restricted-globals
@@ -68,6 +97,9 @@ const BookModal = (props) => {
         if (add_cart === true) {
           setCart(true);
           await api.addcart(request);
+          await api.cartlist().then((data) => {
+            const booklist = data?.data?.info?.list;
+            setCartlist(booklist);})
         }
       }
     };
@@ -80,6 +112,10 @@ const BookModal = (props) => {
           setBookshelf(false);
           await api.deletebookshelf(request);
           // window.location.reload(); // 페이지 새로고침
+          await api.bookshelflist().then((data) => {
+            const booklist = data?.data?.info?.list;
+            console.log('북리스트', booklist);
+            setBookshelflist(booklist);})
         }
       } else {
         // eslint-disable-next-line no-restricted-globals
@@ -87,6 +123,9 @@ const BookModal = (props) => {
         if (add_bookshelf === true) {
           setBookshelf(true);
           await api.addbookshelf(request);
+          await api.bookshelflist().then((data) => {
+            const booklist = data?.data?.info?.list;
+            setBookshelflist(booklist);})
         }
       }
     };

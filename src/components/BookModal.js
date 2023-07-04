@@ -65,9 +65,9 @@ const BookModal = (props) => {
       if (like) {
         setLike(false);
         await api.deletelike(request);
-        // await api.likelist().then((data) => {
-        //   const booklist = data?.data?.info?.list;
-        //   setLikelist({...booklist});})
+        await api.likelist().then((data) => {
+          const booklist = data?.data?.info?.list;
+          setLikelist(booklist);})
         // window.location.reload(); // 페이지 새로고침
       } else {
         setLike(true);

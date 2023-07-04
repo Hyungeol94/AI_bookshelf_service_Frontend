@@ -52,7 +52,7 @@ export default function Footer() {
           <Col md="2">
             <Nav>
               <NavItem>
-                <NavLink to="/about-us" tag={Link} onClick={window.scrollTo(0, 0)}>
+                <NavLink to="/about-us" tag={Link} >
                   <h4> About Us </h4>
                 </NavLink>
               </NavItem>
@@ -62,7 +62,7 @@ export default function Footer() {
           <Col md="2">
             <Nav>
             <NavItem>
-                <NavLink to="/terms" tag={Link} onClick={window.scrollTo(0, 0)}>
+                <NavLink to="/terms" tag={Link} >
                   <h4> 개인정보처리방침 </h4>
                 </NavLink>
               </NavItem>

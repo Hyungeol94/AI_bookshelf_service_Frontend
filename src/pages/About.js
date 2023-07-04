@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import classnames from "classnames";
 // javascript plugin used to create scrollbars on windows
 import PerfectScrollbar from "perfect-scrollbar";
@@ -30,6 +30,10 @@ import IndexNavbar from "components/Navbars/IndexNavbar";
 
 
 const AboutUs = () => {
+
+    useEffect(()=>{
+      window.scrollTo(0, 0)
+  },[])
 
   return(
     <div>

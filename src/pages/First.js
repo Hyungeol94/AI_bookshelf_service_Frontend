@@ -161,7 +161,6 @@ export default () => {
                   position: "fixed",
                   bottom: "20px",
                   display: "inline-block",
-                  borderRadius: "40%",
                   "z-index": 10,
                   right: "20px",
                   "max-width": "200px",
@@ -178,7 +177,7 @@ export default () => {
       </div>
     </div>
     // 이미지 애니메이션 설정은 assets/scss/blk-design-system-react/custom에 있음!
-  ) 
+  )
   
 };
 

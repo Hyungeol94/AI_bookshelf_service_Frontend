@@ -52,7 +52,7 @@ export default (props) => {
           // console.log(data?.data?.info?.list);
         })
         .catch((e) => console.log(e));
-        
+
       // console.log(data);
       setData(data?.items);
       setTotal(data?.total);
@@ -84,7 +84,11 @@ export default (props) => {
     >
       <div>
         {isloading ? (
-          <h3>로딩중..</h3>
+          <div
+            style={{ display: "flex", alignItems: "center", height: "70vh" }}
+          >
+            <h3>로딩중..</h3>
+          </div>
         ) : total > 0 ? (
           <div>
             {data.map((book) => {
@@ -111,8 +115,16 @@ export default (props) => {
             })}
           </div>
         ) : (
-          <div style={{ marginTop: "2em" }}>
-            <h2>검색결과가 없습니다</h2>
+          <div
+            style={{ display: "flex", alignItems: "center", height: "70vh" }}
+          >
+            <div
+              style={{
+                marginTop: "2em",
+              }}
+            >
+              <h2>검색결과가 없습니다</h2>
+            </div>
           </div>
         )}
       </div>

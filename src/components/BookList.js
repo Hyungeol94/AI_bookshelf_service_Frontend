@@ -300,7 +300,7 @@ export default (props) => {
               </div>
               <div>
                 <div>{props?.category}</div>
-                <div>쪽: {props?.page}p</div>
+                <div><p>쪽: {props?.page}p</p></div>
                 <div>무게: {props?.weight}g</div>
               </div>
               <Link to={props?.link}>

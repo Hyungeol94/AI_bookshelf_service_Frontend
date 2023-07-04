@@ -218,7 +218,7 @@ const Home = () => {
   const Scroll = ({ direction, scrollParent }) => {
   
     const move = () => {
-      const scrollX = direction === "left" ? -260 : 260;
+      const scrollX = direction === "left" ? -130 : 130;
       const scrollDivs = document.querySelectorAll(`.${scrollParent}`);
   
       if (scrollDivs) {
@@ -228,7 +228,7 @@ const Home = () => {
             const newScrollLeft = scrollDiv.scrollLeft + scrollX;
             // scrollDiv.scrollTo({ left: scrollX, behavior: "smooth" });
             
-            if (newScrollLeft >= 0 && newScrollLeft <= maxScrollLeft) {
+            if (newScrollLeft >= -130 && newScrollLeft <= maxScrollLeft) {
               scrollDiv.scrollTo({ left: newScrollLeft, behavior: "smooth" });}
         }});
       }

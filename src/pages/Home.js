@@ -239,19 +239,11 @@ const Home = () => {
               scrollDiv.scrollWidth + 10 - scrollDiv.clientWidth + scrollX;
             const newScrollLeft = scrollDiv.scrollLeft + scrollX;
             // scrollDiv.scrollTo({ left: scrollX, behavior: "smooth" });
-<<<<<<< HEAD
-            
             if (newScrollLeft >= -130 && newScrollLeft <= maxScrollLeft) {
-              scrollDiv.scrollTo({ left: newScrollLeft, behavior: "smooth" });}
-        }});
-=======
-
-            if (newScrollLeft >= 0 && newScrollLeft <= maxScrollLeft) {
               scrollDiv.scrollTo({ left: newScrollLeft, behavior: "smooth" });
             }
           }
         });
->>>>>>> 0281b54 (사진삭제)
       }
     };
 

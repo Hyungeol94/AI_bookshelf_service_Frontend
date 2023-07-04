@@ -10,20 +10,19 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import * as api from "../services/api";
 import PieChart from "../components/PieChart";
 import { Link } from "react-router-dom";
-import { InfoOutlined } from "@mui/icons-material";
+import { InfoOutlined, Clear } from "@mui/icons-material";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-const StatShow = (props) => {
+const StatShow = () => {
   const [tooltipOpen, setTooltipOpen] = useState(false);
-  const toggle = () => setTooltipOpen(!tooltipOpen);
   const { authData } = useSelector((state) => state.userReducer);
   const [bookshelflist, setBookshelflist] = useState([]);
-
   const [userstat, setUserstat] = useState([]); // user 통계 정보 받는 곳
 
+  const toggle = () => setTooltipOpen(!tooltipOpen);
+
   const getbookshelflist = async () => {
-    // console.log('북리스트다');
     await api
       .bookshelflist()
       .then((data) => {
@@ -85,7 +84,6 @@ const StatShow = (props) => {
             className="btn-round"
             color="primary"
             size="sm"
-            // onClick={openModal}
           >
             {" "}
             서재 업로드{" "}
@@ -110,12 +108,9 @@ const StatShow = (props) => {
         }}
       >
         <ModalHeader className="justify-content-center">
-          Bookpolio
-          <Button
-            className="btn-round btn-neutral btn-icon"
-            onClick={closeModal}
-          >
-            <i className="tim-icons icon-simple-remove" />
+          <p>Bookpolio</p>
+          <Button className="btn-round btn-neutral" onClick={closeModal}>
+            <Clear size={12} />
           </Button>
         </ModalHeader>
 
@@ -259,7 +254,6 @@ const StatShow = (props) => {
               className="section3_chart"
               style={{
                 width: "30vw",
-                // height:'50vh',
                 paddingRight: "0.5em",
                 paddingLeft: "0.5em",
                 display: "flex",

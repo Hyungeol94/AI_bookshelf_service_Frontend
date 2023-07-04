@@ -54,7 +54,7 @@
 
 .description-box {
   height: 130px;
-  /* overflow-y: scroll; */
+  overflow-y: scroll;
 }
 .description-box::-webkit-scrollbar {
   width: 8px;

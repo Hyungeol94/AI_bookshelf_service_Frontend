@@ -3,8 +3,8 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 // COMPONENT
-import Footer from "components/Footer/Footer.js";
 import User_profile from "../components/Profile";
+import Footer from "components/Footer/Footer.js";
 import Book_view from "../components/Bookview";
 // REST_API
 import * as api from "../services/api";

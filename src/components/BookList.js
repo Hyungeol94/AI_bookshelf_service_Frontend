@@ -1,56 +1,60 @@
+/* eslint-disable no-restricted-globals */
+// react
+import ClampLines from "react-clamp-lines";
 import React, { useState } from "react";
-import "../styles/BookList.css";
 import { Link } from "react-router-dom";
+// rest-api
 import * as api from "../services/api";
 import { Button, Box, Modal, IconButton } from "@mui/material";
-import ClampLines from "react-clamp-lines";
 import { lightBlue, teal } from "@mui/material/colors";
+// assets
 import sample_book from "../assets/img/sample_book.png";
-
+//styles
 import {
-  Favorite,
-  FavoriteBorder,
-  AddShoppingCart,
-  ShoppingCart,
   LibraryAddOutlined,
   LibraryAddCheck,
+  AddShoppingCart,
+  FavoriteBorder,
+  ShoppingCart,
+  Favorite,
 } from "@mui/icons-material";
+import "../styles/BookList.css";
 
 const style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
   transform: "translate(-50%, -50%)",
-  width: "700px",
+  position: "absolute",
   bgcolor: "#171941",
+  width: "700px",
   boxShadow: 24,
   height: "90%",
+  left: "50%",
+  top: "50%",
   p: 4,
 };
 
 const styleImage = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
   transform: "translate(-50%, -50%)",
-  height: "70%",
+  position: "absolute",
   bgcolor: "#171941",
   boxShadow: 24,
+  height: "70%",
+  left: "50%",
+  top: "50%",
 };
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default (props) => {
-  const [open, setOpen] = useState(false);
-  const [openImage, setOpenImage] = useState(false);
+  const [bookshelf, setBookshelf] = useState(
+    props?.bookshelflist.includes(props?.isbn) || false
+  );
   const [like, setLike] = useState(
     props?.likelist.includes(props?.isbn) || false
   );
   const [cart, setCart] = useState(
     props?.cartlist.includes(props?.isbn) || false
   );
-  const [bookshelf, setBookshelf] = useState(
-    props?.bookshelflist.includes(props?.isbn) || false
-  );
+  const [openImage, setOpenImage] = useState(false);
+  const [open, setOpen] = useState(false);
 
   // HANDLING
   const handleCloseImage = () => setOpenImage(false);
@@ -59,18 +63,18 @@ export default (props) => {
   const handleOpen = () => setOpen(true);
 
   const request = {
-    title: props?.title,
-    author: props?.author,
     description: props?.description,
-    discount: props?.discount,
-    isbn: props?.isbn,
-    link: props?.link,
-    pubdate: props?.pubdate,
     publisher: props?.publisher,
-    image: props?.image,
+    discount: props?.discount,
     category: props?.category,
-    page: props?.page,
+    pubdate: props?.pubdate,
     weight: props?.weight,
+    author: props?.author,
+    image: props?.image,
+    title: props?.title,
+    link: props?.link,
+    isbn: props?.isbn,
+    page: props?.page,
   };
 
   const handleHeart = async () => {
@@ -85,16 +89,12 @@ export default (props) => {
 
   const handleCart = async () => {
     if (cart) {
-      // eslint-disable-next-line no-restricted-globals
-      let delete_cart = confirm("장바구니에서 삭제하시겠습니까?");
-      if (delete_cart === true) {
+      if (confirm("장바구니에서 삭제하시겠습니까?") === true) {
         setCart(false);
         await api.deletecart(request);
       }
     } else {
-      // eslint-disable-next-line no-restricted-globals
-      let add_cart = confirm("장바구니에 추가하겠습니까?");
-      if (add_cart === true) {
+      if (confirm("장바구니에 추가하겠습니까?") === true) {
         setCart(true);
         await api.addcart(request);
       }
@@ -103,16 +103,12 @@ export default (props) => {
 
   const handleBookshelf = async () => {
     if (bookshelf) {
-      // eslint-disable-next-line no-restricted-globals
-      let delete_bookshelf = confirm("내 서제에서 삭제하시겠습니까?");
-      if (delete_bookshelf === true) {
+      if (confirm("내 서제에서 삭제하시겠습니까?") === true) {
         setBookshelf(false);
         await api.deletebookshelf(request);
       }
     } else {
-      // eslint-disable-next-line no-restricted-globals
-      let add_bookshelf = confirm("내 서재에 추가하시겠습니까?");
-      if (add_bookshelf === true) {
+      if (confirm("내 서재에 추가하시겠습니까?") === true) {
         setBookshelf(true);
         await api.addbookshelf(request);
       }
@@ -125,51 +121,45 @@ export default (props) => {
         style={{
           marginTop: "10px",
         }}
-        // onMouseMove={(e) => {
-        //   console.log(1);
-        // }}
       >
         <Button
           style={{
-            display: "flex",
-            justifyContent: "space-between",
-            border: "solid 2px",
             borderColor: "rgb(31 64 182 / 66%)",
+            justifyContent: "space-between",
             backgroundColor: "#FFFFFF",
-            borderRadius: "15px",
-            padding: "20px",
-            textAlign: "left",
             alignItems: "stretch",
-            zIndex: 12,
+            borderRadius: "15px",
+            border: "solid 2px",
+            textAlign: "left",
+            padding: "20px",
+            display: "flex",
             width: "1100px",
+            zIndex: 12,
           }}
         >
           <img
             src={props.image || sample_book}
             alt={props.booktitle}
-            // width={120}
-            // height={160}
             onClick={handleOpenImage}
             style={{ width: "130px", maxHeight: "220px" }}
           />
           <div
             style={{
-              marginLeft: "5px",
-              paddingLeft: "10px",
-              paddingRight: "10px",
-              display: "flex",
-              flexDirection: "column",
               justifyContent: "space-between",
-              // justifyContent: "space-between",
+              flexDirection: "column",
+              paddingRight: "10px",
+              paddingLeft: "10px",
+              marginLeft: "5px",
+              display: "flex",
             }}
           >
             <div onClick={handleOpen}>
               <div
                 style={{
-                  display: "flex",
                   justifyContent: "space-between",
-                  color: "black",
                   position: "relative",
+                  display: "flex",
+                  color: "black",
                 }}
               >
                 <h3
@@ -184,15 +174,14 @@ export default (props) => {
                 </h3>
                 <p
                   style={{
+                    position: "absolute",
                     fontSize: "13px",
                     marginTop: "5px",
                     fontWeight: 400,
-                    position: "absolute",
                     color: "black",
-                    // textAlign: "end",
-                    right: 0,
                     bottom: 0,
                     margin: 0,
+                    right: 0,
                   }}
                 >
                   {props?.isbn}
@@ -200,16 +189,16 @@ export default (props) => {
               </div>
               <div
                 style={{
-                  marginTop: "5px",
-                  border: "1px solid #dddddd",
                   borderColor: "rgb(31 64 182 / 75%)",
+                  border: "1px solid #dddddd",
+                  marginTop: "5px",
                 }}
               ></div>
               <div
                 style={{
-                  display: "flex",
                   justifyContent: "space-between",
                   marginTop: "2px",
+                  display: "flex",
                 }}
               >
                 <p
@@ -225,28 +214,27 @@ export default (props) => {
               </div>
               <div
                 style={{
-                  width: "740px",
                   fontWeight: "border",
                   fontSize: "16px",
+                  width: "740px",
                   color: "black",
                 }}
               >
                 <ClampLines
+                  style={{ color: "black" }}
                   text={props?.description}
-                  lines={5}
-                  ellipsis="..."
-                  // className="custom-class"
                   innerElement="p"
                   buttons={false}
-                  style={{ color: "black" }}
+                  ellipsis="..."
+                  lines={5}
                 />
               </div>
             </div>
             <h4
               style={{
-                marginBottom: 0,
                 fontSize: "14px",
                 textAlign: "end",
+                marginBottom: 0,
                 color: "black",
               }}
             >
@@ -258,9 +246,9 @@ export default (props) => {
           <div>
             <div
               style={{
-                display: "flex",
-                justifyContent: "space-between",
                 flexDirection: "column-reverse",
+                justifyContent: "space-between",
+                display: "flex",
                 height: "100%",
               }}
             >
@@ -268,9 +256,9 @@ export default (props) => {
                 <IconButton
                   onClick={handleHeart}
                   style={{
-                    width: "50px",
-                    height: "50px",
                     borderColor: "white",
+                    height: "50px",
+                    width: "50px",
                   }}
                   color="error"
                 >
@@ -308,8 +296,8 @@ export default (props) => {
                 <Button
                   variant="outlined"
                   style={{
-                    width: "150px",
                     background: "rgba(35,45,145)",
+                    width: "150px",
                     color: "white",
                   }}
                 >
@@ -321,29 +309,26 @@ export default (props) => {
         </Button>
       </div>
       <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
-        style={{}}
+        aria-labelledby="modal-modal-title"
+        onClose={handleClose}
+        open={open}
       >
         <Box sx={style} style={{ "background-color": "white" }}>
           <div style={{ display: "flex", justifyContent: "space-between" }}>
             <div>
               <img
-                src={props.image || sample_book}
-                alt={props.booktitle}
-                // width={120}
-                // height={160}
-                onClick={handleOpenImage}
                 style={{ maxWidth: "200px", maxHeight: "250px" }}
+                src={props.image || sample_book}
+                onClick={handleOpenImage}
+                alt={props.booktitle}
               />
             </div>
             <div
               style={{
-                display: "flex",
                 justifyContent: "space-between",
                 flexDirection: "column-reverse",
+                display: "flex",
                 height: "100%",
               }}
             >
@@ -351,9 +336,9 @@ export default (props) => {
                 <IconButton
                   onClick={handleHeart}
                   style={{
-                    maxWidth: "50px",
-                    maxHeight: "50px",
                     borderColor: "white",
+                    maxHeight: "50px",
+                    maxWidth: "50px",
                   }}
                   color="error"
                 >
@@ -384,8 +369,8 @@ export default (props) => {
                 <Button
                   variant="outlined"
                   style={{
-                    width: "150px",
                     backgroundColor: "rgba(35,45,145)",
+                    width: "150px",
                     color: "white",
                   }}
                 >
@@ -396,42 +381,40 @@ export default (props) => {
           </div>
           <div
             style={{
-              display: "flex",
-              flexDirection: "column",
               justifyContent: "space-between",
+              flexDirection: "column",
+              display: "flex",
             }}
           >
             <div style={{ marginTop: "10px" }}>
               <div
                 style={{
-                  display: "flex",
                   justifyContent: "space-between",
                   position: "relative",
+                  display: "flex",
                 }}
               >
                 <h3
                   style={{
-                    marginBottom: 0,
-                    fontSize: "28px",
-                    color: "#000",
-                    width: "575px",
-                    marginTop: "10px",
                     marginBottom: "10px",
+                    marginTop: "10px",
+                    fontSize: "28px",
+                    width: "575px",
+                    color: "#000",
                   }}
                 >
                   <strong>{props?.title}</strong>
                 </h3>
                 <p
                   style={{
+                    position: "absolute",
                     fontSize: "13px",
                     marginTop: "5px",
                     fontWeight: 400,
-                    position: "absolute",
-                    // textAlign: "end",
-                    right: 0,
+                    color: "black",
                     bottom: 0,
                     margin: 0,
-                    color: "black",
+                    right: 0,
                   }}
                 >
                   {props?.isbn}
@@ -439,16 +422,16 @@ export default (props) => {
               </div>
               <div
                 style={{
-                  marginTop: "5px",
-                  border: "1px solid #dddddd",
                   borderColor: "rgb(31 64 182 / 75%)",
+                  border: "1px solid #dddddd",
+                  marginTop: "5px",
                 }}
               ></div>
               <div
                 style={{
-                  display: "flex",
                   justifyContent: "space-between",
                   marginTop: "2px",
+                  display: "flex",
                 }}
               >
                 <p
@@ -466,27 +449,22 @@ export default (props) => {
               </div>
               <div
                 style={{
-                  width: "640px",
                   fontWeight: "border",
-                  fontSize: "16px",
                   position: "absolute",
-                  height: "60%",
                   overflowY: "auto",
+                  fontSize: "16px",
+                  width: "640px",
+                  height: "60%",
                 }}
               >
-                <div
-                  style={{
-                    // position: "relative",
-                    display: "block",
-                  }}
-                >
+                <div style={{ display: "block" }}>
                   <div
                     style={{
+                      overflowY: "auto",
+                      marginTop: "15px",
                       height: "450px",
                       width: "635px",
                       color: "black",
-                      marginTop: "15px",
-                      "overflow-y": "auto",
                     }}
                   >
                     <p
@@ -503,18 +481,18 @@ export default (props) => {
         </Box>
       </Modal>
       <Modal
-        open={openImage}
-        onClose={handleCloseImage}
-        aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
+        aria-labelledby="modal-modal-title"
+        onClose={handleCloseImage}
+        open={openImage}
       >
         <Box sx={styleImage} style={{ color: "white" }}>
           <img
             src={props.image || sample_book}
-            alt={props.booktitle}
-            width={"100%"}
-            height={"100%"}
             onClick={handleOpenImage}
+            alt={props.booktitle}
+            height={"100%"}
+            width={"100%"}
           />
         </Box>
       </Modal>

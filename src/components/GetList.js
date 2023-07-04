@@ -1,21 +1,20 @@
 import React, { useState } from "react";
 import "../styles/GetList.css";
 import { Modal } from "reactstrap";
-import BookDetail from "./GetBookDetail";
 
-
-const Book = (props) => { // Book 표시 함수
+const Book = (props) => {
+  // Book 표시 함수
   let [modalIsOpen, setModalIsOpen] = useState(false); // 모달 변수
   const [likeCheck, setLikeCheck] = useState(false); // 좋아요 변수
   const [wishListCheck, setWishListCheck] = useState(false); // 찜 변수
   const [cartCheck, setCartCheck] = useState(false); // 장바구니 변수
 
   // 좋아요 버튼 함수
-  const likeBtnEvent =()=>{ 
-    if(likeCheck === false) {
-      setLikeCheck(true)
-    }else {
-      setLikeCheck(false)
+  const likeBtnEvent = () => {
+    if (likeCheck === false) {
+      setLikeCheck(true);
+    } else {
+      setLikeCheck(false);
     }
   };
   // 찜 버튼 함수
@@ -91,120 +90,133 @@ const Book = (props) => { // Book 표시 함수
   };
 
   // 반환값
-  return ([ console.log(likeCheck, wishListCheck, cartCheck),
-  <div>
-    <div className="book-image">
-      <img
-        src={props.image}
-        alt={props.booktitle}
-        style={{ width: "80px", height: "80px"}}
-        onClick={ openModal }
-      />
-      <label onClick={ openModal }> {props.booktitle} </label>
-      <div className="modal-container">
-        <Modal
-        isOpen={modalIsOpen}
-        onRequestClose={closeModal}
-        contentlabel="File Modal">
-          <div style={{ color: 'black' }} className="book-info">
-          <button style={{ float:"right" }} onClick={closeModal}> 닫기 </button> <br/>
-          <img src={props.image} alt={props.booktitle} style ={{
-            width: 300
-          }}/>
-          <h2 style={{ color: 'black' }}> {props.booktitle} </h2>
-          <text style={{ color: 'black' }}>Author: {props.author} </text> <p/>
-          <text style={{ color: 'black' }}>description: {props.description} </text>
+  return [
+    console.log(likeCheck, wishListCheck, cartCheck),
+    <div>
+      <div className="book-image">
+        <img
+          src={props.image}
+          alt={props.booktitle}
+          style={{ width: "80px", height: "80px" }}
+          onClick={openModal}
+        />
+        <label onClick={openModal}> {props.booktitle} </label>
+        <div className="modal-container">
+          <Modal
+            isOpen={modalIsOpen}
+            onRequestClose={closeModal}
+            contentlabel="File Modal"
+          >
+            <div style={{ color: "black" }} className="book-info">
+              <button style={{ float: "right" }} onClick={closeModal}>
+                {" "}
+                닫기{" "}
+              </button>{" "}
+              <br />
+              <img
+                src={props.image}
+                alt={props.booktitle}
+                style={{
+                  width: 300,
+                }}
+              />
+              <h2 style={{ color: "black" }}> {props.booktitle} </h2>
+              <text style={{ color: "black" }}>
+                Author: {props.author}{" "}
+              </text>{" "}
+              <p />
+              <text style={{ color: "black" }}>
+                description: {props.description}{" "}
+              </text>
+            </div>
+            <div className="add-to-mybrary">
+              <input
+                type="checkbox"
+                onChange={(e) => {
+                  if (e.target.checked) {
+                    addToLibrary(props.id);
+                  } else {
+                    removeFromLibrary(props.id);
+                  }
+                }}
+              />
+              <label>내 서재에 추가</label>
+              <input
+                type="checkbox"
+                checked={likeCheck}
+                onChange={likeBtnEvent}
+              />
+              <label> 좋아요 </label>
+            </div>
+            <div className="like-wishlist-cart">
+              <input
+                type="checkbox"
+                checked={wishListCheck}
+                onChange={wishListBtnEvent}
+              />
+              <label> 찜 </label>
+              <input
+                type="checkbox"
+                checked={cartCheck}
+                onChange={cartBtnEvent}
+              />
+              <label> 장바구니 </label>
+            </div>
+            <div className="buy-link">
+              <button
+                onClick={() =>
+                  window.open(
+                    `https://www.yes24.com/Product/Search?domain=ALL&query=${props.booktitle}`,
+                    "_blank"
+                  )
+                }
+              >
+                Yes24{" "}
+              </button>
+              <button
+                onClick={() =>
+                  window.open(
+                    `https://www.aladin.co.kr/search/wsearchresult.aspx?SearchTarget=All&SearchWord=${props.booktitle}`,
+                    "_blank"
+                  )
+                }
+              >
+                알라딘{" "}
+              </button>
+              <button
+                onClick={() =>
+                  window.open(
+                    `https://search.kyobobook.co.kr/search?keyword=${props.booktitle}`,
+                    "_blank"
+                  )
+                }
+              >
+                교보문고{" "}
+              </button>{" "}
+              <br />
+            </div>
+          </Modal>
         </div>
-        <div className="add-to-mybrary">
-          <input type="checkbox" onChange={(e) => {if (e.target.checked) 
-                                        {addToLibrary(props.id);} 
-                                        else {removeFromLibrary(props.id);}}}/>
-                                        <label>내 서재에 추가</label>
-          <input type="checkbox" checked={ likeCheck } onChange={ likeBtnEvent }/><label> 좋아요 </label>
-        </div>
-        <div className="like-wishlist-cart">
-          
-          <input type="checkbox"  checked={ wishListCheck } onChange={ wishListBtnEvent } /><label> 찜 </label>
-          <input type="checkbox" checked={ cartCheck } onChange={ cartBtnEvent }/><label> 장바구니 </label>
-        </div>
-        <div className="buy-link">
-          <button 
-              onClick={() => window.open(`https://www.yes24.com/Product/Search?domain=ALL&query=${props.booktitle}`, "_blank")} >
-                Yes24 </button>
-          <button 
-              onClick={() => window.open(`https://www.aladin.co.kr/search/wsearchresult.aspx?SearchTarget=All&SearchWord=${props.booktitle}`, "_blank")} > 
-              알라딘 </button>
-          <button 
-              onClick={() => window.open(`https://search.kyobobook.co.kr/search?keyword=${props.booktitle}`, "_blank")} > 
-              교보문고 </button> <br/>
-        </div>
-        </Modal>
       </div>
-    </div>
-  </div>]
-);
+    </div>,
+  ];
 }; // Book 끝나는 부분
 
 export default function getlist(books_info) {
-  return([ books_info.length,
+  return [
+    books_info.length,
     <>
-    <div className="book-container">
-      {books_info.map((book_info) => (
-        <Book
-          key={book_info.id}
-          image={book_info.image}
-          booktitle={book_info.booktitle}
-          author={book_info.author}
-          description={book_info.description}
-        />
-      ))}
-    </div>
-  </>
-]);
-};
-
-// html 링크로 이동하는 버전 (혹시 필요해질 경우 대비)
-// import BookDetail from "./GetBookDetail"
-// import { useNavigate } from "react-router-dom";
-// import BookList from "./BookList";
-// import React, { useState } from "react";
-// import "../styles/GetList.css";
-// import { Modal } from "reactstrap";
-// import "../styles/GetList.css";
-
-// const Book = (props) => {
-//   const navigate = useNavigate()
-
-//   const handleClick = () => {
-//     navigate(`/bookshelf/detail/${props.id-1}`);
-//   }
-
-//   return (
-//   <div>
-//     <div className="book-image">
-//       <img
-//         src={props.image}
-//         alt={props.booktitle}
-//         style={{ width: "80px", height: "80px"}}
-//         onClick={handleClick}
-//       />
-//     </div>
-//   </div>
-// );
-// };
-  
-// export default function getlist(books_info){ 
-//     return ([
-//       books_info.length,
-//       <div className="book-container">
-//       {books_info.map((book_info) => (
-//       <Book
-//         key={book_info.id}
-//         image={book_info.image}
-//         booktitle={book_info.booktitle}
-//         id={book_info.id}
-      
-//       />
-//     ))}
-//     </div>
-//   ])}
+      <div className="book-container">
+        {books_info.map((book_info) => (
+          <Book
+            key={book_info.id}
+            image={book_info.image}
+            booktitle={book_info.booktitle}
+            author={book_info.author}
+            description={book_info.description}
+          />
+        ))}
+      </div>
+    </>,
+  ];
+}

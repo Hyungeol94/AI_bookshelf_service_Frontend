@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "../styles/GetList.css";
 // import "../styles/GetList_home.css";
 import { Modal, ModalHeader, Button } from "reactstrap";

@@ -1,37 +1,13 @@
-import { useState, useEffect } from "react";
+/* eslint-disable jsx-a11y/alt-text */
+// react
 import { Link } from "react-router-dom";
-import { Button } from "reactstrap";
-import { useCookies } from "react-cookie";
-
-// our component
-import Statshow from "./UserStatistics";
+// assets
 import sample_user from "../assets/img/user_profile.png";
+// styles
+import { Button } from "reactstrap";
 
 const Userprofile = (props) => {
-  // function getCookieValue(cookieName) {
-  //   let cookies = document.cookie.split(";");
-
-  //   for (let cookie of cookies) {
-  //     let trimmedCookie = cookie.trim();
-  //     if (trimmedCookie.startsWith(cookieName + "=")) {
-  //       return trimmedCookie.substring(cookieName.length + 1);
-  //     }
-  //   }
-
-  //   return null; // Cookie not found
-  // }
-  const {
-    email,
-    name,
-    user_id,
-    nickname,
-    image,
-    user_bookshelf,
-    user_like_book,
-    user_cart,
-    user_interest,
-    user_type,
-  } = props?.data;
+  const { nickname, image } = props?.data || undefined;
 
   return (
     <div
@@ -56,7 +32,6 @@ const Userprofile = (props) => {
             fontWeight: "bold",
           }}
         >
-          {" "}
           {nickname || "undefined"} 님의 Mybrary 📚
         </h1>
         <div style={{ display: "flex", justifyContent: "space-between" }}>

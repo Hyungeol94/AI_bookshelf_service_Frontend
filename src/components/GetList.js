@@ -4,11 +4,10 @@ import { Modal } from "reactstrap";
 
 const Book = (props) => {
   // Book 표시 함수
+  const [wishListCheck, setWishListCheck] = useState(false); // 찜 변수
   let [modalIsOpen, setModalIsOpen] = useState(false); // 모달 변수
   const [likeCheck, setLikeCheck] = useState(false); // 좋아요 변수
-  const [wishListCheck, setWishListCheck] = useState(false); // 찜 변수
   const [cartCheck, setCartCheck] = useState(false); // 장바구니 변수
-
   // 좋아요 버튼 함수
   const likeBtnEvent = () => {
     if (likeCheck === false) {

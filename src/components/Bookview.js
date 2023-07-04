@@ -9,16 +9,16 @@ import BookModal from "./BookModal";
 import "../styles/Book-view.css";
 import {
   TabContent,
-  TabPane,
-  Container,
   CardHeader,
+  Container,
+  FormGroup,
   CardBody,
-  Nav,
   NavItem,
   NavLink,
-  Form,
-  FormGroup,
+  TabPane,
   Input,
+  Form,
+  Nav,
 } from "reactstrap";
 
 function Card({ children }) {
@@ -70,7 +70,6 @@ export default function Bookview(props) {
       .then((data) => {
         const booklist = data.data.info.list;
         setLikelist(booklist);
-        console.log("좋아요", booklist);
       })
       .catch((e) => console.log(e));
   };
@@ -81,7 +80,6 @@ export default function Bookview(props) {
       .then((data) => {
         const booklist = data.data.info.list;
         setCartlist(booklist);
-        console.log("장바구니", booklist);
       })
       .catch((e) => console.log(e));
   };
@@ -92,13 +90,11 @@ export default function Bookview(props) {
       .then((data) => {
         const booklist = data.data.info.list;
         setBookshelflist(booklist);
-        console.log("내서재", booklist);
       })
       .catch((e) => console.log(e));
   };
 
   useEffect(() => {
-    console.log(222);
     getlikelist();
     getcartlist();
     getbookshelflist();

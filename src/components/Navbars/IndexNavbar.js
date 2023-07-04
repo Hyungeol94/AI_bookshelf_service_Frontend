@@ -1,41 +1,22 @@
-/*!
-
-=========================================================
-* BLK Design System React - v1.2.2
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/blk-design-system-react
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/blk-design-system-react/blob/main/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
+/* eslint-disable jsx-a11y/alt-text */
+import { useNavigate, useLocation, Link } from "react-router-dom";
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { useNavigate, useLocation } from "react-router-dom";
+// rest-api
 import * as api from "../../services/api";
 // reactstrap components
 import {
-  Button,
-  Collapse,
+  UncontrolledTooltip,
   NavbarBrand,
-  Navbar,
-  NavItem,
-  Nav,
   Container,
+  Collapse,
+  NavItem,
+  Button,
+  Navbar,
+  Input,
+  Nav,
   Row,
   Col,
-  // InputGroup,
-  // InputGroupAddon,
-  // InputGroupText,
-  Input,
-  UncontrolledTooltip,
 } from "reactstrap";
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -89,26 +70,49 @@ export default () => {
   const onCollapseExited = () => {
     setCollapseOut("");
   };
-  const scrollToDownload = () => {
-    document
-      .getElementById("download-section")
-      .scrollIntoView({ behavior: "smooth" });
-  };
   return (
     <Navbar className={"fixed-top " + color} color-on-scroll="100" expand="lg">
       <Container>
         <div className="navbar-translate">
           {isAuth && (
-            <NavbarBrand to="/main" tag={Link} id="navbar-brand" style={{fontSize:"22px"}}>
-              <span><img src={require("assets/img/logo_sm.png")} style={{marginBottom: "10px", marginRight:"-px"}}/> Book is On&On </span>| Home
+            <NavbarBrand
+              to="/main"
+              tag={Link}
+              id="navbar-brand"
+              style={{ fontSize: "22px" }}
+            >
+              <span>
+                <img
+                  src={require("assets/img/logo_sm.png")}
+                  style={{ marginBottom: "10px", marginRight: "-px" }}
+                />{" "}
+                Book is On&On{" "}
+              </span>
+              | Home
             </NavbarBrand>
           )}
           {!isAuth && (
-            <NavbarBrand to="/" tag={Link} id="navbar-brand"style={{fontSize:"22px"}}>
-              <span><img src={require("assets/img/logo_sm.png")} style={{marginBottom: "10px", marginRight:"-5px"}}/> Book is On&On </span>| Home
+            <NavbarBrand
+              to="/"
+              tag={Link}
+              id="navbar-brand"
+              style={{ fontSize: "22px" }}
+            >
+              <span>
+                <img
+                  src={require("assets/img/logo_sm.png")}
+                  style={{ marginBottom: "10px", marginRight: "-5px" }}
+                />{" "}
+                Book is On&On{" "}
+              </span>
+              | Home
             </NavbarBrand>
           )}
-          <UncontrolledTooltip placement="bottom" target="navbar-brand"style={{fontSize:"22px"}}>
+          <UncontrolledTooltip
+            placement="bottom"
+            target="navbar-brand"
+            style={{ fontSize: "22px" }}
+          >
             Home
           </UncontrolledTooltip>
           <button
@@ -149,10 +153,9 @@ export default () => {
           </div>
           <Nav navbar>
             <NavItem>
-
               <div class="input-group mb-3">
                 <Input
-                  style={{borderColor:'#2b3553', width: "20vw"}}
+                  style={{ borderColor: "#2b3553", width: "20vw" }}
                   type="text"
                   class="form-control"
                   placeholder="Search your book!"
@@ -175,7 +178,7 @@ export default () => {
                 />
                 <Button
                   className="nav-link d-none d-lg-block"
-                  style={{marginLeft:'0px'}}
+                  style={{ marginLeft: "0px" }}
                   color="default"
                   // href="/search"
                   onClick={() => {

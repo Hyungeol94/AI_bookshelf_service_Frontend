@@ -1,5 +1,5 @@
 import React, { useState, useRef, Avatar } from "react";
-import user_info from "../assets/sample_user.json";
+// import user_info from "../assets/sample_user.json";
 
 // reactstrap components
 import { Button } from "reactstrap";
@@ -14,7 +14,7 @@ const UserEditPage = () => {
   const default_image =
     "https://user-images.githubusercontent.com/71605276/246986335-7ba7968b-679d-49fb-9997-d44031bc4cf3.png";
 
-  const [user, setUser] = useState(user_info);
+  // const [user, setUser] = useState(user_info);
 
   const [nickname, setNickname] = useState(authData.nickname);
   const [image, setImage] = useState(authData.image || default_image);
@@ -51,13 +51,13 @@ const UserEditPage = () => {
     e.preventDefault();
 
     // 유저 정보 업데이트
-    const updatedUser = { ...user };
-    updatedUser.profile.user_nickname = nickname;
-    updatedUser.profile.image = image;
+    // const updatedUser = { ...user };
+    // updatedUser.profile.user_nickname = nickname;
+    // updatedUser.profile.image = image;
 
     // TODO: 업데이트된 유저 정보를 서버로 전송
-    setUser(updatedUser);
-    console.log("유저 정보 업데이트 완료:", updatedUser);
+    // setUser(updatedUser);
+    // console.log("유저 정보 업데이트 완료:", updatedUser);
   };
 
   return (

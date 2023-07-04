@@ -1,16 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import stat from "../assets/sample_statistics.json";
-import { Button, Modal, ModalHeader, ModalBody, Tooltip as TooltipReactStrap } from "reactstrap";
+import {
+  Button,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  Tooltip as TooltipReactStrap,
+} from "reactstrap";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Pie } from "react-chartjs-2";
 import * as api from "../services/api";
 import PieChart from "../components/PieChart";
-import { useNavigate,Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { IconButton } from "@mui/material";
-import {
-  InfoOutlined,
-} from "@mui/icons-material";
+import { InfoOutlined } from "@mui/icons-material";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -22,20 +25,21 @@ const StatShow = (props) => {
   const [bookshelflist, setBookshelflist] = useState([]);
 
   const [userstat, setUserstat] = useState([]); // user 통계 정보 받는 곳
-  const [recommendlist, setRecommendlist] = useState([]) // 추천 책 받는 로직
+  const [recommendlist, setRecommendlist] = useState([]); // 추천 책 받는 로직
 
-  const navigator= useNavigate()
+  const navigator = useNavigate();
 
   const getbookshelflist = async () => {
     // console.log('북리스트다');
-    await api.bookshelflist()
+    await api
+      .bookshelflist()
       .then((data) => {
         const booklist = data.data.info.list;
         setBookshelflist(booklist);
         // console.log(booklist);
       })
-      .catch((e) => console.log(e)); };
-
+      .catch((e) => console.log(e));
+  };
 
   // console.log(authData);
   const getlikebooklist = async () => {
@@ -52,17 +56,16 @@ const StatShow = (props) => {
   };
 
   const getuserstat = async () => {
-    console.log('userstat_home');
+    console.log("userstat_home");
     await api
       .countBookshelfInfo()
       .then((data) => {
-        const statlist = data?.data?.output || 'null';
+        const statlist = data?.data?.output || "null";
         setUserstat(statlist);
         console.log(statlist);
       })
       .catch((e) => console.log(e));
-  }
-
+  };
 
   useEffect(() => {
     console.log(222);
@@ -72,7 +75,6 @@ const StatShow = (props) => {
     getuserstat();
   }, []);
 
-  const [bookStatsData, setBookStatsData] = useState(null);
   let [modalIsOpen, setModalIsOpen] = useState(false); // 모달 변수
 
   // 모달창 함수
@@ -84,20 +86,11 @@ const StatShow = (props) => {
     setModalIsOpen(false);
   };
 
-  useEffect(() => {
-    setBookStatsData(stat);
-  }, []);
-
-  if (!bookStatsData) {
-    return <div>Loading...</div>;
-  }
-
   return (
     <div>
-      {
-        bookshelflist.length > 0?
+      {bookshelflist.length > 0 ? (
         <Button
-          style={{ marginTop: "0px", marginLeft:'3em', width: '150px' }}
+          style={{ marginTop: "0px", marginLeft: "3em", width: "150px" }}
           className="btn-round"
           color="primary"
           size="sm"
@@ -106,20 +99,26 @@ const StatShow = (props) => {
         >
           {" "}
           나의 독서폴리오{" "}
-        </Button>:
-        <Link to='/upload'>
-      <Button
-        style={{ marginTop: "0px", marginLeft:'5px', width: "150px", height:"50px" }}
-        className="btn-round"
-        color="primary"
-        size="sm"
-        // onClick={openModal}
-        >
-        {" "}
-        서재 업로드{" "}
-      </Button>
+        </Button>
+      ) : (
+        <Link to="/upload">
+          <Button
+            style={{
+              marginTop: "0px",
+              marginLeft: "5px",
+              width: "150px",
+              height: "50px",
+            }}
+            className="btn-round"
+            color="primary"
+            size="sm"
+            // onClick={openModal}
+          >
+            {" "}
+            서재 업로드{" "}
+          </Button>
         </Link>
-      }
+      )}
 
       <Modal
         isOpen={modalIsOpen}
@@ -147,7 +146,7 @@ const StatShow = (props) => {
           </Button>
         </ModalHeader>
 
-        <div style={{ margin: "15px" , }}>
+        <div style={{ margin: "15px" }}>
           <div
             className="subject"
             style={{ marginTop: "10px", marginBottom: "10px" }}
@@ -179,8 +178,8 @@ const StatShow = (props) => {
               justifyContent: "space-between",
               alignItems: "center",
               // width: '1000px',
-              height: '450px',
-              margin: '0 10px',
+              height: "450px",
+              margin: "0 10px",
               // paddingTop: "10px",
               // paddingBottom: "10px",
               // paddingLeft: "0.8em",
@@ -192,7 +191,7 @@ const StatShow = (props) => {
               style={{
                 display: "block",
                 paddingRight: "0.5em",
-                paddingLeft:'0.5em',
+                paddingLeft: "0.5em",
                 width: "50vw",
                 // height:'50vh'
               }}
@@ -222,22 +221,28 @@ const StatShow = (props) => {
                     <h4 style={{ color: "#000000" }}>
                       총 독서 권수: {bookshelflist.length}권
                     </h4>
-                    <div style={{display:'flex'}}>
-                    <h4 style={{ color: "#000000" }}>최애 카테고리: {userstat.maxCategory}</h4>
-                    <InfoOutlined style={{marginLeft:'8px'}} id="DisabledAutoHideExample"/> 
+                    <div style={{ display: "flex" }}>
+                      <h4 style={{ color: "#000000" }}>
+                        최애 카테고리: {userstat.maxCategory}
+                      </h4>
+                      <InfoOutlined
+                        style={{ marginLeft: "8px" }}
+                        id="DisabledAutoHideExample"
+                      />
                     </div>
                     <TooltipReactStrap
                       placement="right"
                       isOpen={tooltipOpen}
                       autohide={false}
                       target="DisabledAutoHideExample"
-                      toggle={toggle} 
-                      >
-
-                    카테고리는 네이버 책 정보를 <br/> 기반으로 분석됩니다.
+                      toggle={toggle}
+                    >
+                      카테고리는 네이버 책 정보를 <br /> 기반으로 분석됩니다.
                     </TooltipReactStrap>
-                    
-                    <h4 style={{ color: "#000000" }}>최애 작가: {userstat.maxAuthor}</h4>
+
+                    <h4 style={{ color: "#000000" }}>
+                      최애 작가: {userstat.maxAuthor}
+                    </h4>
                   </div>
                 </div>
               </div>
@@ -264,11 +269,13 @@ const StatShow = (props) => {
                   </div>
                   <div>
                     <h4 style={{ color: "#000000" }}>
-                      평균 / 누적 페이지 수 : {userstat.page_mean}p / {userstat.page_sum}p
+                      평균 / 누적 페이지 수 : {userstat.page_mean}p /{" "}
+                      {userstat.page_sum}p
                     </h4>
 
                     <h4 style={{ color: "#000000" }}>
-                      평균 / 누적 도서 무게 : {userstat.weight_mean}g / {userstat.weight_sum}g
+                      평균 / 누적 도서 무게 : {userstat.weight_mean}g /{" "}
+                      {userstat.weight_sum}g
                     </h4>
                   </div>
                 </div>
@@ -281,14 +288,13 @@ const StatShow = (props) => {
                 width: "30vw",
                 // height:'50vh',
                 paddingRight: "0.5em",
-                paddingLeft:'0.5em',
+                paddingLeft: "0.5em",
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
-
               }}
             >
-              <PieChart categoryCount={userstat.category}/>
+              <PieChart categoryCount={userstat.category} />
             </div>
           </div>
         </div>

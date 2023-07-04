@@ -4,8 +4,8 @@ import { Button } from "reactstrap";
 import { useCookies } from "react-cookie";
 
 // our component
-import sample_user from "../assets/sample_user.json";
 import Statshow from "./UserStatistics";
+import sample_user from "../assets/img/user_profile.png";
 
 const Userprofile = (props) => {
   // function getCookieValue(cookieName) {
@@ -50,13 +50,19 @@ const Userprofile = (props) => {
       }}
     >
       <div style={{ width: "1000px" }}>
-        <h1 style={{ 
-          color: "#000000",
-          fontWeight: "bold" }}> {nickname || "undefined"} 님의 Mybrary 📚</h1>
+        <h1
+          style={{
+            color: "#000000",
+            fontWeight: "bold",
+          }}
+        >
+          {" "}
+          {nickname || "undefined"} 님의 Mybrary 📚
+        </h1>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <div style={{ display: "flex" }}>
             <img
-              src={image || sample_user.profile.image}
+              src={image || sample_user}
               style={{ width: "130px", height: "130px", borderRadius: "100%" }}
             />
             <h2
@@ -66,13 +72,13 @@ const Userprofile = (props) => {
                 height: "1px",
                 marginLeft: "30px",
                 fontSize: "28px",
-                fontWeight: "bold"
+                fontWeight: "bold",
               }}
             >
               {nickname || "undefined"}
             </h2>
           </div>
-          <div style={{ display: "block", alignSelf: "center"}}>
+          <div style={{ display: "block", alignSelf: "center" }}>
             <Link to="/EditProfile">
               <Button style={{ width: "200px", display: "block" }}>
                 내 정보 수정하기

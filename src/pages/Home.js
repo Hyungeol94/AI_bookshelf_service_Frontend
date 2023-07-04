@@ -12,7 +12,7 @@ import {
 import Footer from "components/Footer/Footer.js";
 // our components
 import getlist from "../components/GetList_user_home";
-import user_info from "../assets/sample_user.json";
+// import user_info from "../assets/sample_user.json";
 import Statshow from "../components/UserStatistics";
 import Bookslider from "../components/Bookslider";
 import BookModal from "../components/BookModalHome";
@@ -25,7 +25,7 @@ import { useNavigate } from "react-router-dom";
 import bookinfo_api from "../services/bookinfo_api_home";
 
 const data = await api.countBookshelfInfo().catch((e) => console.log(e));
-const statlist = data?.data?.output || 'null';
+const statlist = data?.data?.output || "null";
 
 const Home = () => {
   const [list, setList] = useState([]);
@@ -34,48 +34,55 @@ const Home = () => {
   const [likelist, setLikelist] = useState([]);
   const [cartlist, setCartlist] = useState([]);
   const [bookshelflist, setBookshelflist] = useState([]);
-  
+
   const [likecheck, setLikecheck] = useState([]);
   const [cartcheck, setCartcheck] = useState([]);
   const [bookshelfcheck, setBookshelfcheck] = useState([]);
 
   const [userstat, setUserstat] = useState(statlist); // user 통계 정보 받는 곳
-  const [recommendAuthorlist, setRecommendAuthorlist] = useState([]) // 추천 책 받는 로직_작가
-  const [recommendCategorylist, setRecommendCategorylist] = useState([]) // 추천 책 받는 로직_작가
-  const [newbooklist, setNewbooklist] = useState([]) // 새로운 책
+  const [recommendAuthorlist, setRecommendAuthorlist] = useState([]); // 추천 책 받는 로직_작가
+  const [recommendCategorylist, setRecommendCategorylist] = useState([]); // 추천 책 받는 로직_작가
+  const [newbooklist, setNewbooklist] = useState([]); // 새로운 책
 
-  const getlikecheck = async ()=>{
-    await api.likecheck()
-    .then((data) => {
-      const booklist = data?.data?.info?.list  || 'df';
-      setLikecheck(booklist);
-      // console.log(data?.data?.info?.list);
-    })
-    .catch((e) => console.log(e));}
+  const getlikecheck = async () => {
+    await api
+      .likecheck()
+      .then((data) => {
+        const booklist = data?.data?.info?.list || "df";
+        setLikecheck(booklist);
+        // console.log(data?.data?.info?.list);
+      })
+      .catch((e) => console.log(e));
+  };
 
   const getcartcheck = async () => {
-    await api.cartcheck()
-    .then((data) => {
-      const booklist = data?.data?.info?.list  || 'df';
-      setCartcheck(booklist);
-      // console.log(data?.data?.info?.list);
-    })
-    .catch((e) => console.log(e));}
+    await api
+      .cartcheck()
+      .then((data) => {
+        const booklist = data?.data?.info?.list || "df";
+        setCartcheck(booklist);
+        // console.log(data?.data?.info?.list);
+      })
+      .catch((e) => console.log(e));
+  };
 
-  const getbookshelfcheck = async ()=>{
-    await api.bookshelfcheck()
-    .then((data) => {
-      const booklist = data?.data?.info?.list  || 'df';
-      setBookshelfcheck(booklist);
-      // console.log(data?.data?.info?.list);
-    })
-    .catch((e) => console.log(e));}
+  const getbookshelfcheck = async () => {
+    await api
+      .bookshelfcheck()
+      .then((data) => {
+        const booklist = data?.data?.info?.list || "df";
+        setBookshelfcheck(booklist);
+        // console.log(data?.data?.info?.list);
+      })
+      .catch((e) => console.log(e));
+  };
 
   const getbookshelflist = async () => {
     // console.log(111);
-    await api.bookshelflist()
+    await api
+      .bookshelflist()
       .then((data) => {
-        const booklist = data?.data?.info?.list  || 'df';
+        const booklist = data?.data?.info?.list || "df";
         setBookshelflist(booklist);
         // console.log(booklist);
       })
@@ -85,9 +92,10 @@ const Home = () => {
 
   const getlikelist = async () => {
     // console.log(111);
-    await api.likelist()
+    await api
+      .likelist()
       .then((data) => {
-        const booklist = data?.data?.info?.list  || 'df';
+        const booklist = data?.data?.info?.list || "df";
         setLikelist(booklist);
         // console.log(booklist);
       })
@@ -97,23 +105,24 @@ const Home = () => {
 
   const getcartlist = async () => {
     // console.log(111);
-    await api.cartlist()
+    await api
+      .cartlist()
       .then((data) => {
-        const booklist = data?.data?.output  || 'df';
+        const booklist = data?.data?.output || "df";
         setCartlist(booklist);
         // console.log(booklist);
       })
       .catch((e) => console.log(e));
     // console.log("data", data[0].elements[0].elements[0].cdata);
   };
-    
+
   // console.log(authData);
   const getlikebooklist = async () => {
     console.log(111);
     await api
       .likelist()
       .then((data) => {
-        const booklist = data?.data?.info?.list  || 'df';
+        const booklist = data?.data?.info?.list || "df";
         setList(booklist);
         // console.log(booklist);
       })
@@ -122,16 +131,15 @@ const Home = () => {
   };
 
   const getuserstat = async () => {
-    console.log('userstat_home');
+    console.log("userstat_home");
     try {
       const data = await api.countBookshelfInfo();
-      const statlist = data?.data?.output || 'null';
+      const statlist = data?.data?.output || "null";
       setUserstat(statlist);
 
       await getrecommendAuthorlist();
       await getrecommendCategorylist();
       await getnewbooklist();
-
     } catch (error) {
       console.log(error);
     }
@@ -139,61 +147,66 @@ const Home = () => {
 
   const getrecommendAuthorlist = async () => {
     // console.log(userstat.maxAuthor || 'undefined');
-    await bookinfo_api(userstat.maxAuthor || '베스트셀러').then(async (data) => {
-      console.log(userstat.maxAuthor, '작가 추천시스템 점검')
-      // console.log(data);
-      // console.log(bookshelfcheck);
-      // console.log(cartcheck);
-      data.items.slice(0, 50).forEach((item) => {
-        if ((!likecheck.includes(item.isbn)) &&
-            (!cartcheck.includes(item.isbn)) &&
-            (!bookshelfcheck.includes(item.isbn))){
-              // console.log(item.isbn, bookshelfcheck);
+    await bookinfo_api(userstat.maxAuthor || "베스트셀러").then(
+      async (data) => {
+        console.log(userstat.maxAuthor, "작가 추천시스템 점검");
+        // console.log(data);
+        // console.log(bookshelfcheck);
+        // console.log(cartcheck);
+        data.items.slice(0, 50).forEach((item) => {
+          if (
+            !likecheck.includes(item.isbn) &&
+            !cartcheck.includes(item.isbn) &&
+            !bookshelfcheck.includes(item.isbn)
+          ) {
+            // console.log(item.isbn, bookshelfcheck);
             setRecommendAuthorlist((prevList) => [...prevList, item]);
-        } else {
-          // console.log(data.isbn);
-        }
-      });
-    });
+          } else {
+            // console.log(data.isbn);
+          }
+        });
+      }
+    );
   };
 
   const getrecommendCategorylist = async () => {
     // console.log(userstat.maxCategory || 'undefined');
-    await bookinfo_api(userstat.maxCategory || '신간 도서').then(async (data) => {
-      console.log(userstat.maxCategory, '카테고리 추천시스템 점검')
+    await bookinfo_api(userstat.maxCategory || "신간 도서").then(
+      async (data) => {
+        console.log(userstat.maxCategory, "카테고리 추천시스템 점검");
+        // console.log(data);
+        // console.log(bookshelfcheck);
+        // console.log(cartcheck);
+        data.items.slice(0, 50).forEach((item) => {
+          if (
+            !likecheck.includes(item.isbn) &&
+            !cartcheck.includes(item.isbn) &&
+            !bookshelfcheck.includes(item.isbn)
+          ) {
+            // console.log(item.isbn, bookshelfcheck);
+            setRecommendCategorylist((prevList) => [...prevList, item]);
+          } else {
+            // console.log(data.isbn);
+          }
+        });
+      }
+    );
+  };
+
+  const getnewbooklist = async () => {
+    await bookinfo_api("신간 도서").then(async (data) => {
+      console.log("신간 도서 시스템 점검");
       // console.log(data);
       // console.log(bookshelfcheck);
       // console.log(cartcheck);
       data.items.slice(0, 50).forEach((item) => {
-        if ((!likecheck.includes(item.isbn)) &&
-            (!cartcheck.includes(item.isbn)) &&
-            (!bookshelfcheck.includes(item.isbn))){
-              // console.log(item.isbn, bookshelfcheck);
-            setRecommendCategorylist((prevList) => [...prevList, item]);
-        } else {
-          // console.log(data.isbn);
-        }
+        setNewbooklist((prevList) => [...prevList, item]);
       });
     });
   };
 
-  const getnewbooklist = async () => {
-    await bookinfo_api('신간 도서').then(async (data) => {
-      console.log('신간 도서 시스템 점검')
-      // console.log(data);
-      // console.log(bookshelfcheck);
-      // console.log(cartcheck);
-      data.items.slice(0, 50).forEach((item) => {
-            setNewbooklist((prevList) => [...prevList, item]);
-        });
-    });
-  };
-
-  
-
-
   useEffect(() => {
-    console.log('Home_useEffect check');
+    console.log("Home_useEffect check");
     getlikelist();
     getcartlist();
     getbookshelflist();
@@ -209,28 +222,36 @@ const Home = () => {
     return function cleanup() {
       document.body.classList.toggle("index-page");
     };
-    
   }, []);
 
   // 좌우 버튼 함수 << 작동여부 확인 후 컴포넌트로 빼야함
   // 좌우를 props?로 받아서 할 수 있는지 알아보자
 
   const Scroll = ({ direction, scrollParent }) => {
-  
     const move = () => {
       const scrollX = direction === "left" ? -130 : 130;
       const scrollDivs = document.querySelectorAll(`.${scrollParent}`);
-  
+
       if (scrollDivs) {
         scrollDivs.forEach((scrollDiv) => {
           if (scrollDiv.style.overflowX === "auto") {
-            const maxScrollLeft = scrollDiv.scrollWidth + 10 - scrollDiv.clientWidth + scrollX;
+            const maxScrollLeft =
+              scrollDiv.scrollWidth + 10 - scrollDiv.clientWidth + scrollX;
             const newScrollLeft = scrollDiv.scrollLeft + scrollX;
             // scrollDiv.scrollTo({ left: scrollX, behavior: "smooth" });
+<<<<<<< HEAD
             
             if (newScrollLeft >= -130 && newScrollLeft <= maxScrollLeft) {
               scrollDiv.scrollTo({ left: newScrollLeft, behavior: "smooth" });}
         }});
+=======
+
+            if (newScrollLeft >= 0 && newScrollLeft <= maxScrollLeft) {
+              scrollDiv.scrollTo({ left: newScrollLeft, behavior: "smooth" });
+            }
+          }
+        });
+>>>>>>> 0281b54 (사진삭제)
       }
     };
 
@@ -250,13 +271,11 @@ const Home = () => {
       >
         {/* <strong>{direction === "left" ? "<" : ">"}</strong> */}
         <IconButton fontSize="large" sx={{ color: lightBlue[50] }}>
-          {direction === "left" ? 
-          <ArrowBackIos /> : <ArrowForwardIos />}
-          </IconButton>
+          {direction === "left" ? <ArrowBackIos /> : <ArrowForwardIos />}
+        </IconButton>
       </button>
     );
   };
-
 
   return (
     <>
@@ -272,7 +291,6 @@ const Home = () => {
 
             {/* <PopupHome bookCount={bookshelflist.length} />  */}
 
-
             <div
               style={{
                 display: "flex",
@@ -281,115 +299,108 @@ const Home = () => {
                 width: "75%",
                 // height: "150vh",
                 font: "white",
-                margin:'auto'
+                margin: "auto",
               }}
-              >
-
+            >
               <div
                 style={{
                   width: "55%",
                   paddingTop: "10vh",
                   paddingRight: "2vw",
                 }}
-                >
+              >
+                {bookshelflist.length > 0 ? (
+                  <>
+                    <h3 style={{ textAlign: "center", fontWeight: "bold" }}>
+                      {" "}
+                      {authData?.nickname || "undefined"}님이 최근 추가한 도서
+                    </h3>
+                  </>
+                ) : (
+                  <>
+                    <h3 style={{ textAlign: "center", fontWeight: "bold" }}>
+                      {" "}
+                      신간 도서
+                    </h3>
+                  </>
+                )}
 
-                  
-                {
-                      bookshelflist.length > 0?
-                      <>
-                      <h3 style={{ textAlign: "center", fontWeight: "bold" }}>
-                        {" "}
-                        {authData?.nickname || "undefined"}님이 최근 추가한 도서
-                      </h3>
-                      </> :
-                      <>
-                      <h3 style={{ textAlign: "center", fontWeight: "bold" }}>
-                        {" "}
-                        신간 도서
-                      </h3>
-                      </>
-                }
-
-
-                  <p>
+                <p>
                   <div style={{ display: "flex" }}>
-                      <Scroll direction="left" scrollParent="scrollingDiv-recent" />
-                  <div
+                    <Scroll
+                      direction="left"
+                      scrollParent="scrollingDiv-recent"
+                    />
+                    <div
                       className="scrollingDiv-recent"
                       style={{
                         display: "flex",
                         overflowX: "auto",
-                        flexWrap:'nowrap',
+                        flexWrap: "nowrap",
                         flexDirection: "row",
                         justifyContent: "flex-start",
                       }}
-                      >
-
-                        
-                {
-                      bookshelflist.length > 0?
-                      <>
-                    {bookshelflist
-                    .slice(0, 10)
-                    .map((data) => (
-                      <BookModal
-                      key={data.id}
-                      image={data.image}
-                      booktitle={data.title}
-                      author={data.author}
-                      description={data.description}
-                      id={data.id}
-                      isbn={data.isbn}
-                      link={data.link}
-                      pubdate={data.pubdate}
-                      publisher={data.publisher}
-                      bookshelflist = {bookshelflist}
-                      likelist = {likelist}
-                      cartlist = {cartlist}
-                      bookshelfcheck = {bookshelfcheck}
-                      likecheck = {likecheck}
-                      cartcheck = {cartcheck}
-                      setLikelist={setLikelist}
-                      setBookshelflist={setBookshelflist}
-                      setCartlist={setCartlist}
-                      />
-                      ))}
-
-                      </> :
-                      <>
-                    {newbooklist
-                    .slice(0, 10)
-                    .map((data) => (
-                      <BookModal
-                      key={data.id}
-                      image={data.image}
-                      booktitle={data.title}
-                      author={data.author}
-                      description={data.description}
-                      id={data.id}
-                      isbn={data.isbn}
-                      link={data.link}
-                      pubdate={data.pubdate}
-                      publisher={data.publisher}
-                      bookshelflist = {bookshelflist}
-                      likelist = {likelist}
-                      cartlist = {cartlist}
-                      bookshelfcheck = {bookshelfcheck}
-                      likecheck = {likecheck}
-                      cartcheck = {cartcheck}
-                      />
-                      ))}                      </>
-                }
-
-                  </div>
-                    <Scroll direction="right" scrollParent="scrollingDiv-recent" />
+                    >
+                      {bookshelflist.length > 0 ? (
+                        <>
+                          {bookshelflist.slice(0, 10).map((data) => (
+                            <BookModal
+                              key={data.id}
+                              image={data.image}
+                              booktitle={data.title}
+                              author={data.author}
+                              description={data.description}
+                              id={data.id}
+                              isbn={data.isbn}
+                              link={data.link}
+                              pubdate={data.pubdate}
+                              publisher={data.publisher}
+                              bookshelflist={bookshelflist}
+                              likelist={likelist}
+                              cartlist={cartlist}
+                              bookshelfcheck={bookshelfcheck}
+                              likecheck={likecheck}
+                              cartcheck={cartcheck}
+                              setLikelist={setLikelist}
+                              setBookshelflist={setBookshelflist}
+                              setCartlist={setCartlist}
+                            />
+                          ))}
+                        </>
+                      ) : (
+                        <>
+                          {newbooklist.slice(0, 10).map((data) => (
+                            <BookModal
+                              key={data.id}
+                              image={data.image}
+                              booktitle={data.title}
+                              author={data.author}
+                              description={data.description}
+                              id={data.id}
+                              isbn={data.isbn}
+                              link={data.link}
+                              pubdate={data.pubdate}
+                              publisher={data.publisher}
+                              bookshelflist={bookshelflist}
+                              likelist={likelist}
+                              cartlist={cartlist}
+                              bookshelfcheck={bookshelfcheck}
+                              likecheck={likecheck}
+                              cartcheck={cartcheck}
+                            />
+                          ))}{" "}
+                        </>
+                      )}
+                    </div>
+                    <Scroll
+                      direction="right"
+                      scrollParent="scrollingDiv-recent"
+                    />
                   </div>
                 </p>
+              </div>
 
-                   
-                </div>
-
-                <div
+              <div
                 style={{
                   marginTop: "5%",
                   backgroundColor: "rgba(255,255,255, 0.8)",
@@ -406,178 +417,173 @@ const Home = () => {
                     paddingTop: "40px",
                     paddingBottom: "30px",
                   }}
+                >
+                  <div
+                    style={{ display: "flex", justifyContent: "space-between" }}
                   >
-                  <div style={{ display: "flex", justifyContent:'space-between' }}>
-                    {
-                      authData?.nickname.length > 5?
-                        <>  
+                    {authData?.nickname.length > 5 ? (
+                      <>
                         <h3 style={{ color: "#000000" }}>
-                          {authData?.nickname || "undefined"}님의<br/>
+                          {authData?.nickname || "undefined"}님의
+                          <br />
                           독서 취향
                         </h3>
                         <div>
                           <Statshow data={authData} />
                         </div>
-                        </>
-                      :
-                        <>
+                      </>
+                    ) : (
+                      <>
                         <h3 style={{ color: "#000000" }}>
                           {authData?.nickname || "undefined"}님의 독서 취향
                         </h3>
                         <div>
                           <Statshow data={authData} />
                         </div>
-                        </>
-                    }
+                      </>
+                    )}
                   </div>
 
                   <div>
-                    {
-                      bookshelflist.length > 0?
+                    {bookshelflist.length > 0 ? (
                       <>
-                      <h4 style={{ color: "#000000" }}>
-                        내가 좋아하는 장르 : {userstat.maxCategory}
-                      </h4>
-                      <h4 style={{ color: "#000000" }}>
-                        내가 좋아하는 작가 : {userstat.maxAuthor}
-                      </h4> 
-                      </> :
-                      <>
-                      <div style={{display:'flex'}}>
-                        <InfoOutlined style={{marginRight:'5px'}}/> 
-                        <p style={{ color: "#000000" }}>
-                        현재 내 서재에 저장된 책이 없습니다. <br/>
-                        독서 취향 서비스는 내 서재에 저장된 책을 바탕으로 <br/> 
-                        나의 독서 성향(좋아하는 작가 및 카테고리)을 알려줍니다.
-                        </p>
-                      </div>
+                        <h4 style={{ color: "#000000" }}>
+                          내가 좋아하는 장르 : {userstat.maxCategory}
+                        </h4>
+                        <h4 style={{ color: "#000000" }}>
+                          내가 좋아하는 작가 : {userstat.maxAuthor}
+                        </h4>
                       </>
-                    }
+                    ) : (
+                      <>
+                        <div style={{ display: "flex" }}>
+                          <InfoOutlined style={{ marginRight: "5px" }} />
+                          <p style={{ color: "#000000" }}>
+                            현재 내 서재에 저장된 책이 없습니다. <br />
+                            독서 취향 서비스는 내 서재에 저장된 책을 바탕으로{" "}
+                            <br />
+                            나의 독서 성향(좋아하는 작가 및 카테고리)을
+                            알려줍니다.
+                          </p>
+                        </div>
+                      </>
+                    )}
                   </div>
                 </div>
               </div>
+            </div>
 
+            <div
+              style={{
+                margin: "auto",
+                paddingTop: "8vh",
+                paddingLeft: "7vw",
+                paddingRight: "7vw",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              {bookshelflist.length > 0 ? (
+                <>
+                  <h3 style={{ textAlign: "center", fontWeight: "bold" }}>
+                    {" "}
+                    {authData?.nickname || "undefined"}님을 위한 추천 도서
+                  </h3>
+                </>
+              ) : (
+                <>
+                  <h3 style={{ textAlign: "center", fontWeight: "bold" }}>
+                    {" "}
+                    주간 베스트셀러
+                  </h3>
+                </>
+              )}
 
-              </div>
-
-
-
-
-              <div
-                style={{
-                  margin:'auto',
-                  paddingTop: "8vh",
-                  paddingLeft: "7vw",
-                  paddingRight: "7vw",
-                  display:'flex',
-                  flexDirection:'column',
-                  justifyContent:'center',
-                  alignItems:'center'
-                }}
-              >
-                   {
-                      bookshelflist.length > 0?
-                      <>
-                        <h3 style={{ textAlign: "center", fontWeight: "bold" }}>
-                          {" "}
-                          {authData?.nickname || "undefined"}님을 위한 추천 도서
-                        </h3>
-                      </> :
-                      <>
-                        <h3 style={{ textAlign: "center", fontWeight: "bold" }}>
-                          {" "}
-                          주간 베스트셀러
-                        </h3>
-                      </>
-                    }
-
-                <div className="productBodyScrollable">
-                  <div
-                    className="products"
-                    style={{ }}
-                  >
-
-                <p>
-                  <div style={{ display: "flex", width:"1314px" }}>
-                      <Scroll direction="left" scrollParent="scrollingDiv-recommend" />
-                  <div
-                      className="scrollingDiv-recommend"
-                      style={{
-                        display: "flex",
-                        overflowX: "auto",
-                        flexWrap:'nowrap',
-                        flexDirection: "row",
-                        justifyContent: "flex-start",
-                      }}
+              <div className="productBodyScrollable">
+                <div className="products" style={{}}>
+                  <p>
+                    <div style={{ display: "flex", width: "1314px" }}>
+                      <Scroll
+                        direction="left"
+                        scrollParent="scrollingDiv-recommend"
+                      />
+                      <div
+                        className="scrollingDiv-recommend"
+                        style={{
+                          display: "flex",
+                          overflowX: "auto",
+                          flexWrap: "nowrap",
+                          flexDirection: "row",
+                          justifyContent: "flex-start",
+                        }}
                       >
-
-                      {     
-                      bookshelflist.length > 0?
-                      <>
-                        {recommendAuthorlist.concat(recommendCategorylist).sort(() => Math.random() - 0.5)?.slice(0, 20)
-                        .map((data) => (
-                          <BookModal
-                          key={data.id}
-                          image={data.image}
-                          booktitle={data.title}
-                          author={data.author}
-                          description={data.description}
-                          id={data.id}
-                          isbn={data.isbn}
-                          link={data.link}
-                          pubdate={data.pubdate}
-                          publisher={data.publisher}
-                          bookshelflist = {bookshelflist}
-                          likelist = {likelist}
-                          cartlist = {cartlist}
-                          bookshelfcheck = {bookshelfcheck}
-                          likecheck = {likecheck}
-                          cartcheck = {cartcheck}
-                          />
-                          ))}
-                      </> :
-                      <>
-                          {recommendAuthorlist?.slice(0, 15)
-                          .map((data) => (
-                            <BookModal
-                            key={data.id}
-                            image={data.image}
-                            booktitle={data.title}
-                            author={data.author}
-                            description={data.description}
-                            id={data.id}
-                            isbn={data.isbn}
-                            link={data.link}
-                            pubdate={data.pubdate}
-                            publisher={data.publisher}
-                            bookshelflist = {bookshelflist}
-                            likelist = {likelist}
-                            cartlist = {cartlist}
-                            bookshelfcheck = {bookshelfcheck}
-                            likecheck = {likecheck}
-                            cartcheck = {cartcheck}
-                            />
+                        {bookshelflist.length > 0 ? (
+                          <>
+                            {recommendAuthorlist
+                              .concat(recommendCategorylist)
+                              .sort(() => Math.random() - 0.5)
+                              ?.slice(0, 20)
+                              .map((data) => (
+                                <BookModal
+                                  key={data.id}
+                                  image={data.image}
+                                  booktitle={data.title}
+                                  author={data.author}
+                                  description={data.description}
+                                  id={data.id}
+                                  isbn={data.isbn}
+                                  link={data.link}
+                                  pubdate={data.pubdate}
+                                  publisher={data.publisher}
+                                  bookshelflist={bookshelflist}
+                                  likelist={likelist}
+                                  cartlist={cartlist}
+                                  bookshelfcheck={bookshelfcheck}
+                                  likecheck={likecheck}
+                                  cartcheck={cartcheck}
+                                />
+                              ))}
+                          </>
+                        ) : (
+                          <>
+                            {recommendAuthorlist?.slice(0, 15).map((data) => (
+                              <BookModal
+                                key={data.id}
+                                image={data.image}
+                                booktitle={data.title}
+                                author={data.author}
+                                description={data.description}
+                                id={data.id}
+                                isbn={data.isbn}
+                                link={data.link}
+                                pubdate={data.pubdate}
+                                publisher={data.publisher}
+                                bookshelflist={bookshelflist}
+                                likelist={likelist}
+                                cartlist={cartlist}
+                                bookshelfcheck={bookshelfcheck}
+                                likecheck={likecheck}
+                                cartcheck={cartcheck}
+                              />
                             ))}
-                      </>
-                    }
-
-                  </div>
-                    <Scroll direction="right" scrollParent="scrollingDiv-recommend" />
-                  </div>
-                </p>
-
-
-                  </div>
-
-
-
- 
+                          </>
+                        )}
+                      </div>
+                      <Scroll
+                        direction="right"
+                        scrollParent="scrollingDiv-recommend"
+                      />
+                    </div>
+                  </p>
                 </div>
               </div>
             </div>
           </div>
-          <Footer />
         </div>
+        <Footer />
+      </div>
     </>
   );
 };

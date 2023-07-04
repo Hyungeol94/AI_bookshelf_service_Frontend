@@ -275,7 +275,7 @@ function Signup() {
             id="email"
             value={Email}
             onChange={(e) => setEmail(e.target.value)}
-            label="아이디(이메일)"
+            label="아이디 (이메일)"
             variant="standard"
             style={{ marginTop: "3em", width: "100%" }}
             inputProps={{ style: { color: "white" } }}
@@ -287,7 +287,7 @@ function Signup() {
             }}
           />
           <Button
-            style={{ width: "77px" }}
+            style={{ width: "90px" }}
             onClick={async (e) => {
               if (!checkReg(Email.trim(), regEmail)) {
                 return alert("이메일 형식이 알맞지 않습니다.");
@@ -317,7 +317,7 @@ function Signup() {
           id="password"
           value={Password}
           onChange={(e) => setPassword(e.target.value)}
-          label="비밀번호"
+          label="비밀번호 (영문, 숫자, 특수문자 합 8~15자리)"
           variant="standard"
           style={{ marginTop: "1em" }}
           inputProps={{
@@ -373,7 +373,7 @@ function Signup() {
           onChange={(e) => {
             if (e.target.value.length <= 12) setPhoneNumber(e.target.value);
           }}
-          label="전화번호 (숫자만)"
+          label="전화번호 (- 없이 숫자만 입력)"
           variant="standard"
           style={{ marginTop: "1em" }}
           inputProps={{ style: { color: "white" } }}

@@ -49,7 +49,7 @@ const GuideModal = (props) => {
     ));
 
     return (
-        <Modal isOpen={modalIsOpen} toggle={closeModal} size="xl" centered
+        <Modal isOpen={modalIsOpen} toggle={closeModal} size="lg" centered
         style={{"margin-top":"-250px"}}>
             <ModalHeader toggle={closeModal}><b style={{"font-size": "26px", borderRadius: "56px"}}>책 목록 편집 가이드</b></ModalHeader>
             <ModalBody style={{}}>

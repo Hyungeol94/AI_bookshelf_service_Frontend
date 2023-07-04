@@ -39,9 +39,10 @@ const BookTable = (props) => {
         <table className="bookRowTable">        
           <thead>
           <BookTableHeader /> 
-          </thead>           
-          <tbody >          
-            {booksInfo.map((bookInfo) => (            
+          </thead>        
+          <tbody >
+            {(booksInfo.length!==0)?
+            (booksInfo.map((bookInfo) => (            
                 <BookRow key={bookInfo.id} 
                 bookInfo={bookInfo} 
                 setSelectedBookInfo={setSelectedBookInfo}
@@ -51,8 +52,13 @@ const BookTable = (props) => {
                 searchValue = {searchValue}      
                 setSearchValue={setSearchValue}
                 onSearch={onSearch}
-                isDecidedBook = {isDecidedBook}/>
-            ))}
+                isDecidedBook = {isDecidedBook}/>)       
+            )):(
+              <div>
+                <div style={{color: "black"}}>책 목록이 비어있습니다. </div>
+                <div style={{color: "black"}}>검색을 통해 책을 추가해 보세요.</div>
+              </div>
+            )}
           </tbody>
         </table>
     )

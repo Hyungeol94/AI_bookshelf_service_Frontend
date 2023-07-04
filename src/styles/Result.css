@@ -111,6 +111,17 @@
     color: black;
     padding: 10px;
     margin-bottom: 0px;
+    font-size: 30px
+}
+
+.reUpload{
+    color: rgb(82, 95, 127);
+    padding: 10px;
+    margin-bottom: 0px;
+}
+
+.reUpload:hover{
+    cursor: pointer;
 }
 
 .deleteButton{

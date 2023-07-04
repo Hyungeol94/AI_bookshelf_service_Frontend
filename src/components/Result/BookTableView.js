@@ -3,8 +3,10 @@ import { useState } from "react";
 import {Button} from "reactstrap";
 import BookTable from './BookTable'
 import BookshelfImageModal from './BookshelfImageModal';
+import ReUploadButton from './ReUploadButton';
 import "../../styles/Result.css";
 import * as api from "../../services/api";
+
 import {
   // Link, Route, Routes,
   useNavigate,
@@ -70,7 +72,11 @@ const BookTableView = (props) => {
 
     return (
       <div className = "bookTableView" style={{"border-radius":"15px"}}>
-        <h3 className="viewHeader" style={{"font-size":"30px"}}>책 목록</h3>
+        <div style={{display:'flex', justifyContent:'space-between'}}>
+          <h3 className="viewHeader">책 목록</h3>
+          <h4 className="reUpload"><ReUploadButton/></h4>
+        </div>
+        {/* <h3 className="viewHeader">책 목록</h3> */}
         <BookTable
           booksInfo = {booksInfo}
           setSelectedBookInfo = {setSelectedBookInfo}

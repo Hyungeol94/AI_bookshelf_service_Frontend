@@ -132,10 +132,10 @@
   border-radius: 15px;
   &.image1{
     animation: circle 20s linear infinite; 
-    max-width: 700px;
-    max-height: 700px;
-    right: 23%;
-    bottom: 23%;
+    max-width: 30%;
+    max-height: 30%;
+    right: 15%;
+    bottom: 13%;
     opacity: 0.8;
   @keyframes circle{
     0%{
@@ -153,11 +153,12 @@
   }
   &.image2{
     animation: circle 20s linear infinite; 
-    max-width: 700px;
-    max-height: 700px;
+    max-width: 35%;
+    max-height: 35%;
     right: 20%;
     bottom: 30%;
     opacity: 0.8;
+    z-index: 999;
   }
 }
 

@@ -2,6 +2,8 @@ import axios from "axios";
 import cheerio from "cheerio";
 import cors from "cors";
 
+// home에서는 정보가 많이 필요 없어서 30개만 부르는 걸로 호출 -> 크롤링 낭비 최소화
+
 let itemslist = "";
 // const converter = require("xml-js");
 
@@ -30,7 +32,7 @@ export default async (searchvalue) => {
         .then((data) => {
           //애초에 여기로 안들어오는 문제 해결해야됨
           // console.log(JSON.stringify(data.data));
-          console.log(4444, data?.data);
+          // console.log(4444,data?.data);
           const $ = cheerio.load(data?.data);
 
           const category_data = $(
@@ -124,3 +126,4 @@ export default async (searchvalue) => {
   return output(bookdata);
   // console.log(bookdata);
 };
+

@@ -11,9 +11,10 @@ import {
 } from "react-router-dom";
 
 const BookTableView = (props) => {
-    const {booksInfo, setSelectedBookInfo, deleteFromBookList, selectedBookRowInfo, setSelectedBookRowInfo, searchValue, setSearchValue, onSearch, bookInfoAPI, bookshelfImages} = props  
+    const {booksInfo, setSelectedBookInfo, deleteFromBookList, selectedBookRowInfo, setSelectedBookRowInfo, searchValue, setSearchValue, onSearch, bookInfoAPI, bookshelfImages, isDecidedBook, isLoading, data} = props  
     const navigate = useNavigate();
-    let [modalIsOpen, setModalIsOpen] = useState(false)
+    const [modalIsOpen, setModalIsOpen] = useState(false)
+    
     
     const searchBookInfo = async (bookInfo) => {
       console.log('searched')
@@ -27,8 +28,9 @@ const BookTableView = (props) => {
 
     const saveToMyBookShelf = (e) => {
       console.log('clicked')
+      const uniqueBooksInfo = Array.from(new Set(booksInfo));
       const newBooksInfo = []
-      const promises = booksInfo.map((bookInfo) => {
+      const promises = uniqueBooksInfo.map((bookInfo) => {
         if (bookInfo.isbn === undefined) {
           return searchBookInfo(bookInfo);
         } else {
@@ -49,17 +51,14 @@ const BookTableView = (props) => {
       });      
     }
 
- 
     const openBookshelfImage = (e) => {
       setModalIsOpen(modalIsOpen => ! modalIsOpen);
-      console.log(modalIsOpen)
-      console.log(bookshelfImages)
+      // console.log(modalIsOpen)      
     }
 
-
     return (
-      <div className = "bookTableView">
-        <h3 className="viewHeader">책 목록</h3>
+      <div className = "bookTableView" style={{"border-radius":"15px"}}>
+        <h3 className="viewHeader" style={{"font-size":"30px"}}>책 목록</h3>
         <BookTable
           booksInfo = {booksInfo}
           setSelectedBookInfo = {setSelectedBookInfo}
@@ -68,16 +67,21 @@ const BookTableView = (props) => {
           deleteFromBookList = {deleteFromBookList}
           searchValue = {searchValue}
           setSearchValue = {setSearchValue}
-          onSearch = {onSearch}          
+          onSearch = {onSearch}      
+          isDecidedBook = {isDecidedBook}
+          isLoading = {isLoading}
+          data = {data}
+              
         />
-        <div style={{display: 'flex'}}>
-          <Button onClick = {openBookshelfImage} style={{width: '70%', display: 'block'}}>책장 이미지 보기</Button>    
+
+        <div style={{display: 'flex', marginTop: '10px'}}>
+          <Button onClick = {openBookshelfImage} style={{width: '70%', display: 'block'}}>책장 이미지 확인 </Button>    
             <BookshelfImageModal
               bookshelfImages = {bookshelfImages}
-              modalIsOpen = {modalIsOpen}
+              modalIsOpen = {modalIsOpen}              
               openBookshelfImage = {openBookshelfImage}
               />
-          <Button onClick = {saveToMyBookShelf} style={{width: '70%', display: 'block'}}>내 서재에 추가</Button>                      
+          <Button onClick = {saveToMyBookShelf} style={{width: '70%', display: 'block'}}>내 서재로 저장</Button>                      
         </div>
       </div>
     );

@@ -74,11 +74,15 @@ export default function IndexNavbar() {
       .scrollIntoView({ behavior: "smooth" });
   };
   return (
-    <Navbar className={"fixed-top " + color} color-on-scroll="100" expand="lg">
+    <Navbar className={"fixed-top " + color} color-on-scroll="100" expand="lg" >
       <Container>
-        <div className="navbar-translate">
-          <NavbarBrand to="/" tag={Link} id="navbar-brand">
-            <span>Book is On&On </span>| Home
+        <div className="navbar-translate" >
+          <NavbarBrand
+          to="/"
+          tag={Link}
+          id="navbar-brand"
+          className="custom-navbar-brand">
+          <span>Book is On&On </span>| Home
           </NavbarBrand>
           <UncontrolledTooltip placement="bottom" target="navbar-brand">
             Home

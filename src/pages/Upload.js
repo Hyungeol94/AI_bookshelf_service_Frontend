@@ -4,10 +4,9 @@ import {
   // Link, Route, Routes,
   useNavigate,
 } from "react-router-dom";
-import { Button, Input, UncontrolledTooltip } from "reactstrap";
-import axios from "axios";
+import { Modal, Button, Input, UncontrolledTooltip } from "reactstrap";
+import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';  
 
-//import https from 'https';
 
 function Card({ children }) {
   return <div className="card">{children}</div>;
@@ -17,6 +16,7 @@ const Upload = () => {
   const [imgFile, setImgFile] = useState([]); // 이미지 배열
   const [imgFileView, setImgFileView] = useState([]);
   const upload = useRef();
+  const [isLoading, setIsLoading] = useState(false)
 
   const boximgUpload = () => {
     setImgFile((prev) => [...prev, upload.current.files[0]]);
@@ -26,6 +26,16 @@ const Upload = () => {
       URL.createObjectURL(upload.current.files[0]),
     ]);
   };
+
+  let [modalIsOpen, setModalIsOpen] = useState(false); // 모달 변수
+
+    const openModal = () => {
+        setModalIsOpen(true);
+      };
+    
+    const closeModal = () => {
+    setModalIsOpen(false);
+      };
 
   const navigate = useNavigate();
   const handleUpload = () => {
@@ -57,8 +67,10 @@ const Upload = () => {
           console.error("Error:", error);
         });
 
-      Promise.all(conversionPromises).then(
-        fetch("https://f61d-34-87-35-162.ngrok-free.app/img2title/", {
+      Promise.all(conversionPromises)
+      .then(setIsLoading(true))
+      .then(  
+        fetch("https://8249-35-229-225-123.ngrok-free.app/img2title/", {
           method: "POST",
           headers: {
             "ngrok-skip-browswer-warning": "69420",
@@ -75,7 +87,7 @@ const Upload = () => {
                 console.log("uploaded object:", result);
                 const jsonresult = encodeURIComponent(JSON.stringify(result));
                 navigate(
-                  `/result?jsonResult=${encodeURIComponent(jsonresult)}`,
+                  `/result?jsonResult=${jsonresult}`,
                   { replace: true }
                 );
               });
@@ -107,118 +119,99 @@ const Upload = () => {
   return (
     <>
       <div className="invisible" />
-      <h1 className="head">책장 사진을 업로드해 주세요</h1>
-      <h3 className="explain" style={{ marginBottom: "60px" }}>
+      {isLoading? (
+        <h1 className="head">감지중..</h1>  
+    ): (<h1 className="head">책장 사진을 업로드해 주세요</h1> )}
+      {isLoading?(
+        <h3 className="explain">
+        인공지능이 책장에서 책을 감지하고 있어요.
+        <br />
+        책 한 권당 약 2초의 시간이 소요돼요.
+      </h3>
+      )
+      : (
+      <h3 className="explain">
         정면에서 책장 사진을 찍어 업로드해 주세요.
         <br />
         인공지능이 책을 감지해 자동으로 내 서재를 만들어 줄 거에요.
-      </h3>
+      </h3>)}
+  <div className="guide-photos-container">    
+    <Button className="guide-btn" onClick={openModal}>
+      책장 사진 가이드 보기 
+    </Button>
+    <Modal
+      size="lg"
+      isOpen={modalIsOpen}
+      onRequestClose={closeModal}
+      className="modal-container">
+      <img 
+        src={require("assets/img/upload-guidelines.png")} 
+        onClick={closeModal}
+        className="guide-photo"/>
+    </Modal>
+  </div>
+
 
       <div className="upload-box">
         {imgFileView.length === 0 ? (
           <>
-            <h3 style={{ marginTop: "20px", color: "black" }}>
+            <h3 className="upload-description">
               책장 이미지를 업로드해 주세요.
             </h3>
-            <label for="file">
+              <div className="upload-btn-group">
               <Button
-                style={{
-                  position: "relative",
-                  overflow: "hidden",
-                  marginRight: "20px",
-                }}
-              >
+                className="upload-btn">
                 <input
                   type="file"
                   ref={upload}
                   multiple
                   onChange={boximgUpload}
                   accept="image/*"
-                  style={{
-                    opacity: 0,
-                    position: "absolute",
-                    top: 0,
-                    left: 0,
-                    width: "100%",
-                    height: "100%",
-                    cursor: "pointer",
-                  }}
-                />
+                  className="upload-btn-inside"/>
                 사진 선택
               </Button>
-            </label>
+              <h4
+                className="upload-btn-description">
+                {" "}
+                현재 업로드된 이미지 ({imgFileView.length})개{" "}
+              </h4>
+            </div>
           </>
         ) : (
           <div>
-            <div style={{ display: "flex" }}>
+            <div className="img-view">
               {imgFileView?.map((img, idx) => (
                 <Card key={idx}>
-                  <div style={{ position: "relative" }}>
+                  <div className="inside-card">
                     <img
-                      style={{ width: "192px", height: "192px" }}
+                      className="card-img"
                       src={img}
                       alt="img"
                     />
                     <button
-                      className=""
-                      style={{
-                        fontSize: "15px",
-                        position: "absolute",
-                        top: 2,
-                        right: 2,
-                        background: "gray",
-                        color: "white",
-                        borderRadius: "50%",
-                        width: "24px",
-                        height: "24px",
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
-                        border: "none",
-                        cursor: "pointer",
-                      }}
-                      onClick={() => removeImage(idx)}
-                    >
-                      <strong>X</strong>
+                      className="delete-circle"
+                      onClick={() => removeImage(idx)}>
+                      <DeleteOutlinedIcon className="delete-icon"/>
                     </button>
                   </div>
                 </Card>
               ))}
             </div>
 
-            <div style={{ display: "flex", alignItems: "center" }}>
+            <div className="upload-btn-group">
               <Button
-                style={{
-                  position: "relative",
-                  overflow: "hidden",
-                  marginRight: "20px",
-                }}
-              >
+                className="upload-btn">
                 <input
                   type="file"
                   ref={upload}
                   multiple
                   onChange={boximgUpload}
                   accept="image/*"
-                  style={{
-                    opacity: 0,
-                    position: "absolute",
-                    top: 0,
-                    left: 0,
-                    width: "100%",
-                    height: "100%",
-                    cursor: "pointer",
-                  }}
-                />
+                  className="upload-btn-inside"/>
                 사진 선택
               </Button>
               <h4
-                style={{
-                  marginTop: "13px",
-                  alignItems: "center",
-                  color: "black",
-                }}
-              >
+                className="upload-btn-description">
                 {" "}
                 현재 업로드된 이미지 ({imgFileView.length})개{" "}
               </h4>
@@ -226,7 +219,7 @@ const Upload = () => {
           </div>
         )}
       </div>
-      <div style={{ float: "right", marginRight: "10%" }}>
+      <div className="cont-del-btn-group">
         <Button
           onClick={() => window.history.back()}
           className="continueButton"

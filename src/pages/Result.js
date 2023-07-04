@@ -3,11 +3,19 @@ import { useState } from "react";
 import { useEffect } from "react";
 // import { Link } from "react-router-dom";
 import sample from "../assets/sample_book.json";
-import bookinfo_api from "../services/bookinfo_api";
+import bookinfo_api from "../services/bookinfo_api_result";
 import "../styles/Result.css";
 import BookSearchView from "../components/Result/BookSearchView.js"
 import BookTableView from "../components/Result/BookTableView.js"
 import BookDetailView from "../components/Result/BookDetailView.js"
+import GuideModal from "../components/Result/GuideModal.js"
+
+
+import { Button, Modal, ModalHeader, 
+          ModalBody, Carousel, CarouselItem, 
+          CarouselControl, CarouselIndicators} from "reactstrap";
+import LiveHelpIcon from '@mui/icons-material/LiveHelp';
+
 
 function Card({ children }) {
   return <div className="resultCard">{children}</div>;
@@ -58,7 +66,6 @@ function getBooksInfo (jsonResult) {
         bookInfo.id = key;
         bookInfo.title = titleData[key];
         booksInfo.push(bookInfo);
-       
       });      
 
       return booksInfo;
@@ -83,6 +90,8 @@ const Result = () => {
   const [searchValue, setSearchValue] = useState(bookList[0]?.title);
   const [isLoading, setIsLoading] = useState(false);
   const [pageSize, setPageSize] = useState(10);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+
 
   const onSearch = async () => {
     setIsLoading(true);
@@ -96,6 +105,12 @@ const Result = () => {
       setData(null);
     }
     setIsLoading(false);
+
+    if (isDecidedBook(selectedBookRowInfo) == false){
+      if (typeof fetchedData !== 'undefined' && fetchedData && fetchedData.items.length!=0){
+        setSelectedBookInfo({...fetchedData.items[0]})
+      }
+    }
   };
 
   useEffect(() => {
@@ -121,6 +136,11 @@ const Result = () => {
   };
 
 
+  const isDecidedBook = (bookInfo) => {
+    return (bookInfo?.isbn !== undefined)
+  }
+
+
   return (
     <div style={{ display: "flex", marginTop: "70px", justifyContent: "center" }}>
       <Card>
@@ -135,6 +155,9 @@ const Result = () => {
           onSearch={onSearch}
           bookInfoAPI={bookinfo_api}
           bookshelfImages = {bookImageList}
+          isDecidedBook = {isDecidedBook}
+          isLoading = {isLoading}
+          data = {data}
         />
         ;
       </Card>
@@ -145,6 +168,10 @@ const Result = () => {
           setBookList = {setBookList}
           addToBookList = {addToBookList}          
           selectedBookRowInfo = {selectedBookRowInfo} 
+          isDecidedBook = {isDecidedBook}
+          isLoading = {isLoading}
+          data = {data}
+          setSelectedBookInfo = {setSelectedBookInfo}
           // 클릭되어 있는 텍스트 정보를 제공하기          
         />
       </Card>
@@ -160,10 +187,17 @@ const Result = () => {
           data={data}
           setData={setData}
           selectedBookInfo = {selectedBookInfo}
-          // selectedBookRowInfo = {selectedBookRowInfo}
+          selectedBookRowInfo = {selectedBookRowInfo}
           searchValue = {searchValue}    
         />
       </Card>
+      <Button className="guide-Button" onClick={() => setModalIsOpen(true)}>
+      <LiveHelpIcon style={{ fontSize: "400%" }} />
+      </Button>
+      <GuideModal
+      modalIsOpen = {modalIsOpen}
+      setModalIsOpen = {setModalIsOpen}
+      />
     </div>
   );
 }

@@ -99,16 +99,16 @@ export default () => {
       <Container>
         <div className="navbar-translate">
           {isAuth && (
-            <NavbarBrand to="/main" tag={Link} id="navbar-brand">
-              <span>Book is On&On </span>| Home
+            <NavbarBrand to="/main" tag={Link} id="navbar-brand" style={{fontSize:"22px"}}>
+              <span><img src={require("assets/img/logo_sm.png")} style={{marginBottom: "10px", marginRight:"-px"}}/> Book is On&On </span>| Home
             </NavbarBrand>
           )}
           {!isAuth && (
-            <NavbarBrand to="/" tag={Link} id="navbar-brand">
-              <span>Book is On&On </span>| Home
+            <NavbarBrand to="/" tag={Link} id="navbar-brand"style={{fontSize:"22px"}}>
+              <span><img src={require("assets/img/logo_sm.png")} style={{marginBottom: "10px", marginRight:"-5px"}}/> Book is On&On </span>| Home
             </NavbarBrand>
           )}
-          <UncontrolledTooltip placement="bottom" target="navbar-brand">
+          <UncontrolledTooltip placement="bottom" target="navbar-brand"style={{fontSize:"22px"}}>
             Home
           </UncontrolledTooltip>
           <button

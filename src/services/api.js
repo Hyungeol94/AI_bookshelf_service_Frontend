@@ -34,5 +34,8 @@ export const bookshelflist = () => axios.post("/user/bookshelflist");
 // USER_PROFILE
 export const profilechange = (data) => axios.post("/user/profilechange", data);
 
+// USER_STAT 아직 미완
+export const countBookshelfInfo = () => axios.post("/user/countBookshelfInfo");
+
 // export const logout = () => axios.delete("/api/user/logout");
 // export const signup = (data) => axios.post("/api/user/signup", data);

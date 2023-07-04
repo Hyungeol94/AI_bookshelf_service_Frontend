@@ -2,10 +2,9 @@ import React, { useState } from "react";
 import "../styles/GetList.css";
 import { Modal } from "reactstrap";
 import AddBtns from "./AddBtns";
-import BookModal from "./BookModal"
+import BookModal from "./BookModal";
 // import Modal from '@mui/material/Modal';
 // import BookDetail from "./GetBookDetail";
-
 
 export default function getlist(books_info, bookId) {
   let user_book = [];

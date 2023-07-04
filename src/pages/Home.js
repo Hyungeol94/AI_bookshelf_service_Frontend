@@ -17,6 +17,7 @@ import Footer from "components/Footer/Footer.js";
 // rest-api
 import bookinfo_api from "../services/bookinfo_api";
 import * as api from "../services/api";
+import "../styles/GetList_home.css";
 
 const Home = () => {
   const { authData } = useSelector((state) => state.userReducer);

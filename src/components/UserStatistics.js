@@ -4,15 +4,12 @@ import {
   Button,
   Modal,
   ModalHeader,
-  ModalBody,
   Tooltip as TooltipReactStrap,
 } from "reactstrap";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
-import { Pie } from "react-chartjs-2";
 import * as api from "../services/api";
 import PieChart from "../components/PieChart";
-import { useNavigate, Link } from "react-router-dom";
-import { IconButton } from "@mui/material";
+import { Link } from "react-router-dom";
 import { InfoOutlined } from "@mui/icons-material";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
@@ -21,13 +18,9 @@ const StatShow = (props) => {
   const [tooltipOpen, setTooltipOpen] = useState(false);
   const toggle = () => setTooltipOpen(!tooltipOpen);
   const { authData } = useSelector((state) => state.userReducer);
-  const [likelist, setlikeList] = useState([]);
   const [bookshelflist, setBookshelflist] = useState([]);
 
   const [userstat, setUserstat] = useState([]); // user 통계 정보 받는 곳
-  const [recommendlist, setRecommendlist] = useState([]); // 추천 책 받는 로직
-
-  const navigator = useNavigate();
 
   const getbookshelflist = async () => {
     // console.log('북리스트다');
@@ -36,27 +29,11 @@ const StatShow = (props) => {
       .then((data) => {
         const booklist = data.data.info.list;
         setBookshelflist(booklist);
-        // console.log(booklist);
       })
       .catch((e) => console.log(e));
-  };
-
-  // console.log(authData);
-  const getlikebooklist = async () => {
-    // console.log('좋아요리스트다');
-    await api
-      .likelist()
-      .then((data) => {
-        const booklist = data.data.info.list;
-        setlikeList(booklist);
-        // console.log(booklist);
-      })
-      .catch((e) => console.log(e));
-    // console.log("data", data[0].elements[0].elements[0].cdata);
   };
 
   const getuserstat = async () => {
-    console.log("userstat_home");
     await api
       .countBookshelfInfo()
       .then((data) => {
@@ -68,10 +45,7 @@ const StatShow = (props) => {
   };
 
   useEffect(() => {
-    // console.log(222);
-    getlikebooklist();
     getbookshelflist();
-
     getuserstat();
   }, []);
 
@@ -94,7 +68,6 @@ const StatShow = (props) => {
           className="btn-round"
           color="primary"
           size="sm"
-          // onClick={openModal}
           onClick={openModal}
         >
           {" "}

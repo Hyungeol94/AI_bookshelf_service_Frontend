@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from "react";
-// import { useSelector } from "react-redux";
+// react
 import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+// rest-ape
 import { getAuthToken } from "../services/api";
+// actions
 import {
   userAuthorization,
   userAuthorizationError,
@@ -14,10 +16,10 @@ export default function auth(
   user //유저가 접근할 수 있는가?
 ) {
   function AuthenticationCheck() {
+    const { isAuth } = useSelector((state) => state.userReducer);
+    const [ready, setReady] = useState(false);
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const [ready, setReady] = useState(false);
-    const { isAuth } = useSelector((state) => state.userReducer);
 
     useEffect(() => {
       getToken();
@@ -51,6 +53,7 @@ export default function auth(
           //로그아웃 상태
           //로그인 안 한 사람은 못들어가는 페이지이면
           if (user) {
+            alert("로그인 해주세요.");
             return navigate("/login");
           }
         }

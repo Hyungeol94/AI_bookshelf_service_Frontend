@@ -2,12 +2,10 @@
 // REACT
 import React, { useEffect, useState } from "react";
 import { Link } from "react-scroll";
-
 // COMPONENT
 import { KeyboardArrowUp } from "@mui/icons-material";
 import { Container, Button } from "reactstrap";
 import Footer from "components/Footer/Footer.js";
-
 // STYLE
 import "../styles/First.css";
 

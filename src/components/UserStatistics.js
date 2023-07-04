@@ -68,7 +68,7 @@ const StatShow = (props) => {
   };
 
   useEffect(() => {
-    console.log(222);
+    // console.log(222);
     getlikebooklist();
     getbookshelflist();
 

@@ -2,14 +2,16 @@
 const { createProxyMiddleware } = require("http-proxy-middleware");
 
 module.exports = (app) => {
-  const SERVER = process.env.REACT_APP_DEV_ENV || "http://49.50.162.189:4000";
-  const local = 'http://localhost:4000/'
+  const LOCAL_SERVER_ENV = "http://localhost:4000"; // 백 앤드 개발환경
+
+  const SERVER = LOCAL_SERVER_ENV || process.env.REACT_APP_SERVER_ENV;
+
   console.log("백엔드서버:", SERVER);
 
   app.use(
     "/v1",
     createProxyMiddleware({
-      target: "https://openapi.naver.com",
+      target: process.env.REACT_APP_NAVER_BOOK_API,
       changeOrigin: true,
     })
   );
@@ -30,7 +32,7 @@ module.exports = (app) => {
   app.use(
     "/book",
     createProxyMiddleware({
-      target: "https://search.shopping.naver.com",
+      target: process.env.REACT_APP_NAVER_BOOK_SHOOPING,
       changeOrigin: true,
     })
   );

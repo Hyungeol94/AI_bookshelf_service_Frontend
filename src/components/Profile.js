@@ -79,7 +79,7 @@ const Userprofile = (props) => {
             </h2>
           </div>
           <div style={{ display: "block", alignSelf: "center" }}>
-            <Link to="/EditProfile">
+            <Link to="/editprofile">
               <Button style={{ width: "200px", display: "block" }}>
                 내 정보 수정하기
               </Button>

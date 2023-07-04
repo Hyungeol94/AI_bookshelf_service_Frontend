@@ -1,12 +1,14 @@
+// REACT
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { useHistory } from "react-router-dom";
+import axios from "axios";
 
 const EditProfileForm = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+  // useState
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
   const history = useHistory();
 
   useEffect(() => {
@@ -38,7 +40,7 @@ const EditProfileForm = () => {
     e.preventDefault();
 
     // 회원 정보 업데이트 요청
-    axios.put("/api/user/profile", { name, email }).then((response) => {
+    axios.put("/api/user/profile", { name, email }).then(() => {
       // 업데이트 성공 시 처리
       history.push("/profile"); // 프로필 페이지로 리다이렉션
     });

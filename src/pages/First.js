@@ -8,8 +8,7 @@ import IndexNavbar from "components/Navbars/IndexNavbar.js";
 import Footer from "components/Footer/Footer.js";
 import "../styles/First.css";
 
-import {KeyboardArrowUp} from '@mui/icons-material';
-
+import { KeyboardArrowUp } from "@mui/icons-material";
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default () => {
@@ -34,7 +33,6 @@ export default () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-  
 
   const handleClick = () => {
     scroller.scrollTo("section2", {
@@ -44,7 +42,7 @@ export default () => {
     });
   };
 
-  return(
+  return (
     <div className="wrapper" id="section0">
       <div className="page-header header-filter">
         <div className="squares square1" />
@@ -54,19 +52,27 @@ export default () => {
         <div className="squares square5" />
         <div className="squares square6" />
         <div className="squares square7" />
-         
+
         <Container>
           <div className="content-center brand">
-          {/* <img src={require("assets/img/BookLogo.png")} style={{height:"200px", marginBottom: "22px"}}/> */}
-          <h1 className="h1-seo">
-            <img src={require("assets/img/BookLogo.png")} style={{height:"80px", marginBottom: "42px", marginRight:"-5px"}}/>
-            Book is On & On</h1>
+            {/* <img src={require("assets/img/BookLogo.png")} style={{height:"200px", marginBottom: "22px"}}/> */}
+            <h1 className="h1-seo">
+              <img
+                src={require("assets/img/BookLogo.png")}
+                style={{
+                  height: "80px",
+                  marginBottom: "42px",
+                  marginRight: "-5px",
+                }}
+              />
+              Book is On & On
+            </h1>
             <h2 className="d-none d-sm-block">
               인공지능으로 만드는 나만의 디지털 서재
             </h2>
             <Link to="section1" smooth={true} duration={1000}>
               <Button color="info" size="lg">
-              <strong> 알아보기 </strong>
+                <strong> 알아보기 </strong>
               </Button>
             </Link>
           </div>
@@ -79,24 +85,38 @@ export default () => {
             <div className="squares square5" />
             {/* <div className="squares square7" /> */}
             <div style={{ height: "100vh", "margin-top": "10vh" }}>
-            <h1><strong> 
-                <img src={require("assets/img/BookLogo.png")} 
-                    style={{height:"40px", marginBottom: "16px", marginRight:"-2px"}}/>
-                  Book is On & On </strong></h1>
+              <h1>
+                <strong>
+                  <img
+                    src={require("assets/img/BookLogo.png")}
+                    style={{
+                      height: "40px",
+                      marginBottom: "16px",
+                      marginRight: "-2px",
+                    }}
+                  />
+                  Book is On & On{" "}
+                </strong>
+              </h1>
               <div className="content-center brand">
-                <h2 className="h1-seo"><strong> 오프라인 서재의 온라인화 </strong></h2>
-                <img src={require("assets/img/mybookshelf.jpg")} className="floatimages image2" style={{ border: "2px solid white" }} />
+                <h2 className="h1-seo">
+                  <strong> 오프라인 서재의 온라인화 </strong>
+                </h2>
+                <img
+                  src={require("assets/img/mybookshelf.jpg")}
+                  className="floatimages image2"
+                  style={{ border: "2px solid white" }}
+                />
                 <h3 className="d-none d-sm-block">
-                오프라인 서재 사진을 온라인에 등록하고 관리할 수 있어요. 
+                  오프라인 서재 사진을 온라인에 등록하고 관리할 수 있어요.
                 </h3>
 
                 <Link to="section2" smooth={true} duration={1000}>
                   <Button color="info" size="lg">
-                  <strong> 다음 </strong>
+                    <strong> 다음 </strong>
                   </Button>
                 </Link>
               </div>
-              
             </div>
           </Container>
         </div>
@@ -104,15 +124,30 @@ export default () => {
           <div className="squares square7" />
           <Container>
             <div style={{ height: "100vh", "margin-top": "10vh" }}>
-              <h1><strong> 
-                <img src={require("assets/img/BookLogo.png")} 
-                    style={{height:"40px", marginBottom: "16px", marginRight:"-2px"}}/>
-                  Book is On & On </strong></h1>
+              <h1>
+                <strong>
+                  <img
+                    src={require("assets/img/BookLogo.png")}
+                    style={{
+                      height: "40px",
+                      marginBottom: "16px",
+                      marginRight: "-2px",
+                    }}
+                  />
+                  Book is On & On{" "}
+                </strong>
+              </h1>
               <div className="content-center brand">
-                <h1 className="h1-seo"><strong> 도서 관리 기능 </strong></h1>
-                <img src={require("assets/img/First1.png")} className="floatimages image2" style={{ border: "2px solid white" }} />
+                <h1 className="h1-seo">
+                  <strong> 도서 관리 기능 </strong>
+                </h1>
+                <img
+                  src={require("assets/img/First1.png")}
+                  className="floatimages image2"
+                  style={{ border: "2px solid white" }}
+                />
                 <h3 className="d-none d-sm-block">
-                등록된 온라인 서재로 나의 책 취향을 확인할 수 있어요.
+                  등록된 온라인 서재로 나의 책 취향을 확인할 수 있어요.
                 </h3>
                 <Link to="section3" smooth={true} duration={1000}>
                   <Button color="info" size="lg">
@@ -128,15 +163,30 @@ export default () => {
           <div className="squares square7" />
           <Container>
             <div style={{ height: "100vh", "margin-top": "10vh" }}>
-              <h1><strong> 
-              <img src={require("assets/img/BookLogo.png")} 
-                    style={{height:"40px", marginBottom: "16px", marginRight:"-2px"}}/>
-                    Book is On & On </strong></h1>
+              <h1>
+                <strong>
+                  <img
+                    src={require("assets/img/BookLogo.png")}
+                    style={{
+                      height: "40px",
+                      marginBottom: "16px",
+                      marginRight: "-2px",
+                    }}
+                  />
+                  Book is On & On{" "}
+                </strong>
+              </h1>
               <div className="content-center brand">
-                <h1 className="h1-seo"><strong>  도서 추천 기능  </strong></h1>
-                <img src={require("assets/img/bookmodal.jpg")} className="floatimages image2" style={{ border: "2px solid white" }} />
+                <h1 className="h1-seo">
+                  <strong> 도서 추천 기능 </strong>
+                </h1>
+                <img
+                  src={require("assets/img/bookmodal.jpg")}
+                  className="floatimages image2"
+                  style={{ border: "2px solid white" }}
+                />
                 <h3 className="d-none d-sm-block">
-                나의 책들을 바탕으로 새로운 책들을 추천해줘요.
+                  나의 책들을 바탕으로 새로운 책들을 추천해줘요.
                 </h3>
                 <Button color="info" size="lg" href="/login">
                   <strong> 시작하기 </strong>
@@ -146,39 +196,31 @@ export default () => {
           </Container>
 
           {showTopBtn && (
-            <Link
-              to="section0"
-              smooth={true}
-              duration={800}
-              className="topBtn"
-            >
+            <Link to="section0" smooth={true} duration={800} className="topBtn">
               <Button
                 color="info"
                 size="sm"
                 style={{
-                  "font-size": "26px",
-                  position: "sticky",
+                  fontSize: "26px",
                   position: "fixed",
                   bottom: "20px",
                   display: "inline-block",
-                  "z-index": 10,
+                  zIndex: 10,
                   right: "20px",
-                  "max-width": "200px",
-                  "max-height": "60px",
+                  maxWidth: "200px",
+                  maxHeight: "60px",
                 }}
               >
-                <KeyboardArrowUp/>
+                <KeyboardArrowUp />
               </Button>
             </Link>
           )}
-
         </div>
         <Footer />
       </div>
     </div>
     // 이미지 애니메이션 설정은 assets/scss/blk-design-system-react/custom에 있음!
-  )
-  
+  );
 };
 
 /*!

@@ -1,8 +1,6 @@
 import axios from "axios";
 
-/* user */
-// export const getAuthToken = () =>
-//   axios.get(SERVER_ADDRESS + "/api/user/authtoken");
+// USER_AUTH
 export const signin = (data) => axios.post("/auth/signin", data);
 export const signup = (data) => axios.post("/auth/signup", data);
 export const getAuthToken = () => axios.get("/auth/authtoken");
@@ -34,8 +32,5 @@ export const bookshelflist = () => axios.post("/user/bookshelflist");
 // USER_PROFILE
 export const profilechange = (data) => axios.post("/user/profilechange", data);
 
-// USER_STAT 아직 미완
+// USER_STAT
 export const countBookshelfInfo = () => axios.post("/user/countBookshelfInfo");
-
-// export const logout = () => axios.delete("/api/user/logout");
-// export const signup = (data) => axios.post("/api/user/signup", data);

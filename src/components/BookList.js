@@ -40,7 +40,6 @@ const styleImage = {
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default (props) => {
-  // console.log(props?.likelist.includes(props?.isbn));
   const [open, setOpen] = useState(false);
   const [openImage, setOpenImage] = useState(false);
   const [like, setLike] = useState(
@@ -52,10 +51,12 @@ export default (props) => {
   const [bookshelf, setBookshelf] = useState(
     props?.bookshelflist.includes(props?.isbn) || false
   );
-  const handleClose = () => setOpen(false);
-  const handleOpen = () => setOpen(true);
+
+  // HANDLING
   const handleCloseImage = () => setOpenImage(false);
   const handleOpenImage = () => setOpenImage(true);
+  const handleClose = () => setOpen(false);
+  const handleOpen = () => setOpen(true);
 
   const request = {
     title: props?.title,
@@ -85,14 +86,14 @@ export default (props) => {
   const handleCart = async () => {
     if (cart) {
       // eslint-disable-next-line no-restricted-globals
-      var delete_cart = confirm("장바구니에서 삭제하시겠습니까?");
+      let delete_cart = confirm("장바구니에서 삭제하시겠습니까?");
       if (delete_cart === true) {
         setCart(false);
         await api.deletecart(request);
       }
     } else {
       // eslint-disable-next-line no-restricted-globals
-      var add_cart = confirm("장바구니에 추가하겠습니까?");
+      let add_cart = confirm("장바구니에 추가하겠습니까?");
       if (add_cart === true) {
         setCart(true);
         await api.addcart(request);
@@ -103,14 +104,14 @@ export default (props) => {
   const handleBookshelf = async () => {
     if (bookshelf) {
       // eslint-disable-next-line no-restricted-globals
-      var delete_bookshelf = confirm("내 서제에서 삭제하시겠습니까?");
+      let delete_bookshelf = confirm("내 서제에서 삭제하시겠습니까?");
       if (delete_bookshelf === true) {
         setBookshelf(false);
         await api.deletebookshelf(request);
       }
     } else {
       // eslint-disable-next-line no-restricted-globals
-      var add_bookshelf = confirm("내 서재에 추가하시겠습니까?");
+      let add_bookshelf = confirm("내 서재에 추가하시겠습니까?");
       if (add_bookshelf === true) {
         setBookshelf(true);
         await api.addbookshelf(request);
@@ -298,7 +299,9 @@ export default (props) => {
               </div>
               <div>
                 <div>{props?.category}</div>
-                <div><p>쪽: {props?.page}p</p></div>
+                <div>
+                  <p>쪽: {props?.page}p</p>
+                </div>
                 <div>무게: {props?.weight}g</div>
               </div>
               <Link to={props?.link}>

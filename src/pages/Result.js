@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 // import { Link } from "react-router-dom";
 // import sample from "../assets/sample_book.json";
-import bookinfo_api from "../services/bookinfo_api_result";
+import bookinfo_api from "../services/bookinfo_api";
 import "../styles/Result.css";
 import BookSearchView from "../components/Result/BookSearchView.js";
 import BookTableView from "../components/Result/BookTableView.js";
@@ -95,12 +95,11 @@ const Result = () => {
   const [data, setData] = useState(null);
   const [searchValue, setSearchValue] = useState(bookList[0]?.title);
   const [isLoading, setIsLoading] = useState(false);
-  const [pageSize, setPageSize] = useState(10);
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const onSearch = async () => {
     setIsLoading(true);
-    const fetchedData = await bookinfo_api(searchValue, pageSize);
+    const fetchedData = await bookinfo_api(searchValue, 15);
     if (typeof fetchedData !== "undefined" && fetchedData) {
       console.log(
         "search and setting data complete and here is the fetched data"

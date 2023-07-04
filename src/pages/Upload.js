@@ -82,7 +82,7 @@ const Upload = () => {
               if (response.ok) {
                 // Image successfully uploaded
                 console.log("Image uploaded!");
-                var jsonObject = response.json();
+                let jsonObject = response.json();
                 jsonObject.then((result) => {
                   console.log("uploaded object:", result);
                   const jsonresult = encodeURIComponent(JSON.stringify(result));
@@ -99,12 +99,6 @@ const Upload = () => {
               console.error("Error:", error);
             })
         );
-
-      // Perform the AI logic here
-      // start the AI logic
-      // ...
-
-      //.then(navigate(`/result?jsonResult=${encodeURIComponent(JSON.stringify(jsonResult))}`, { replace: true }));
     }
   };
 

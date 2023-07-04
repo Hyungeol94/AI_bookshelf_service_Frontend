@@ -22,7 +22,7 @@ import PopupHome from "../components/PopupHome";
 import * as api from "../services/api";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import bookinfo_api from "../services/bookinfo_api_home";
+import bookinfo_api from "../services/bookinfo_api";
 
 const data = await api.countBookshelfInfo().catch((e) => console.log(e));
 const statlist = data?.data?.output || "null";
@@ -147,7 +147,7 @@ const Home = () => {
 
   const getrecommendAuthorlist = async () => {
     // console.log(userstat.maxAuthor || 'undefined');
-    await bookinfo_api(userstat.maxAuthor || "베스트셀러").then(
+    await bookinfo_api(userstat.maxAuthor || "베스트셀러", 25).then(
       async (data) => {
         console.log(userstat.maxAuthor, "작가 추천시스템 점검");
         // console.log(data);
@@ -171,7 +171,7 @@ const Home = () => {
 
   const getrecommendCategorylist = async () => {
     // console.log(userstat.maxCategory || 'undefined');
-    await bookinfo_api(userstat.maxCategory || "신간 도서").then(
+    await bookinfo_api(userstat.maxCategory || "신간 도서", 25).then(
       async (data) => {
         console.log(userstat.maxCategory, "카테고리 추천시스템 점검");
         // console.log(data);
@@ -194,7 +194,7 @@ const Home = () => {
   };
 
   const getnewbooklist = async () => {
-    await bookinfo_api("신간 도서").then(async (data) => {
+    await bookinfo_api("신간 도서", 25).then(async (data) => {
       console.log("신간 도서 시스템 점검");
       // console.log(data);
       // console.log(bookshelfcheck);
@@ -278,7 +278,7 @@ const Home = () => {
               alt="..."
               className="path"
               src={require("assets/img/path1.png")}
-              style={{ "pointer-events": "none", "z-index": 0 }}
+              style={{ pointerEvents: "none", zIndex: 0 }}
             />
 
             {/* <PopupHome bookCount={bookshelflist.length} />  */}

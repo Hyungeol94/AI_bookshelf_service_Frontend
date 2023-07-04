@@ -124,6 +124,7 @@ const Result = () => {
   }, [searchValue]);
 
   const addToBookList = (bookInfo) => {
+    if (bookInfo!==undefined){
     const newBookInfo = {...bookInfo}
     if (bookList.length!==0){
     newBookInfo.id = parseInt(bookList[bookList.length-1].id)+1
@@ -133,6 +134,10 @@ const Result = () => {
     const updatedBookList = bookList.concat(newBookInfo)
     setBookList(updatedBookList)    
     console.log(bookList)
+    }
+    else{
+      window.alert("선택된 책이 없습니다.")
+    }
   };  
 
   const deleteFromBookList = (bookInfo) => {    

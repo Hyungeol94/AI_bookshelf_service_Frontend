@@ -16,12 +16,17 @@ const BookDetailView = (props) => {
 
     const changeBookRowInfo = (e) => {
       //속성 전체에 접근해서 바꾸는 로직
+      if (bookInfo!== undefined && bookList.length!==0){
       Object.keys(bookInfo).forEach((key) => {
         selectedBookRowInfo[key] = bookInfo[key];
       })
 
       console.log('changed')
       setBookList([...bookList]) //immediate reflection of the change
+    }
+    else{
+      window.alert("선텍된 책이 없습니다.")
+    }
     } 
 
     return (

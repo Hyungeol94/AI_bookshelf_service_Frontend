@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import TermTxt from '../components/Termtxt';
 import Footer from 'components/Footer/Footer.js';
 import IndexNavbar from 'components/Navbars/IndexNavbar.js';
@@ -10,10 +10,15 @@ const TermsPage = () => {
         window.history.back();
     };
 
+    
+    useEffect(()=>{
+        window.scrollTo(0, 0)
+    },[])
+
     return (
         <>
             <IndexNavbar />
-            <div className="wrapper">
+            <div className="wrapper" >
                 <div>
                     <Container className="terms-container">
                         <div className="terms-card">

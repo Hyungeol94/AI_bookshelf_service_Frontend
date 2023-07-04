@@ -6,7 +6,7 @@ import { Container, Row, Col } from "reactstrap";
 import Footer from "components/Footer/Footer.js";
 
 // import BookList from "../components/BookList";
-import sample from "../assets/sample_book.json";
+// import sample from "../assets/sample_book.json";
 import getlist from "../components/GetList_user";
 //import get_likes_list from "../components/GetLikesList";
 import get_recentlyAdded_list from "../components/GetRecentlyAddedList";
@@ -91,13 +91,13 @@ const UserBookShelf = () => {
                 height: "100vh",
                 // marginTop: "4em",
                 font: "white",
-                marginBottom: "15%"
+                marginBottom: "15%",
               }}
             >
               <div>
                 <User_profile data={authData} />
                 <Book_view
-                  style={{ marginTop: "30px", }}
+                  style={{ marginTop: "30px" }}
                   data={authData}
                   likelist={likelist}
                   cartlist={cartlist}

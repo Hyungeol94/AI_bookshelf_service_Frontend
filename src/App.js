@@ -42,7 +42,6 @@ import User from "./pages/ProfileEdit";
 import IndexNavbar from "./components/Navbars/IndexNavbar";
 import FindPw from "./pages/Findpw";
 import Findid from "./pages/Findid";
-import Dashboard from "./pages/dashboard";
 import AboutUs from "./pages/About";
 import Result from "./pages/Result";
 import TermsPage from "./pages/Terms";
@@ -93,7 +92,6 @@ export default () => {
         {/* <Route path="/bookshelf/detail/:id" element={<GetBookDetail />} /> */}
         <Route path="/inquiry/pw" element={<FindPw />} />
         <Route path="/inquiry/id" element={<Findid />} />
-        <Route path="/dash" element={<Dashboard />} />
         <Route path="/about-us" element={<AboutUs />} />
         <Route path="/terms" element={<TermsPage />} />
 

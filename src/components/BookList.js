@@ -5,6 +5,7 @@ import * as api from "../services/api";
 import { Button, Box, Modal, IconButton } from "@mui/material";
 import ClampLines from "react-clamp-lines";
 import { lightBlue, teal } from "@mui/material/colors";
+import sample_book from "../assets/img/sample_book.png";
 
 import {
   Favorite,
@@ -143,15 +144,12 @@ export default (props) => {
           }}
         >
           <img
-            src={
-              props.image ||
-              "/Users/edaumedo1/aivle0317/src/assets/img/sample_book.png"
-            }
+            src={props.image || sample_book}
             alt={props.booktitle}
             // width={120}
             // height={160}
             onClick={handleOpenImage}
-            style={{width:"130px", maxHeight:"220px",}}
+            style={{ width: "130px", maxHeight: "220px" }}
           />
           <div
             style={{
@@ -229,7 +227,7 @@ export default (props) => {
                   width: "740px",
                   fontWeight: "border",
                   fontSize: "16px",
-                  color: "black"
+                  color: "black",
                 }}
               >
                 <ClampLines
@@ -300,7 +298,7 @@ export default (props) => {
               </div>
               <div>
                 <div>{props?.category}</div>
-                <div>쪽: {props?.page}p</div>
+                <div><p>쪽: {props?.page}p</p></div>
                 <div>무게: {props?.weight}g</div>
               </div>
               <Link to={props?.link}>
@@ -330,15 +328,12 @@ export default (props) => {
           <div style={{ display: "flex", justifyContent: "space-between" }}>
             <div>
               <img
-                src={
-                  props.image ||
-                  "/Users/edaumedo1/aivle0317/src/assets/img/sample_book.png"
-                }
+                src={props.image || sample_book}
                 alt={props.booktitle}
                 // width={120}
                 // height={160}
                 onClick={handleOpenImage}
-                style={{maxWidth:"200px", maxHeight:"250px",}}
+                style={{ maxWidth: "200px", maxHeight: "250px" }}
               />
             </div>
             <div
@@ -418,7 +413,7 @@ export default (props) => {
                     color: "#000",
                     width: "575px",
                     marginTop: "10px",
-                    marginBottom: "10px"
+                    marginBottom: "10px",
                   }}
                 >
                   <strong>{props?.title}</strong>
@@ -454,7 +449,7 @@ export default (props) => {
                 }}
               >
                 <p
-                  style={{ fontSize: "15px", fontWeight: 400, color: "black"}}
+                  style={{ fontSize: "15px", fontWeight: 400, color: "black" }}
                 >
                   {props?.author}
                 </p>
@@ -482,8 +477,21 @@ export default (props) => {
                     display: "block",
                   }}
                 >
-                  <div style={{ height: "450px", width: "635px", color: "black" , marginTop: "15px", "overflow-y": "auto" }}>
-                    <p className="description-box" style={{ color: "black", height: "380px"}}>{props?.description}</p>
+                  <div
+                    style={{
+                      height: "450px",
+                      width: "635px",
+                      color: "black",
+                      marginTop: "15px",
+                      "overflow-y": "auto",
+                    }}
+                  >
+                    <p
+                      className="description-box"
+                      style={{ color: "black", height: "380px" }}
+                    >
+                      {props?.description}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -499,10 +507,7 @@ export default (props) => {
       >
         <Box sx={styleImage} style={{ color: "white" }}>
           <img
-            src={
-              props.image ||
-              "/Users/edaumedo1/aivle0317/src/assets/img/sample_book.png"
-            }
+            src={props.image || sample_book}
             alt={props.booktitle}
             width={"100%"}
             height={"100%"}

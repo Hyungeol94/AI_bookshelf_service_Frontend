@@ -70,7 +70,7 @@ const Upload = () => {
       Promise.all(conversionPromises)
         .then(setIsLoading(true))
         .then(
-          fetch(" https://7863-34-142-179-113.ngrok-free.app/img2title/", {
+          fetch("https://8e83-34-87-53-195.ngrok-free.app/img2title/", {
             method: "POST",
             headers: {
               "ngrok-skip-browswer-warning": "69420",

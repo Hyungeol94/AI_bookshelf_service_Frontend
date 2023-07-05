@@ -14,6 +14,7 @@ import {
   ShoppingCart,
   LibraryAddOutlined,
   LibraryAddCheck,
+  Clear
 } from "@mui/icons-material";
 
 const BookModal = (props) => {
@@ -76,7 +77,6 @@ const BookModal = (props) => {
       if (delete_bookshelf === true) {
         setBookshelf(false);
         await api.deletebookshelf(request);
-        window.location.reload(); // 페이지 새로고침
       }
     } else {
       // eslint-disable-next-line no-restricted-globals
@@ -84,7 +84,6 @@ const BookModal = (props) => {
       if (add_bookshelf === true) {
         setBookshelf(true);
         await api.addbookshelf(request);
-        window.location.reload();
       }
     }
   };
@@ -98,8 +97,12 @@ const BookModal = (props) => {
     setBookshelf(props?.bookshelfcheck?.includes(props?.isbn) || false);
   };
 
-  const closeModal = () => {
+  const closeModal = async () => {
     setModalIsOpen(false);
+    await api.bookshelflist().then((data) => {
+      const booklist = data?.data?.info?.list;
+      props.setBookshelflist(booklist);
+    });
   };
   // 반환값
 
@@ -148,14 +151,12 @@ const BookModal = (props) => {
           style={{}}
         >
           <ModalHeader className="justify-content-center">
-            책 상세정보
-            <Button
-              className="btn-round btn-neutral btn-icon"
-              onClick={closeModal}
-            >
-              <i className="tim-icons icon-simple-remove" />
-            </Button>
+          <p>상세정보</p>
+          <Button className="btn-round btn-neutral" onClick={closeModal}>
+            <Clear size={12} />
+          </Button>
           </ModalHeader>
+
           <div>
             <div style={{ color: "black" }} className="book-info">
               <img

@@ -12,6 +12,7 @@ import {
   FavoriteBorder,
   ShoppingCart,
   Favorite,
+  Clear
 } from "@mui/icons-material";
 import "../styles/GetList.css";
 
@@ -44,17 +45,9 @@ const BookModal = (props) => {
     if (like) {
       setLike(false);
       await api.deletelike(request);
-      await api.likelist().then((data) => {
-        const booklist = data?.data?.info?.list;
-        setLikelist(booklist);
-      });
     } else {
       setLike(true);
       await api.addlike(request);
-      await api.likelist().then((data) => {
-        const booklist = data?.data?.info?.list;
-        setLikelist(booklist);
-      });
     }
   };
 
@@ -65,10 +58,6 @@ const BookModal = (props) => {
       if (delete_cart === true) {
         setCart(false);
         await api.deletecart(request);
-        await api.cartlist().then((data) => {
-          const booklist = data?.data?.info?.list;
-          setCartlist(booklist);
-        });
       }
     } else {
       // eslint-disable-next-line no-restricted-globals
@@ -76,10 +65,6 @@ const BookModal = (props) => {
       if (add_cart === true) {
         setCart(true);
         await api.addcart(request);
-        await api.cartlist().then((data) => {
-          const booklist = data?.data?.info?.list;
-          setCartlist(booklist);
-        });
       }
     }
   };
@@ -91,11 +76,6 @@ const BookModal = (props) => {
       if (delete_bookshelf === true) {
         setBookshelf(false);
         await api.deletebookshelf(request);
-        await api.bookshelflist().then((data) => {
-          const booklist = data?.data?.info?.list;
-          console.log("북리스트", booklist);
-          setBookshelflist(booklist);
-        });
       }
     } else {
       // eslint-disable-next-line no-restricted-globals
@@ -103,10 +83,6 @@ const BookModal = (props) => {
       if (add_bookshelf === true) {
         setBookshelf(true);
         await api.addbookshelf(request);
-        await api.bookshelflist().then((data) => {
-          const booklist = data?.data?.info?.list;
-          setBookshelflist(booklist);
-        });
       }
     }
   };
@@ -120,8 +96,21 @@ const BookModal = (props) => {
     setBookshelf(props?.bookshelfcheck?.includes(props?.isbn) || false);
   };
 
-  const closeModal = () => {
+  const closeModal = async () => {
     setModalIsOpen(false);
+    await api.bookshelflist().then((data) => {
+      const booklist = data?.data?.info?.list;
+      setBookshelflist(booklist);
+    });
+    await api.cartlist().then((data) => {
+      const booklist = data?.data?.info?.list;
+      setCartlist(booklist);
+    });
+    await api.likelist().then((data) => {
+      const booklist = data?.data?.info?.list;
+      setLikelist(booklist);
+    });
+
   };
   // 반환값
 
@@ -162,14 +151,12 @@ const BookModal = (props) => {
           className="modal-box"
         >
           <ModalHeader className="justify-content-center">
-            책 상세정보
-            <Button
-              className="btn-round btn-neutral btn-icon"
-              onClick={closeModal}
-            >
-              <i className="tim-icons icon-simple-remove" />
-            </Button>
-          </ModalHeader>
+          <p>상세정보</p>
+          <Button className="btn-round btn-neutral" onClick={closeModal}>
+            <Clear size={12} />
+          </Button>
+        </ModalHeader>
+
           <div>
             <div style={{ color: "black" }} className="book-info">
               <img

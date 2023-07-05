@@ -20,6 +20,7 @@ import {
   Form,
   Nav,
 } from "reactstrap";
+import { InfoOutlined, Clear } from "@mui/icons-material";
 
 function Card({ children }) {
   return <div className="book-view-card">{children}</div>;

@@ -23,7 +23,7 @@ export default function auth(
 
     useEffect(() => {
       getToken();
-    }, []);
+    });
 
     const getToken = async () => {
       try {

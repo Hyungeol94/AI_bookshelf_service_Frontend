@@ -1,11 +1,5 @@
 import React from "react";
-import {
-  BrowserRouter,
-  Route,
-  Routes,
-  Navigate,
-  Outlet,
-} from "react-router-dom";
+import { BrowserRouter, Route, Routes, Outlet } from "react-router-dom";
 
 import "assets/scss/blk-design-system-react.scss";
 // import "assets/css/nucleo-icons.css";
@@ -40,7 +34,6 @@ export default () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/blk-design-system-react" element={<Navigate to="/" />} />
         <Route path="/" element={<HeaderWrapper />}>
           {/* 회원 O */}
           <Route path="bookshelf" element={auth(UserBookShelf, true)} />

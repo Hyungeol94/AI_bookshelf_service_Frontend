@@ -255,7 +255,7 @@ const Home = () => {
                   paddingRight: "2vw",
                 }}
               >
-                {bookshelflist.length > 0 ? (
+                {bookshelflist?.length > 0 ? (
                   <>
                     <h3 style={{ textAlign: "center", fontWeight: "bold" }}>
                       {" "}
@@ -287,7 +287,7 @@ const Home = () => {
                         justifyContent: "flex-start",
                       }}
                     >
-                      {bookshelflist.length > 0 ? (
+                      {bookshelflist?.length > 0 ? (
                         <>
                           {bookshelflist.slice(0, 10).map((data) => (
                             <BookModal
@@ -367,7 +367,7 @@ const Home = () => {
                   <div
                     style={{ display: "flex", justifyContent: "space-between" }}
                   >
-                    {authData?.nickname.length > 5 ? (
+                    {authData?.nickname?.length > 5 ? (
                       <>
                         <h3 style={{ color: "#000000" }}>
                           {authData?.nickname || "undefined"}님의
@@ -391,7 +391,7 @@ const Home = () => {
                   </div>
 
                   <div>
-                    {bookshelflist.length > 0 ? (
+                    {bookshelflist?.length > 0 ? (
                       <>
                         <h4 style={{ color: "#000000" }}>
                           내가 좋아하는 장르 : {userstat.maxCategory}
@@ -431,7 +431,7 @@ const Home = () => {
                 alignItems: "center",
               }}
             >
-              {bookshelflist.length > 0 ? (
+              {bookshelflist?.length > 0 ? (
                 <>
                   <h3 style={{ textAlign: "center", fontWeight: "bold" }}>
                     {" "}
@@ -465,7 +465,7 @@ const Home = () => {
                           justifyContent: "flex-start",
                         }}
                       >
-                        {bookshelflist.length > 0 ? (
+                        {bookshelflist?.length > 0 ? (
                           <>
                             {recommendAuthorlist
                               .concat(recommendCategorylist)

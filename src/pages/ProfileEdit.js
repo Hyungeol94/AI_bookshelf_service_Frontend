@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/alt-text */
-import React, { useState, useRef, Avatar } from "react";
+import React, { useState, useRef } from "react";
 // import user_info from "../assets/sample_user.json";
 
 // reactstrap components

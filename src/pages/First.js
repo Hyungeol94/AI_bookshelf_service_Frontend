@@ -8,6 +8,7 @@ import { Container, Button } from "reactstrap";
 import Footer from "components/Footer/Footer.js";
 // STYLE
 import "../styles/First.css";
+import BookLogo from "assets/img/BookLogo.png";
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default () => {
@@ -43,10 +44,9 @@ export default () => {
 
         <Container>
           <div className="content-center brand">
-            {/* <img src={require("assets/img/BookLogo.png")} style={{height:"200px", marginBottom: "22px"}}/> */}
             <h1 className="h1-seo">
               <img
-                src={require("assets/img/BookLogo.png")}
+                src={BookLogo}
                 style={{
                   height: "80px",
                   marginBottom: "42px",
@@ -76,7 +76,7 @@ export default () => {
               <h1>
                 <strong>
                   <img
-                    src={require("assets/img/BookLogo.png")}
+                    src={BookLogo}
                     style={{
                       height: "40px",
                       marginBottom: "16px",
@@ -115,7 +115,7 @@ export default () => {
               <h1>
                 <strong>
                   <img
-                    src={require("assets/img/BookLogo.png")}
+                    src={BookLogo}
                     style={{
                       height: "40px",
                       marginBottom: "16px",
@@ -154,7 +154,7 @@ export default () => {
               <h1>
                 <strong>
                   <img
-                    src={require("assets/img/BookLogo.png")}
+                    src={BookLogo}
                     style={{
                       height: "40px",
                       marginBottom: "16px",

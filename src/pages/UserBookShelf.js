@@ -8,6 +8,8 @@ import Footer from "components/Footer/Footer.js";
 import Book_view from "../components/Bookview";
 // REST_API
 import * as api from "../services/api";
+// ASSETS
+import path1 from '../assets/img/path1.png'
 
 const UserBookShelf = () => {
   // userReducer
@@ -61,7 +63,7 @@ const UserBookShelf = () => {
             <img
               alt="..."
               className="path"
-              src={require("assets/img/path1.png")}
+              src={path1}
               style={{ pointerEvents: "none", zIndex: 0 }}
             />
             <div></div>

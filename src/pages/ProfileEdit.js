@@ -7,6 +7,7 @@ import { Button } from "reactstrap";
 import * as api from "../services/api";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import path1 from '../assets/img/path1.png'
 
 const UserEditPage = () => {
   const { authData } = useSelector((state) => state.userReducer);
@@ -53,7 +54,7 @@ const UserEditPage = () => {
           <img
             alt="..."
             className="path"
-            src={require("assets/img/path1.png")}
+            src={path1}
           />
 
           <div className="section section-basic" id="basic-elements">

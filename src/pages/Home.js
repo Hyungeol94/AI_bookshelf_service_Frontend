@@ -18,6 +18,8 @@ import Footer from "components/Footer/Footer.js";
 import bookinfo_api from "../services/bookinfo_api";
 import * as api from "../services/api";
 import "../styles/GetList_home.css";
+// assets
+import path1 from '../assets/img/path1.png'
 
 const Home = () => {
   const { authData } = useSelector((state) => state.userReducer);
@@ -231,7 +233,7 @@ const Home = () => {
             <img
               alt="..."
               className="path"
-              src={require("assets/img/path1.png")}
+              src={path1}
               style={{ pointerEvents: "none", zIndex: 0 }}
             />
 

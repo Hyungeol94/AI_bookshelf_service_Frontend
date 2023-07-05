@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "./static/css/main.77408af8.chunk.css",
+    "main.js": "./static/js/main.3ed1fa6b.chunk.js",
+    "runtime-main.js": "./static/js/runtime-main.8bfd9789.js",
+    "static/js/2.315ca5c4.chunk.js": "./static/js/2.315ca5c4.chunk.js",
+    "index.html": "./index.html",
+    "static/js/2.315ca5c4.chunk.js.LICENSE.txt": "./static/js/2.315ca5c4.chunk.js.LICENSE.txt",
+    "static/media/First1.png": "./static/media/First1.cca391df.png",
+    "static/media/bookmodal.jpg": "./static/media/bookmodal.2c556f9a.jpg",
+    "static/media/blk-design-system-react.scss": "./static/media/square5.16283001.png",
+    "static/media/mybookshelf.jpg": "./static/media/mybookshelf.a26c932f.jpg",
+    "static/media/path1.a0d20b60.png": "./static/media/path1.a0d20b60.png",
+    "static/media/upload-guidelines.png": "./static/media/upload-guidelines.d8abb002.png",
+    "static/media/us.jpg": "./static/media/us.edff23c5.jpg",
+    "static/media/user_profile.8d49e377.png": "./static/media/user_profile.8d49e377.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.8bfd9789.js",
+    "static/js/2.315ca5c4.chunk.js",
+    "static/css/main.77408af8.chunk.css",
+    "static/js/main.3ed1fa6b.chunk.js"
+  ]
+}

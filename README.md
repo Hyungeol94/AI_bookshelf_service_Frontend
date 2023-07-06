@@ -8,8 +8,9 @@
 
 ## 실행 방법
 
-1. `yarn start`: 로컬 서버 실행
-2. `yarn dev`: 로컬 테스트 서버 실행(예정)
+1. `npm install -g yarn`: yarn 설치
+2. `yarn start`: 로컬 서버 실행
+3. `yarn dev`: 로컬 테스트 서버 실행(예정)
 
 ## 주의 사항
 

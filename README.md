@@ -1,4 +1,4 @@
-# medic-backend
+# Book Is On & On 웹서비스
 
 ## 사용 스택
 

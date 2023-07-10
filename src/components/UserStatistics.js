@@ -145,23 +145,17 @@ const StatShow = () => {
               display: "flex",
               justifyContent: "space-between",
               alignItems: "center",
-              // width: '1000px',
+              width: '1000px',
               height: "450px",
-              margin: "0 10px",
-              // paddingTop: "10px",
-              // paddingBottom: "10px",
-              // paddingLeft: "0.8em",
-              // paddingRight: "0.8em",
+              margin: 'auto'
             }}
           >
             <div
               className="block_section1&2"
               style={{
                 display: "block",
-                paddingRight: "0.5em",
-                paddingLeft: "0.5em",
-                width: "50vw",
-                // height:'50vh'
+                width: "500px",
+                marginRight: '5px'
               }}
             >
               <div
@@ -253,12 +247,15 @@ const StatShow = () => {
             <div
               className="section3_chart"
               style={{
-                width: "30vw",
-                paddingRight: "0.5em",
-                paddingLeft: "0.5em",
-                display: "flex",
-                justifyContent: "center",
+                width: "500px",
+                marginLeft: '5px',
+                height: "430px",
                 alignItems: "center",
+                justifyContent: "center",
+                display: "flex",
+                backgroundColor: "rgba(236, 213, 227, 0.5)",
+                // marginBottom: "20px",
+                borderRadius: "20px 20px 20px 20px",
               }}
             >
               <PieChart categoryCount={userstat.category} />

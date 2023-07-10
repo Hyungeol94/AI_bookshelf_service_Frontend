@@ -32,19 +32,12 @@ const PieChart = (props) => {
   };
 
   return (
-    <div
-      style={{
-        width: "95vw",
-        height: "430px",
-        alignItems: "center",
-        justifyContent: "center",
-        display: "flex",
-        backgroundColor: "rgba(236, 213, 227, 0.5)",
-        // marginBottom: "20px",
-        borderRadius: "20px 20px 20px 20px",
-      }}
-    >
-      <Pie data={chartData} />
+    <div>
+      <Pie data={chartData}
+        style={{
+          width: '400px',
+          height: '400px',
+        }} />
     </div>
   );
 };

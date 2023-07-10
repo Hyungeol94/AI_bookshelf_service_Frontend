@@ -18,6 +18,8 @@ import Footer from "components/Footer/Footer.js";
 import bookinfo_api from "../services/bookinfo_api";
 import * as api from "../services/api";
 import "../styles/GetList_home.css";
+// assets
+import path1 from '../assets/img/path1.png'
 
 const Home = () => {
   const { authData } = useSelector((state) => state.userReducer);
@@ -231,7 +233,7 @@ const Home = () => {
             <img
               alt="..."
               className="path"
-              src={require("assets/img/path1.png")}
+              src={path1}
               style={{ pointerEvents: "none", zIndex: 0 }}
             />
 
@@ -255,7 +257,7 @@ const Home = () => {
                   paddingRight: "2vw",
                 }}
               >
-                {bookshelflist.length > 0 ? (
+                {bookshelflist?.length > 0 ? (
                   <>
                     <h3 style={{ textAlign: "center", fontWeight: "bold" }}>
                       {" "}
@@ -287,7 +289,7 @@ const Home = () => {
                         justifyContent: "flex-start",
                       }}
                     >
-                      {bookshelflist.length > 0 ? (
+                      {bookshelflist?.length > 0 ? (
                         <>
                           {bookshelflist.slice(0, 10).map((data) => (
                             <BookModal
@@ -367,7 +369,7 @@ const Home = () => {
                   <div
                     style={{ display: "flex", justifyContent: "space-between" }}
                   >
-                    {authData?.nickname.length > 5 ? (
+                    {authData?.nickname?.length > 5 ? (
                       <>
                         <h3 style={{ color: "#000000" }}>
                           {authData?.nickname || "undefined"}님의
@@ -391,7 +393,7 @@ const Home = () => {
                   </div>
 
                   <div>
-                    {bookshelflist.length > 0 ? (
+                    {bookshelflist?.length > 0 ? (
                       <>
                         <h4 style={{ color: "#000000" }}>
                           내가 좋아하는 장르 : {userstat.maxCategory}
@@ -431,7 +433,7 @@ const Home = () => {
                 alignItems: "center",
               }}
             >
-              {bookshelflist.length > 0 ? (
+              {bookshelflist?.length > 0 ? (
                 <>
                   <h3 style={{ textAlign: "center", fontWeight: "bold" }}>
                     {" "}
@@ -465,7 +467,7 @@ const Home = () => {
                           justifyContent: "flex-start",
                         }}
                       >
-                        {bookshelflist.length > 0 ? (
+                        {bookshelflist?.length > 0 ? (
                           <>
                             {recommendAuthorlist
                               .concat(recommendCategorylist)

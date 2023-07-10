@@ -2,8 +2,9 @@
 // react
 import React, { useEffect } from "react";
 // component
-import IndexNavbar from "components/Navbars/IndexNavbar";
-import Footer from "components/Footer/Footer.js";
+import IndexNavbar from "../components/Navbars/IndexNavbar";
+import Footer from "../components/Footer/Footer.js";
+import us from "../assets/img/us.jpg";
 
 const AboutUs = () => {
   useEffect(() => {
@@ -25,7 +26,7 @@ const AboutUs = () => {
         }}
       >
         <img
-          src={require("assets/img/us.jpg")}
+          src={us}
           style={{ height: "500px", border: "5px solid rgb(220, 220, 220)" }}
         />
         <div

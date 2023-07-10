@@ -6,11 +6,7 @@ const { createProxyMiddleware } = require("http-proxy-middleware");
 
 
 module.exports = (app) => {
-
   const LOCAL_SERVER_ENV = process.env.REACT_APP_LOCAL_SERVER_ENV; // 백 앤드 개발환경
-
-
-
 
   const SERVER = LOCAL_SERVER_ENV || process.env.REACT_APP_SERVER_ENV;
 

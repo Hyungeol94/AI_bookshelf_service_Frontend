@@ -8,6 +8,10 @@ import { Container, Button } from "reactstrap";
 import Footer from "components/Footer/Footer.js";
 // STYLE
 import "../styles/First.css";
+import BookLogo from "../assets/img/BookLogo.png";
+import mybookshelf from "../assets/img/mybookshelf.jpg";
+import First1 from "../assets/img/First1.png";
+import bookmodal from "assets/img/bookmodal.jpg";
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default () => {
@@ -43,10 +47,9 @@ export default () => {
 
         <Container>
           <div className="content-center brand">
-            {/* <img src={require("assets/img/BookLogo.png")} style={{height:"200px", marginBottom: "22px"}}/> */}
             <h1 className="h1-seo">
               <img
-                src={require("assets/img/BookLogo.png")}
+                src={BookLogo}
                 style={{
                   height: "80px",
                   marginBottom: "42px",
@@ -76,7 +79,7 @@ export default () => {
               <h1>
                 <strong>
                   <img
-                    src={require("assets/img/BookLogo.png")}
+                    src={BookLogo}
                     style={{
                       height: "40px",
                       marginBottom: "16px",
@@ -91,7 +94,7 @@ export default () => {
                   <strong> 오프라인 서재의 온라인화 </strong>
                 </h2>
                 <img
-                  src={require("assets/img/mybookshelf.jpg")}
+                  src={mybookshelf}
                   className="floatimages image2"
                   style={{ border: "2px solid white" }}
                 />
@@ -115,7 +118,7 @@ export default () => {
               <h1>
                 <strong>
                   <img
-                    src={require("assets/img/BookLogo.png")}
+                    src={BookLogo}
                     style={{
                       height: "40px",
                       marginBottom: "16px",
@@ -130,7 +133,7 @@ export default () => {
                   <strong> 도서 관리 기능 </strong>
                 </h1>
                 <img
-                  src={require("assets/img/First1.png")}
+                  src={First1}
                   className="floatimages image2"
                   style={{ border: "2px solid white" }}
                 />
@@ -154,7 +157,7 @@ export default () => {
               <h1>
                 <strong>
                   <img
-                    src={require("assets/img/BookLogo.png")}
+                    src={BookLogo}
                     style={{
                       height: "40px",
                       marginBottom: "16px",
@@ -169,7 +172,7 @@ export default () => {
                   <strong> 도서 추천 기능 </strong>
                 </h1>
                 <img
-                  src={require("assets/img/bookmodal.jpg")}
+                  src={bookmodal}
                   className="floatimages image2"
                   style={{ border: "2px solid white" }}
                 />

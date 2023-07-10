@@ -9,7 +9,7 @@ const ForgotId = () => {
   useEffect(() => {
     alert("구현중입니다.");
     navigate("/login");
-  }, []);
+  });
 };
 
 export default ForgotId;

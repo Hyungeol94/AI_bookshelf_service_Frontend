@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import bookinfo_api from "../services/bookinfo_api";
 import "../styles/Result.css";
@@ -101,7 +102,7 @@ const Result = () => {
       if (
         typeof fetchedData !== "undefined" &&
         fetchedData &&
-        fetchedData.items.length != 0
+        fetchedData.items.length !== 0
       ) {
         setSelectedBookInfo({ ...fetchedData.items[0] });
       } else setSelectedBookInfo(selectedBookRowInfo);

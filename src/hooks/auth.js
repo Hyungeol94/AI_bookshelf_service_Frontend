@@ -23,14 +23,14 @@ export default function auth(
 
     useEffect(() => {
       getToken();
-    }, []);
+    },[]);
 
     const getToken = async () => {
       try {
         const { data } = await getAuthToken();
         dispatch(userAuthorization(data?.userData));
         setReady(true);
-        console.log(data);
+        // console.log(data);
       } catch (e) {
         const { success } = e?.response?.data || false;
         // 인증이 되지 않은 사람들
@@ -58,7 +58,7 @@ export default function auth(
           }
         }
       }
-    }, [ready, isAuth, navigate]);
+    }, [ready, navigate]);
 
     return <>{ready && <SpecificComponent />}</>;
   }

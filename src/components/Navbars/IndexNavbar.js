@@ -18,6 +18,7 @@ import {
   Row,
   Col,
 } from "reactstrap";
+import logo_sm from "../../assets/img/logo_sm.png";
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default () => {
@@ -83,7 +84,7 @@ export default () => {
             >
               <span>
                 <img
-                  src={require("assets/img/logo_sm.png")}
+                  src={logo_sm}
                   style={{ marginBottom: "10px", marginRight: "-px" }}
                 />{" "}
                 Book is On&On{" "}
@@ -100,7 +101,7 @@ export default () => {
             >
               <span>
                 <img
-                  src={require("assets/img/logo_sm.png")}
+                  src={logo_sm}
                   style={{ marginBottom: "10px", marginRight: "-5px" }}
                 />{" "}
                 Book is On&On{" "}

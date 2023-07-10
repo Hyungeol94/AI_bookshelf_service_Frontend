@@ -72,11 +72,10 @@ const BookTableView = (props) => {
 
     return (
       <div className = "bookTableView" style={{"border-radius":"15px"}}>
-        <div style={{display:'flex', justifyContent:'space-between'}}>
+        <div className="viewHeader" style={{display:'flex', justifyContent:'space-between'}}>
           <h3 className="viewHeader">책 목록</h3>
           <h4 className="reUpload"><ReUploadButton/></h4>
         </div>
-        {/* <h3 className="viewHeader">책 목록</h3> */}
         <BookTable
           booksInfo = {booksInfo}
           setSelectedBookInfo = {setSelectedBookInfo}
@@ -90,14 +89,14 @@ const BookTableView = (props) => {
           isLoading = {isLoading}
           data = {data}              
         />
-        <div style={{display: 'flex', marginTop: '10px'}}>
-          <Button onClick = {openBookshelfImage} style={{width: '70%', display: 'block'}}>책장 이미지 확인 </Button>    
+        <div style={{display: 'flex', justifyContent: 'center', marginTop: '10px',  height: '10%'}}>
+          <Button onClick = {openBookshelfImage} style={{padding: '0px 0px', width: '70%', display: 'block',  height: '75%'}}>책장 이미지 확인 </Button>    
             <BookshelfImageModal
               bookshelfImages = {bookshelfImages}
               modalIsOpen = {modalIsOpen}              
               openBookshelfImage = {openBookshelfImage}
               />
-          <Button onClick = {handleSaveToMyBookshelf} style={{width: '70%', display: 'block'}}>내 서재로 저장</Button>                      
+          <Button onClick = {handleSaveToMyBookshelf} style={{padding: '0px 0px', width: '70%', display: 'block', height: '75%'}}>내 서재로 저장</Button>                      
         </div>
       </div>
     );

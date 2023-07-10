@@ -8,7 +8,7 @@ import * as api from "../services/api";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import path1 from "../assets/img/path1.png";
-import Footer from "../components/Footer/Footer.js";
+// import Footer from "../components/Footer/Footer.js";
 
 const UserEditPage = () => {
   const { authData } = useSelector((state) => state.userReducer);

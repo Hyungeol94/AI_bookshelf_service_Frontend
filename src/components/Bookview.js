@@ -167,7 +167,7 @@ export default function Bookview(props) {
               </Form>
             </Nav>
           </CardHeader>
-          <CardBody>
+          <CardBody style={{height: '600px', overflowY:'auto' }}>
             <TabContent className="tab-space" activeTab={"link" + iconTabs}>
               <TabPane tabId="link1">
                 <p>

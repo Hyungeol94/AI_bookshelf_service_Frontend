@@ -62,6 +62,7 @@ const Home = () => {
       .bookshelfcheck()
       .then((data) => {
         const booklist = data?.data?.info?.list || "df";
+        console.log('setBookshelfcheck!!')
         setBookshelfcheck(booklist);
       })
       .catch((e) => console.log(e));
@@ -72,6 +73,7 @@ const Home = () => {
       .bookshelflist()
       .then((data) => {
         const booklist = data?.data?.info?.list || "df";
+        console.log('setBookshelflist!!!')
         setBookshelflist(booklist);
       })
       .catch((e) => console.log(e));
@@ -471,7 +473,7 @@ const Home = () => {
                           <>
                             {recommendAuthorlist
                               .concat(recommendCategorylist)
-                              .sort(() => Math.random() - 0.5)
+                              // .sort(() => Math.random() - 0.5)
                               ?.slice(0, 20)
                               .map((data) => (
                                 <BookModal

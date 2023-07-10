@@ -1,4 +1,5 @@
-# medic-backend
+# Book Is On & On 웹서비스
+## aivle0317
 
 ## 사용 스택
 
@@ -8,8 +9,9 @@
 
 ## 실행 방법
 
-1. `yarn start`: 로컬 서버 실행
-2. `yarn dev`: 로컬 테스트 서버 실행(예정)
+1. `npm install -g yarn`: yarn 설치
+2. `yarn start`: 로컬 서버 실행
+3. `yarn dev`: 로컬 테스트 서버 실행(예정)
 
 ## 주의 사항
 
@@ -27,4 +29,3 @@
 3. `git pull`
 4. `yarn` 실행하기
 
-# aivle0317

@@ -7,7 +7,8 @@ import { Button } from "reactstrap";
 import * as api from "../services/api";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import path1 from '../assets/img/path1.png'
+import path1 from "../assets/img/path1.png";
+import Footer from "../components/Footer/Footer.js";
 
 const UserEditPage = () => {
   const { authData } = useSelector((state) => state.userReducer);
@@ -51,11 +52,7 @@ const UserEditPage = () => {
       <div className="wrapper">
         <div className="main">
           {/* <div className="section section-basic" id="basic-elements"> */}
-          <img
-            alt="..."
-            className="path"
-            src={path1}
-          />
+          <img alt="..." className="path" src={path1} />
 
           <div className="section section-basic" id="basic-elements">
             <div
@@ -177,7 +174,7 @@ const UserEditPage = () => {
           </div>
         </div>
       </div>
-      {/* <Footer/> */}
+      {/* <Footer /> */}
     </>
   );
 };

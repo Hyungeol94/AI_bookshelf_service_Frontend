@@ -9,7 +9,7 @@ import Book_view from "../components/Bookview";
 // REST_API
 import * as api from "../services/api";
 // ASSETS
-import path1 from '../assets/img/path1.png'
+import path1 from "../assets/img/path1.png";
 
 const UserBookShelf = () => {
   // userReducer
@@ -72,7 +72,6 @@ const UserBookShelf = () => {
                 display: "flex",
                 justifyContent: "center",
                 width: "100%",
-                height: "100vh",
                 font: "white",
                 marginBottom: "15%",
               }}

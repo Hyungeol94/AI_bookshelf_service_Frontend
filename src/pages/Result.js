@@ -2,12 +2,10 @@
 import React, { useEffect, useState } from "react";
 import bookinfo_api from "../services/bookinfo_api";
 import "../styles/Result.css";
-import {
-  BookSearchView,
-  BookTableView,
-  BookDetailView,
-  GuideModal,
-} from "../components/Result";
+import BookSearchView from "../components/Result/BookSearchView";
+import BookTableView from "../components/Result/BookTableView";
+import GuideModal from "../components/Result/GuideModal";
+import BookDetailView from "../components/Result/BookDetailView";
 
 import { LiveHelp } from "@mui/icons-material";
 import { Button } from "reactstrap";

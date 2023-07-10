@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 // react
 import { useDispatch, useSelector } from "react-redux";
 import React, { useEffect, useState } from "react";
@@ -23,7 +24,7 @@ export default function auth(
 
     useEffect(() => {
       getToken();
-    },[]);
+    });
 
     const getToken = async () => {
       try {

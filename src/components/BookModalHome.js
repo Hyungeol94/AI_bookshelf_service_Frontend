@@ -99,10 +99,12 @@ const BookModal = (props) => {
 
   const closeModal = async () => {
     setModalIsOpen(false);
-    await api.bookshelflist().then((data) => {
-      const booklist = data?.data?.info?.list;
-      props.setBookshelflist(booklist);
-    });
+    if (props.setBookshelflist && bookshelf === false) {
+      await api.bookshelflist().then((data) => {
+        const booklist = data?.data?.info?.list;
+        props.setBookshelflist(booklist);
+      });
+    }
   };
   // 반환값
 

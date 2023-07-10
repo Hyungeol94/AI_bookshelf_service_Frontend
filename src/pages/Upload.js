@@ -7,6 +7,7 @@ import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 import { TailSpin } from "react-loader-spinner";
 import { Modal, Button } from "reactstrap";
 import "../styles/Upload.css";
+import uploadGuidelines from "../assets/img/upload-guidelines.png";
 
 function Card({ children }) {
   return <div className="card">{children}</div>;
@@ -152,7 +153,7 @@ const Upload = () => {
           className="modal-container"
         >
           <img
-            src={require("assets/img/upload-guidelines.png")}
+            src={uploadGuidelines}
             onClick={closeModal}
             className="guide-photo"
           />

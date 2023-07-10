@@ -18,7 +18,7 @@ import {
   Row,
   Col,
 } from "reactstrap";
-import logo_sm from "assets/img/logo_sm.png";
+import logo_sm from "../../assets/img/logo_sm.png";
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default () => {

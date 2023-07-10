@@ -10,15 +10,15 @@ import {
 } from "reactstrap";
 import { useState } from "react";
 import "../../styles/Result.css";
+import resultguide1 from "../../assets/img/resultguide1.png";
+import resultguide2 from "../../assets/img/resultguide2.png";
+import resultguide3 from "../../assets/img/resultguide3.png";
+import resultguide4 from "../../assets/img/resultguide4.png";
+
 export default (props) => {
   // 모달 관련 (가이드라인)
   const { modalIsOpen, setModalIsOpen } = props;
-  const images = [
-    `../assets/img/resultguide1.png`,
-    `../../assets/img/resultguide2.png`,
-    `../../assets/img/resultguide3.png`,
-    `../../assets/img/resultguide4.png`,
-  ];
+  const images = [resultguide1, resultguide2, resultguide3, resultguide4];
 
   const [activeIndex, setActiveIndex] = useState(0);
   const [animating, setAnimating] = useState(false);
